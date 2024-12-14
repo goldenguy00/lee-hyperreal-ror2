@@ -54,7 +54,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             domainController = this.GetComponent<LeeHyperrealDomainController>();
             this.hitboxName = "Primary2";
 
-            this.damageType = DamageType.Generic;
+            this.damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.Primary);
             this.damageCoefficient = Modules.StaticValues.primary2DamageCoefficient;
             this.procCoefficient = Modules.StaticValues.primary2ProcCoefficient;
             this.pushForce = Modules.StaticValues.primary2PushForce;

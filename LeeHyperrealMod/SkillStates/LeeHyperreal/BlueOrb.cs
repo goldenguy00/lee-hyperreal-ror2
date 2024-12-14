@@ -62,6 +62,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
         bool hasTransitioned = false;
 
         bool hasUnsetOrbController;
+
+        DamageTypeCombo GenericDamageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified);
         public override void OnEnter()
         {
             base.OnEnter();
@@ -118,7 +120,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 baseForce = 0f,
                 bonusForce = Vector3.zero,
                 crit = this.RollCrit(),
-                damageType = DamageType.Generic,
+                damageType = GenericDamageType,
                 losType = BlastAttack.LoSType.None,
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),
@@ -135,7 +137,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 bulletCount = (uint)attackAmount,
                 damage = Modules.StaticValues.blueOrbShotCoefficient * this.damageStat,
                 damageColorIndex = DamageColorIndex.Default,
-                damageType = DamageType.Generic,
+                damageType = GenericDamageType,
                 falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                 maxDistance = range,
                 force = force,

@@ -191,7 +191,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                     origin = startPos,
                     damage = Modules.StaticValues.snipeDamageCoefficient * this.damageStat * empoweredBulletMultiplier,
                     damageColorIndex = DamageColorIndex.Default,
-                    damageType = DamageType.Generic,
+                    damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.Secondary),
                     falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                     maxDistance = Modules.StaticValues.snipeRange,
                     force = Modules.StaticValues.snipeForce,

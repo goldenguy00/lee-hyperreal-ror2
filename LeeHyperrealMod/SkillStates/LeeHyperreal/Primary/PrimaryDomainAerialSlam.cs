@@ -127,7 +127,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 baseForce = 600f * airTime,
                 bonusForce = Vector3.up,
                 crit = this.RollCrit(),
-                damageType = DamageType.Stun1s,
+                damageType = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Primary),
                 losType = BlastAttack.LoSType.NearestHit,
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),

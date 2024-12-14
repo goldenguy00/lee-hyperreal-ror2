@@ -40,7 +40,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             domainController = this.GetComponent<LeeHyperrealDomainController>();
             this.hitboxName = "LongMelee";
 
-            this.damageType = DamageType.Stun1s;
+            this.damageType = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Primary);
             this.damageCoefficient = Modules.StaticValues.primary5DamageCoefficient;
             this.procCoefficient = Modules.StaticValues.primary5ProcCoefficient;
             this.pushForce = Modules.StaticValues.primary5PushForce;

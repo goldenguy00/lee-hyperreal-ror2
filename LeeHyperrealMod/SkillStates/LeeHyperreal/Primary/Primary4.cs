@@ -86,7 +86,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 baseForce = 0f,
                 bonusForce = Vector3.zero,
                 crit = this.RollCrit(),
-                damageType = DamageType.Generic,
+                damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.Primary),
                 losType = BlastAttack.LoSType.NearestHit,
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),

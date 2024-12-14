@@ -49,6 +49,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
         private bool hasFiredOverlap;
         bool hasUnsetOrbController;
         public bool hasCancelledWithMovement;
+
+        public DamageTypeCombo GenericDamageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified);
         public override void OnEnter()
         {
             base.OnEnter();
@@ -71,7 +73,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 origin = aimRay.origin,
                 damage = Modules.StaticValues.redOrbFinisherDamageCoefficient * this.damageStat,
                 damageColorIndex = DamageColorIndex.Default,
-                damageType = DamageType.Generic,
+                damageType = GenericDamageType,
                 falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                 maxDistance = Modules.StaticValues.redOrbFinisherBulletRange,
                 force = Modules.StaticValues.redOrbFinisherBulletForce,
@@ -209,7 +211,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                         overlapAttack.attacker = gameObject;
                         overlapAttack.inflictor = null;
                         overlapAttack.teamIndex = GetTeam();
-                        overlapAttack.damageType = DamageType.Generic;
+                        overlapAttack.damageType = GenericDamageType;
                         overlapAttack.damage = this.damageCoefficient * this.damageStat;
                         overlapAttack.procCoefficient = this.procCoefficient;
                         overlapAttack.hitEffectPrefab = Modules.ParticleAssets.redOrbDomainHit;
@@ -235,7 +237,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                         overlapAttack.attacker = gameObject;
                         overlapAttack.inflictor = null;
                         overlapAttack.teamIndex = GetTeam();
-                        overlapAttack.damageType = DamageType.Generic;
+                        overlapAttack.damageType = GenericDamageType;
                         overlapAttack.hitBoxGroup = hitBoxGroup;
                         overlapAttack.damage = this.damageCoefficient * this.damageStat * partialAttack;
                         overlapAttack.procCoefficient = this.procCoefficient * partialAttack;

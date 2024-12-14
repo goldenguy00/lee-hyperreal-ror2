@@ -45,7 +45,7 @@ namespace LeeHyperrealMod
     {
         public const string MODUID = "com.PopcornFactory.LeeHyperrealMod";
         public const string MODNAME = "LeeHyperrealMod";
-        public const string MODVERSION = "1.1.11";
+        public const string MODVERSION = "1.1.12";
         
         public const string DEVELOPER_PREFIX = "POPCORN";
 
@@ -294,7 +294,7 @@ namespace LeeHyperrealMod
                         DamageType tempDamageType = DamageType.FallDamage | DamageType.NonLethal;
                         DamageType frailtyDamageType = DamageType.FallDamage | DamageType.BypassOneShotProtection;
 
-                        if (damageInfo.damageType == tempDamageType || damageInfo.damageType == frailtyDamageType)
+                        if (damageInfo.damageType.damageType == tempDamageType || damageInfo.damageType.damageType == frailtyDamageType)
                         {
                             damageInfo.rejected = true;
 
@@ -302,7 +302,7 @@ namespace LeeHyperrealMod
                         }
                     }
 
-                    if (self.body.HasBuff(Modules.Buffs.invincibilityBuff) && damageInfo.damageType != HealthCostShrineDamageType) 
+                    if (self.body.HasBuff(Modules.Buffs.invincibilityBuff) && damageInfo.damageType.damageType != HealthCostShrineDamageType) 
                     {
                         damageInfo.rejected = true;
                         damageInfo.damage = 0f;
@@ -320,7 +320,7 @@ namespace LeeHyperrealMod
                             }
 
 
-                            if (damageInfo.damageType == HealthCostShrineDamageType)
+                            if (damageInfo.damageType.damageType == HealthCostShrineDamageType)
                             {
                                 damageInfo.damage = damageWouldReceive * 0.5f;
                                 damageInfo.rejected = false;
@@ -345,7 +345,7 @@ namespace LeeHyperrealMod
                                         damage = damageWouldReceive * 0.25f,
                                         attacker = self.body.gameObject,
                                         crit = self.body.RollCrit(),
-                                        damageType = DamageType.Stun1s,
+                                        damageType = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Primary),
                                         damageColorIndex = DamageColorIndex.Default
                                     };
 

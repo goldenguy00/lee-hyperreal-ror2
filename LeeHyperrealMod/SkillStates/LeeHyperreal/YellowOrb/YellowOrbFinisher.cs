@@ -35,7 +35,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
             base.OnEnter();
             duration = 1.13f;
 
-            this.damageType = DamageType.Generic;
+            this.damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified);
             this.damageCoefficient = Modules.StaticValues.yellowOrbFinisherDamageCoefficient;
             this.procCoefficient = Modules.StaticValues.yellowOrbFinisherProcCoefficient;
             this.pushForce = Modules.StaticValues.yellowOrbFinisherPushForce;

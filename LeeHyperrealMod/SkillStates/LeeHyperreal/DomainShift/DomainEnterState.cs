@@ -35,7 +35,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
         float turnOffGravityFrac = 0.3f;
 
         public bool shouldForceUpwards;
-
+        DamageTypeCombo GenericDamageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified);
         /*
         Domain shift
         Sets isDomain in domain controller
@@ -65,7 +65,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
                 //origin = aimRay.origin,
                 damage = Modules.StaticValues.domainShiftBulletDamageCoefficient * this.damageStat,
                 damageColorIndex = DamageColorIndex.Default,
-                damageType = DamageType.Generic,
+                damageType = GenericDamageType,
                 falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                 maxDistance = Modules.StaticValues.snipeRange,
                 force = Modules.StaticValues.snipeForce,
@@ -99,7 +99,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
                 baseForce = 0f,
                 bonusForce = Vector3.zero,
                 crit = this.RollCrit(),
-                damageType = DamageType.Generic,
+                damageType = GenericDamageType,
                 losType = BlastAttack.LoSType.None,
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),

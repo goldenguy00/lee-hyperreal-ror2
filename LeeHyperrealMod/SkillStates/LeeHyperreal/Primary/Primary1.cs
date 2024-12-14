@@ -43,7 +43,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             this.hitboxName = "ShortMelee";
 
-            this.damageType = DamageType.Generic;
+            this.damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.Primary);
             this.damageCoefficient = Modules.StaticValues.primary1DamageCoefficient;
             this.procCoefficient = Modules.StaticValues.primary1ProcCoefficient;
             this.pushForce = Modules.StaticValues.primary1PushForce;

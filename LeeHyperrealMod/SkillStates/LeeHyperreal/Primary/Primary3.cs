@@ -53,7 +53,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             domainController = this.GetComponent<LeeHyperrealDomainController>();
             this.hitboxName = "AOEMelee";
 
-            this.damageType = DamageType.Stun1s;
+            this.damageType = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Primary);
             this.damageCoefficient = Modules.StaticValues.primary3DamageCoefficient;
             this.procCoefficient = Modules.StaticValues.primary3ProcCoefficient;
             this.pushForce = Modules.StaticValues.primary3PushForce;

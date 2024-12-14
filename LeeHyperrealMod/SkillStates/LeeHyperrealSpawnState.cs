@@ -110,7 +110,7 @@ namespace LeeHyperrealMod.SkillStates
                         baseForce = 1000f,
                         bonusForce = Vector3.zero,
                         crit = this.RollCrit(),
-                        damageType = DamageType.Generic,
+                        damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified),
                         losType = BlastAttack.LoSType.None,
                         canRejectForce = false,
                         procChainMask = new ProcChainMask(),

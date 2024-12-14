@@ -30,13 +30,14 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
-- 1.1.11
-    - Fixed an issue regarding Non-simple control inputs where orb groupings greater than 3 would not trigger 3-ping effects
-        - 3-ping effects include:
-            - Stronger orb effects
-            - Coloured Bullet retrieval
-        - These should now run properly if using Non-simple control inputs.
-        - Simple mode was not affected in anyway.
+- 1.1.12
+    - Recompiled to use new method signatures
+    - Added Damage Type/Source changes from new RoR2 version.
+        - Primary triggers primary effects.
+        - However, when in snipe mode, Primary does secondary effects. 
+            - Luminous shot triggers secondary off activation, not on hit, so these damage changes do nothing.
+            - However sniping does not trigger the lightning bolt on hit.
+            - If this causes issues down the line, I will revert this to use primary.
         
 - 1.0.0
     - Initial Release!

@@ -1,6 +1,14 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- 1.1.12
+    - Recompiled to use new method signatures
+    - Added Damage Type changes from new RoR2 version.
+        - Primary triggers primary effects.
+        - However, when in snipe mode, Primary does secondary effects. 
+            - Luminous shot triggers secondary off activation, not on hit, so these damage changes do nothing.
+            - However sniping does not trigger the lightning bolt on hit.
+            - If this causes issues down the line, I will revert this to use primary.
 - 1.1.11
     - Fixed an issue regarding Non-simple control inputs where orb groupings greater than 3 would not trigger 3-ping effects
         - 3-ping effects include:

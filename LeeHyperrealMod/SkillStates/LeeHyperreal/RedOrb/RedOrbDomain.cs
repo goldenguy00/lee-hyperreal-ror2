@@ -108,7 +108,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 baseForce = Modules.StaticValues.redOrbDomainBlastForce,
                 bonusForce = Vector3.zero,
                 crit = RollCrit(),
-                damageType = DamageType.Generic,
+                damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified),
                 losType = BlastAttack.LoSType.None,
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),

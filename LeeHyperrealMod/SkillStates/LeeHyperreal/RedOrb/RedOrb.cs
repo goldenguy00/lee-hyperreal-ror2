@@ -93,7 +93,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 origin = aimRay.origin,
                 damage = Modules.StaticValues.redOrbDamageCoefficient * this.damageStat * (moveStrength >= 3 ? Modules.StaticValues.redOrbTripleMultiplier : 1),
                 damageColorIndex = DamageColorIndex.Default,
-                damageType = DamageType.Generic,
+                damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified),
                 falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                 maxDistance = Modules.StaticValues.redOrbBulletRange,
                 force = Modules.StaticValues.redOrbBulletForce,

@@ -52,7 +52,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 baseForce = 0f,
                 bonusForce = Vector3.zero,
                 crit = leeBody.RollCrit(),
-                damageType = DamageType.Generic,
+                damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.Special),
                 losType = BlastAttack.LoSType.None,
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),
