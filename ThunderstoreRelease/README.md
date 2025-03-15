@@ -30,15 +30,13 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
-- 1.1.12
-    - Recompiled to use new method signatures
-    - Added Damage Type/Source changes from new RoR2 version.
-        - Primary triggers primary effects.
-        - However, when in snipe mode, Primary does secondary effects. 
-            - Luminous shot triggers secondary off activation, not on hit, so these damage changes do nothing.
-            - However sniping does not trigger the lightning bolt on hit.
-            - If this causes issues down the line, I will revert this to use primary.
-        
+- 1.1.13
+    - Added a slight bounce on P5 end
+    - Fixed RiskUI affecting the Orb list from glitching between positions
+    - Fixed Overlay from persisting on big parry
+    - Fixed double jump platform from sticking to Lee's feet during the effect lifetime
+    - Reinitialied the crosshair on Ult end to fix the animator issues
+
 - 1.0.0
     - Initial Release!
 

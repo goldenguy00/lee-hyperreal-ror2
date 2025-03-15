@@ -35,6 +35,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         bool playedLandingEffect = false;
         float slamEffectFrac = 0.3f;
 
+        float turnOnBounceGravityFrac = 0.32f;
+        float turnOfFBounceGravityFrac = 0.39f;
+
         public override void OnEnter()
         {
             domainController = this.GetComponent<LeeHyperrealDomainController>();
@@ -128,12 +131,19 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 base.characterMotor.Motor.ForceUnground();
             }
 
-            if (base.stopwatch >= duration * turnOffGravityFrac)
+            if (base.stopwatch >= duration * turnOnBounceGravityFrac && base.stopwatch <= duration * turnOfFBounceGravityFrac) 
+            {
+                base.characterMotor.Motor.ForceUnground();
+                base.characterMotor.gravityParameters = gravParams;
+            }
+
+            if (base.stopwatch >= duration * turnOffGravityFrac && !(base.stopwatch >= duration * turnOnBounceGravityFrac && base.stopwatch <= duration * turnOfFBounceGravityFrac))
             {
                 base.characterMotor.gravityParameters = oldGravParams;
                 //Is falling, play effect
                 animator.SetBool("isGrounded", base.isGrounded);
             }
+
 
             if (base.stopwatch >= duration * slamEffectFrac && !playedLandingEffect) 
             {

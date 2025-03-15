@@ -63,6 +63,8 @@ namespace LeeHyperrealMod.Content.Controllers
         BracketContainerProps redSimpleGlyph;
         BracketContainerProps yellowSimpleGlyph;
 
+        GameObject emptyParent;
+
         public enum BracketType 
         {
             ONE,
@@ -348,6 +350,7 @@ namespace LeeHyperrealMod.Content.Controllers
             //Destroy(canvasObject);
             Destroy(domainOverlayObject);
             Destroy(orbUIObject);
+            Destroy(emptyParent);
             Destroy(powerMeterUIObject);
             Destroy(healthLayers);
             Destroy(ultimateIndicatorObject);
@@ -784,10 +787,12 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
+                    emptyParent = UnityEngine.GameObject.Instantiate(new GameObject("Empty Orb Parent"), RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
                     orbUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.orbsUIObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
                     orbUIObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
                     orbUIObject.transform.position = new Vector3(-9.5764f, -3.2462f, 12.6537f);
-                    orbUIObject.transform.localPosition = new Vector3(185f, 287.8038f, 0f); 
+                    orbUIObject.transform.localPosition = new Vector3(185f, 287.8038f, 0f);
+                    orbUIObject.transform.SetParent(emptyParent.transform);
                 }
                 else if (LeeHyperrealPlugin.isBetterHudInstalled)
                 {
@@ -799,6 +804,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 else 
                 {
                     orbUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.orbsUIObject, RoRHUDSpringCanvasTransform.Find("BottomCenterCluster"));
+                    
                 }
             }
 
@@ -1302,6 +1308,12 @@ namespace LeeHyperrealMod.Content.Controllers
             crosshairObject.transform.localScale = new Vector3(Modules.Config.crosshairSize.Value, Modules.Config.crosshairSize.Value, 0f);
 
             crosshairAnimator = crosshairObject.GetComponent<Animator>();
+        }
+
+        public void ReinitCrosshair() 
+        {
+            Destroy(crosshairObject);
+            InitializeCrosshair();
         }
 
         public void TriggerFireCrosshair() 

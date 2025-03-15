@@ -1,6 +1,12 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- 1.1.13
+    - Added a slight bounce on P5 end
+    - Fixed RiskUI affecting the Orb list from glitching between positions
+    - Fixed Overlay from persisting on big parry
+    - Fixed double jump platform from sticking to Lee's feet during the effect lifetime
+    - Reinitialied the crosshair on Ult end to fix the animator issues
 - 1.1.12
     - Recompiled to use new method signatures
     - Added Damage Type changes from new RoR2 version.
