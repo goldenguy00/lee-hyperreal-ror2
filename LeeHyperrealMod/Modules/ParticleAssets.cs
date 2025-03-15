@@ -177,11 +177,13 @@ namespace LeeHyperrealMod.Modules
             return ModifyEffect(newEffect, soundName, parentToTransform, 1f);
         }
 
-        private static GameObject ModifyEffect(GameObject newEffect, string soundName, bool parentToTransform, float duration, VFXAttributes.VFXPriority priority = VFXAttributes.VFXPriority.Always)
+        private static GameObject ModifyEffect(GameObject newEffect, string soundName, bool parentToTransform, float duration, VFXAttributes.VFXPriority priority = VFXAttributes.VFXPriority.Always, bool shouldNotPool = false)
         {
             newEffect.AddComponent<DestroyOnTimer>().duration = duration;
             newEffect.AddComponent<NetworkIdentity>();
-            newEffect.AddComponent<VFXAttributes>().vfxPriority = priority;
+            VFXAttributes attr = newEffect.AddComponent<VFXAttributes>();
+            attr.vfxPriority = priority;
+            attr.DoNotPool = shouldNotPool;
             EffectComponent effect = newEffect.AddComponent<EffectComponent>();
             effect.applyScale = true;
             effect.parentToReferencedTransform = parentToTransform;
@@ -277,7 +279,7 @@ namespace LeeHyperrealMod.Modules
             jumpEffect = GetGameObjectFromBundle("Extra Jump Floor");
             EffectUnparenter effectUnparenter = jumpEffect.AddComponent<EffectUnparenter>();
             effectUnparenter.duration = 0.175f;
-            jumpEffect = ModifyEffect(jumpEffect, "", true, 1.5f);
+            jumpEffect = ModifyEffect(jumpEffect, "", true, 1.5f, VFXAttributes.VFXPriority.Always, true);
 
 
             customCrosshair = GetGameObjectFromBundle("Lee Crosshair");
