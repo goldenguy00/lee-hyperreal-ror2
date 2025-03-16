@@ -3,10 +3,11 @@
 
 - 1.1.13
     - Added a slight bounce on P5 end
-    - Fixed RiskUI affecting the Orb list from glitching between positions
+    - Fixed RiskUI affecting the Orb list from glitching between positions during health changes
     - Fixed Overlay from persisting on big parry
     - Fixed double jump platform from sticking to Lee's feet during the effect lifetime
-    - Reinitialied the crosshair on Ult end to fix the animator issues
+    - Reinitialied the crosshair on Ult end to fix the animator issues on UI objects
+    - Reduced instances of Ultimate being eaten up by other inputs during other abilities.
 - 1.1.12
     - Recompiled to use new method signatures
     - Added Damage Type changes from new RoR2 version.

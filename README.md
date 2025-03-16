@@ -30,15 +30,14 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
-- 1.1.12
-    - Recompiled to use new method signatures
-    - Added Damage Type/Source changes from new RoR2 version.
-        - Primary triggers primary effects.
-        - However, when in snipe mode, Primary does secondary effects. 
-            - Luminous shot triggers secondary off activation, not on hit, so these damage changes do nothing.
-            - However sniping does not trigger the lightning bolt on hit.
-            - If this causes issues down the line, I will revert this to use primary.
-        
+- 1.1.13
+    - Added a slight bounce on P5 end
+    - Fixed RiskUI affecting the Orb list from glitching between positions during health changes
+    - Fixed Overlay from persisting on big parry
+    - Fixed double jump platform from sticking to Lee's feet during the effect lifetime
+    - Reinitialied the crosshair on Ult end to fix the animator issues on UI objects
+    - Reduced instances of Ultimate being eaten up by other inputs during other abilities.
+
 - 1.0.0
     - Initial Release!
 
@@ -144,6 +143,8 @@ There's no need for payment for mods, but a coffee would be nice once in awhile!
         - Icons
     - SockpuppetSalesman (orien85) - Lore
     - iDeathHD (xiaoxiao921) - Fixing some bugs with snipe aim
-    - .score - Finding input bug edgecase
+    - .score 
+        - Finding input bug edgecase
+        - Fixing RiskUI Orb/Health glitching
     - Those on the RoR2 Modding discord having to put up with my cryptic programming issues, thanks for helping!
     - Whoever tested during development and found issues, Thanks!

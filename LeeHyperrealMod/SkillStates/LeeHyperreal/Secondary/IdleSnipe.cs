@@ -29,7 +29,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
             PlayAttackAnimation();
 
             //characterBody.SetAimTimer(duration + 1f);
-            if (!bulletController.snipeAerialPlatform && !isGrounded) 
+            if (!bulletController.snipeAerialPlatform && !isGrounded)
             {
                 ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
                 Transform baseTransform = childLocator.FindChild("BaseTransform");
@@ -60,10 +60,10 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
             base.characterDirection.moveVector = new Vector3(0, 0, 0);
             base.characterMotor.velocity = new Vector3(0, 0, 0);
 
-            if (base.isAuthority) 
+            if (base.isAuthority)
             {
                 //Check for dodging. Otherwise ignore.
-                if (base.inputBank.skill1.down)
+                if (base.inputBank.skill1.down && !base.inputBank.skill4.down)
                 {
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
@@ -72,20 +72,20 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
                     }
                 }
 
-                if (base.inputBank.jump.down)
+                if (base.inputBank.jump.down && !base.inputBank.skill4.down)
                 {
                     base.outer.SetNextState(new LeeHyperrealCharacterMain { forceJump = true });
                     return;
                 }
 
-                if (base.inputBank.sprint.justPressed && characterBody.hasAuthority)
+                if (base.inputBank.sprint.justPressed && characterBody.hasAuthority && !base.inputBank.skill4.down)
                 {
                     base.outer.SetNextStateToMain();
                     return;
                 }
 
                 //Check for dodging. Otherwise ignore.
-                if (base.inputBank.skill3.justPressed && skillLocator.utility.stock >= 1 && !stocktaken) 
+                if (base.inputBank.skill3.justPressed && skillLocator.utility.stock >= 1 && !stocktaken && !base.inputBank.skill4.down)
                 {
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
@@ -117,7 +117,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
                     }
                 }
 
-                if (!base.inputBank.skill2.down && Modules.Config.allowSnipeButtonHold.Value && base.isAuthority)
+                if (!base.inputBank.skill2.down && Modules.Config.allowSnipeButtonHold.Value && base.isAuthority && !base.inputBank.skill4.down)
                 {
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
