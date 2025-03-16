@@ -97,7 +97,7 @@ namespace LeeHyperrealMod.Modules
         internal const float MinimumOrbGrantSpeed = 0.2f; // Cap on limit to grant orb. 0f = basically 1 every frame.
         internal const float flatAmountToGrantOnPrimaryHit = 0.35f;
         internal const float yAxisPositionBrackets = -135f;
-        internal const float yAxisPositionBracketsRiskUI = -80f;
+        internal const float yAxisPositionBracketsRiskUI = -140f;
         #endregion
 
         #region Blue Orb
