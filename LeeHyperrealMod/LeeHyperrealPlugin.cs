@@ -149,6 +149,7 @@ namespace LeeHyperrealMod
             On.RoR2.CharacterModel.Start += CharacterModel_Start;
             On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
             On.RoR2.CharacterModel.UpdateOverlays += CharacterModel_UpdateOverlays;
+            On.RoR2.CharacterModel.UpdateOverlayStates += CharacterModel_UpdateOverlayStates;
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.OnBodyKill += BrotherSpeechDriver_OnBodyKill;
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.DoInitialSightResponse += BrotherSpeechDriver_DoInitialSightResponse;
             On.RoR2.UI.MainMenu.BaseMainMenuScreen.Awake += BaseMainMenuScreen_Awake;
@@ -388,17 +389,29 @@ namespace LeeHyperrealMod
             }
         }
 
+        private bool CharacterModel_UpdateOverlayStates(On.RoR2.CharacterModel.orig_UpdateOverlayStates orig, CharacterModel self) 
+        {
+            bool result = orig(self);
+
+            if (!result) 
+            {
+                //Fuck it, force update until it is no more
+                if (self && self.body && self.body.HasBuff(Modules.Buffs.glitchEffectBuff)) 
+                {
+                    return true;
+                }
+            }
+
+            return result;
+        }
 
         private void CharacterModel_UpdateOverlays(On.RoR2.CharacterModel.orig_UpdateOverlays orig, CharacterModel self)
         {
             orig(self);
 
-            if (self)
+            if (self && self.body && self.materialsDirty) 
             {
-                if (self.body)
-                {
-                    this.overlayFunction(Modules.LeeHyperrealAssets.glitchMaterial, self.body.HasBuff(Modules.Buffs.glitchEffectBuff), self);
-                }
+                this.overlayFunction(Modules.LeeHyperrealAssets.glitchMaterial, self.body.HasBuff(Modules.Buffs.glitchEffectBuff), self);
             }
         }
 
