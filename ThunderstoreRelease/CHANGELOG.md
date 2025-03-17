@@ -1,6 +1,9 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- 1.1.14
+    - Primary 4 will now flash invisible/visible during the move
+    - Actually fixing the overlay from not disappearing properly on counters and ultimate freezes
 - 1.1.13
     - Added a slight bounce on P5 end
     - Fixed RiskUI affecting the Orb list from glitching between positions during health changes

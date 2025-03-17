@@ -28,8 +28,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         public float pulseRate;
         private Ray aimRay;
 
-        private static List<Tuple<float, float>> timings;
-        private Tuple<float, float> currentTiming;
+        private static List<Tuple<float, float>> timings; // When he's invis
         private int currentIndex;
 
         private bool bufferNextMove;
@@ -60,9 +59,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         public float waitSwingTimer = 0.066f;
         public bool playedSwing = false;
 
+        public WeaponModelHandler weaponModelHandler;
+
         public override void OnEnter()
         {
             base.OnEnter();
+            weaponModelHandler = base.gameObject.GetComponent<WeaponModelHandler>();
             orbController = base.gameObject.GetComponent<OrbController>();
             domainController = this.GetComponent<LeeHyperrealDomainController>();
             duration = baseDuration / Modules.StaticValues.ScaleAttackSpeed(attackSpeedStat);
@@ -103,6 +105,18 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             {
                 PlaySwingEffect("BaseTransform", 1.25f, Modules.ParticleAssets.primary4AfterImage);
             }
+
+            //Iterate through list of tuples when timer has exceeded, set model off
+            currentIndex = 0;
+            timings = new List<Tuple<float, float>>();
+            timings.Add(new Tuple<float, float>(0f, 0.03f));
+            timings.Add(new Tuple<float, float>(0.08f, 0.1f));
+            timings.Add(new Tuple<float, float>(0.16f, 0.18f));
+            timings.Add(new Tuple<float, float>(0.22f, 0.24f));
+            timings.Add(new Tuple<float, float>(0.27f, 0.29f));
+            timings.Add(new Tuple<float, float>(0.35f, 0.37f));
+            timings.Add(new Tuple<float, float>(0.41f, 0.43f));
+            timings.Add(new Tuple<float, float>(0.41f, 0.43f));
         }
 
         public void PlaySwingEffect(string muzzleString, float swingScale, GameObject effectPrefab) 
@@ -170,9 +184,41 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
             }
 
-            if (base.isAuthority && this.age >= duration * bufferActiveTime && base.isAuthority) 
+            if (currentIndex < timings.Count)
             {
-                if (inputBank.skill1.down) 
+                //If timer is in index range, then keep invis
+                if (base.age >= duration * timings[currentIndex].Item1 && base.age <= duration * timings[currentIndex].Item2)
+                {
+                    //Keep invis
+                    if (weaponModelHandler)
+                    {
+                        weaponModelHandler.SetStateForModelAndSubmachine(false);
+                    }
+                }
+
+                if (base.age >= duration * timings[currentIndex].Item2)
+                {
+                    //increment the index, become visible again.
+                    currentIndex += 1;
+                    if (weaponModelHandler)
+                    {
+                        weaponModelHandler.SetStateForModelAndSubmachine(true);
+                    }
+                }
+            }
+            else 
+            {
+                // Become visible again
+                if (weaponModelHandler)
+                {
+                    weaponModelHandler.SetStateForModelAndSubmachine(true);
+                }
+            }
+
+
+            if (base.isAuthority && this.age >= duration * bufferActiveTime && base.isAuthority)
+            {
+                if (inputBank.skill1.down)
                 {
                     bufferNextMove = true;
                 }
@@ -290,6 +336,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             base.OnExit();
             this.characterBody.SetAimTimer(0);
             base.PlayAnimation("Body", "BufferEmpty");
+
+            // Become visible again
+            if (weaponModelHandler)
+            {
+                weaponModelHandler.SetStateForModelAndSubmachine(true);
+            }
         }
 
 

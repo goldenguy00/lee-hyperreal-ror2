@@ -30,13 +30,9 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
-- 1.1.13
-    - Added a slight bounce on P5 end
-    - Fixed RiskUI affecting the Orb list from glitching between positions during health changes
-    - Fixed Overlay from persisting on big parry
-    - Fixed double jump platform from sticking to Lee's feet during the effect lifetime
-    - Reinitialied the crosshair on Ult end to fix the animator issues on UI objects
-    - Reduced instances of Ultimate being eaten up by other inputs during other abilities.
+- 1.1.14
+    - Primary 4 will now flash invisible/visible during the move
+    - Actually fixing the overlay from not disappearing properly on counters and ultimate freezes
 
 - 1.0.0
     - Initial Release!
