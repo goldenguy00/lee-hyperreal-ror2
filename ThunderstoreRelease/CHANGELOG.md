@@ -2,7 +2,7 @@
 ## Changelog
 
 - 1.1.14
-    - Primary 4 will now flash invisible/visible during the move
+    - Primary 4 will now flash between invisible and visible during the move
     - Actually fixing the overlay from not disappearing properly on counters and ultimate freezes
 - 1.1.13
     - Added a slight bounce on P5 end
