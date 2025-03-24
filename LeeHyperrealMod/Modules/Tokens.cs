@@ -5,11 +5,24 @@ using static LeeHyperrealMod.Modules.StaticValues;
 using static LeeHyperrealMod.Modules.Config;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.Primary;
 using UnityEngine.Diagnostics;
+using System.Collections.Generic;
 
 namespace LeeHyperrealMod.Modules
 {
     internal static class Tokens
     {
+        internal static string GenerateName() 
+        {
+            Random rnd = new Random();
+            int prefixIndex = rnd.Next(Modules.StaticValues.prefix.Count);
+            string prefix = Modules.StaticValues.prefix[prefixIndex];
+
+            int suffixIndex = rnd.Next(Modules.StaticValues.suffix.Count);
+            string suffix = Modules.StaticValues.suffix[suffixIndex];
+            
+            return $"{prefix} {suffix}";
+        }
+
         internal static void AddTokens()
         {
             #region Lee: Hyperreal
@@ -51,7 +64,14 @@ namespace LeeHyperrealMod.Modules
             string outro = "..and so he left, still no closer to his true reality.";
             string outroFailure = "..and so he vanished, with a mission unfulfilled.";
 
-            LanguageAPI.Add(prefix + "NAME", "Lee: Hyperreal");
+            if (Modules.Config.loreMode.Value)
+            {
+                LanguageAPI.Add(prefix + "NAME", GenerateName());
+            }
+            else 
+            {
+                LanguageAPI.Add(prefix + "NAME", "Lee: Hyperreal");
+            }
             LanguageAPI.Add(prefix + "DESCRIPTION", desc);
             LanguageAPI.Add(prefix + "SUBTITLE", "Hypermatrix Traverser");
             LanguageAPI.Add(prefix + "LORE", lore);

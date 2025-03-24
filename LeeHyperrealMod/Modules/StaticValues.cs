@@ -13,6 +13,9 @@ namespace LeeHyperrealMod.Modules
     {        
         internal static Color bodyColor = new Color(0.4f, 1f, 1f);
 
+        internal static List<string> prefix = new List<string> { "Rift", "Void", "Phantom", "Dimension", "Dimensional", "Nether", "Chrono", "Echo", "Reality", "Quantum", "Portal", "Multiverse" };
+        internal static List<string> suffix = new List<string> { "Hunter", "Striker", "Roamer", "Vanguard", "Seeker", "Mercenary", "Ranger", "Drifter", "Walker" };
+
         #region Character Stats
         internal const float baseMoveSpeed = 7f;
         internal const float maxAttackSpeedScaling = 1.35f; // The maximum speedup allowed on moves.
