@@ -3,9 +3,6 @@ using System;
 using static LeeHyperrealMod.Modules.Helpers;
 using static LeeHyperrealMod.Modules.StaticValues;
 using static LeeHyperrealMod.Modules.Config;
-using LeeHyperrealMod.SkillStates.LeeHyperreal.Primary;
-using UnityEngine.Diagnostics;
-using System.Collections.Generic;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -25,10 +22,12 @@ namespace LeeHyperrealMod.Modules
 
         internal static void AddTokens()
         {
+            string generatedName = GenerateName();
+
             #region Lee: Hyperreal
             string prefix = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_";
 
-            string desc = "Lee: Hyperreal is a highly technical grounded character with hard to master gameplay. He entirely focuses on damage to the detriment of his survivability." +
+            string desc = $"{Lee("Lee: Hyperreal", generatedName)} is a highly technical grounded character with hard to master gameplay. He entirely focuses on damage to the detriment of his survivability." +
                 Environment.NewLine + Environment.NewLine + $"<!> {UtilDesc("[3-ping]s")} do {DmgDesc("4 times")} the damage compared to 1 or 2-pings of the same color so always try to manipulate the orb list to do {UtilDesc("[3-ping]s")}." +
                 Environment.NewLine + Environment.NewLine + $"<!> On a successful parry with {UtilDesc("[Armament Barrage]")}, you can instantly parry again. With decent timing, you can reduce/entirely negate damage." +
                 $" Projectiles parried will be reflected with their damage multiplied. Hitting enemies with this ability will regen orbs faster." +
@@ -64,14 +63,8 @@ namespace LeeHyperrealMod.Modules
             string outro = "..and so he left, still no closer to his true reality.";
             string outroFailure = "..and so he vanished, with a mission unfulfilled.";
 
-            if (Modules.Config.loreMode.Value)
-            {
-                LanguageAPI.Add(prefix + "NAME", GenerateName());
-            }
-            else 
-            {
-                LanguageAPI.Add(prefix + "NAME", "Lee: Hyperreal");
-            }
+
+            LanguageAPI.Add(prefix + "NAME", $"{Lee("Lee: Hyperreal", generatedName)}");
             LanguageAPI.Add(prefix + "DESCRIPTION", desc);
             LanguageAPI.Add(prefix + "SUBTITLE", "Hypermatrix Traverser");
             LanguageAPI.Add(prefix + "LORE", lore);
@@ -87,14 +80,14 @@ namespace LeeHyperrealMod.Modules
             #region Passive
             LanguageAPI.Add(prefix + "PASSIVE_ORB_AND_AMMO_NAME", "Orb and Ammo System");
             LanguageAPI.Add(prefix + "PASSIVE_ORB_AND_AMMO_DESCRIPTION", "" +
-                $"Lee uses {UtilDesc("[Orbs]")} that allow the execution of unique skills. " +
+                $"{Lee("Lee: Hyperreal", generatedName)} uses {UtilDesc("[Orbs]")} that allow the execution of unique skills. " +
                 $"His {UtilDesc("[Ammo Counter]")} grants unique effects for {UtilDesc("[Snipe Stance]")}.");
 
             LanguageAPI.Add(prefix + "PASSIVE_DOMAIN_NAME", "Hypermatrix System");
             LanguageAPI.Add(prefix + "PASSIVE_DOMAIN_DESCRIPTION", "" +
-                $"Lee has access to the {UtilDesc("[Hypermatrix]")}, by holding the Primary button" +
+                $"{Lee("Lee: Hyperreal", generatedName)} has access to the {UtilDesc("[Hypermatrix]")}, by holding the Primary button" +
                 $" down with a full {UtilDesc("[Power Gauge]")}." +
-                $" Lee gains damage in place of attack speed, however {UtilDesc("[Snipe Stance]")} scales normally.");
+                $" {Lee("Lee: Hyperreal", generatedName)} gains damage in place of attack speed, however {UtilDesc("[Snipe Stance]")} scales normally.");
             #endregion
 
             #region Primary
@@ -138,17 +131,17 @@ namespace LeeHyperrealMod.Modules
 
             #region Item Effects
             LanguageAPI.Add(prefix + "ITEM_EFFECT_TITLE", "Hyper effect");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_BACKUPMAG_DESC", $"{Lee("Lee: Hyperreal")} gains {UtilDesc("+1")} {Stack("(+1 per stack)")} outline bullet(s) on each successful {UtilDesc("[Parry]")}");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_ALIEN_HEAD_DESC", $"{Lee("Lee: Hyperreal's")} orbs charge {UtilDesc("25% faster")}.");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_PURITY_DESC", $"{Lee("Lee: Hyperreal's")} orb recharge rate is reduced by {UtilDesc("2")} {Stack("(+1 per stack)")} seconds");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_ATTACK_SPEED_DESC", $"{Lee("Lee: Hyperreal")} gains {UtilDesc("+1 hit")} for most moves, every 100% attack speed. The damage of extra hits is multiplied by the missing % towards next 100% attack speed");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_BACKUPMAG_DESC", $"{Lee("Lee: Hyperreal", generatedName)} gains {UtilDesc("+1")} {Stack("(+1 per stack)")} outline bullet(s) on each successful {UtilDesc("[Parry]")}");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_ALIEN_HEAD_DESC", $"{Lee("Lee: Hyperreal's", generatedName)} orbs charge {UtilDesc("25% faster")}.");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_PURITY_DESC", $"{Lee("Lee: Hyperreal's", generatedName)} orb recharge rate is reduced by {UtilDesc("2")} {Stack("(+1 per stack)")} seconds");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_ATTACK_SPEED_DESC", $"{Lee("Lee: Hyperreal", generatedName)} gains {UtilDesc("+1 hit")} for most moves, every 100% attack speed. The damage of extra hits is multiplied by the missing % towards next 100% attack speed");
             #endregion
 
             #region Keywords
             LanguageAPI.Add(prefix + "KEYWORD_ORBS",
                 $"{Keyword("Orb System")}" +
                 Environment.NewLine +
-                $"Lee: Hyperreal uses 3 different coloured Orbs to use extra skills." +
+                $"{Lee("Lee: Hyperreal", generatedName)} uses 3 different coloured Orbs to use extra skills." +
                 Environment.NewLine +
                 $"In Simple Mode, activate {BlueOrb()}, {RedOrb()} and {YellowOrb()} orbs using the keys " +
                 $"{UserSetting($"{blueOrbTrigger.Value}, {redOrbTrigger.Value}, {yellowOrbTrigger.Value}")} respectively, to use the first group of coloured orbs going from left to right. " +
@@ -158,7 +151,7 @@ namespace LeeHyperrealMod.Modules
             LanguageAPI.Add(prefix + "KEYWORD_AMMO",
                 $"{Keyword("Ammo System")}" +
                 Environment.NewLine + $"" +
-                $"Lee: Hyperreal can store and use a variety of {UtilDesc("Ammo")}, indicated above the {UtilDesc("[Power Gauge]")}." +
+                $"{Lee("Lee: Hyperreal", generatedName)} can store and use a variety of {UtilDesc("Ammo")}, indicated above the {UtilDesc("[Power Gauge]")}." +
                 Environment.NewLine +
                 $"Using a {UtilDesc("3-ping")} will store a {UtilDesc("[Coloured Bullet]")}, which can be used in the {UtilDesc("[Hypermatrix]")} to add 3 Orbs of that shots colour back into your {UtilDesc("[Orb System]")}" +
                 Environment.NewLine +
@@ -197,9 +190,9 @@ namespace LeeHyperrealMod.Modules
             #endregion
 
             #region Achievements
-            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_NAME", "Lee: Hyperreal: Mastery");
-            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESC", "As Lee: Hyperreal, beat the game or obliterate on Monsoon.");
-            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", "Lee: Hyperreal: Mastery");
+            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
+            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESC", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game or obliterate on Monsoon.");
+            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
             #endregion
             #endregion
         }
