@@ -110,12 +110,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             currentIndex = 0;
             timings = new List<Tuple<float, float>>();
             timings.Add(new Tuple<float, float>(0f, 0.03f));
-            timings.Add(new Tuple<float, float>(0.08f, 0.1f));
-            timings.Add(new Tuple<float, float>(0.16f, 0.18f));
-            timings.Add(new Tuple<float, float>(0.22f, 0.24f));
-            timings.Add(new Tuple<float, float>(0.27f, 0.29f));
-            timings.Add(new Tuple<float, float>(0.35f, 0.37f));
-            timings.Add(new Tuple<float, float>(0.41f, 0.43f));
+            timings.Add(new Tuple<float, float>(0.08f, 0.115f));
+            timings.Add(new Tuple<float, float>(0.16f, 0.195f));
+            timings.Add(new Tuple<float, float>(0.22f, 0.255f));
+            timings.Add(new Tuple<float, float>(0.27f, 0.305f));
+            timings.Add(new Tuple<float, float>(0.35f, 0.385f));
+            timings.Add(new Tuple<float, float>(0.41f, 0.445f));
         }
 
         public void PlaySwingEffect(string muzzleString, float swingScale, GameObject effectPrefab) 
