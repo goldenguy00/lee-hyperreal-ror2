@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: lizi00305
   m_Shader: {fileID: 4800000, guid: 4aa51fefc4ef77e49aed092d94481aa9, type: 3}
-  m_ShaderKeywords: _ALPHABLEND_ON
+  m_ValidKeywords:
+  - _ALPHABLEND_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -64,6 +66,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - IF_DissolutionFlowMap: 0
     - IF_MainTexFlowMap: 1
@@ -81,9 +84,9 @@ Material:
     - _DissolutionThreshold: 0.5
     - _DstBlend: 10
     - _EffectBrightness: 50
-    - _EffectBrightnessB: 1
-    - _EffectBrightnessG: 1
-    - _EffectBrightnessR: 1
+    - _EffectBrightnessB: 2
+    - _EffectBrightnessG: 2
+    - _EffectBrightnessR: 2
     - _FlowIntensity: 0.5
     - _HideDistance: 2
     - _MainRotation: 0
@@ -132,3 +135,4 @@ Material:
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _VAT_MaxBound: {r: 0, g: 0, b: 0, a: 1}
     - _VAT_MinBound: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
