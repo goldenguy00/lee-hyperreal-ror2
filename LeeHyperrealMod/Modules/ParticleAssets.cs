@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using ShaderSwapper;
 using LeeHyperrealMod.Content.Controllers;
+using R2API;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -24,6 +25,9 @@ namespace LeeHyperrealMod.Modules
         public static GameObject primary1Swing;
         public static GameObject primary1Hit;
         public static GameObject primary1Floor;
+
+        public static GameObject primary1SwingRed;
+        public static GameObject primary1HitRed;
         #endregion
 
         #region Primary 2
@@ -180,11 +184,29 @@ namespace LeeHyperrealMod.Modules
         private static GameObject ModifyEffect(GameObject newEffect, string soundName, bool parentToTransform, float duration, VFXAttributes.VFXPriority priority = VFXAttributes.VFXPriority.Always, bool shouldNotPool = false)
         {
             newEffect.AddComponent<DestroyOnTimer>().duration = duration;
-            newEffect.AddComponent<NetworkIdentity>();
-            VFXAttributes attr = newEffect.AddComponent<VFXAttributes>();
+            NetworkIdentity netid = newEffect.GetComponent<NetworkIdentity>();
+            if (!netid)
+            {
+                netid = newEffect.AddComponent<NetworkIdentity>();
+            }
+            else 
+            {
+                //Reinit netid.
+                UnityEngine.Object.Destroy(netid);
+                netid = newEffect.AddComponent<NetworkIdentity>();
+            }
+            VFXAttributes attr = newEffect.GetComponent<VFXAttributes>();
+            if (!attr) 
+            {
+                attr = newEffect.AddComponent<VFXAttributes>();
+            }
             attr.vfxPriority = priority;
             attr.DoNotPool = shouldNotPool;
-            EffectComponent effect = newEffect.AddComponent<EffectComponent>();
+            EffectComponent effect = newEffect.GetComponent<EffectComponent>();
+            if (!effect) 
+            {
+                effect = newEffect.AddComponent<EffectComponent>();// probably already added.
+            }
             effect.applyScale = true;
             effect.parentToReferencedTransform = parentToTransform;
             effect.positionAtReferencedTransform = true;
@@ -216,6 +238,12 @@ namespace LeeHyperrealMod.Modules
             lightIntensityCurveComponent.randomStart = liProps.randomStart;
             lightIntensityCurveComponent.enableNegativeLights = liProps.enableNegativeLights;
             lightIntensityCurveComponent.curve = curveAsset.value;
+        }
+
+        public static void ModifyParticleSystemColorOnUberShader(Transform obj, Color color) 
+        {
+            ParticleSystemRenderer psr = obj.GetComponent<ParticleSystemRenderer>();
+            psr.material.SetColor("_TintColor", color);
         }
 
         public static void PopulateAssets() 
@@ -862,6 +890,25 @@ namespace LeeHyperrealMod.Modules
 
             primary1Floor = GetGameObjectFromBundle("fxr4liangatk01dilie");
             primary1Floor = ModifyEffect(primary1Floor, "", true);
+
+            /*
+                Modify the following:
+                Parent -> zheng -> 01
+             */
+            primary1SwingRed = PrefabAPI.InstantiateClone(primary1Swing, "fxr4liangatk01-red");
+            ModifyParticleSystemColorOnUberShader(primary1SwingRed.transform.Find("zheng").Find("01"), Color.red);
+            primary1SwingRed = ModifyEffect(primary1SwingRed, "Play_c_liRk4_atk_nml_1", true);
+
+            /*
+                Modify the following:
+                Parent -> 01 -> Baodian
+                Parent -> 01 -> Lizi
+             */
+            primary1HitRed = PrefabAPI.InstantiateClone(primary1Hit, "fxr4liangatk01hit-red");
+            ModifyParticleSystemColorOnUberShader(primary1HitRed.transform.Find("01").Find("Baodian"), Color.red);
+            ModifyParticleSystemColorOnUberShader(primary1HitRed.transform.Find("01").Find("Lizi"), Color.red);
+            primary1HitRed = ModifyEffect(primary1HitRed, "", true);
+
         }
 
         private static void CreateMaterialStorage(AssetBundle inAssetBundle)
