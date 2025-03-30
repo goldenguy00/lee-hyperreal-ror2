@@ -246,6 +246,27 @@ namespace LeeHyperrealMod.Modules
             psr.material.SetColor("_TintColor", color);
         }
 
+        public static void ModifyXEffectOnPSR(GameObject obj, Vector3 rgbVals) 
+        {
+            ParticleSystemRenderer[] psrs = obj.GetComponentsInChildren<ParticleSystemRenderer>();
+
+            foreach (ParticleSystemRenderer psr in psrs) 
+            {
+                //Check if the material is Xeffect
+                if (psr.material.shader.name == "Unlit/XEffect")
+                {
+                    Debug.Log($"{psr.gameObject}: {psr.material.shader.name}");
+                    // Modify the following properties:
+                    // _EffectBrightnessR
+                    // _EffectBrightnessG
+                    // _EffectBrightnessB
+                    psr.material.SetFloat("_EffectBrightnessR", rgbVals.x);
+                    psr.material.SetFloat("_EffectBrightnessG", rgbVals.y);
+                    psr.material.SetFloat("_EffectBrightnessB", rgbVals.z);
+                }
+            }
+        }
+
         public static void PopulateAssets() 
         {
             #region Primary
@@ -896,7 +917,8 @@ namespace LeeHyperrealMod.Modules
                 Parent -> zheng -> 01
              */
             primary1SwingRed = PrefabAPI.InstantiateClone(primary1Swing, "fxr4liangatk01-red");
-            ModifyParticleSystemColorOnUberShader(primary1SwingRed.transform.Find("zheng").Find("01"), Color.red);
+            ModifyXEffectOnPSR(primary1SwingRed, new Vector3(2f, 0f, 0f));
+            //ModifyParticleSystemColorOnUberShader(primary1SwingRed.transform.Find("zheng").Find("01"), Color.red);
             primary1SwingRed = ModifyEffect(primary1SwingRed, "Play_c_liRk4_atk_nml_1", true);
 
             /*

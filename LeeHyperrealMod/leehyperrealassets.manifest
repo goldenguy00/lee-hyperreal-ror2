@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2833965537
+CRC: 2559253676
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 80066ad2c76921a936db81c43f16ec64
+    Hash: d4ac84176a2a3fcdf89331e8a883488a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -1164,8 +1164,9 @@ Assets:
 - Assets/modelresource/effect/texture/diliemask601.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/DomainMidairEnd.anim
 - Assets/LeeHyperrealAssets/Texture/Albedo/leeBoxGunTex.png
-- Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md307.mat
+- Assets/LeeHyperrealAssets/Icons/texScarletSkin.png
 - Assets/modelresource/effect/texture/mask103.png
+- Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md307.mat
 - Assets/LeeHyperrealAssets/Icons/Primary.bmp
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md335-red.mat
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Unrenamed_Originals Left/Armature_Armature_Hoverhit_Base
@@ -1639,6 +1640,7 @@ Assets:
 - Assets/modelresource/effect/texture/mask131x.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011mdliuguang702.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md345.mat
+- Assets/LeeHyperrealAssets/Skin-ScarletRedeemer/leeHairTex.jpg
 - Assets/modelresource/effect/texture/mask137c.png
 - Assets/modelresource/effect/gpuparticles/fxr4liangmd010011gpu/fxr4liangatk25/5.asset
 - Assets/modelresource/effect/mesh/fxr4kalieninamesh/fxr4kalienina210.asset

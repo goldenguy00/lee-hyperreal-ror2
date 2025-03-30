@@ -699,7 +699,7 @@ namespace LeeHyperrealMod.Modules.Survivors
 
             //creating a new skindef as we did before
             SkinDef scarletSkin = Modules.Skins.CreateSkinDef(PLUGIN_PREFIX + "SCARLET_SKIN_NAME",
-                LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("texCloneSkin"),
+                LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("texScarletSkin"),
                 defaultRendererinfos,
                 prefabCharacterModel.gameObject);
 
