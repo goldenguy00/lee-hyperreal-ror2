@@ -690,6 +690,79 @@ namespace LeeHyperrealMod.Modules.Survivors
 
             #endregion
 
+            //uncomment this when you have a mastery skin
+            #region Scarlet Redeemer
+
+            //creating a new skindef as we did before
+            SkinDef scarletSkin = Modules.Skins.CreateSkinDef(PLUGIN_PREFIX + "SCARLET_SKIN_NAME",
+                LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("texCloneSkin"),
+                defaultRendererinfos,
+                prefabCharacterModel.gameObject);
+
+            //adding the mesh replacements as above. 
+            //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved
+            blueSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+            //masterySkin has a new set of RendererInfos (based on default rendererinfos)
+            //you can simply access the RendererInfos defaultMaterials and set them to the new materials for your skin.
+            string[] materialStrings =
+                {
+                    "skinCloneBody",
+                    "skinCloneCloth",
+                    "skinCloneFace",
+                    "skinCloneHair",
+                    "skinCloneAlpha",
+                    "skinCloneEye",
+                    "skinCloneDown",
+                    "skinCloneSuperBox",
+                    "skinClonePistol",
+                    "skinCloneCannon",
+                    "skinCloneRifle",
+                    null,
+                    "skinClonePistol"
+                };
+
+            for (int i = 0; i < materialStrings.Length; i++)
+            {
+                if (materialStrings[i] == null)
+                {
+                    blueSkin.rendererInfos[i].defaultMaterial = defaultRendererinfos[i].defaultMaterial;
+                }
+                else
+                {
+                    blueSkin.rendererInfos[i].defaultMaterial = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>(materialStrings[i]);
+                }
+            }
+
+            //here's a barebones example of using gameobjectactivations that could probably be streamlined or rewritten entirely, truthfully, but it works
+            //masterySkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
+            //{
+            //    new SkinDef.GameObjectActivation
+            //    {
+            //        gameObject = childLocator.FindChildGameObject("GunModel"),
+            //        shouldActivate = false,
+            //    }
+            //};
+            //simply find an object on your child locator you want to activate/deactivate and set if you want to activate/deacitvate it with this skin
+
+            skins.Add(blueSkin);
+
+            #endregion
+
+
             skinController.skins = skins.ToArray();
         }
     }
