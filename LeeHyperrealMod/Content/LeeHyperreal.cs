@@ -618,12 +618,12 @@ namespace LeeHyperrealMod.Modules.Survivors
                 "leeChestLegPlateMeshBlend",
                 null,
                 "leeLegsMeshBlend",
+                "leeGunCaseMeshBlend",
+                "leePistolMeshBlend",
                 null,
                 null,
                 null,
-                null,
-                null,
-                null
+                "leeSubMachineGunMeshBlend"
             );
 
             //add new skindef to our list of skindefs. this is what we'll be passing to the SkinController
@@ -649,12 +649,13 @@ namespace LeeHyperrealMod.Modules.Survivors
                 "leeChestLegPlateMeshBlend",
                 null,
                 "leeLegsMeshBlend",
+                "leeGunCaseMeshBlend",
+                "leePistolMeshBlend",
                 null,
                 null,
                 null,
-                null,
-                null,
-                null);
+                "leeSubMachineGunMeshBlend"
+            );
 
             //masterySkin has a new set of RendererInfos (based on default rendererinfos)
             //you can simply access the RendererInfos defaultMaterials and set them to the new materials for your skin.
@@ -712,12 +713,12 @@ namespace LeeHyperrealMod.Modules.Survivors
                 "R4LiangMd019011Alpha",
                 null,
                 "R4LiangMd019011Down",
+                "E3SuperliboxMd030011",
+                "E3SuperligunMd030011.001",
                 null,
                 null,
                 null,
-                null,
-                null,
-                null);
+                "E3SuperligunMd030011");
 
 
             /*
@@ -747,12 +748,12 @@ namespace LeeHyperrealMod.Modules.Survivors
                     "scarletLower",
                     null,
                     "scarletLower",
-                    null,    
+                    "scarletBox",
+                    "scarletSemiGun",
                     null,
                     null,
                     null,
-                    null,
-                    null
+                    "scarletSemiGun"
                 };
 
             for (int i = 0; i < scarletMaterialStrings.Length; i++)
