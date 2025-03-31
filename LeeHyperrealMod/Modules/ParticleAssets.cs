@@ -274,19 +274,11 @@ namespace LeeHyperrealMod.Modules
 
                     float totalColourVal = newColour.r + newColour.g + newColour.b;
 
-                    float newRPercent = newColour.r / totalColourVal;
-                    float newGPercent = newColour.g / totalColourVal;
-                    float newBPercent = newColour.b / totalColourVal;
+                    float newR = (newColour.r / totalColourVal) * totalToDistribute;
+                    float newG = (newColour.g / totalColourVal) * totalToDistribute;
+                    float newB = (newColour.b / totalColourVal) * totalToDistribute;
 
-                    float newR = (newRPercent / totalColourVal) * totalToDistribute;
-                    float newG = (newGPercent / totalColourVal) * totalToDistribute;
-                    float newB = (newBPercent / totalColourVal) * totalToDistribute;
-
-                    
                     // Modify the following properties:
-                    // _EffectBrightnessR
-                    // _EffectBrightnessG
-                    // _EffectBrightnessB
                     psr.material.SetFloat("_EffectBrightnessR", newR);
                     psr.material.SetFloat("_EffectBrightnessG", newG);
                     psr.material.SetFloat("_EffectBrightnessB", newB);
