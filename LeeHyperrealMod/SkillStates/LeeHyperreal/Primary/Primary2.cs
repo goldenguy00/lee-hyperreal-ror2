@@ -84,7 +84,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             //Play the effect after setting the muzzle string, it'll be spawned in a random place if you don't
             if (base.isAuthority)
             {
-                PlayExtraSwingEffect(Modules.ParticleAssets.primary2Shot);
+                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
+                {
+                    PlayExtraSwingEffect(Modules.ParticleAssets.primary2ShotRed);
+                }
+                else 
+                {
+                    PlayExtraSwingEffect(Modules.ParticleAssets.primary2Shot);
+                }
             }
         }
 

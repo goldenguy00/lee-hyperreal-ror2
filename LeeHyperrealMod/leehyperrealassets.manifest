@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2559253676
+CRC: 1998492934
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d4ac84176a2a3fcdf89331e8a883488a
+    Hash: aa4967548a0a341abe85c23076665edb
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -1181,6 +1181,7 @@ Assets:
 - Assets/LeeHyperrealAssets/AnimationCurves/fxr4liangwin-lightJS1.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk14end.prefab
 - Assets/LeeHyperrealAssets/Animation/CloneFolder/flickerMaterial.anim
+- Assets/LeeHyperrealAssets/Material/ScarletRedeemer/scarletHair.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011mdchunse711.mat
 - Assets/LeeHyperrealAssets/Skin-ScarletRedeemer/e3superligunmd030011nm.jpg
 - Assets/LeeHyperrealAssets/Animation/SuperRifleAnimations/Rifle_Attack25.anim

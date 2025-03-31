@@ -45,7 +45,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.isAuthority) 
             {
                 FireAttack();
-                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Floor);
+                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
+                {
+                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5FloorRed);
+                }
+                else 
+                {
+                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Floor);
+                }
             }
 
             base.PlayAnimation("Body", "Midair Attack End", "attack.playbackRate", duration);

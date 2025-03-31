@@ -35,7 +35,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             if (base.isAuthority) 
             {
-                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Swing);
+                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
+                {
+                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5SwingRed);
+                }
+                else 
+                {
+                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Swing);
+                }
             }
         }
 

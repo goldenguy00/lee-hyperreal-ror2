@@ -47,6 +47,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         private float attack2EndFrac = 0.35f;
         private bool hasFired2 = false;
 
+        public bool isRed = false;
 
         public override void OnEnter()
         {
@@ -83,6 +84,11 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             base.OnEnter();
             InitMeleeRootMotion();
+
+            if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex)) 
+            {
+                isRed = true;
+            }
 
             oldGravParams = base.characterMotor.gravityParameters;
             gravParams = new CharacterGravityParameters();
@@ -141,13 +147,27 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.stopwatch >= duration * playInitialWeaponImpactEffect && !effectPlayed && base.isAuthority) 
             {
                 effectPlayed = true;
-                PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing1);
+                if (isRed)
+                {
+                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing1Red);
+                }
+                else 
+                {
+                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing1);
+                }
             }
 
             if (base.stopwatch >= duration * playSlamSFXFrac && !soundPlayed && base.isAuthority) 
             {
                 soundPlayed = true;
-                PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing2);
+                if (isRed)
+                {
+                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing2Red);
+                }
+                else 
+                {
+                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing2);
+                }
             }
 
             if (base.stopwatch <= duration * turnOffGravityFrac) 

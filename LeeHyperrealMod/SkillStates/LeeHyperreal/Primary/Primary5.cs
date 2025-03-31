@@ -37,6 +37,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
         float turnOnBounceGravityFrac = 0.32f;
         float turnOfFBounceGravityFrac = 0.39f;
+        bool isRed = false;
 
         public override void OnEnter()
         {
@@ -73,8 +74,19 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             characterMotor.gravityParameters = gravParams;
 
+            if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex)) 
+            {
+                isRed = true;
+            }
 
-            PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Swing);
+            if (isRed) 
+            {
+                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5SwingRed);
+            }
+            else
+            {
+                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Swing);
+            }
             Util.PlaySound("Play_c_liRk4_atk_nml_5_xuli", base.gameObject);
         }
 
@@ -148,7 +160,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.stopwatch >= duration * slamEffectFrac && !playedLandingEffect) 
             {
                 playedLandingEffect = true;
-                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Floor);
+                if (isRed)
+                {
+                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5FloorRed);
+                }
+                else 
+                {
+                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Floor);
+                }    
             }
 
 

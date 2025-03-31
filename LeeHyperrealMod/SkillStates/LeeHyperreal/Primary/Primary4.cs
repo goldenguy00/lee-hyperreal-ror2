@@ -227,7 +227,15 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             {
                 playedSwing = true;
                 new PlaySoundNetworkRequest(characterBody.netId, "Play_c_liRk4_atk_nml_4").Send(R2API.Networking.NetworkDestination.Clients);
-                PlaySwingEffect("BaseTransform", 1f, Modules.ParticleAssets.primary4Swing);
+
+                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
+                {
+                    PlaySwingEffect("BaseTransform", 1f, Modules.ParticleAssets.primary4SwingRed);
+                }
+                else 
+                {
+                    PlaySwingEffect("BaseTransform", 1f, Modules.ParticleAssets.primary4Swing);
+                }
             }
 
             if (base.isAuthority && this.age <= duration * earlyExitTime) 

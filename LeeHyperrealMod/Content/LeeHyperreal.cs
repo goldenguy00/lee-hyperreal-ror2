@@ -21,6 +21,8 @@ namespace LeeHyperrealMod.Modules.Survivors
 
         public const string PLUGIN_PREFIX = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_";
 
+        public static List<int> redVFXSkins = new List<int> { 2 }; 
+
         public override string survivorTokenPrefix => PLUGIN_PREFIX;
 
         public static SkillDef SnipeSkill;

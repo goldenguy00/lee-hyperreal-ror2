@@ -34,23 +34,33 @@ namespace LeeHyperrealMod.Modules
         public static GameObject primary2Shot;
         public static GameObject primary2hit1;
         public static GameObject primary2hit2;
+
+        public static GameObject primary2ShotRed; 
         #endregion
 
         #region Primary 3
         public static GameObject primary3Swing1;
         public static GameObject primary3Swing2;
         public static GameObject primary3hit;
+
+        public static GameObject primary3Swing1Red;
+        public static GameObject primary3Swing2Red;
         #endregion
 
         #region Primary 4
         public static GameObject primary4Swing;
         public static GameObject primary4AfterImage;
         public static GameObject primary4Hit;
+
+        public static GameObject primary4SwingRed;
         #endregion
 
         #region Primary 5
         public static GameObject primary5Swing;
         public static GameObject primary5Floor;
+
+        public static GameObject primary5SwingRed;
+        public static GameObject primary5FloorRed;
         #endregion
 
         #region Red Orb
@@ -776,6 +786,14 @@ namespace LeeHyperrealMod.Modules
             //    "fxr4liangatk05dilie"
             //    );
             primary5Floor = ModifyEffect(primary5Floor, "Play_c_liRk4_atk_nml_5_dilie", false, 1.5f);
+
+            primary5SwingRed = PrefabAPI.InstantiateClone(primary5Swing, "fxr4liangatk05");
+            ModifyXEffectOnPSR(primary5SwingRed, new Vector3(4f, 0f, 0f));
+            ModifyEffect(primary5SwingRed, "Play_c_liRk4_atk_nml_5_jump", true, 1.5f);
+
+            primary5FloorRed = PrefabAPI.InstantiateClone(primary5Floor, "fxr4liangatk05dilie");
+            ModifyXEffectOnPSR(primary5FloorRed, new Vector3(4f, 0f, 0f));
+            ModifyEffect(primary5FloorRed, "Play_c_liRk4_atk_nml_5_dilie", true, 1.5f);
         }
 
         private static void PopulatePrimary4Assets()
@@ -799,6 +817,10 @@ namespace LeeHyperrealMod.Modules
 
             primary4Hit = GetGameObjectFromBundle("fxr4liangatk04hit");
             primary4Hit = ModifyEffect(primary4Hit, "", true);
+
+            primary4SwingRed = PrefabAPI.InstantiateClone(primary4Swing, "fxr4liangatk04");
+            ModifyXEffectOnPSR(primary4SwingRed, new Vector3(4f, 0f, 0f));
+            ModifyEffect(primary4SwingRed, "", true, 2f);
         }
 
         public static void PopulatePrimary3Assets() 
@@ -833,6 +855,14 @@ namespace LeeHyperrealMod.Modules
             //    "fxr4liangatk03hit01-spjere"
             //    );
             primary3hit = ModifyEffect(primary3hit, "", false, 1.5f);
+
+            primary3Swing1Red = PrefabAPI.InstantiateClone(primary3Swing1, "fxr4liangatk03dilie1-red");
+            ModifyXEffectOnPSR(primary3Swing1Red, new Vector3(4f, 0f, 0f));
+            ModifyEffect(primary3Swing1Red, "Play_c_liRk4_atk_nml_3_dilie_1", true);
+
+            primary3Swing2Red = PrefabAPI.InstantiateClone(primary3Swing2, "fxr4liangatk03dilie2");
+            ModifyXEffectOnPSR(primary3Swing2Red, new Vector3(4f, 0f, 0f));
+            ModifyEffect(primary3Swing2Red, "Play_c_liRk4_atk_nml_3_dilie_2", true);
         }
 
         public static void PopulatePrimary2Assets()
@@ -889,6 +919,10 @@ namespace LeeHyperrealMod.Modules
             //    "fxr4liangatk02hit02-lightSC"
             //    );
             primary2hit2 = ModifyEffect(primary2hit2, "", true);
+
+            primary2ShotRed = PrefabAPI.InstantiateClone(primary2Shot, "fxr4liangatk02-red");
+            ModifyXEffectOnPSR(primary2ShotRed, new Vector3(4f, 0f, 0f));
+            ModifyEffect(primary2ShotRed, "Play_c_liRk4_atk_nml_2", true);
         }
 
         public static void PopulatePrimary1Assets() 
@@ -917,8 +951,7 @@ namespace LeeHyperrealMod.Modules
                 Parent -> zheng -> 01
              */
             primary1SwingRed = PrefabAPI.InstantiateClone(primary1Swing, "fxr4liangatk01-red");
-            ModifyXEffectOnPSR(primary1SwingRed, new Vector3(2f, 0f, 0f));
-            //ModifyParticleSystemColorOnUberShader(primary1SwingRed.transform.Find("zheng").Find("01"), Color.red);
+            ModifyXEffectOnPSR(primary1SwingRed, new Vector3(3f, 0f, 0f));
             primary1SwingRed = ModifyEffect(primary1SwingRed, "Play_c_liRk4_atk_nml_1", true);
 
             /*
@@ -927,8 +960,7 @@ namespace LeeHyperrealMod.Modules
                 Parent -> 01 -> Lizi
              */
             primary1HitRed = PrefabAPI.InstantiateClone(primary1Hit, "fxr4liangatk01hit-red");
-            ModifyParticleSystemColorOnUberShader(primary1HitRed.transform.Find("01").Find("Baodian"), Color.red);
-            ModifyParticleSystemColorOnUberShader(primary1HitRed.transform.Find("01").Find("Lizi"), Color.red);
+            ModifyXEffectOnPSR(primary1Hit, new Vector3(3f, 0f, 0f));
             primary1HitRed = ModifyEffect(primary1HitRed, "", true);
 
         }

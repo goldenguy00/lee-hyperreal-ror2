@@ -1,6 +1,7 @@
 ﻿using EntityStates;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
+using LeeHyperrealMod.Modules.Survivors;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift;
 using R2API.Networking.Interfaces;
@@ -64,6 +65,11 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             this.swingScale = 1.25f;
             this.swingEffectPrefab = Modules.ParticleAssets.primary1Swing;
             this.hitEffectPrefab = Modules.ParticleAssets.primary1Hit;
+
+            if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex)) 
+            {
+                this.swingEffectPrefab = Modules.ParticleAssets.primary1SwingRed;
+            }
             
             enableParry = true;
             parryLength = Modules.StaticValues.primary1ParryLength;

@@ -47,7 +47,6 @@ namespace LeeHyperrealMod.Modules
         public static ConfigEntry<float> ceaseChance;
 
         public static ConfigEntry<bool> loreMode;
-        public static ConfigEntry<bool> removeLoreUnfriendlySkins;
 
 
         public static void ReadConfig()
@@ -216,13 +215,6 @@ namespace LeeHyperrealMod.Modules
                 true,
                 new ConfigDescription("Enables more RoR2 friendly names. Requires a reboot to take effect.")
             );
-
-            removeLoreUnfriendlySkins = LeeHyperrealPlugin.instance.Config.Bind<bool>
-            (
-                new ConfigDefinition("06 - Extras", "Remove Lore Unfriendly Skins"),
-                false,
-                new ConfigDescription("Removes the Skins that are not RoR2 Lore friendly. If you enable this, ensure that everyone that plays with you enables this too! Requires a reboot to take effect.")
-            );
         }
 
         public static void SetupRiskOfOptions() 
@@ -326,7 +318,6 @@ namespace LeeHyperrealMod.Modules
               );
 
             ModSettingsManager.AddOption(new CheckBoxOption(loreMode));
-            ModSettingsManager.AddOption(new CheckBoxOption(removeLoreUnfriendlySkins));
         }
 
         // this helper automatically makes config entries for disabling survivors
