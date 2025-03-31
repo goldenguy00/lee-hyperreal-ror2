@@ -256,7 +256,7 @@ namespace LeeHyperrealMod.Modules
             psr.material.SetColor("_TintColor", color);
         }
 
-        public static void ModifyXEffectOnPSR(GameObject obj, Vector3 rgbVals) 
+        public static void ModifyXEffectOnPSR(GameObject obj, Color newColour) 
         {
             ParticleSystemRenderer[] psrs = obj.GetComponentsInChildren<ParticleSystemRenderer>();
 
@@ -265,14 +265,31 @@ namespace LeeHyperrealMod.Modules
                 //Check if the material is Xeffect
                 if (psr.material.shader.name == "Unlit/XEffect")
                 {
-                    Debug.Log($"{psr.gameObject}: {psr.material.shader.name}");
+                    //Get New Colour, figure out percentages for each and spread across colours in the same intensity
+                    float oldR = psr.material.GetFloat("_EffectBrightnessR");
+                    float oldG = psr.material.GetFloat("_EffectBrightnessG");
+                    float oldB = psr.material.GetFloat("_EffectBrightnessB");
+
+                    float totalToDistribute = oldR + oldG + oldB;
+
+                    float totalColourVal = newColour.r + newColour.g + newColour.b;
+
+                    float newRPercent = newColour.r / totalColourVal;
+                    float newGPercent = newColour.g / totalColourVal;
+                    float newBPercent = newColour.b / totalColourVal;
+
+                    float newR = (newRPercent / totalColourVal) * totalToDistribute;
+                    float newG = (newGPercent / totalColourVal) * totalToDistribute;
+                    float newB = (newBPercent / totalColourVal) * totalToDistribute;
+
+                    
                     // Modify the following properties:
                     // _EffectBrightnessR
                     // _EffectBrightnessG
                     // _EffectBrightnessB
-                    psr.material.SetFloat("_EffectBrightnessR", rgbVals.x);
-                    psr.material.SetFloat("_EffectBrightnessG", rgbVals.y);
-                    psr.material.SetFloat("_EffectBrightnessB", rgbVals.z);
+                    psr.material.SetFloat("_EffectBrightnessR", newR);
+                    psr.material.SetFloat("_EffectBrightnessG", newG);
+                    psr.material.SetFloat("_EffectBrightnessB", newB);
                 }
             }
         }
@@ -788,11 +805,11 @@ namespace LeeHyperrealMod.Modules
             primary5Floor = ModifyEffect(primary5Floor, "Play_c_liRk4_atk_nml_5_dilie", false, 1.5f);
 
             primary5SwingRed = PrefabAPI.InstantiateClone(primary5Swing, "fxr4liangatk05");
-            ModifyXEffectOnPSR(primary5SwingRed, new Vector3(4f, 0f, 0f));
+            ModifyXEffectOnPSR(primary5SwingRed, new Color(0.5176f, 0.0705f, 1f));
             ModifyEffect(primary5SwingRed, "Play_c_liRk4_atk_nml_5_jump", true, 1.5f);
 
             primary5FloorRed = PrefabAPI.InstantiateClone(primary5Floor, "fxr4liangatk05dilie");
-            ModifyXEffectOnPSR(primary5FloorRed, new Vector3(4f, 0f, 0f));
+            ModifyXEffectOnPSR(primary5FloorRed, new Color(0.5176f, 0.0705f, 1f));
             ModifyEffect(primary5FloorRed, "Play_c_liRk4_atk_nml_5_dilie", true, 1.5f);
         }
 
@@ -819,7 +836,7 @@ namespace LeeHyperrealMod.Modules
             primary4Hit = ModifyEffect(primary4Hit, "", true);
 
             primary4SwingRed = PrefabAPI.InstantiateClone(primary4Swing, "fxr4liangatk04");
-            ModifyXEffectOnPSR(primary4SwingRed, new Vector3(4f, 0f, 0f));
+            ModifyXEffectOnPSR(primary4SwingRed, new Color(0.5176f, 0.0705f, 1f));
             ModifyEffect(primary4SwingRed, "", true, 2f);
         }
 
@@ -857,11 +874,11 @@ namespace LeeHyperrealMod.Modules
             primary3hit = ModifyEffect(primary3hit, "", false, 1.5f);
 
             primary3Swing1Red = PrefabAPI.InstantiateClone(primary3Swing1, "fxr4liangatk03dilie1-red");
-            ModifyXEffectOnPSR(primary3Swing1Red, new Vector3(4f, 0f, 0f));
+            ModifyXEffectOnPSR(primary3Swing1Red, new Color(0.5176f, 0.0705f, 1f));
             ModifyEffect(primary3Swing1Red, "Play_c_liRk4_atk_nml_3_dilie_1", true);
 
             primary3Swing2Red = PrefabAPI.InstantiateClone(primary3Swing2, "fxr4liangatk03dilie2");
-            ModifyXEffectOnPSR(primary3Swing2Red, new Vector3(4f, 0f, 0f));
+            ModifyXEffectOnPSR(primary3Swing2Red, new Color(0.5176f, 0.0705f, 1f));
             ModifyEffect(primary3Swing2Red, "Play_c_liRk4_atk_nml_3_dilie_2", true);
         }
 
@@ -921,7 +938,7 @@ namespace LeeHyperrealMod.Modules
             primary2hit2 = ModifyEffect(primary2hit2, "", true);
 
             primary2ShotRed = PrefabAPI.InstantiateClone(primary2Shot, "fxr4liangatk02-red");
-            ModifyXEffectOnPSR(primary2ShotRed, new Vector3(4f, 0f, 0f));
+            ModifyXEffectOnPSR(primary2ShotRed, new Color(0.5176f, 0.0705f, 1f));
             ModifyEffect(primary2ShotRed, "Play_c_liRk4_atk_nml_2", true);
         }
 
@@ -951,7 +968,7 @@ namespace LeeHyperrealMod.Modules
                 Parent -> zheng -> 01
              */
             primary1SwingRed = PrefabAPI.InstantiateClone(primary1Swing, "fxr4liangatk01-red");
-            ModifyXEffectOnPSR(primary1SwingRed, new Vector3(3f, 0f, 0f));
+            ModifyXEffectOnPSR(primary1SwingRed, new Color(0.5176f, 0.0705f, 1f));
             primary1SwingRed = ModifyEffect(primary1SwingRed, "Play_c_liRk4_atk_nml_1", true);
 
             /*
@@ -960,7 +977,7 @@ namespace LeeHyperrealMod.Modules
                 Parent -> 01 -> Lizi
              */
             primary1HitRed = PrefabAPI.InstantiateClone(primary1Hit, "fxr4liangatk01hit-red");
-            ModifyXEffectOnPSR(primary1Hit, new Vector3(3f, 0f, 0f));
+            ModifyXEffectOnPSR(primary1HitRed, new Color(0.5176f, 0.0705f, 1f));
             primary1HitRed = ModifyEffect(primary1HitRed, "", true);
 
         }
