@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1998492934
+CRC: 3253147268
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: aa4967548a0a341abe85c23076665edb
+    Hash: 2cfa33a95a51239242753409267719bb
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -852,6 +852,7 @@ Assets:
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatk14dilie.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk02.prefab
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4ligun01_3.asset
+- Assets/LeeHyperrealAssets/Skin-ScarletRedeemer/E3SuperlirifleMd030011.mesh
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md767.mat
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Unrenamed_Originals Left/Armature_Armature_Attack93_Base
   Layer.anim
