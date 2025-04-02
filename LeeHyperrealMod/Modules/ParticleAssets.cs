@@ -1,10 +1,7 @@
 ﻿using RoR2;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using ShaderSwapper;
 using LeeHyperrealMod.Content.Controllers;
 using R2API;
 
@@ -12,13 +9,43 @@ namespace LeeHyperrealMod.Modules
 {
     internal class ParticleAssets
     {
+        internal static string DEFAULT_PARTICLE_VARIANT = "default";
+        internal static string RED_PARTICLE_VARIANT = "red";
+
+        internal class ParticleVariant 
+        {
+            internal Dictionary<string, GameObject> colourVariants;
+
+            internal ParticleVariant() 
+            {
+                colourVariants = new Dictionary<string, GameObject>();            
+            }
+
+            internal ParticleVariant(string name, GameObject obj) 
+            {
+                colourVariants = new Dictionary<string, GameObject>
+                {
+                    { name, obj }
+                };
+            }
+        }
+
+        /*
+            On access, you should look for the key for that move you want
+            In the case of P1, access "p1" and then choose a variant, these should be 
+            defined here.
+
+            Variants planned
+                - "default", // This is the blue one.
+                - "red",
+
+            e.g to access the blue variant, call the following: particleDictionary["p1"].colourVariants["default"] -> returns the gameobject you want to use.
+         */
+
+        internal static Dictionary<string, ParticleVariant> particleDictionary;
+
         #region Materials
         internal static List<Material> materialStorage = new List<Material>();
-        #endregion
-
-        #region Primary Aerial
-        internal static GameObject primaryAerialEffectLoop;
-        internal static GameObject primaryAerialEffectEnd;
         #endregion
 
         #region Primary 1
@@ -160,6 +187,8 @@ namespace LeeHyperrealMod.Modules
 
         public static void Initialize() 
         {
+            particleDictionary = new Dictionary<string, ParticleVariant>();
+
             //UpdateAllBundleMaterials();
             CreateMaterialStorage(Modules.LeeHyperrealAssets.mainAssetBundle);
             PopulateAssets();
@@ -286,6 +315,52 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
+        #region Particle Effect Retrieval
+
+        public static GameObject RetrieveParticleEffect(string particleName, string variant)
+        {
+            if (!particleDictionary.ContainsKey(particleName))
+            {
+                return null; // Failed!
+            }
+
+            return particleDictionary[particleName].colourVariants[variant];
+        }
+
+        public static GameObject RetrieveParticleEffect(string particleName, CharacterBody body = null) 
+        {
+            //Checking if such a name exists for this particle.
+            if (!particleDictionary.ContainsKey(particleName)) 
+            {
+                return null; // Failed!
+            }
+
+            ParticleVariant variants = particleDictionary[particleName];
+
+            // Exit early, we don't know what variant they have selected and they explicitly used this one!
+            if (!body) 
+            {
+                return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
+            }
+
+            //Get Skin index
+            uint skinIndex = body.skinIndex;
+
+            //Get related skin particle effect
+            if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)skinIndex)) 
+            {
+                if (variants.colourVariants.ContainsKey(RED_PARTICLE_VARIANT)) 
+                {
+                    return variants.colourVariants[RED_PARTICLE_VARIANT];
+                }
+            }
+
+            //all else fails, just send them the default
+            return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
+        }
+
+        #endregion
+
         public static void PopulateAssets() 
         {
             #region Primary
@@ -355,10 +430,15 @@ namespace LeeHyperrealMod.Modules
 
         private static void PopulateAerialDomainAssets()
         {
-            primaryAerialEffectLoop = GetGameObjectFromBundle("DomainMidairLoop");
+            ParticleVariant primaryAerialParticleVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, GetGameObjectFromBundle("DomainMidairLoop"));
 
-            primaryAerialEffectEnd = GetGameObjectFromBundle("DomainMidairEnd");
+            GameObject primaryAerialEffectEnd = GetGameObjectFromBundle("DomainMidairEnd");
             primaryAerialEffectEnd = ModifyEffect(primaryAerialEffectEnd, "Play_c_liRk4_skill_yellow_dilie", false, 2f);
+            ParticleVariant primaryAerialEnd = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primaryAerialEffectEnd);
+
+            // Add to dictionary
+            particleDictionary.Add("primaryAerialLoop", primaryAerialParticleVariant);
+            particleDictionary.Add("primaryAerialEnd", primaryAerialEnd);
         }
 
         private static void PopulateDisplayParticleAssets()
