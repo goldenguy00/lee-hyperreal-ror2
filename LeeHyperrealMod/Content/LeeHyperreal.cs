@@ -615,16 +615,16 @@ namespace LeeHyperrealMod.Modules.Survivors
             defaultSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
                 "leeArmsMeshBlend",
                 "leeTorsoClothMeshBlend",
-                null,
+                "leeFaceMeshBlend",
                 "leeHairMeshBlend",
                 "leeChestLegPlateMeshBlend",
-                null,
+                "leeEyeMeshBlend",
                 "leeLegsMeshBlend",
                 "leeGunCaseMeshBlend",
                 "leePistolMeshBlend",
-                null,
-                null,
-                null,
+                "E3SuperlicannonMd010011",
+                "leeSuperRifleMeshBlend",
+                "leeSuperRilfeAlphaMeshBlend",
                 "leeSubMachineGunMeshBlend"
             );
 
@@ -646,16 +646,16 @@ namespace LeeHyperrealMod.Modules.Survivors
             blueSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
                 "leeArmsMeshBlend",
                 "leeTorsoClothMeshBlend",
-                null,
+                "leeFaceMeshBlend",
                 "leeHairMeshBlend",
                 "leeChestLegPlateMeshBlend",
-                null,
+                "leeEyeMeshBlend",
                 "leeLegsMeshBlend",
                 "leeGunCaseMeshBlend",
                 "leePistolMeshBlend",
-                null,
-                null,
-                null,
+                "E3SuperlicannonMd010011",
+                "leeSuperRifleMeshBlend",
+                "leeSuperRilfeAlphaMeshBlend",
                 "leeSubMachineGunMeshBlend"
             );
 
@@ -696,7 +696,6 @@ namespace LeeHyperrealMod.Modules.Survivors
 
             #endregion
 
-            //uncomment this when you have a mastery skin
             #region Scarlet Redeemer
 
             //creating a new skindef as we did before
@@ -710,15 +709,15 @@ namespace LeeHyperrealMod.Modules.Survivors
             scarletSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
                 "R4LiangMd019011Body",
                 "R4LiangMd019011Cloth",
-                null,
+                "leeFaceMeshBlend",
                 "R4LiangMd019011Hair",
                 "R4LiangMd019011Alpha",
-                null,
+                "leeEyeMeshBlend",
                 "R4LiangMd019011Down",
                 "E3SuperliboxMd030011",
                 "E3SuperligunMd030011.001",
-                null,
-                null,
+                "E3SuperlicannonMd010011",
+                "E3SuperlirifleMd030011",
                 null,
                 "E3SuperligunMd030011");
 
@@ -734,7 +733,8 @@ namespace LeeHyperrealMod.Modules.Survivors
                     "leeBoxGunMat", no replacement
                     "leeSubmachineMat", no replacement
                     "Cannon", no replacement
-                    "leeSuperRifleMat", no replacement
+                    "leeSuperRifleMat",
+                    some alpha bit
                     "leePistolMat" no replacement
              */
 
@@ -753,7 +753,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                     "scarletBox",
                     "scarletSemiGun",
                     null,
-                    null,
+                    "scarletSemiGun",
                     null,
                     "scarletSemiGun"
                 };
