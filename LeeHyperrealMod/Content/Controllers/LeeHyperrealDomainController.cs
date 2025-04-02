@@ -88,7 +88,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 AkSoundEngine.SetRTPCValue("Volume_Lee_Voice", Modules.Config.voiceVolume.Value);
             }
 
-            domainAerialEffectLoop = UnityEngine.Object.Instantiate(Modules.ParticleAssets.RetrieveParticleEffect("primaryAerialLoop", charBody), baseTransform);
+            domainAerialEffectLoop = UnityEngine.Object.Instantiate(Modules.ParticleAssets.RetrieveParticleEffectFromSkin("primaryAerialLoop", charBody), baseTransform);
             domainAerialEffectLoopParticleSystem = domainAerialEffectLoop.transform.GetChild(0).GetChild(0).GetComponent<ParticleSystem>();
             domainAerialEffectLoopParticleSystem.Stop();
         }

@@ -52,7 +52,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.isAuthority) 
             {
                 FireAttack();
-                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.RetrieveParticleEffect("primaryAerialEnd", characterBody));
+                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.RetrieveParticleEffectFromSkin("primaryAerialEnd", characterBody));
             }
 
             base.PlayAnimation("Body", "DomainMidairEnd", "attack.playbackRate", duration);

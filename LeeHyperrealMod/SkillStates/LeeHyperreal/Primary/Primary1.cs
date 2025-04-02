@@ -1,7 +1,7 @@
 ﻿using EntityStates;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
-using LeeHyperrealMod.Modules.Survivors;
+using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift;
 using R2API.Networking.Interfaces;
@@ -45,9 +45,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             this.hitboxName = "ShortMelee";
 
             this.damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.Primary);
-            this.damageCoefficient = Modules.StaticValues.primary1DamageCoefficient;
-            this.procCoefficient = Modules.StaticValues.primary1ProcCoefficient;
-            this.pushForce = Modules.StaticValues.primary1PushForce;
+            this.damageCoefficient = StaticValues.primary1DamageCoefficient;
+            this.procCoefficient = StaticValues.primary1ProcCoefficient;
+            this.pushForce = StaticValues.primary1PushForce;
             this.bonusForce = Vector3.zero;
             this.baseDuration = 2.23f;
             this.attackStartTime = 0.04f;
@@ -57,29 +57,26 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             this.bufferActiveTime = 0.10f;
             this.hitStopDuration = 0.012f;
             this.attackRecoil = 0.5f;
-            this.hitHopVelocity = Modules.StaticValues.primary1HitHopVelocity;
+            this.hitHopVelocity = StaticValues.primary1HitHopVelocity;
 
             this.swingSoundString = "";
             this.hitSoundString = "";
             this.muzzleString = "BaseTransform";
             this.swingScale = 1.25f;
-            this.swingEffectPrefab = Modules.ParticleAssets.primary1Swing;
-            this.hitEffectPrefab = Modules.ParticleAssets.primary1Hit;
 
-            if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex)) 
-            {
-                this.swingEffectPrefab = Modules.ParticleAssets.primary1SwingRed;
-            }
             
             enableParry = true;
-            parryLength = Modules.StaticValues.primary1ParryLength;
-            parryTiming = Modules.StaticValues.primary1ParryTiming;
-            parryPauseLength = Modules.StaticValues.primary1ParryPauseLength;
-            parryProjectileTiming = Modules.StaticValues.primary1ParryProjectileTimingStart;
-            parryProjectileTimingEnd = Modules.StaticValues.primary1ParryProjectileTimingEnd;
+            parryLength = StaticValues.primary1ParryLength;
+            parryTiming = StaticValues.primary1ParryTiming;
+            parryPauseLength = StaticValues.primary1ParryPauseLength;
+            parryProjectileTiming = StaticValues.primary1ParryProjectileTimingStart;
+            parryProjectileTimingEnd = StaticValues.primary1ParryProjectileTimingEnd;
 
             base.OnEnter();
             InitMeleeRootMotion();
+
+            this.swingEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("primary1Swing", characterBody);
+            this.hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("primary1Hit", characterBody);
 
             ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
             baseTransform = childLocator.FindChild("BaseTransform");
@@ -88,7 +85,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.isGrounded) 
             {
                 RoR2.EffectManager.SimpleEffect(
-                    Modules.ParticleAssets.primary1Floor,
+                    ParticleAssets.RetrieveParticleEffectFromSkin("primary1Floor", characterBody),
                     baseTransform.position,
                     Quaternion.LookRotation(new Vector3(GetAimRay().direction.x, 0f, GetAimRay().direction.z), Vector3.up),
                     true);
