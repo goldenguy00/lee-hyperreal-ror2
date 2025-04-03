@@ -3,12 +3,10 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
-using System;
 using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
 using R2API.Networking.Interfaces;
-using R2API.Networking;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 {
@@ -34,8 +32,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
         internal WeaponModelHandler weaponModelHandler;
 
         internal bool isStrong;
-        internal float procCoefficient = Modules.StaticValues.yellowOrbDomainProcCoefficient;
-        internal float damageCoefficient = Modules.StaticValues.yellowOrbDomainDamageCoefficient;
+        internal float procCoefficient = StaticValues.yellowOrbDomainProcCoefficient;
+        internal float damageCoefficient = StaticValues.yellowOrbDomainDamageCoefficient;
 
         private float movementMultiplier = 1f;
         private Transform baseTransform;
@@ -85,7 +83,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                 position = gameObject.transform.position + GetAimRay().direction * 2.5f,
                 radius = Modules.StaticValues.yellowOrbDomainBlastRadius,
                 falloffModel = BlastAttack.FalloffModel.None,
-                baseDamage = damageStat * damageCoefficient * (moveStrength >= 3 ? Modules.StaticValues.yellowOrbDomainTripleMultiplier : 1),
+                baseDamage = damageStat * damageCoefficient * (moveStrength >= 3 ? StaticValues.yellowOrbDomainTripleMultiplier : 1),
                 baseForce = Modules.StaticValues.yellowOrbDomainBlastForce,
                 bonusForce = Vector3.zero,
                 crit = RollCrit(),
@@ -104,7 +102,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                 inflictor = null,
                 teamIndex = base.GetTeam(),
                 position = gameObject.transform.position + GetAimRay().direction * 2.5f,
-                radius = Modules.StaticValues.yellowOrbDomainBlastRadius,
+                radius = StaticValues.yellowOrbDomainBlastRadius,
                 falloffModel = BlastAttack.FalloffModel.None,
                 baseDamage = 1f,
                 baseForce = 1000f,
@@ -130,7 +128,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 
             if (domainController) 
             {
-                GameObject cloneObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.yellowOrbDomainClone, baseTransform.transform.position, Quaternion.LookRotation(characterDirection.forward));
+                GameObject cloneObject = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbDomainClone", characterBody), baseTransform.transform.position, Quaternion.LookRotation(characterDirection.forward));
                 domainController.yellowCloneObjects.Add(cloneObject);
             }
 
@@ -143,7 +141,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                 };
                 int childIndex = childLocator.FindChildIndex("BaseTransform");
                 effectData.SetChildLocatorTransformReference(gameObject, childIndex);
-                EffectManager.SpawnEffect(Modules.ParticleAssets.yellowOrbMultishot, effectData, true);
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbMultishot", characterBody), effectData, true);
             }
 
             oldGravParams = base.characterMotor.gravityParameters;
@@ -155,7 +153,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 
             if (domainController) 
             {
-                GameObject yellowBullet = UnityEngine.Object.Instantiate(Modules.ParticleAssets.yellowOrbDomainBulletLeftovers, this.gameObject.transform.position, this.gameObject.transform.rotation);
+                GameObject yellowBullet = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbDomainBulletLeftovers", characterBody), this.gameObject.transform.position, this.gameObject.transform.rotation);
                 domainController.yellowOrbDomainEffects.Add(yellowBullet);
             }
 
@@ -264,7 +262,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 
             if (age >= duration * midmoveVFXrepeatFrac && domainController && !midmoveVFXrepeatplayed)
             {
-                GameObject yellowBullet = UnityEngine.Object.Instantiate(Modules.ParticleAssets.yellowOrbDomainBulletLeftovers, this.gameObject.transform.position, this.gameObject.transform.rotation);
+                GameObject yellowBullet = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbDomainBulletLeftovers", characterBody), this.gameObject.transform.position, this.gameObject.transform.rotation);
                 domainController.yellowOrbDomainEffects.Add(yellowBullet);
                 midmoveVFXrepeatplayed = true;
             }
@@ -287,7 +285,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                     rotation = Quaternion.identity,
                     scale = 5f,
                 };
-                EffectManager.SpawnEffect(Modules.ParticleAssets.yellowOrbMultishotHit, effectData, true);
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbMultishotHit", characterBody), effectData, true);
             }
         }
 

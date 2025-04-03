@@ -50,16 +50,6 @@ namespace LeeHyperrealMod.Modules
         internal static List<Material> materialStorage = new List<Material>();
         #endregion
 
-        #region Yellow Orb
-        public static GameObject yellowOrbSwing;
-        public static GameObject yellowOrbSwingHit;
-        public static GameObject yellowOrbKick;
-        public static GameObject yellowOrbMultishot;
-        public static GameObject yellowOrbMultishotHit;
-        public static GameObject yellowOrbDomainBulletLeftovers;
-        public static GameObject yellowOrbDomainClone;
-        #endregion
-
         #region Snipe
         public static GameObject SnipeStart;
         public static GameObject Snipe;
@@ -295,18 +285,27 @@ namespace LeeHyperrealMod.Modules
                 //Modify with the new colour on XEffect, may need more functions to convert more later
                 ModifyXEffectOnPSR(clone, color);
 
-                //Get original sound from default
-                EffectComponent effectComp = defaultVariant.GetComponent<EffectComponent>();
-                string soundname = "";
-                bool parentToTransform = true;
-                if (effectComp)
-                {
-                    soundname = effectComp.soundName;
-                    parentToTransform = effectComp.parentToReferencedTransform;
-                }
+                //check if the prefab is a clone prefab, and skip the ModifyEffect registration
 
-                //Finally resetup the prefab
-                ModifyEffect(clone, soundname, parentToTransform);
+                bool modifyCondition = !defaultVariant.name.Contains("DomainClone") 
+                    && !defaultVariant.name.Contains("fxr4liangatk35dandao")
+                    && !defaultVariant.name.Contains("DomainMidairLoop");
+
+                if (modifyCondition) 
+                {
+                    //Get original sound from default
+                    EffectComponent effectComp = defaultVariant.GetComponent<EffectComponent>();
+                    string soundname = "";
+                    bool parentToTransform = true;
+                    if (effectComp)
+                    {
+                        soundname = effectComp.soundName;
+                        parentToTransform = effectComp.parentToReferencedTransform;
+                    }
+
+                    //Finally resetup the prefab
+                    ModifyEffect(clone, soundname, parentToTransform);
+                }
 
                 //Register the new prefab under name
                 pVarColourVar.Add(name, clone);
@@ -573,83 +572,34 @@ namespace LeeHyperrealMod.Modules
 
         private static void PopulateYellowOrbAssets()
         {
-            yellowOrbSwing = GetGameObjectFromBundle("fxr4liangatk34dilie");
-            yellowOrbSwing = ModifyEffect(yellowOrbSwing, "Play_c_liRk4_skill_yellow", true);
+            GameObject yellowOrbSwing = GetGameObjectFromBundle("fxr4liangatk34dilie");
+            ModifyEffect(yellowOrbSwing, "Play_c_liRk4_skill_yellow", true);
 
-            yellowOrbSwingHit = GetGameObjectFromBundle("fxr4liangatk34hit");
-            //AddLightIntensityCurveWithCurve(
-            //    yellowOrbSwingHit.transform.GetChild(0).GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.18f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
+            GameObject yellowOrbSwingHit = GetGameObjectFromBundle("fxr4liangatk34hit");
+            ModifyEffect(yellowOrbSwingHit, "Play_c_liRk4_imp_yellow_1", true);
 
-            //    },
-            //    "fxr4liangatk34hit-spjere"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    yellowOrbSwingHit.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.12f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
+            GameObject yellowOrbKick = GetGameObjectFromBundle("fxr4liangatk32");
+            ModifyEffect(yellowOrbKick, "Play_c_liRk4_skill_yellow_fire", true);
 
-            //    },
-            //    "fxr4liangatk34hit-lightSC"
-            //    );
-            yellowOrbSwingHit = ModifyEffect(yellowOrbSwingHit, "Play_c_liRk4_imp_yellow_1", true);
+            GameObject yellowOrbMultishot = GetGameObjectFromBundle("fxr4liangatk35");
+            ModifyEffect(yellowOrbMultishot, "", true);
 
-            yellowOrbKick = GetGameObjectFromBundle("fxr4liangatk32");
-            yellowOrbKick = ModifyEffect(yellowOrbKick, "Play_c_liRk4_skill_yellow_fire", true);
+            GameObject yellowOrbMultishotHit = GetGameObjectFromBundle("fxr4liangatk35hit");
+            ModifyEffect(yellowOrbMultishotHit, "", true);
 
-            yellowOrbMultishot = GetGameObjectFromBundle("fxr4liangatk35");
-            //AddLightIntensityCurveWithCurve(
-            //    yellowOrbMultishot.transform.GetChild(8).GetChild(3).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.15f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk35"
-            //    );
-            yellowOrbMultishot = ModifyEffect(yellowOrbMultishot, "", true);
-
-            yellowOrbMultishotHit = GetGameObjectFromBundle("fxr4liangatk35hit");
-            //AddLightIntensityCurveWithCurve(
-            //    yellowOrbMultishotHit.transform.GetChild(0).GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 1.6f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk35hit-lightSC"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    yellowOrbMultishotHit.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 1.6f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk35hit-spjere"
-            //    );
-            yellowOrbMultishotHit = ModifyEffect(yellowOrbMultishotHit, "", true);
-
-            yellowOrbDomainBulletLeftovers = GetGameObjectFromBundle("fxr4liangatk35dandao");
+            GameObject yellowOrbDomainBulletLeftovers = GetGameObjectFromBundle("fxr4liangatk35dandao");
             yellowOrbDomainBulletLeftovers.AddComponent<DestroyOnTimer>().duration = 150f;
 
-            yellowOrbDomainClone = GetGameObjectFromBundle("YellowOrbDomainClone");
+            GameObject yellowOrbDomainClone = GetGameObjectFromBundle("YellowOrbDomainClone");
             LeeHyperrealCloneFlicker flicker = yellowOrbDomainClone.AddComponent<LeeHyperrealCloneFlicker>();
+
+            particleDictionary.Add("yellowOrbSwing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbSwing));
+            particleDictionary.Add("yellowOrbSwingHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbSwingHit));
+            particleDictionary.Add("yellowOrbKick", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbKick));
+            particleDictionary.Add("yellowOrbMultishot", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbMultishot));
+            particleDictionary.Add("yellowOrbMultishotHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbMultishotHit));
+            particleDictionary.Add("yellowOrbDomainBulletLeftovers", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbDomainBulletLeftovers));
+            particleDictionary.Add("yellowOrbDomainClone", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbDomainClone));
         }
 
         private static void PopulateBlueOrbAssets()

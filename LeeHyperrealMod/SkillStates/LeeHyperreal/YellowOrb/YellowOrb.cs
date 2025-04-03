@@ -6,7 +6,6 @@ using LeeHyperrealMod.SkillStates.BaseStates;
 using R2API.Networking;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules;
-using static RoR2.BlastAttack;
 using LeeHyperrealMod.Modules.Networking;
 using R2API.Networking.Interfaces;
 
@@ -162,7 +161,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                         scale = 1.25f,
                     };
 
-                    EffectManager.SpawnEffect(Modules.ParticleAssets.yellowOrbSwing, effectData, true);
+                    EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbSwing", characterBody), effectData, true);
                 }
             }
 
@@ -301,7 +300,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                     rotation = Quaternion.identity,
                     scale = 5f,
                 };
-                EffectManager.SpawnEffect(Modules.ParticleAssets.yellowOrbSwingHit, effectData, true);
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbSwingHit", characterBody), effectData, true);
             }
 
         }

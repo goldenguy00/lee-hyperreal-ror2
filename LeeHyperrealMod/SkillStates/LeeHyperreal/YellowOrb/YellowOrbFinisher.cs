@@ -51,8 +51,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
             this.swingSoundString = "HenrySwordSwing";
             this.hitSoundString = "";
             this.muzzleString = "BaseTransform";
-            this.swingEffectPrefab = Modules.ParticleAssets.yellowOrbKick;
-            this.hitEffectPrefab = Modules.ParticleAssets.yellowOrbSwingHit;
 
             enableParry = true;
             parryLength = Modules.StaticValues.yellowOrbFinisherParryLength;
@@ -62,6 +60,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
             parryProjectileTimingEnd = Modules.StaticValues.yellowOrbFinisherParryProjectileTimingEnd;
 
             base.OnEnter();
+
+            this.swingEffectPrefab = Modules.ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbKick", characterBody);
+            this.hitEffectPrefab = Modules.ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbSwingHit", characterBody);
 
             InitMeleeRootMotion();
 
