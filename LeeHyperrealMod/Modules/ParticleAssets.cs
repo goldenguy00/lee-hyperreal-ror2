@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using LeeHyperrealMod.Content.Controllers;
 using R2API;
+using System;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -47,14 +48,6 @@ namespace LeeHyperrealMod.Modules
 
         #region Materials
         internal static List<Material> materialStorage = new List<Material>();
-        #endregion
-
-        #region Primary 2
-        public static GameObject primary2Shot;
-        public static GameObject primary2hit1;
-        public static GameObject primary2hit2;
-
-        public static GameObject primary2ShotRed; 
         #endregion
 
         #region Primary 3
@@ -169,14 +162,6 @@ namespace LeeHyperrealMod.Modules
         public static GameObject customCrosshair;
         #endregion
 
-        public struct LightIntensityProps 
-        {
-            public float timeMax;
-            public bool loop;
-            public bool randomStart;
-            public bool enableNegativeLights;
-        }
-
         public static void Initialize() 
         {
             particleDictionary = new Dictionary<string, ParticleVariant>();
@@ -260,17 +245,6 @@ namespace LeeHyperrealMod.Modules
             Modules.Content.AddEffectDef(newEffectDef);
         }
 
-        public static void AddLightIntensityCurveWithCurve(GameObject targetObject, LightIntensityProps liProps, string curveName) 
-        {
-            AnimationCurveAsset curveAsset = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<AnimationCurveAsset>(curveName);
-            LightIntensityCurve lightIntensityCurveComponent = targetObject.AddComponent<LightIntensityCurve>();
-            lightIntensityCurveComponent.timeMax = liProps.timeMax;
-            lightIntensityCurveComponent.loop = liProps.loop;
-            lightIntensityCurveComponent.randomStart = liProps.randomStart;
-            lightIntensityCurveComponent.enableNegativeLights = liProps.enableNegativeLights;
-            lightIntensityCurveComponent.curve = curveAsset.value;
-        }
-
         public static void ModifyParticleSystemColorOnUberShader(Transform obj, Color color) 
         {
             ParticleSystemRenderer psr = obj.GetComponent<ParticleSystemRenderer>();
@@ -351,6 +325,38 @@ namespace LeeHyperrealMod.Modules
             return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
         }
 
+        private static void GenerateColorVariant(string name, Color color)
+        {
+            foreach (KeyValuePair<string, ParticleVariant> item in particleDictionary)
+            {
+                ParticleVariant pVar = item.Value;
+                Dictionary<string, GameObject> pVarColourVar = item.Value.colourVariants;
+
+                //Get default 
+                GameObject defaultVariant = pVarColourVar[DEFAULT_PARTICLE_VARIANT];
+                GameObject clone = PrefabAPI.InstantiateClone(defaultVariant, defaultVariant.name + "-" + name);
+
+                //Modify with the new colour on XEffect, may need more functions to convert more later
+                ModifyXEffectOnPSR(clone, color);
+
+                //Get original sound from default
+                EffectComponent effectComp = defaultVariant.GetComponent<EffectComponent>();
+                string soundname = "";
+                bool parentToTransform = true;
+                if (effectComp)
+                {
+                    soundname = effectComp.soundName;
+                    parentToTransform = effectComp.parentToReferencedTransform;
+                }
+
+                //Finally resetup the prefab
+                ModifyEffect(clone, soundname, parentToTransform);
+
+                //Register the new prefab under name
+                pVarColourVar.Add(name, clone);
+            }
+        }
+
         #endregion
 
         public static void PopulateAssets() 
@@ -407,6 +413,8 @@ namespace LeeHyperrealMod.Modules
             #region Misc
             PopulateMiscAssets();
             #endregion
+
+            GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR);
         }
 
         private static void PopulateMiscAssets()
@@ -640,18 +648,6 @@ namespace LeeHyperrealMod.Modules
             yellowOrbSwingHit = ModifyEffect(yellowOrbSwingHit, "Play_c_liRk4_imp_yellow_1", true);
 
             yellowOrbKick = GetGameObjectFromBundle("fxr4liangatk32");
-            AddLightIntensityCurveWithCurve(
-                yellowOrbKick.transform.GetChild(0).GetChild(6).gameObject,
-                new LightIntensityProps
-                {
-                    timeMax = 0.3f,
-                    loop = false,
-                    randomStart = false,
-                    enableNegativeLights = false
-
-                },
-                "fxr4liangatk32"
-                );
             yellowOrbKick = ModifyEffect(yellowOrbKick, "Play_c_liRk4_skill_yellow_fire", true);
 
             yellowOrbMultishot = GetGameObjectFromBundle("fxr4liangatk35");
@@ -913,28 +909,6 @@ namespace LeeHyperrealMod.Modules
             primary3Swing2 = ModifyEffect(primary3Swing2, "Play_c_liRk4_atk_nml_3_dilie_2", true);
 
             primary3hit = GetGameObjectFromBundle("fxr4liangatk03hit01");
-            //AddLightIntensityCurveWithCurve(
-            //    primary3hit.transform.GetChild(0).GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.12f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "Fxr4liangatk03hit01-lightSC"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    primary3hit.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps 
-            //    {
-            //        timeMax = 0.18f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk03hit01-spjere"
-            //    );
             primary3hit = ModifyEffect(primary3hit, "", false, 1.5f);
 
             primary3Swing1Red = PrefabAPI.InstantiateClone(primary3Swing1, "fxr4liangatk03dilie1-red");
@@ -948,106 +922,44 @@ namespace LeeHyperrealMod.Modules
 
         public static void PopulatePrimary2Assets()
         {
-            primary2Shot = GetGameObjectFromBundle("fxr4liangatk02");
-            //AddLightIntensityCurveWithCurve(
-            //    primary2Shot.transform.GetChild(2).GetChild(0).gameObject,
-            //    new LightIntensityProps 
-            //    {
-            //        timeMax = 0.15f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "Fxr4liangatk02"
-            //    );
+            GameObject primary2Shot = GetGameObjectFromBundle("fxr4liangatk02");
             primary2Shot = ModifyEffect(primary2Shot, "Play_c_liRk4_atk_nml_2", true);
 
-            primary2hit1 = GetGameObjectFromBundle("fxr4liangatk02hit01");
-            //AddLightIntensityCurveWithCurve(
-            //    primary2hit1.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.18f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk02hit01"
-            //    );
-            primary2hit1 = ModifyEffect(primary2hit1, "", true);
+            GameObject primary2hit1 = GetGameObjectFromBundle("fxr4liangatk02hit01");
+            ModifyEffect(primary2hit1, "", true);
 
-            primary2hit2 = GetGameObjectFromBundle("fxr4liangatk02hit02");
-            //AddLightIntensityCurveWithCurve(
-            //    primary2hit2.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.18f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk02hit02-spjere"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    primary2hit2.transform.GetChild(0).GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.12f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk02hit02-lightSC"
-            //    );
-            primary2hit2 = ModifyEffect(primary2hit2, "", true);
+            GameObject primary2hit2 = GetGameObjectFromBundle("fxr4liangatk02hit02");
+            ModifyEffect(primary2hit2, "", true);
 
-            primary2ShotRed = PrefabAPI.InstantiateClone(primary2Shot, "fxr4liangatk02-red");
-            ModifyXEffectOnPSR(primary2ShotRed, new Color(0.5176f, 0.0705f, 1f));
-            ModifyEffect(primary2ShotRed, "Play_c_liRk4_atk_nml_2", true);
+            ParticleVariant primary2ShotVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2Shot);
+            particleDictionary.Add("primary2Shot", primary2ShotVariant);
+
+            ParticleVariant primary2hit1Variant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2hit1);
+            particleDictionary.Add("primary2hit1", primary2hit1Variant);
+
+            ParticleVariant primary2hit2Variant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2hit2);
+            particleDictionary.Add("primary2hit2", primary2hit2Variant);
         }
 
         public static void PopulatePrimary1Assets() 
         {
             GameObject primary1Swing = GetGameObjectFromBundle("fxr4liangatk01");
-            primary1Swing = ModifyEffect(primary1Swing, "Play_c_liRk4_atk_nml_1", true);
-            ParticleVariant primary1SwingVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Swing);
+            ModifyEffect(primary1Swing, "Play_c_liRk4_atk_nml_1", true);
 
-            /*
-                Modify the following:
-                Parent -> zheng -> 01
-             */
-            GameObject primary1SwingRed = PrefabAPI.InstantiateClone(primary1Swing, "fxr4liangatk01-red");
-            ModifyXEffectOnPSR(primary1SwingRed, RED_PARTICLE_COLOR);
-            primary1SwingRed = ModifyEffect(primary1SwingRed, "Play_c_liRk4_atk_nml_1", true);
-            primary1SwingVariant.colourVariants.Add(RED_PARTICLE_VARIANT, primary1SwingRed);
-
-            /*
-                AddLightIntensityCurveWithCurve(
-                    primary1Hit.transform.GetChild(1).gameObject, 
-                    new LightIntensityProps 
-                    {
-                        timeMax = 0.18f,
-                        loop = false,
-                        randomStart = false,
-                        enableNegativeLights = false,
-                    }, 
-                    "Fxr4liangatk01hit");
-            */
             GameObject primary1Hit = GetGameObjectFromBundle("fxr4liangatk01hit");
-            primary1Hit = ModifyEffect(primary1Hit, "", true);
-            ParticleVariant primary1HitVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Hit);
-
-            GameObject primary1HitRed = PrefabAPI.InstantiateClone(primary1Hit, "fxr4liangatk01hit-red");
-            ModifyXEffectOnPSR(primary1HitRed, new Color(0.5176f, 0.0705f, 1f));
-            primary1HitRed = ModifyEffect(primary1HitRed, "", true);
-            primary1HitVariant.colourVariants.Add(RED_PARTICLE_VARIANT, primary1HitRed);
+            ModifyEffect(primary1Hit, "", true);
 
             GameObject primary1Floor = GetGameObjectFromBundle("fxr4liangatk01dilie");
-            primary1Floor = ModifyEffect(primary1Floor, "", true);
-            ParticleVariant primary1FloorVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Floor);
+            ModifyEffect(primary1Floor, "", true);
 
+
+            ParticleVariant primary1SwingVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Swing);
             particleDictionary.Add("primary1Swing", primary1SwingVariant);
+
+            ParticleVariant primary1HitVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Hit);
             particleDictionary.Add("primary1Hit", primary1HitVariant);
+
+            ParticleVariant primary1FloorVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Floor);
             particleDictionary.Add("primary1Floor", primary1FloorVariant);
 
         }

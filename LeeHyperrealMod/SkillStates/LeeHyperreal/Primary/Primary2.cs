@@ -6,25 +6,18 @@ using LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift;
 using R2API.Networking.Interfaces;
 using RoR2;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Security.Cryptography;
+using LeeHyperrealMod.Modules;
 using UnityEngine;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 {
     internal class Primary2 : BaseMeleeAttack
     {
-        private float rollSpeed;
-        private Vector3 forwardDirection;
-        private Animator animator;
-        private Vector3 previousPosition;
-
         public static float initialSpeedCoefficient = 3f;
         public static float finalSpeedCoefficient = 0f;
 
         public static float moveStartFrac = 0.1f;
         public static float moveEndFrac = 0.15f;
-        private Ray aimRay;
 
         public RootMotionAccumulator rma;
 
@@ -55,9 +48,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             this.hitboxName = "Primary2";
 
             this.damageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.Primary);
-            this.damageCoefficient = Modules.StaticValues.primary2DamageCoefficient;
-            this.procCoefficient = Modules.StaticValues.primary2ProcCoefficient;
-            this.pushForce = Modules.StaticValues.primary2PushForce;
+            this.damageCoefficient = StaticValues.primary2DamageCoefficient;
+            this.procCoefficient = StaticValues.primary2ProcCoefficient;
+            this.pushForce = StaticValues.primary2PushForce;
             this.bonusForce = Vector3.zero;
             this.baseDuration = 2.366f;
             this.attackStartTime = 0.067f;
@@ -68,15 +61,15 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             this.bufferActiveTime = 0.15f;
             this.hitStopDuration = 0.012f;
             this.attackRecoil = 0.5f;
-            this.hitHopVelocity = Modules.StaticValues.primary2HitHopVelocity;
+            this.hitHopVelocity = StaticValues.primary2HitHopVelocity;
 
             this.swingSoundString = "HenrySwordSwing";
             this.hitSoundString = "Play_c_liRk4_imp_nml_2_2";
             this.muzzleString = "BaseTransform";
             this.swingEffectPrefab = null;
-            this.hitEffectPrefab = Modules.ParticleAssets.primary2hit1;
             base.OnEnter();
 
+            this.hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("primary2hit1", characterBody);
             InitMeleeRootMotion();
 
             this.swingScale = 1.25f;
@@ -84,14 +77,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             //Play the effect after setting the muzzle string, it'll be spawned in a random place if you don't
             if (base.isAuthority)
             {
-                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
-                {
-                    PlayExtraSwingEffect(Modules.ParticleAssets.primary2ShotRed);
-                }
-                else 
-                {
-                    PlayExtraSwingEffect(Modules.ParticleAssets.primary2Shot);
-                }
+                PlayExtraSwingEffect(ParticleAssets.RetrieveParticleEffectFromSkin("primary2Shot", characterBody));
             }
         }
 
