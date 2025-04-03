@@ -3,9 +3,7 @@ using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using R2API.Networking;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using LeeHyperrealMod.Modules;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -40,7 +38,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             if (NetworkServer.active)
             {
-                base.characterBody.ApplyBuff(Modules.Buffs.fallDamageNegateBuff.buffIndex, 1);
+                base.characterBody.ApplyBuff(Buffs.fallDamageNegateBuff.buffIndex, 1);
             }
 
             //Continue with straight down attack
@@ -54,7 +52,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             if (base.isAuthority) 
             {
-                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Swing);
+                PlaySwing("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("primary5Swing", characterBody));
             }
         }
 

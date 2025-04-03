@@ -118,7 +118,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
 
             if (domainController)
             {
-                GameObject domainClone = UnityEngine.Object.Instantiate(Modules.ParticleAssets.redOrbDomainCloneStart, baseTransform.position, Quaternion.LookRotation(characterDirection.forward));
+                GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainCloneStart", characterBody), baseTransform.position, Quaternion.LookRotation(characterDirection.forward));
                 domainController.redCloneObjects.Add(domainClone);
             }
 
@@ -193,7 +193,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 if (domainController)
                 {
                     spawnedClone = true;
-                    GameObject domainClone = UnityEngine.Object.Instantiate(Modules.ParticleAssets.redOrbDomainClone, positionToSpawnClone, Quaternion.LookRotation(characterDirection.forward));
+                    GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainClone", characterBody), positionToSpawnClone, Quaternion.LookRotation(characterDirection.forward));
                     domainController.redCloneObjects.Add(domainClone);
                 }
             }
@@ -203,7 +203,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 if (!effectPlayed) 
                 {
                     effectPlayed = true;
-                    EffectManager.SimpleEffect(Modules.ParticleAssets.redOrbDomainFloorImpact, boxGunTransform.position, Quaternion.identity, true);
+                    EffectManager.SimpleEffect(ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainFloorImpact", characterBody), boxGunTransform.position, Quaternion.identity, true);
                 }
                 if(fireStopwatch <= 0f && fireCount < StaticValues.redOrbDomainFireCount)
                 {
@@ -252,7 +252,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
             {
                 hasHit = true;
                 hasHit2 = true;
-                EffectManager.SimpleEffect(Modules.ParticleAssets.redOrbDomainHit, point.hitPosition, Quaternion.identity, true);
+                EffectManager.SimpleEffect(ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainHit", characterBody), point.hitPosition, Quaternion.identity, true);
             }
         }
 

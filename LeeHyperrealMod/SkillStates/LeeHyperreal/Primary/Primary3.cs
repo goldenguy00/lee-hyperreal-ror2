@@ -6,8 +6,8 @@ using LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift;
 using R2API.Networking.Interfaces;
 using RoR2;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using LeeHyperrealMod.Modules;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 {
@@ -47,17 +47,15 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         private float attack2EndFrac = 0.35f;
         private bool hasFired2 = false;
 
-        public bool isRed = false;
-
         public override void OnEnter()
         {
             domainController = this.GetComponent<LeeHyperrealDomainController>();
             this.hitboxName = "AOEMelee";
 
             this.damageType = new DamageTypeCombo(DamageType.Stun1s, DamageTypeExtended.Generic, DamageSource.Primary);
-            this.damageCoefficient = Modules.StaticValues.primary3DamageCoefficient;
-            this.procCoefficient = Modules.StaticValues.primary3ProcCoefficient;
-            this.pushForce = Modules.StaticValues.primary3PushForce;
+            this.damageCoefficient = StaticValues.primary3DamageCoefficient;
+            this.procCoefficient = StaticValues.primary3ProcCoefficient;
+            this.pushForce = StaticValues.primary3PushForce;
             this.bonusForce = Vector3.zero;
             this.baseDuration = 3f;
             this.attackStartTime = 0.08f;
@@ -73,22 +71,19 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             this.hitSoundString = "";
             this.muzzleString = "BaseTransform";
             this.swingEffectPrefab = null;
-            this.hitEffectPrefab = Modules.ParticleAssets.primary3hit;
 
             enableParry = true;
-            parryLength = Modules.StaticValues.primary3ParryLength;
-            parryTiming = Modules.StaticValues.primary3ParryTiming;
-            parryPauseLength = Modules.StaticValues.primary3ParryPauseLength;
-            parryProjectileTiming = Modules.StaticValues.primary3ParryProjectileTimingStart;
-            parryProjectileTimingEnd = Modules.StaticValues.primary3ParryProjectileTimingEnd;
+            parryLength = StaticValues.primary3ParryLength;
+            parryTiming = StaticValues.primary3ParryTiming;
+            parryPauseLength = StaticValues.primary3ParryPauseLength;
+            parryProjectileTiming = StaticValues.primary3ParryProjectileTimingStart;
+            parryProjectileTimingEnd = StaticValues.primary3ParryProjectileTimingEnd;
 
             base.OnEnter();
-            InitMeleeRootMotion();
 
-            if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex)) 
-            {
-                isRed = true;
-            }
+            this.hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("primary3Hit", characterBody);
+
+            InitMeleeRootMotion();
 
             oldGravParams = base.characterMotor.gravityParameters;
             gravParams = new CharacterGravityParameters();
@@ -147,27 +142,13 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.stopwatch >= duration * playInitialWeaponImpactEffect && !effectPlayed && base.isAuthority) 
             {
                 effectPlayed = true;
-                if (isRed)
-                {
-                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing1Red);
-                }
-                else 
-                {
-                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing1);
-                }
+                PlayExtraSwingEffect(ParticleAssets.RetrieveParticleEffectFromSkin("primary3Swing1", characterBody));
             }
 
             if (base.stopwatch >= duration * playSlamSFXFrac && !soundPlayed && base.isAuthority) 
             {
                 soundPlayed = true;
-                if (isRed)
-                {
-                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing2Red);
-                }
-                else 
-                {
-                    PlayExtraSwingEffect(Modules.ParticleAssets.primary3Swing2);
-                }
+                PlayExtraSwingEffect(ParticleAssets.RetrieveParticleEffectFromSkin("primary3Swing2", characterBody));
             }
 
             if (base.stopwatch <= duration * turnOffGravityFrac) 

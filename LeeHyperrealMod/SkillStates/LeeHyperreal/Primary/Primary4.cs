@@ -1,7 +1,7 @@
 ﻿using EntityStates;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
-using LeeHyperrealMod.SkillStates.BaseStates;
+using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift;
 using R2API.Networking.Interfaces;
 using RoR2;
@@ -22,9 +22,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
         public static float moveStartFrac = 0.05f;
         public static float moveEndFrac = 0.47f;
-        public static float shootRadius = Modules.StaticValues.primary4BlastRadius;
-        public static float basePulseRate = Modules.StaticValues.primary4BasePulseRate;
-        public static float damageCoefficient = Modules.StaticValues.primary4DamageCoefficient;
+        public static float shootRadius = StaticValues.primary4BlastRadius;
+        public static float basePulseRate = StaticValues.primary4BasePulseRate;
+        public static float damageCoefficient = StaticValues.primary4DamageCoefficient;
         public float pulseRate;
         private Ray aimRay;
 
@@ -93,7 +93,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),
                 procCoefficient = Modules.StaticValues.primary4ProcCoefficient,
-                impactEffect = EffectCatalog.FindEffectIndexFromPrefab(Modules.ParticleAssets.primary4Hit),
+                impactEffect = EffectCatalog.FindEffectIndexFromPrefab(ParticleAssets.RetrieveParticleEffectFromSkin("primary4Hit", characterBody)),
                 attackerFiltering = AttackerFiltering.NeverHitSelf
         };
 
@@ -103,7 +103,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             if (base.isAuthority) 
             {
-                PlaySwingEffect("BaseTransform", 1.25f, Modules.ParticleAssets.primary4AfterImage);
+                PlaySwingEffect("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("primary4AfterImage", characterBody));
             }
 
             //Iterate through list of tuples when timer has exceeded, set model off
@@ -228,14 +228,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 playedSwing = true;
                 new PlaySoundNetworkRequest(characterBody.netId, "Play_c_liRk4_atk_nml_4").Send(R2API.Networking.NetworkDestination.Clients);
 
-                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
-                {
-                    PlaySwingEffect("BaseTransform", 1f, Modules.ParticleAssets.primary4SwingRed);
-                }
-                else 
-                {
-                    PlaySwingEffect("BaseTransform", 1f, Modules.ParticleAssets.primary4Swing);
-                }
+                PlaySwingEffect("BaseTransform", 1f, ParticleAssets.RetrieveParticleEffectFromSkin("primary4Swing", characterBody));
             }
 
             if (base.isAuthority && this.age <= duration * earlyExitTime) 

@@ -50,49 +50,6 @@ namespace LeeHyperrealMod.Modules
         internal static List<Material> materialStorage = new List<Material>();
         #endregion
 
-        #region Primary 3
-        public static GameObject primary3Swing1;
-        public static GameObject primary3Swing2;
-        public static GameObject primary3hit;
-
-        public static GameObject primary3Swing1Red;
-        public static GameObject primary3Swing2Red;
-        #endregion
-
-        #region Primary 4
-        public static GameObject primary4Swing;
-        public static GameObject primary4AfterImage;
-        public static GameObject primary4Hit;
-
-        public static GameObject primary4SwingRed;
-        #endregion
-
-        #region Primary 5
-        public static GameObject primary5Swing;
-        public static GameObject primary5Floor;
-
-        public static GameObject primary5SwingRed;
-        public static GameObject primary5FloorRed;
-        #endregion
-
-        #region Red Orb
-        public static GameObject redOrbSwing;
-        public static GameObject redOrbHit;
-        public static GameObject redOrbPingSwing;
-        public static GameObject redOrbPingGround;
-
-        public static GameObject redOrbDomainHit;
-        public static GameObject redOrbDomainFloorImpact;
-        public static GameObject redOrbDomainClone;
-        public static GameObject redOrbDomainCloneStart;
-        #endregion
-
-        #region Blue Orb
-        public static GameObject blueOrbShot;
-        public static GameObject blueOrbHit;
-        public static GameObject blueOrbGroundHit;
-        #endregion
-
         #region Yellow Orb
         public static GameObject yellowOrbSwing;
         public static GameObject yellowOrbSwingHit;
@@ -166,7 +123,7 @@ namespace LeeHyperrealMod.Modules
         {
             particleDictionary = new Dictionary<string, ParticleVariant>();
 
-            //UpdateAllBundleMaterials();
+            UpdateAllBundleMaterials();
             CreateMaterialStorage(Modules.LeeHyperrealAssets.mainAssetBundle);
             PopulateAssets();
         }
@@ -179,7 +136,6 @@ namespace LeeHyperrealMod.Modules
             {
                 if (material.shader.name.StartsWith("StubbedRoR2"))
                 {
-                    Debug.Log($"{material.name}: {material.shader.name}");
                     string newName;
                     nameConversion.TryGetValue(material.shader.name, out newName);
                     material.shader = RoR2.LegacyShaderAPI.Find(newName);
@@ -698,232 +654,104 @@ namespace LeeHyperrealMod.Modules
 
         private static void PopulateBlueOrbAssets()
         {
-            blueOrbShot = GetGameObjectFromBundle("fxr4liangatk20");
-            //AddLightIntensityCurveWithCurve(
-            //    blueOrbShot.transform.GetChild(0).GetChild(1).GetChild(1).gameObject,
-            //    new LightIntensityProps 
-            //    {
-            //        timeMax = 0.15f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk20-spjere"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    blueOrbShot.transform.GetChild(0).GetChild(1).GetChild(0).gameObject,
-            //    new LightIntensityProps 
-            //    {
-            //        timeMax = 0.35f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk20-lightSC"
-            //    );
-            blueOrbShot = ModifyEffect(blueOrbShot, "Play_c_liRk4_skill_blue", true);
+            GameObject blueOrbShot = GetGameObjectFromBundle("fxr4liangatk20");
+            ModifyEffect(blueOrbShot, "Play_c_liRk4_skill_blue", true);
 
-            blueOrbHit = GetGameObjectFromBundle("fxr4liangatk20hit");
-            //AddLightIntensityCurveWithCurve(
-            //    blueOrbHit.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps 
-            //    {
-            //        timeMax = 0.18f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk20hit-spjere"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    blueOrbHit.transform.GetChild(0).GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.12f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false
-            //    },
-            //    "fxr4liangatk20hit-lightSC"
-            //    );
-            blueOrbHit = ModifyEffect(blueOrbHit, "Play_c_liRk4_imp_blue", true);
+            GameObject blueOrbHit = GetGameObjectFromBundle("fxr4liangatk20hit");
+            ModifyEffect(blueOrbHit, "Play_c_liRk4_imp_blue", true);
 
-            blueOrbGroundHit = GetGameObjectFromBundle("fxr4liangatk20bao");
-            blueOrbGroundHit = ModifyEffect(blueOrbGroundHit, "Play_c_liRk4_skill_blue_dilie", true, 3f);
+            GameObject blueOrbGroundHit = GetGameObjectFromBundle("fxr4liangatk20bao");
+            ModifyEffect(blueOrbGroundHit, "Play_c_liRk4_skill_blue_dilie", true, 3f);
+
+            particleDictionary.Add("blueOrbShot", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, blueOrbShot));
+            particleDictionary.Add("blueOrbHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, blueOrbHit));
+            particleDictionary.Add("blueOrbGroundHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, blueOrbGroundHit));
         }
 
         private static void PopulateRedOrbAssets()
         {
-            redOrbSwing = GetGameObjectFromBundle("fxr4liangatk10");
-            //AddLightIntensityCurveWithCurve(
-            //    redOrbSwing.transform.GetChild(1).GetChild(0).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.5f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk10"
-            //    );
-            redOrbSwing = ModifyEffect(redOrbSwing, "Play_c_liRk4_skill_red", true);
+            GameObject redOrbSwing = GetGameObjectFromBundle("fxr4liangatk10");
+            ModifyEffect(redOrbSwing, "Play_c_liRk4_skill_red", true);
 
-            redOrbHit = GetGameObjectFromBundle("fxr4liangatk10hit02");
-            //AddLightIntensityCurveWithCurve(
-            //    redOrbHit.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.5f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk10hit02-spjere"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    redOrbHit.transform.GetChild(0).GetChild(2).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.5f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk10hit02-lightSC"
-            //    );
-            redOrbHit = ModifyEffect(redOrbHit, "Play_c_liRk4_imp_red_1", false);
+            GameObject redOrbHit = GetGameObjectFromBundle("fxr4liangatk10hit02");
+            ModifyEffect(redOrbHit, "Play_c_liRk4_imp_red_1", false);
 
-            redOrbPingSwing = GetGameObjectFromBundle("fxr4liangatk11");
-            redOrbPingSwing = ModifyEffect(redOrbPingSwing, "", false);
+            GameObject redOrbPingSwing = GetGameObjectFromBundle("fxr4liangatk11");
+            ModifyEffect(redOrbPingSwing, "", false);
 
-            redOrbPingGround = GetGameObjectFromBundle("fxr4liangatk11dilie");
-            //AddLightIntensityCurveWithCurve(
-            //    redOrbPingGround.transform.GetChild(0).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.5f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk11dilie"
-            //    );
-            redOrbPingGround = ModifyEffect(redOrbPingGround, "", false);
+            GameObject redOrbPingGround = GetGameObjectFromBundle("fxr4liangatk11dilie");
+            ModifyEffect(redOrbPingGround, "", false);
 
-            redOrbDomainFloorImpact = GetGameObjectFromBundle("fxr4liangatk14dilie");
-            //AddLightIntensityCurveWithCurve(
-            //    redOrbDomainFloorImpact.transform.GetChild(0).gameObject,
-            //    new LightIntensityProps 
-            //    {
-            //        timeMax = 0.5f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk14dilie"
-            //    );
-            redOrbDomainFloorImpact = ModifyEffect(redOrbDomainFloorImpact, "Play_c_liRk4_atk_ex_2", false);
+            GameObject redOrbDomainFloorImpact = GetGameObjectFromBundle("fxr4liangatk14dilie");
+            ModifyEffect(redOrbDomainFloorImpact, "Play_c_liRk4_atk_ex_2", false);
 
-            redOrbDomainHit = GetGameObjectFromBundle("fxr4liangatk14fshit01");
-            //AddLightIntensityCurveWithCurve(
-            //    redOrbDomainHit.transform.GetChild(0).GetChild(4).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.5f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk14fshit01"
-            //    );
-            redOrbDomainHit = ModifyEffect(redOrbDomainHit, "Play_c_liRk4_imp_ex_2_2", false);
+            GameObject redOrbDomainHit = GetGameObjectFromBundle("fxr4liangatk14fshit01");
+            ModifyEffect(redOrbDomainHit, "Play_c_liRk4_imp_ex_2_2", false);
 
-            redOrbDomainClone = GetGameObjectFromBundle("RedOrbDomainClone");
+            GameObject redOrbDomainClone = GetGameObjectFromBundle("RedOrbDomainClone");
             redOrbDomainClone.AddComponent<LeeHyperrealCloneFlicker>();
 
-            redOrbDomainCloneStart = GetGameObjectFromBundle("RedOrbDomainCloneStart");
+            GameObject redOrbDomainCloneStart = GetGameObjectFromBundle("RedOrbDomainCloneStart");
             redOrbDomainCloneStart.AddComponent<LeeHyperrealCloneFlicker>();
+
+            particleDictionary.Add("redOrbSwing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbSwing));
+            particleDictionary.Add("redOrbHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbHit));
+            particleDictionary.Add("redOrbPingSwing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbPingSwing));
+            particleDictionary.Add("redOrbPingGround", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbPingGround));
+            particleDictionary.Add("redOrbDomainFloorImpact", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainFloorImpact));
+            particleDictionary.Add("redOrbDomainHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainHit));
+            particleDictionary.Add("redOrbDomainClone", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainClone));
+            particleDictionary.Add("redOrbDomainCloneStart", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainCloneStart));
         }
 
         private static void PopulatePrimary5Assets()
         {
-            primary5Swing = GetGameObjectFromBundle("fxr4liangatk05");
-            primary5Swing = ModifyEffect(primary5Swing, "Play_c_liRk4_atk_nml_5_jump", true, 1.5f);
+            GameObject primary5Swing = GetGameObjectFromBundle("fxr4liangatk05");
+            ModifyEffect(primary5Swing, "Play_c_liRk4_atk_nml_5_jump", true, 1.5f);
 
-            primary5Floor = GetGameObjectFromBundle("fxr4liangatk05dilie");
-            //AddLightIntensityCurveWithCurve(
-            //    primary5Floor.transform.GetChild(0).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 1f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk05dilie"
-            //    );
-            primary5Floor = ModifyEffect(primary5Floor, "Play_c_liRk4_atk_nml_5_dilie", false, 1.5f);
+            GameObject primary5Floor = GetGameObjectFromBundle("fxr4liangatk05dilie");
+            ModifyEffect(primary5Floor, "Play_c_liRk4_atk_nml_5_dilie", false, 1.5f);
 
-            primary5SwingRed = PrefabAPI.InstantiateClone(primary5Swing, "fxr4liangatk05");
-            ModifyXEffectOnPSR(primary5SwingRed, new Color(0.5176f, 0.0705f, 1f));
-            ModifyEffect(primary5SwingRed, "Play_c_liRk4_atk_nml_5_jump", true, 1.5f);
-
-            primary5FloorRed = PrefabAPI.InstantiateClone(primary5Floor, "fxr4liangatk05dilie");
-            ModifyXEffectOnPSR(primary5FloorRed, new Color(0.5176f, 0.0705f, 1f));
-            ModifyEffect(primary5FloorRed, "Play_c_liRk4_atk_nml_5_dilie", true, 1.5f);
+            particleDictionary.Add("primary5Swing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary5Swing));
+            particleDictionary.Add("primary5Floor", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary5Floor));
         }
 
         private static void PopulatePrimary4Assets()
         {
-            primary4Swing = GetGameObjectFromBundle("fxr4liangatk04");
-            //AddLightIntensityCurveWithCurve(
-            //   primary4Swing.transform.GetChild(1).GetChild(0).gameObject,
-            //   new LightIntensityProps
-            //   {
-            //       timeMax = 1f,
-            //       loop = false,
-            //       randomStart = false,
-            //       enableNegativeLights = false,
-            //   },
-            //   "fxr4liangatk04"
-            //   );
-            primary4Swing = ModifyEffect(primary4Swing, "", true, 2f);
+            GameObject primary4Swing = GetGameObjectFromBundle("fxr4liangatk04");
+            ModifyEffect(primary4Swing, "", true, 2f);
 
-            primary4AfterImage = GetGameObjectFromBundle("fxr4liangatk04canying");
-            primary4AfterImage = ModifyEffect(primary4AfterImage, "", true, 2f);
+            GameObject primary4AfterImage = GetGameObjectFromBundle("fxr4liangatk04canying");
+            ModifyEffect(primary4AfterImage, "", true, 2f);
 
-            primary4Hit = GetGameObjectFromBundle("fxr4liangatk04hit");
-            primary4Hit = ModifyEffect(primary4Hit, "", true);
+            GameObject primary4Hit = GetGameObjectFromBundle("fxr4liangatk04hit");
+            ModifyEffect(primary4Hit, "", true);
 
-            primary4SwingRed = PrefabAPI.InstantiateClone(primary4Swing, "fxr4liangatk04");
-            ModifyXEffectOnPSR(primary4SwingRed, new Color(0.5176f, 0.0705f, 1f));
-            ModifyEffect(primary4SwingRed, "", true, 2f);
+            particleDictionary.Add("primary4Swing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary4Swing));
+            particleDictionary.Add("primary4AfterImage", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary4AfterImage));
+            particleDictionary.Add("primary4Hit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary4Hit));
         }
 
         public static void PopulatePrimary3Assets() 
         {
-            primary3Swing1 = GetGameObjectFromBundle("fxr4liangatk03dilie1");
-            primary3Swing1 = ModifyEffect(primary3Swing1, "Play_c_liRk4_atk_nml_3_dilie_1", true);
+            GameObject primary3Swing1 = GetGameObjectFromBundle("fxr4liangatk03dilie1");
+            ModifyEffect(primary3Swing1, "Play_c_liRk4_atk_nml_3_dilie_1", true);
 
-            primary3Swing2 = GetGameObjectFromBundle("fxr4liangatk03dilie2");
-            primary3Swing2 = ModifyEffect(primary3Swing2, "Play_c_liRk4_atk_nml_3_dilie_2", true);
+            GameObject primary3Swing2 = GetGameObjectFromBundle("fxr4liangatk03dilie2");
+            ModifyEffect(primary3Swing2, "Play_c_liRk4_atk_nml_3_dilie_2", true);
 
-            primary3hit = GetGameObjectFromBundle("fxr4liangatk03hit01");
-            primary3hit = ModifyEffect(primary3hit, "", false, 1.5f);
+            GameObject primary3hit = GetGameObjectFromBundle("fxr4liangatk03hit01");
+            ModifyEffect(primary3hit, "", false, 1.5f);
 
-            primary3Swing1Red = PrefabAPI.InstantiateClone(primary3Swing1, "fxr4liangatk03dilie1-red");
-            ModifyXEffectOnPSR(primary3Swing1Red, new Color(0.5176f, 0.0705f, 1f));
-            ModifyEffect(primary3Swing1Red, "Play_c_liRk4_atk_nml_3_dilie_1", true);
-
-            primary3Swing2Red = PrefabAPI.InstantiateClone(primary3Swing2, "fxr4liangatk03dilie2");
-            ModifyXEffectOnPSR(primary3Swing2Red, new Color(0.5176f, 0.0705f, 1f));
-            ModifyEffect(primary3Swing2Red, "Play_c_liRk4_atk_nml_3_dilie_2", true);
+            particleDictionary.Add("primary3Swing1", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary3Swing1));
+            particleDictionary.Add("primary3Swing2", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary3Swing2));
+            particleDictionary.Add("primary3Hit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary3hit));
         }
 
         public static void PopulatePrimary2Assets()
         {
             GameObject primary2Shot = GetGameObjectFromBundle("fxr4liangatk02");
-            primary2Shot = ModifyEffect(primary2Shot, "Play_c_liRk4_atk_nml_2", true);
+            ModifyEffect(primary2Shot, "Play_c_liRk4_atk_nml_2", true);
 
             GameObject primary2hit1 = GetGameObjectFromBundle("fxr4liangatk02hit01");
             ModifyEffect(primary2hit1, "", true);
@@ -931,14 +759,9 @@ namespace LeeHyperrealMod.Modules
             GameObject primary2hit2 = GetGameObjectFromBundle("fxr4liangatk02hit02");
             ModifyEffect(primary2hit2, "", true);
 
-            ParticleVariant primary2ShotVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2Shot);
-            particleDictionary.Add("primary2Shot", primary2ShotVariant);
-
-            ParticleVariant primary2hit1Variant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2hit1);
-            particleDictionary.Add("primary2hit1", primary2hit1Variant);
-
-            ParticleVariant primary2hit2Variant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2hit2);
-            particleDictionary.Add("primary2hit2", primary2hit2Variant);
+            particleDictionary.Add("primary2Shot", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2Shot));
+            particleDictionary.Add("primary2hit1", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2hit1));
+            particleDictionary.Add("primary2hit2", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary2hit2));
         }
 
         public static void PopulatePrimary1Assets() 
@@ -953,15 +776,9 @@ namespace LeeHyperrealMod.Modules
             ModifyEffect(primary1Floor, "", true);
 
 
-            ParticleVariant primary1SwingVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Swing);
-            particleDictionary.Add("primary1Swing", primary1SwingVariant);
-
-            ParticleVariant primary1HitVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Hit);
-            particleDictionary.Add("primary1Hit", primary1HitVariant);
-
-            ParticleVariant primary1FloorVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Floor);
-            particleDictionary.Add("primary1Floor", primary1FloorVariant);
-
+            particleDictionary.Add("primary1Swing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Swing));
+            particleDictionary.Add("primary1Hit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Hit));
+            particleDictionary.Add("primary1Floor", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, primary1Floor));
         }
 
         private static void CreateMaterialStorage(AssetBundle inAssetBundle)

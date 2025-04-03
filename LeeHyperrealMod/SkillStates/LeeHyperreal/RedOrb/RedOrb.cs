@@ -3,7 +3,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
-using System;
+using LeeHyperrealMod.Modules;
 using R2API.Networking;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
@@ -113,7 +113,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 spreadPitchScale = 0f,
                 spreadYawScale = 0f,
                 queryTriggerInteraction = QueryTriggerInteraction.UseGlobal,
-                hitEffectPrefab = Modules.ParticleAssets.redOrbHit,
+                hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("redOrbHit", characterBody),
                 hitCallback = redHitCallback,
             };
 
@@ -137,7 +137,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
 
             if (base.isAuthority) 
             {
-                Modules.Helpers.PlaySwingEffect("BaseTransform", 1f, Modules.ParticleAssets.redOrbSwing, gameObject);
+                Modules.Helpers.PlaySwingEffect("BaseTransform", 1f, ParticleAssets.RetrieveParticleEffectFromSkin("redOrbSwing", characterBody), gameObject);
             }
         }
 

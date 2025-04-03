@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 using R2API.Networking;
 using LeeHyperrealMod.Modules.Networking;
 using R2API.Networking.Interfaces;
+using LeeHyperrealMod.Modules;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal
 {
@@ -125,7 +126,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 canRejectForce = false,
                 procChainMask = new ProcChainMask(),
                 procCoefficient = 1f,
-                impactEffect = EffectCatalog.FindEffectIndexFromPrefab(Modules.ParticleAssets.blueOrbHit),
+                impactEffect = EffectCatalog.FindEffectIndexFromPrefab(ParticleAssets.RetrieveParticleEffectFromSkin("blueOrbHit", characterBody)),
                 attackerFiltering = AttackerFiltering.NeverHitSelf
             };
 
@@ -157,7 +158,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 spreadPitchScale = 0f,
                 spreadYawScale = 0f,
                 queryTriggerInteraction = QueryTriggerInteraction.UseGlobal,
-                hitEffectPrefab = Modules.ParticleAssets.blueOrbHit
+                hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("blueOrbHit", characterBody)
             };
 
             base.characterDirection.forward = inputBank.aimDirection;
@@ -361,7 +362,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 origin = muzzlePos.position,
                 rotation = Quaternion.LookRotation(((OriginalPosition - muzzlePos.position).normalized + Vector3.down * 0.35f).normalized, Vector3.up),
             };
-            EffectManager.SpawnEffect(Modules.ParticleAssets.blueOrbShot, effectData, true);
+            EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("blueOrbShot", characterBody), effectData, true);
 
             //Calculate position where the floor is from where we are.
             RaycastHit hit;
@@ -371,7 +372,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 {
                     scale = 4f
                 };
-                EffectManager.SimpleEffect(Modules.ParticleAssets.blueOrbGroundHit, hit.point, Quaternion.identity, true);
+                EffectManager.SimpleEffect(ParticleAssets.RetrieveParticleEffectFromSkin("blueOrbGroundHit", characterBody), hit.point, Quaternion.identity, true);
             }
 
             for (int i = 0; i < attackAmount; i++) 

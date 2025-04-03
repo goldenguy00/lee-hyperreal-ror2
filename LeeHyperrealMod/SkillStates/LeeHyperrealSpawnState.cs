@@ -96,7 +96,7 @@ namespace LeeHyperrealMod.SkillStates
                         origin = muzzlePos.position,
                         rotation = Quaternion.LookRotation(((blastPosition - muzzlePos.position).normalized + Vector3.down * 0.35f).normalized, Vector3.up),
                     };
-                    EffectManager.SpawnEffect(Modules.ParticleAssets.blueOrbShot, effectData, true);
+                    EffectManager.SpawnEffect(Modules.ParticleAssets.RetrieveParticleEffectFromSkin("blueOrbShot", characterBody), effectData, true);
 
                     new BlastAttack
                     {

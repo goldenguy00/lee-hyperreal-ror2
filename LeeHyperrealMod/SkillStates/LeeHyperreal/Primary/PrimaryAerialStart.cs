@@ -3,10 +3,7 @@ using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+using LeeHyperrealMod.Modules;
 using UnityEngine;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
@@ -33,16 +30,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             //Automatically leads into Midair Attack Loop
             characterMotor.velocity.y = 0f;        /*reset current Velocity at start.*/
 
-            if (base.isAuthority) 
+            if (base.isAuthority)
             {
-                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
-                {
-                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5SwingRed);
-                }
-                else 
-                {
-                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Swing);
-                }
+                PlaySwing("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("primary5Swing", characterBody));
             }
         }
 

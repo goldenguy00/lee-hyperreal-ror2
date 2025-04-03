@@ -1,4 +1,4 @@
-﻿using EntityStates;
+﻿using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
@@ -93,7 +93,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 spreadPitchScale = 0f,
                 spreadYawScale = 0f,
                 queryTriggerInteraction = QueryTriggerInteraction.UseGlobal,
-                hitEffectPrefab = Modules.ParticleAssets.redOrbHit,
+                hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("redOrbHit", characterBody),
                 hitCallback = BulletAttack.defaultHitCallback,
             };
 
@@ -145,8 +145,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
 
                 if (base.isAuthority) 
                 {
-                    Modules.Helpers.PlaySwingEffect("BaseTransform", 1.25f, Modules.ParticleAssets.redOrbPingSwing, gameObject);
-                    Modules.Helpers.PlaySwingEffect("BaseTransform", 1.25f, Modules.ParticleAssets.redOrbPingGround, gameObject);
+                    Modules.Helpers.PlaySwingEffect("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("redOrbPingSwing", characterBody), gameObject);
+                    Modules.Helpers.PlaySwingEffect("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("redOrbPingGround", characterBody), gameObject);
                 }
             }
 
@@ -214,7 +214,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                         overlapAttack.damageType = GenericDamageType;
                         overlapAttack.damage = this.damageCoefficient * this.damageStat;
                         overlapAttack.procCoefficient = this.procCoefficient;
-                        overlapAttack.hitEffectPrefab = Modules.ParticleAssets.redOrbDomainHit;
+                        overlapAttack.hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainHit", characterBody);
                         overlapAttack.forceVector = this.bonusForce / attackAmount;
                         overlapAttack.pushAwayForce = this.pushForce / attackAmount;
                         overlapAttack.isCrit = base.RollCrit();
@@ -241,7 +241,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                         overlapAttack.hitBoxGroup = hitBoxGroup;
                         overlapAttack.damage = this.damageCoefficient * this.damageStat * partialAttack;
                         overlapAttack.procCoefficient = this.procCoefficient * partialAttack;
-                        overlapAttack.hitEffectPrefab = Modules.ParticleAssets.redOrbDomainHit;
+                        overlapAttack.hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainHit", characterBody);
                         overlapAttack.forceVector = this.bonusForce * partialAttack / attackAmount;
                         overlapAttack.pushAwayForce = this.pushForce * partialAttack / attackAmount;
                         overlapAttack.isCrit = base.RollCrit();

@@ -5,9 +5,7 @@ using LeeHyperrealMod.SkillStates.BaseStates;
 using R2API.Networking;
 using R2API.Networking.Interfaces;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using LeeHyperrealMod.Modules;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -45,14 +43,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.isAuthority) 
             {
                 FireAttack();
-                if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex))
-                {
-                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5FloorRed);
-                }
-                else 
-                {
-                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Floor);
-                }
+                PlaySwing("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("primary5Floor", characterBody));
             }
 
             base.PlayAnimation("Body", "Midair Attack End", "attack.playbackRate", duration);

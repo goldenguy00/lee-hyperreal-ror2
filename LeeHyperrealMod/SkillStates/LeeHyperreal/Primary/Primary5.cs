@@ -6,6 +6,7 @@ using LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift;
 using R2API.Networking.Interfaces;
 using RoR2;
 using UnityEngine;
+using LeeHyperrealMod.Modules;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 {
@@ -37,7 +38,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
         float turnOnBounceGravityFrac = 0.32f;
         float turnOfFBounceGravityFrac = 0.39f;
-        bool isRed = false;
 
         public override void OnEnter()
         {
@@ -62,9 +62,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             this.swingSoundString = "";
             this.hitSoundString = "";
             this.muzzleString = swingIndex % 2 == 0 ? "SwingLeft" : "SwingRight";
-            this.swingEffectPrefab = Modules.ParticleAssets.primary5Swing;
-            this.hitEffectPrefab = Modules.ParticleAssets.primary4Hit;
+
             base.OnEnter();
+
+            this.swingEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("primary5Swing", characterBody);
+            this.hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("primary4Hit", characterBody);
+
             InitMeleeRootMotion();
 
             oldGravParams = base.characterMotor.gravityParameters;
@@ -74,19 +77,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             characterMotor.gravityParameters = gravParams;
 
-            if (LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)base.characterBody.skinIndex)) 
-            {
-                isRed = true;
-            }
-
-            if (isRed) 
-            {
-                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5SwingRed);
-            }
-            else
-            {
-                PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Swing);
-            }
+            PlaySwing("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("primary5Swing", characterBody));
             Util.PlaySound("Play_c_liRk4_atk_nml_5_xuli", base.gameObject);
         }
 
@@ -160,14 +151,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.stopwatch >= duration * slamEffectFrac && !playedLandingEffect) 
             {
                 playedLandingEffect = true;
-                if (isRed)
-                {
-                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5FloorRed);
-                }
-                else 
-                {
-                    PlaySwing("BaseTransform", 1.25f, Modules.ParticleAssets.primary5Floor);
-                }    
+
+                PlaySwing("BaseTransform", 1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("primary5Floor", characterBody));
             }
 
 
