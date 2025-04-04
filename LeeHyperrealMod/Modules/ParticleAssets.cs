@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using LeeHyperrealMod.Content.Controllers;
 using R2API;
-using System;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -12,7 +11,7 @@ namespace LeeHyperrealMod.Modules
     {
         internal static string DEFAULT_PARTICLE_VARIANT = "default";
         internal static string RED_PARTICLE_VARIANT = "red";
-        internal static Color RED_PARTICLE_COLOR = new Color(1.0f, 0f, 0f);
+        internal static Color RED_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
 
         internal class ParticleVariant 
         {
@@ -252,6 +251,11 @@ namespace LeeHyperrealMod.Modules
             {
                 ParticleVariant pVar = item.Value;
                 Dictionary<string, GameObject> pVarColourVar = item.Value.colourVariants;
+                if (pVarColourVar.ContainsKey(name)) 
+                {
+                    //Skip processing, we already have a variant e.g RED for this prefab.
+                    continue;
+                }
 
                 //Get default 
                 GameObject defaultVariant = pVarColourVar[DEFAULT_PARTICLE_VARIANT];
