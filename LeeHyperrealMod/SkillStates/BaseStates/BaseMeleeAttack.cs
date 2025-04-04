@@ -170,7 +170,7 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
                         ProjectileManager.instance.FireProjectile(info);
 
                         new PlaySoundNetworkRequest(characterBody.netId, "Play_Normal_parry").Send(NetworkDestination.Clients);
-                        EffectManager.SpawnEffect(Modules.ParticleAssets.normalParry,
+                        EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("normalParry", characterBody),
                             new EffectData
                             {
                                 origin = parryPosition,
@@ -433,7 +433,7 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
                         {
                             position = ParryTransform.position;
                         }
-                        EffectManager.SpawnEffect(Modules.ParticleAssets.bigParry, 
+                        EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("bigParry", characterBody), 
                             new EffectData 
                             { 
                                 origin = position, 
@@ -452,7 +452,7 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
                         {
                             position = ParryTransform.position;
                         }
-                        EffectManager.SpawnEffect(Modules.ParticleAssets.normalParry, 
+                        EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("normalParry", characterBody), 
                             new EffectData 
                             { 
                                 origin = position, 

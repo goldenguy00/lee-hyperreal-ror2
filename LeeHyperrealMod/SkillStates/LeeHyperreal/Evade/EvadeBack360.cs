@@ -3,15 +3,11 @@ using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary;
-using R2API.Networking;
+using LeeHyperrealMod.Modules;
 using R2API.Networking.Interfaces;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UIElements.UIR;
 using static LeeHyperrealMod.Content.Controllers.BulletController;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
@@ -174,9 +170,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 
                 if (isGrounded)
                 {
-                    PlaySwingEffect(scale, Modules.ParticleAssets.snipeGround, startEffectPos, aimEffectVector);
+                    PlaySwingEffect(scale, ParticleAssets.RetrieveParticleEffectFromSkin("snipeGround", characterBody), startEffectPos, aimEffectVector);
                 }
-                PlaySwingEffect(scale, Modules.ParticleAssets.Snipe, startEffectPos, aimEffectVector);
+                PlaySwingEffect(scale, ParticleAssets.RetrieveParticleEffectFromSkin("snipe", characterBody), startEffectPos, aimEffectVector);
 
                 new PlaySoundNetworkRequest(characterBody.netId, "Play_c_liRk4_atk_ex_3").Send(R2API.Networking.NetworkDestination.Clients);
                 if (playBreakSFX)
@@ -210,7 +206,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                     spreadPitchScale = 0f,
                     spreadYawScale = 0f,
                     queryTriggerInteraction = QueryTriggerInteraction.UseGlobal,
-                    hitEffectPrefab = triggerBreakVFX ? Modules.ParticleAssets.snipeHitEnhanced : Modules.ParticleAssets.snipeHit,
+                    hitEffectPrefab = triggerBreakVFX ? ParticleAssets.RetrieveParticleEffectFromSkin("snipeHitEnhanced", characterBody) : ParticleAssets.RetrieveParticleEffectFromSkin("snipeHit", characterBody),
                 }.Fire();
 
                 //characterBody.SetAimTimer(duration + 1f);
@@ -218,7 +214,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                 {
                     ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
                     Transform baseTransform = childLocator.FindChild("BaseTransform");
-                    bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(Modules.ParticleAssets.snipeAerialFloor, baseTransform.position, Quaternion.identity);
+                    bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("snipeAerialFloor", characterBody), baseTransform.position, Quaternion.identity);
                 }
             }
 

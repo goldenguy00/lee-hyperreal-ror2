@@ -1,7 +1,7 @@
 ﻿using EntityStates;
 using UnityEngine;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.Evade;
-using RoR2;
+using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.Content.Controllers;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
@@ -33,12 +33,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
             {
                 ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
                 Transform baseTransform = childLocator.FindChild("BaseTransform");
-                bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(Modules.ParticleAssets.snipeAerialFloor, baseTransform.position, Quaternion.identity);
+                bulletController.snipeAerialPlatform = Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("snipeAerialFloor", characterBody), baseTransform.position, Quaternion.identity);
             }
 
             if (!base.inputBank.skill2.down && Modules.Config.allowSnipeButtonHold.Value && base.isAuthority)
             {
-                if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
+                if (base.outer.state.GetMinimumInterruptPriority() != InterruptPriority.Death)
                 {
                     base.outer.SetNextState(new ExitSnipe());
                     return;

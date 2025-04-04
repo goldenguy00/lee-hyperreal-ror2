@@ -278,7 +278,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 {
                     ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
                     Transform baseTransform = childLocator.FindChild("BaseTransform");
-                    bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(Modules.ParticleAssets.snipeAerialFloor, baseTransform.position, Quaternion.identity);
+                    bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("snipeAerialFloor", characterBody), baseTransform.position, Quaternion.identity);
                 }
             }
 

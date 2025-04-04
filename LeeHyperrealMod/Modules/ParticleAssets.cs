@@ -51,27 +51,6 @@ namespace LeeHyperrealMod.Modules
         internal static List<Material> materialStorage = new List<Material>();
         #endregion
 
-        #region Snipe
-        public static GameObject SnipeStart;
-        public static GameObject Snipe;
-        public static GameObject snipeHit;
-        public static GameObject snipeHitEnhanced;
-        public static GameObject snipeGround;
-        public static GameObject snipeBulletCasing;
-        public static GameObject snipeDodge;
-        public static GameObject snipeAerialFloor;
-        #endregion
-
-        #region Parry
-        public static GameObject normalParry;
-        public static GameObject bigParry;
-        #endregion
-
-        #region Dodge
-        public static GameObject dodgeForwards;
-        public static GameObject dodgeBackwards;
-        #endregion
-
         #region Ultimate Domain
         //FXR 42
         public static GameObject UltimateDomainFinisherEffect;
@@ -90,15 +69,6 @@ namespace LeeHyperrealMod.Modules
         public static GameObject transitionEffectGround;
         public static GameObject domainFieldLoopEffect;
         public static GameObject domainFieldEndEffect;
-        #endregion
-
-        #region Ultimate non-domain 
-        //FXR 51
-        public static GameObject ultExplosion;
-        public static GameObject ultGunEffect;
-        public static GameObject ultTracerEffect;
-        public static GameObject ultPreExplosionProjectile;
-        public static GameObject ultShootingEffect;
         #endregion
 
         #region Display particles
@@ -146,7 +116,11 @@ namespace LeeHyperrealMod.Modules
 
         private static GameObject ModifyEffect(GameObject newEffect, string soundName, bool parentToTransform, float duration, VFXAttributes.VFXPriority priority = VFXAttributes.VFXPriority.Always, bool shouldNotPool = false)
         {
-            newEffect.AddComponent<DestroyOnTimer>().duration = duration;
+            DestroyOnTimer timer = newEffect.GetComponent<DestroyOnTimer>();
+            if (!timer) 
+            {
+                newEffect.AddComponent<DestroyOnTimer>().duration = duration;
+            }
             NetworkIdentity netid = newEffect.GetComponent<NetworkIdentity>();
             if (!netid)
             {
@@ -155,7 +129,7 @@ namespace LeeHyperrealMod.Modules
             else 
             {
                 //Reinit netid.
-                UnityEngine.Object.Destroy(netid);
+                UnityEngine.Object.DestroyImmediate(netid);
                 netid = newEffect.AddComponent<NetworkIdentity>();
             }
             VFXAttributes attr = newEffect.GetComponent<VFXAttributes>();
@@ -299,8 +273,16 @@ namespace LeeHyperrealMod.Modules
                         parentToTransform = effectComp.parentToReferencedTransform;
                     }
 
+                    //Retrieve the timer if it has one
+                    DestroyOnTimer timer = defaultVariant.GetComponent<DestroyOnTimer>();
+                    float duration = 1f;
+                    if (timer) 
+                    {
+                        duration = timer.duration;
+                    }
+
                     //Finally resetup the prefab
-                    ModifyEffect(clone, soundname, parentToTransform);
+                    ModifyEffect(clone, soundname, parentToTransform, duration);
                 }
 
                 //Register the new prefab under name
@@ -404,17 +386,22 @@ namespace LeeHyperrealMod.Modules
             //ultGunEffect = GetGameObjectFromBundle("");
             //ultGunEffect = ModifyEffect(ultGunEffect, "", true);
 
-            ultTracerEffect = GetGameObjectFromBundle("fxr4liangatk51xuli");
-            ultTracerEffect = ModifyEffect(ultTracerEffect, "", true, 6f);
+            GameObject ultTracerEffect = GetGameObjectFromBundle("fxr4liangatk51xuli");
+            ModifyEffect(ultTracerEffect, "", true, 6f);
 
-            ultShootingEffect = GetGameObjectFromBundle("Cannon Ult Shot Extra Prefab");
-            ultShootingEffect = ModifyEffect(ultShootingEffect, "", true, 6f);
+            GameObject ultShootingEffect = GetGameObjectFromBundle("Cannon Ult Shot Extra Prefab");
+            ModifyEffect(ultShootingEffect, "", true, 6f);
 
-            ultPreExplosionProjectile = GetGameObjectFromBundle("fxr4liangatk51");
-            ultPreExplosionProjectile = ModifyEffect(ultPreExplosionProjectile, "Play_c_liRk4_skill_ultimate_blast", true, 5f);
+            GameObject ultPreExplosionProjectile = GetGameObjectFromBundle("fxr4liangatk51");
+            ModifyEffect(ultPreExplosionProjectile, "Play_c_liRk4_skill_ultimate_blast", true, 5f);
 
-            ultExplosion = GetGameObjectFromBundle("fxr4liangatk51zha");
-            ultExplosion = ModifyEffect(ultExplosion, "", true, 5f);
+            GameObject ultExplosion = GetGameObjectFromBundle("fxr4liangatk51zha");
+            ModifyEffect(ultExplosion, "", true, 5f);
+
+            particleDictionary.Add("ultTracerEffect", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultTracerEffect));
+            particleDictionary.Add("ultShootingEffect", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultShootingEffect));
+            particleDictionary.Add("ultPreExplosionProjectile", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultPreExplosionProjectile));
+            particleDictionary.Add("ultExplosion", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultExplosion));
         }
 
         private static void PopulateDomainUltimateAssets()
@@ -468,103 +455,64 @@ namespace LeeHyperrealMod.Modules
 
         private static void PopulateDodgeAssets()
         {
-            dodgeForwards = GetGameObjectFromBundle("fxr4liangmove01");
-            dodgeForwards = ModifyEffect(dodgeForwards, "Play_c_liRk4_act_flash_1", true);
+            GameObject dodgeForwards = GetGameObjectFromBundle("fxr4liangmove01");
+            ModifyEffect(dodgeForwards, "Play_c_liRk4_act_flash_1", true);
 
-            dodgeBackwards = GetGameObjectFromBundle("fxr4liangmove02");
-            dodgeBackwards = ModifyEffect(dodgeBackwards, "Play_c_liRk4_act_flash_2", true);
+            GameObject dodgeBackwards = GetGameObjectFromBundle("fxr4liangmove02");
+            ModifyEffect(dodgeBackwards, "Play_c_liRk4_act_flash_2", true);
+
+            particleDictionary.Add("dodgeForwards", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, dodgeForwards));
+            particleDictionary.Add("dodgeBackwards", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, dodgeBackwards));
         }
 
         private static void PopulateParryAssets()
         {
-            normalParry = GetGameObjectFromBundle("Normal Parry");
-            normalParry = ModifyEffect(normalParry, "", true);
+            GameObject normalParry = GetGameObjectFromBundle("Normal Parry");
+            ModifyEffect(normalParry, "", true);
 
-            bigParry = GetGameObjectFromBundle("Big Parry");
-            bigParry = ModifyEffect(bigParry, "", true);
+            GameObject bigParry = GetGameObjectFromBundle("Big Parry");
+            ModifyEffect(bigParry, "", true);
+
+            particleDictionary.Add("normalParry", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, normalParry));
+            particleDictionary.Add("bigParry", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, bigParry));
         }
 
         private static void PopulateSnipeAssets()
         {
-            SnipeStart = GetGameObjectFromBundle("fxr4liangatk23");
-            SnipeStart = ModifyEffect(SnipeStart, "", true);
+            GameObject snipeStart = GetGameObjectFromBundle("fxr4liangatk23");
+            ModifyEffect(snipeStart, "", true);
 
-            Snipe = GetGameObjectFromBundle("fxr4liangatk24");
-            //AddLightIntensityCurveWithCurve(
-            //    Snipe.transform.GetChild(0).GetChild(1).gameObject,
-            //    new LightIntensityProps 
-            //    {
-            //        timeMax = 0.5f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk24-lightSC1"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    Snipe.transform.GetChild(1).GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.4f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk24-spjere"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    Snipe.transform.GetChild(2).GetChild(11).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.45f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk24-lightSC2"
-            //    );
+            GameObject snipe = GetGameObjectFromBundle("fxr4liangatk24");
+            ModifyEffect(snipe, "", false, 1.25f, VFXAttributes.VFXPriority.Medium);
 
-            Snipe = ModifyEffect(Snipe, "", false, 1.25f, VFXAttributes.VFXPriority.Medium);
+            GameObject snipeHitEnhanced = GetGameObjectFromBundle("fxr4liangatk24bao");
+            ModifyEffect(snipeHitEnhanced, "Play_c_liRk4_atk_ex_3_break", true, 2f);
 
-            snipeHitEnhanced = GetGameObjectFromBundle("fxr4liangatk24bao");
-            snipeHitEnhanced = ModifyEffect(snipeHitEnhanced, "Play_c_liRk4_atk_ex_3_break", true, 2f);
+            GameObject snipeHit = GetGameObjectFromBundle("fxr4liangatk24hit");
+            ModifyEffect(snipeHit, "Play_c_liRk4_imp_ex_3_1", true, 2f);
 
-            snipeHit = GetGameObjectFromBundle("fxr4liangatk24hit");
-            //AddLightIntensityCurveWithCurve(
-            //    snipeHit.transform.GetChild(0).GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.15f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk24hit-lightSC"
-            //    );
-            //AddLightIntensityCurveWithCurve(
-            //    snipeHit.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.18f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk24hit-spjere"
-            //    );
-            snipeHit = ModifyEffect(snipeHit, "Play_c_liRk4_imp_ex_3_1", true, 2f);
+            GameObject snipeGround = GetGameObjectFromBundle("fxr4liangatk24ground");
+            ModifyEffect(snipeGround, "", true, 2f);
 
-            snipeGround = GetGameObjectFromBundle("fxr4liangatk24ground");
-            snipeGround = ModifyEffect(snipeGround, "", true, 2f);
+            GameObject snipeBulletCasing = GetGameObjectFromBundle("fxr4liangatk24bulletcasing");
+            ModifyEffect(snipeBulletCasing, "", true, 2f, VFXAttributes.VFXPriority.Low);
 
-            snipeBulletCasing = GetGameObjectFromBundle("fxr4liangatk24bulletcasing");
-            snipeBulletCasing = ModifyEffect(snipeBulletCasing, "", true, 2f, VFXAttributes.VFXPriority.Low);
+            GameObject snipeDodge = GetGameObjectFromBundle("fxr4liangatk28");
+            ModifyEffect(snipeDodge, "Play_c_liRk4_act_flash_3", true);
 
-            snipeDodge = GetGameObjectFromBundle("fxr4liangatk28");
-            snipeDodge = ModifyEffect(snipeDodge, "Play_c_liRk4_act_flash_3", true);
-
-            snipeAerialFloor = GetGameObjectFromBundle("Snipe Floor");
+            GameObject snipeAerialFloor = GetGameObjectFromBundle("Snipe Floor");
             snipeAerialFloor.AddComponent<DestroyPlatformOnDelay>();
+            ParticleVariant snipeAerialFloorVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeAerialFloor);
+            snipeAerialFloorVariant.shouldVariantCloneUseModify = false;
+
+            particleDictionary.Add("snipeStart", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeStart));
+            particleDictionary.Add("snipe", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipe));
+            particleDictionary.Add("snipeHitEnhanced", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeHitEnhanced));
+            particleDictionary.Add("snipeHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeStart));
+            particleDictionary.Add("snipeGround", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeGround));
+            particleDictionary.Add("snipeBulletCasing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeBulletCasing));
+            particleDictionary.Add("snipeDodge", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeDodge));
+            particleDictionary.Add("snipeAerialFloor", snipeAerialFloorVariant);
         }
 
         private static void PopulateYellowOrbAssets()

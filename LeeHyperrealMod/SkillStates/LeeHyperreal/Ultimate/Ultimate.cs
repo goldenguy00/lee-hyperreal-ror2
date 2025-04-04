@@ -161,7 +161,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                                 scale = 1.25f,
                             };
                             effectData.SetChildLocatorTransformReference(gameObject, childIndex);
-                            EffectManager.SpawnEffect(Modules.ParticleAssets.ultTracerEffect, effectData, true);
+                            EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultTracerEffect", characterBody), effectData, true);
                         }
                     }
                 }
@@ -181,7 +181,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                                 origin = transform.position,
                             };
                             effectData.SetChildLocatorTransformReference(gameObject, childIndex);
-                            EffectManager.SpawnEffect(Modules.ParticleAssets.ultShootingEffect, effectData, true);
+                            EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultShootingEffect", characterBody), effectData, true);
                         }
                     }
                 }
@@ -193,7 +193,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             Transform baseTransform = childLocator.FindChild("BaseTransform");
             if (!isGrounded)
             {
-                bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(Modules.ParticleAssets.snipeAerialFloor, baseTransform.position, Quaternion.identity);
+                bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("snipeAerialFloor", characterBody), baseTransform.position, Quaternion.identity);
             }
 
             if (NetworkServer.active) 

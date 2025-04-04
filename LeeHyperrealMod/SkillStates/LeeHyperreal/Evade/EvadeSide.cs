@@ -2,14 +2,10 @@
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary;
-using R2API.Networking;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UIElements.UIR;
+using LeeHyperrealMod.Modules;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 {
@@ -76,7 +72,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 
             if (isAuthority)
             {
-                EffectManager.SpawnEffect(Modules.ParticleAssets.snipeDodge,
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("snipeDodge", characterBody),
                     new EffectData
                     {
                         origin = this.gameObject.transform.position,

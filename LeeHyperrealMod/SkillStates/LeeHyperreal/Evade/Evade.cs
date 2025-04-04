@@ -4,7 +4,7 @@ using EntityStates;
 using RoR2;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.Content.Controllers;
-using R2API.Networking;
+using LeeHyperrealMod.Modules;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 {
@@ -85,7 +85,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
             if (inputBank.moveVector == Vector3.zero)
             {
                 EffectManager.SpawnEffect(
-                    Modules.ParticleAssets.dodgeBackwards, 
+                    ParticleAssets.RetrieveParticleEffectFromSkin("dodgeBackwards", characterBody), 
                     new EffectData 
                     { 
                         origin = baseTransform.position,
@@ -108,7 +108,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
             if (base.isAuthority) 
             {
                 EffectManager.SpawnEffect(
-                    Modules.ParticleAssets.dodgeForwards,
+                    ParticleAssets.RetrieveParticleEffectFromSkin("dodgeForwards", characterBody),
                     new EffectData
                     {
                         origin = baseTransform.position,

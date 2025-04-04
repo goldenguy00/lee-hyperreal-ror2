@@ -4,9 +4,7 @@ using LeeHyperrealMod.Modules.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using R2API.Networking.Interfaces;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using LeeHyperrealMod.Modules;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -223,7 +221,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
                     bulletAttack.aimVector = (aoePos - base.gameObject.transform.position).normalized;
                     bulletAttack.origin = base.gameObject.transform.position;
                     //Spawn the effect for the bullet.
-                    EffectManager.SpawnEffect(Modules.ParticleAssets.Snipe, 
+                    EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("snipe", characterBody), 
                         new EffectData 
                         {
                             origin = bulletAttack.origin,

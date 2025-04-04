@@ -1,12 +1,9 @@
 ﻿using LeeHyperrealMod.Modules.Networking;
+using LeeHyperrealMod.Modules;
 using R2API.Networking;
 using R2API.Networking.Interfaces;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace LeeHyperrealMod.Content.Controllers
 {
@@ -63,7 +60,7 @@ namespace LeeHyperrealMod.Content.Controllers
             if (leeBody.hasEffectiveAuthority) 
             {
                 EffectManager.SpawnEffect(
-                Modules.ParticleAssets.ultPreExplosionProjectile,
+                ParticleAssets.RetrieveParticleEffectFromSkin("ultPreExplosionProjectile", leeBody),
                 new EffectData
                 {
                     origin = position,
@@ -100,7 +97,7 @@ namespace LeeHyperrealMod.Content.Controllers
                     if (!triggeredExplosionVisual)//Trigger effect.
                     {
                         EffectManager.SpawnEffect(
-                            Modules.ParticleAssets.ultExplosion,
+                            ParticleAssets.RetrieveParticleEffectFromSkin("ultExplosion", leeBody),
                             new EffectData
                             {
                                 origin = position,

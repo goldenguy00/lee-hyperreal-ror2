@@ -1,11 +1,8 @@
 ﻿using EntityStates;
 using LeeHyperrealMod.Content.Controllers;
-using LeeHyperrealMod.Modules.Survivors;
+using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.SkillStates.LeeHyperreal.Evade;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
@@ -52,13 +49,13 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
             Transform baseTransform = childLocator.FindChild("BaseTransform");
             if (!isGrounded)
             {
-                bulletController.snipeAerialPlatform = UnityEngine.Object.Instantiate(Modules.ParticleAssets.snipeAerialFloor, baseTransform.position, Quaternion.identity);
+                bulletController.snipeAerialPlatform = Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("snipeAerialFloor", characterBody), baseTransform.position, Quaternion.identity);
             }
 
             Util.PlaySound("Play_c_liRk4_atk_ex_3_xuli", base.gameObject);
             if (base.isAuthority) 
             {
-                PlaySwingEffect(1.25f, Modules.ParticleAssets.SnipeStart, true);
+                PlaySwingEffect(1.25f, ParticleAssets.RetrieveParticleEffectFromSkin("snipeStart", characterBody), true);
             }
         }
 
