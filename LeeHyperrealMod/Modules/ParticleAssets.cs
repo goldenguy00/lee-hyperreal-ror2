@@ -226,15 +226,7 @@ namespace LeeHyperrealMod.Modules
             //Check if the material is Xeffect
             if (rend.material.shader.name == "Snipe Floor")
             {
-                const byte k_MaxByteForOverexposedColor = 191; //internal Unity const
-
-                Color _emissionColor = rend.material.GetColor("_MainColor");
-                float maxColorComponent = _emissionColor.maxColorComponent;
-                float scaleFactor = k_MaxByteForOverexposedColor / maxColorComponent;
-                float intensity = Mathf.Log(255f / scaleFactor) / Mathf.Log(2f);
-                float factor = 1f / intensity;
-                // Modify the following properties:
-                rend.material.SetColor("_MainColor", new Color(newColor.r * factor, newColor.g * factor, newColor.b * factor, newColor.a * factor));
+                rend.material.SetColor("_MainColor", newColor);
             }
         }
 
@@ -305,7 +297,7 @@ namespace LeeHyperrealMod.Modules
                     ModifyXEffectOnRenderer(rend, color);
                     ModifyGPUParticles(rend, color);
                     ModifyNoBatchingRenderers(rend, color);
-                    //ModifySnipeFloorRenderer(rend, color);
+                    ModifySnipeFloorRenderer(rend, color);
                 }
 
                 //check if the prefab is a clone prefab, and skip the ModifyEffect registration
