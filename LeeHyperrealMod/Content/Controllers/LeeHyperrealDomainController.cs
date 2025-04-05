@@ -5,6 +5,7 @@ using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LeeHyperrealMod.Modules;  
 
 namespace LeeHyperrealMod.Content.Controllers
 {
@@ -72,9 +73,9 @@ namespace LeeHyperrealMod.Content.Controllers
 
             ChildLocator childLocator = modelLocator.modelTransform.GetComponent<ChildLocator>();
             baseTransform = childLocator.FindChild("BaseTransform");
-            loopDomainEffect = UnityEngine.Object.Instantiate(Modules.ParticleAssets.domainFieldLoopEffect, baseTransform.transform.position, Quaternion.identity);
+            loopDomainEffect = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("domainFieldLoopEffect", charBody), baseTransform.transform.position, Quaternion.identity);
             loopDomainEffect.transform.localScale = new Vector3(4f, 4f, 4f);
-            despawnDomainEffect = UnityEngine.Object.Instantiate(Modules.ParticleAssets.domainFieldEndEffect, baseTransform.transform);
+            despawnDomainEffect = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("domainFieldEndEffect", charBody), baseTransform.transform);
 
             loopDomainEffect.SetActive(false);
             despawnDomainEffect.SetActive(false);

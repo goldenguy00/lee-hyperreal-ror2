@@ -50,32 +50,7 @@ namespace LeeHyperrealMod.Modules
         internal static List<Material> materialStorage = new List<Material>();
         #endregion
 
-        #region Ultimate Domain
-        //FXR 42
-        public static GameObject UltimateDomainFinisherEffect;
-        public static GameObject UltimateDomainCEASEYOUREXISTANCE;
-        public static GameObject DomainOverlayEffect;
-        public static GameObject UltimateDomainBulletFinisher;
-        public static GameObject UltimateDomainClone1;
-        public static GameObject UltimateDomainClone2;
-        public static GameObject UltimateDomainClone3;
-        #endregion
-
-        #region Domain/Transition Effects
-        //FXR 41
-        public static GameObject transitionEffectLee;
-        public static GameObject transitionEffectHit;
-        public static GameObject transitionEffectGround;
-        public static GameObject domainFieldLoopEffect;
-        public static GameObject domainFieldEndEffect;
-        #endregion
-
-        #region Display particles
-        public static GameObject displayLandingEffect;
-        #endregion
-
         #region Misc
-        public static GameObject jumpEffect;
         public static GameObject customCrosshair;
         #endregion
 
@@ -356,13 +331,15 @@ namespace LeeHyperrealMod.Modules
 
         private static void PopulateMiscAssets()
         {
-            jumpEffect = GetGameObjectFromBundle("Extra Jump Floor");
+            GameObject jumpEffect = GetGameObjectFromBundle("Extra Jump Floor");
             EffectUnparenter effectUnparenter = jumpEffect.AddComponent<EffectUnparenter>();
             effectUnparenter.duration = 0.175f;
-            jumpEffect = ModifyEffect(jumpEffect, "", true, 1.5f, VFXAttributes.VFXPriority.Always, true);
+            ModifyEffect(jumpEffect, "", true, 1.5f, VFXAttributes.VFXPriority.Always, true);
 
 
             customCrosshair = GetGameObjectFromBundle("Lee Crosshair");
+
+            particleDictionary.Add("jumpEffect", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, jumpEffect));
         }
 
         private static void PopulateAerialDomainAssets()
@@ -381,8 +358,11 @@ namespace LeeHyperrealMod.Modules
 
         private static void PopulateDisplayParticleAssets()
         {
-            displayLandingEffect = GetGameObjectFromBundle("fxr4liangborn1");
+            GameObject displayLandingEffect = GetGameObjectFromBundle("fxr4liangborn1");
             displayLandingEffect.AddComponent<DestroyOnTimer>().duration = 5f;
+            ParticleVariant displayLandingEffectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, displayLandingEffect);
+
+            particleDictionary.Add("displayLandingEffect", displayLandingEffectVariant);
         }
 
         private static void PopulateUltimateAssets()
@@ -410,51 +390,64 @@ namespace LeeHyperrealMod.Modules
 
         private static void PopulateDomainUltimateAssets()
         {
-            UltimateDomainFinisherEffect = GetGameObjectFromBundle("fxr4liangatk42suiping");
-            UltimateDomainFinisherEffect.AddComponent<DestroyOnTimer>().duration = 2f;
+            GameObject ultimateDomainFinisherEffect = GetGameObjectFromBundle("fxr4liangatk42suiping");
+            ultimateDomainFinisherEffect.AddComponent<DestroyOnTimer>().duration = 2f;
+            ParticleVariant ultimateDomainFinisherEffectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultimateDomainFinisherEffect);
+            ultimateDomainFinisherEffectVariant.shouldVariantCloneUseModify = false;
 
-            UltimateDomainCEASEYOUREXISTANCE = GetGameObjectFromBundle("Cease");
-            UltimateDomainCEASEYOUREXISTANCE.AddComponent<DestroyOnTimer>().duration = 2f;
+            GameObject ultimateDomainCEASEYOUREXISTANCE = GetGameObjectFromBundle("Cease");
+            ultimateDomainCEASEYOUREXISTANCE.AddComponent<DestroyOnTimer>().duration = 2f;
+            ParticleVariant ultimateDomainCEASEYOUREXISTANCEVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultimateDomainCEASEYOUREXISTANCE);
+            ultimateDomainFinisherEffectVariant.shouldVariantCloneUseModify = false;
 
-            DomainOverlayEffect = GetGameObjectFromBundle("fxr4liangatk51pingmu"); // Control manually.
+            GameObject domainOverlayEffect = GetGameObjectFromBundle("fxr4liangatk51pingmu"); // Control manually.
+            ParticleVariant domainOverlayEffectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, domainOverlayEffect);
+            domainOverlayEffectVariant.shouldVariantCloneUseModify = false;
 
-            UltimateDomainBulletFinisher = GetGameObjectFromBundle("fxr4liangatk42zhongjie01");
-            UltimateDomainBulletFinisher = ModifyEffect(UltimateDomainBulletFinisher, "", true, 10f);
+            GameObject ultimateDomainBulletFinisher = GetGameObjectFromBundle("fxr4liangatk42zhongjie01");
+            ModifyEffect(ultimateDomainBulletFinisher, "", true, 10f);
 
-            UltimateDomainClone1 = GetGameObjectFromBundle("DomainUltClone1");
-            UltimateDomainClone1 = ModifyEffect(UltimateDomainClone1, "", true, 2f, VFXAttributes.VFXPriority.Always);
+            GameObject ultimateDomainClone1 = GetGameObjectFromBundle("DomainUltClone1");
+            ModifyEffect(ultimateDomainClone1, "", true, 2f, VFXAttributes.VFXPriority.Always);
 
-            UltimateDomainClone2 = GetGameObjectFromBundle("DomainUltClone2");
-            UltimateDomainClone2 = ModifyEffect(UltimateDomainClone2, "", true, 2f, VFXAttributes.VFXPriority.Always);
+            GameObject ultimateDomainClone2 = GetGameObjectFromBundle("DomainUltClone2");
+            ModifyEffect(ultimateDomainClone2, "", true, 2f, VFXAttributes.VFXPriority.Always);
 
-            UltimateDomainClone3 = GetGameObjectFromBundle("DomainUltClone3");
-            UltimateDomainClone3 = ModifyEffect(UltimateDomainClone3, "", true, 2f, VFXAttributes.VFXPriority.Always);
+            GameObject ultimateDomainClone3 = GetGameObjectFromBundle("DomainUltClone3");
+            ModifyEffect(ultimateDomainClone3, "", true, 2f, VFXAttributes.VFXPriority.Always);
+
+            particleDictionary.Add("ultimateDomainFinisherEffect", ultimateDomainFinisherEffectVariant);
+            particleDictionary.Add("ultimateDomainCEASEYOUREXISTANCE", ultimateDomainCEASEYOUREXISTANCEVariant);
+            particleDictionary.Add("domainOverlayEffect", domainOverlayEffectVariant);
+            particleDictionary.Add("ultimateDomainBulletFinisher", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultimateDomainBulletFinisher));
+            particleDictionary.Add("ultimateDomainClone1", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultimateDomainClone1));
+            particleDictionary.Add("ultimateDomainClone2", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultimateDomainClone2));
+            particleDictionary.Add("ultimateDomainClone3", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, ultimateDomainClone3));
         }
 
         private static void PopulateDomainTransitionAssets()
         {
-            transitionEffectLee = GetGameObjectFromBundle("fxr4liangatk41");
-            transitionEffectLee = ModifyEffect(transitionEffectLee, "", true);
+            GameObject transitionEffectLee = GetGameObjectFromBundle("fxr4liangatk41");
+            ModifyEffect(transitionEffectLee, "", true);
 
-            transitionEffectGround = GetGameObjectFromBundle("fxr4liangatk41bao");
-            transitionEffectGround = ModifyEffect(transitionEffectGround, "", true);
+            GameObject transitionEffectGround = GetGameObjectFromBundle("fxr4liangatk41bao");
+            ModifyEffect(transitionEffectGround, "", true);
 
-            transitionEffectHit = GetGameObjectFromBundle("fxr4liangatk41hit");
-            //AddLightIntensityCurveWithCurve(
-            //    transitionEffectHit.transform.GetChild(1).gameObject,
-            //    new LightIntensityProps
-            //    {
-            //        timeMax = 0.18f,
-            //        loop = false,
-            //        randomStart = false,
-            //        enableNegativeLights = false,
-            //    },
-            //    "fxr4liangatk41hit"
-            //);
-            transitionEffectHit = ModifyEffect(transitionEffectHit, "", true);
+            GameObject transitionEffectHit = GetGameObjectFromBundle("fxr4liangatk41hit");
+            ModifyEffect(transitionEffectHit, "", true);
 
-            domainFieldLoopEffect = GetGameObjectFromBundle("fxr4liangatk41loop");
-            domainFieldEndEffect = GetGameObjectFromBundle("fxr4liangatk41out");
+            GameObject domainFieldLoopEffect = GetGameObjectFromBundle("fxr4liangatk41loop");
+            ParticleVariant domainFieldLoopEffectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, domainFieldLoopEffect);
+            domainFieldLoopEffectVariant.shouldVariantCloneUseModify = false;
+            GameObject domainFieldEndEffect = GetGameObjectFromBundle("fxr4liangatk41out");
+            ParticleVariant domainFieldEndEffectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, domainFieldEndEffect);
+            domainFieldEndEffectVariant.shouldVariantCloneUseModify = false;
+
+            particleDictionary.Add("transitionEffectLee", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, transitionEffectLee));
+            particleDictionary.Add("transitionEffectGround", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, transitionEffectGround));
+            particleDictionary.Add("transitionEffectHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, transitionEffectHit));
+            particleDictionary.Add("domainFieldLoopEffect", domainFieldLoopEffectVariant);
+            particleDictionary.Add("domainFieldEndEffect", domainFieldEndEffectVariant);
         }
 
         private static void PopulateDodgeAssets()

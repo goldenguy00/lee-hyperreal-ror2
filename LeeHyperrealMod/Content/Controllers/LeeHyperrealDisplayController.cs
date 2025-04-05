@@ -102,7 +102,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 //Always play the effect on spawn, start the effect 2 on spawn 2.
                 if (selectedNum == 2) 
                 {
-                    UnityEngine.Object.Instantiate(Modules.ParticleAssets.displayLandingEffect, baseTransform.position, Quaternion.identity, baseTransform);
+                    Object.Instantiate(Modules.ParticleAssets.RetrieveParticleEffect("displayLandingEffect", Modules.ParticleAssets.DEFAULT_PARTICLE_VARIANT), baseTransform.position, Quaternion.identity, baseTransform);
                 }
             }
         }

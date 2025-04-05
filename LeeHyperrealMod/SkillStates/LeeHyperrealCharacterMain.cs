@@ -126,7 +126,7 @@ namespace LeeHyperrealMod.SkillStates
                 };
 
                 data.SetChildLocatorTransformReference(gameObject, baseTransformIndex);
-                EffectManager.SpawnEffect(Modules.ParticleAssets.jumpEffect, data, true);
+                EffectManager.SpawnEffect(Modules.ParticleAssets.RetrieveParticleEffectFromSkin("jumpEffect", characterBody), data, true);
             }
         }
 

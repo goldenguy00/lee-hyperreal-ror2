@@ -3,7 +3,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
-using System;
+using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.Modules.Networking;
 using R2API.Networking;
@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using R2API.Networking.Interfaces;
 using LeeHyperrealMod.Content.Controllers;
-using System.Collections;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
 {
@@ -178,7 +177,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                     rotation = Quaternion.LookRotation(targetDir.normalized, Vector3.up),
                     scale = 1.25f,
                 };
-                EffectManager.SpawnEffect(Modules.ParticleAssets.UltimateDomainBulletFinisher, effectData, true);
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainBulletFinisher", characterBody), effectData, true);
 
                 EffectData effectData2 = new EffectData
                 {
@@ -187,9 +186,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 };
                 effectData2.SetChildLocatorTransformReference(base.gameObject, childLocator.FindChildIndex("BaseTransform"));
 
-                EffectManager.SpawnEffect(Modules.ParticleAssets.UltimateDomainClone1, effectData2, true);
-                EffectManager.SpawnEffect(Modules.ParticleAssets.UltimateDomainClone2, effectData2, true);
-                EffectManager.SpawnEffect(Modules.ParticleAssets.UltimateDomainClone3, effectData2, true);
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone1", characterBody), effectData2, true);
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone2", characterBody), effectData2, true);
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone3", characterBody), effectData2, true);
             }
 
             if (NetworkServer.active)
@@ -294,13 +293,13 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 hasCeased = true;
 
                 new PlaySoundNetworkRequest(characterBody.netId, "Play_cease_your_existance_NOW").Send(NetworkDestination.Clients);
-                UnityEngine.Object.Instantiate(Modules.ParticleAssets.UltimateDomainCEASEYOUREXISTANCE, Camera.main.transform);
+                UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainCEASEYOUREXISTANCE", characterBody), Camera.main.transform);
             }
 
             if (age >= duration * effectPlay && !hasPlayedEffect && base.isAuthority && !setCease) 
             {
                 hasPlayedEffect = true;
-                UnityEngine.Object.Instantiate(Modules.ParticleAssets.UltimateDomainFinisherEffect, Camera.main.transform);
+                UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainFinisherEffect", characterBody), Camera.main.transform);
             }
         }
 

@@ -259,7 +259,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 hasCeased = true;
 
                 new PlaySoundNetworkRequest(characterBody.netId, "Play_cease_your_existance_NOW").Send(NetworkDestination.Clients);
-                UnityEngine.Object.Instantiate(Modules.ParticleAssets.UltimateDomainCEASEYOUREXISTANCE, Camera.main.transform);
+                UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainCEASEYOUREXISTANCE", characterBody), Camera.main.transform);
             }
 
             if (age >= duration * weaponTransitionFrac && !hasTransitioned)

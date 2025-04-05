@@ -82,7 +82,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
                 spreadPitchScale = 0f,
                 spreadYawScale = 0f,
                 queryTriggerInteraction = QueryTriggerInteraction.UseGlobal,
-                hitEffectPrefab = Modules.ParticleAssets.transitionEffectHit,
+                hitEffectPrefab = ParticleAssets.RetrieveParticleEffectFromSkin("transitionEffectHit", characterBody),
             };
 
             blastAttack = new BlastAttack
@@ -153,7 +153,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
 
             if (base.isAuthority) 
             {
-                EffectManager.SpawnEffect(Modules.ParticleAssets.transitionEffectLee,
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("transitionEffectLee", characterBody),
                 transitionEffect,
                 true);
             }
@@ -246,7 +246,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
                         }
 
                         //Play Ground blast effect.
-                        EffectManager.SpawnEffect(Modules.ParticleAssets.transitionEffectGround,
+                        EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("transitionEffectGround", characterBody),
                             new EffectData
                             {
                                 origin = hit.point,
@@ -287,7 +287,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
         {
             foreach (BlastAttack.HitPoint hitPoint in result.hitPoints) 
             {
-                EffectManager.SpawnEffect(Modules.ParticleAssets.transitionEffectHit, 
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("transitionEffectHit", characterBody), 
                     new EffectData 
                     {
                         origin = hitPoint.hitPosition,

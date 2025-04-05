@@ -2,16 +2,13 @@
 using LeeHyperrealMod.Modules.Notifications;
 using RoR2;
 using RoR2.CharacterAI;
-using RoR2.ConVar;
+using LeeHyperrealMod.Modules;
 using RoR2.UI;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static LeeHyperrealMod.Content.Controllers.LeeHyperrealUIController;
-using static UnityEngine.AddressableAssets.ResourceLocators.ContentCatalogData;
 
 namespace LeeHyperrealMod.Content.Controllers
 {
@@ -337,7 +334,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
                     if (!spawnedEffect && Camera.main) 
                     {
-                        domainOverlayObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.DomainOverlayEffect, new Vector3(0, 0, -0.1f), Quaternion.identity, Camera.main.transform);
+                        domainOverlayObject = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("domainOverlayEffect", characterBody), new Vector3(0, 0, -0.1f), Quaternion.identity, Camera.main.transform);
                         domainOverlayObject.SetActive(false);
                         spawnedEffect = true;
                     }
