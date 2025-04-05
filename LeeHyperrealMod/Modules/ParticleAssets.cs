@@ -172,6 +172,31 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
+        private static void ModifyNoBatchingRenderers(Renderer rend, Color newColor)
+        {
+            //Check if the material is Xeffect
+            if (rend.material.shader.name == "Unlit/EffectNoBatching")
+            {
+                //Get New Colour, figure out percentages for each and spread across colours in the same intensity
+                float oldR = rend.material.GetFloat("_EffectBrightnessR");
+                float oldG = rend.material.GetFloat("_EffectBrightnessG");
+                float oldB = rend.material.GetFloat("_EffectBrightnessB");
+
+                float totalToDistribute = oldR + oldG + oldB;
+
+                float totalColourVal = newColor.r + newColor.g + newColor.b;
+
+                float newR = (newColor.r / totalColourVal) * totalToDistribute;
+                float newG = (newColor.g / totalColourVal) * totalToDistribute;
+                float newB = (newColor.b / totalColourVal) * totalToDistribute;
+
+                // Modify the following properties:
+                rend.material.SetFloat("_EffectBrightnessR", newR);
+                rend.material.SetFloat("_EffectBrightnessG", newG);
+                rend.material.SetFloat("_EffectBrightnessB", newB);
+            }
+        }
+
         private static void ModifyGPUParticles(Renderer rend, Color newColor) 
         {
             if (rend.material.shader.name == "Unlit/GPUParticle")
@@ -201,15 +226,7 @@ namespace LeeHyperrealMod.Modules
             //Check if the material is Xeffect
             if (rend.material.shader.name == "Snipe Floor")
             {
-                const byte k_MaxByteForOverexposedColor = 191; //internal Unity const
-
-                Color _emissionColor = rend.material.GetColor("_MainColor");
-                float maxColorComponent = _emissionColor.maxColorComponent;
-                float scaleFactor = k_MaxByteForOverexposedColor / maxColorComponent;
-                float intensity = Mathf.Log(255f / scaleFactor) / Mathf.Log(2f);
-                float factor = 1f / intensity;
-                // Modify the following properties:
-                rend.material.SetColor("_MainColor", new Color(newColor.r * factor, newColor.g * factor, newColor.b * factor, newColor.a * factor));
+                rend.material.SetColor("_MainColor", newColor);
             }
         }
 
@@ -279,7 +296,8 @@ namespace LeeHyperrealMod.Modules
                     //Modify with the new colour on XEffect, may need more functions to convert more later
                     ModifyXEffectOnRenderer(rend, color);
                     ModifyGPUParticles(rend, color);
-                    //ModifySnipeFloorRenderer(rend, color);
+                    ModifyNoBatchingRenderers(rend, color);
+                    ModifySnipeFloorRenderer(rend, color);
                 }
 
                 //check if the prefab is a clone prefab, and skip the ModifyEffect registration
