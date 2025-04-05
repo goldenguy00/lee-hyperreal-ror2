@@ -172,6 +172,31 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
+        private static void ModifyNoBatchingRenderers(Renderer rend, Color newColor)
+        {
+            //Check if the material is Xeffect
+            if (rend.material.shader.name == "Unlit/EffectNoBatching")
+            {
+                //Get New Colour, figure out percentages for each and spread across colours in the same intensity
+                float oldR = rend.material.GetFloat("_EffectBrightnessR");
+                float oldG = rend.material.GetFloat("_EffectBrightnessG");
+                float oldB = rend.material.GetFloat("_EffectBrightnessB");
+
+                float totalToDistribute = oldR + oldG + oldB;
+
+                float totalColourVal = newColor.r + newColor.g + newColor.b;
+
+                float newR = (newColor.r / totalColourVal) * totalToDistribute;
+                float newG = (newColor.g / totalColourVal) * totalToDistribute;
+                float newB = (newColor.b / totalColourVal) * totalToDistribute;
+
+                // Modify the following properties:
+                rend.material.SetFloat("_EffectBrightnessR", newR);
+                rend.material.SetFloat("_EffectBrightnessG", newG);
+                rend.material.SetFloat("_EffectBrightnessB", newB);
+            }
+        }
+
         private static void ModifyGPUParticles(Renderer rend, Color newColor) 
         {
             if (rend.material.shader.name == "Unlit/GPUParticle")
@@ -279,6 +304,7 @@ namespace LeeHyperrealMod.Modules
                     //Modify with the new colour on XEffect, may need more functions to convert more later
                     ModifyXEffectOnRenderer(rend, color);
                     ModifyGPUParticles(rend, color);
+                    ModifyNoBatchingRenderers(rend, color);
                     //ModifySnipeFloorRenderer(rend, color);
                 }
 
