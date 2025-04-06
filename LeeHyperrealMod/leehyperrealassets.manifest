@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2614999829
+CRC: 1067676671
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a7b8cc0a22b3248c37f09d0a5c3978f8
+    Hash: cd67cf73f21472cf5ed77c7b0ee9bcc7
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -351,6 +351,7 @@ Assets:
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatksuiping05_33.asset
 - Assets/modelresource/effect/texture/liuguang517.png
 - Assets/modelresource/effect/texture/keji1111.png
+- Assets/LeeHyperrealAssets/Icons/Custom Ui Icon Lee.shader
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxe3superlicannonmd010011.mat
 - Assets/modelresource/effect/mesh/lig401_0.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md344.mat
@@ -868,6 +869,7 @@ Assets:
 - Assets/modelresource/effect/texture/mask522r.png
 - Assets/modelresource/effect/texture/path213.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/SitStandUp.anim
+- Assets/LeeHyperrealAssets/Material/UIFadeMat.mat
 - Assets/modelresource/effect/texture/fxr4lifu019331md02.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md735.mat
 - Assets/modelresource/effect/texture/liuguang022.png
@@ -1463,6 +1465,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Texture/Albedo/E3SuperlicannonMd010011AO.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnims/runleanl.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk32.prefab
+- Assets/LeeHyperrealAssets/Icons/Lee Icon Material.mat
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Spawn2.anim
 - Assets/LeeHyperrealAssets/Material/ScarletRedeemer/scarletSemiGun.mat
 - Assets/modelresource/effect/material/normal10202.mat

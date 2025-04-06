@@ -47,7 +47,8 @@ namespace LeeHyperrealMod.Modules
         public static ConfigEntry<float> ceaseChance;
 
         public static ConfigEntry<bool> loreMode;
-
+        public static ConfigEntry<bool> rgbMode;
+        public static ConfigEntry<float> rgbPulseSpeed;
 
         public static void ReadConfig()
         {
@@ -215,6 +216,20 @@ namespace LeeHyperrealMod.Modules
                 true,
                 new ConfigDescription("Enables more RoR2 friendly names. Requires a reboot to take effect.")
             );
+
+            rgbMode = LeeHyperrealPlugin.instance.Config.Bind<bool>
+            (
+                new ConfigDefinition("06 - Extras", "RGB mode"),
+                false,
+                new ConfigDescription("Enabls RGB shifting when the power gauge is full.")
+            );
+
+            rgbPulseSpeed = LeeHyperrealPlugin.instance.Config.Bind<float>
+            (
+                new ConfigDefinition("06 - Extras", "RGB Shift Speed"),
+                80f,
+                new ConfigDescription("Specifies how fast the RGB should pulse between colours, if enabled.")
+            );
         }
 
         public static void SetupRiskOfOptions() 
@@ -318,6 +333,18 @@ namespace LeeHyperrealMod.Modules
               );
 
             ModSettingsManager.AddOption(new CheckBoxOption(loreMode));
+            ModSettingsManager.AddOption(new CheckBoxOption(rgbMode));
+            ModSettingsManager.AddOption(
+                new StepSliderOption(
+                    rgbPulseSpeed,
+                    new StepSliderConfig
+                    {
+                        min = 20f,
+                        max = 500f,
+                        increment = 0.1f
+                    }
+                )
+            );
         }
 
         // this helper automatically makes config entries for disabling survivors

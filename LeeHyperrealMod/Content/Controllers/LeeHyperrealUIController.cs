@@ -14,6 +14,19 @@ namespace LeeHyperrealMod.Content.Controllers
 {
     internal class LeeHyperrealUIController : MonoBehaviour
     {
+        [Serializable]
+        public class ForcedUIReInitException : Exception
+        {
+            public ForcedUIReInitException() : base()
+            { }
+
+            public ForcedUIReInitException(string message) : base(message)
+            { }
+
+            public ForcedUIReInitException(string message, Exception innerException) : base(message, innerException)
+            { }
+        }
+
         private CharacterBody characterBody;
         private CharacterMaster characterMaster;
         private GameObject canvasObject;
@@ -21,12 +34,16 @@ namespace LeeHyperrealMod.Content.Controllers
         private Transform RoRHUDSpringCanvasTransform;
         private GameObject LeeHyperrealNotificationObject;
         private OrbController orbController;
+        private LeeHyperrealDomainController domainController;
         public bool baseAIPresent;
         public bool enabledUI;
 
         public bool failedToInitialize;
         public const int MAX_FAIL_ATTEMPTS = 50;
         public int failAttempts = 0;
+
+        public uint selectedSkin = 0;
+        public float rgbOffset = 0f;
 
 
         #region Orb Variables
@@ -79,6 +96,7 @@ namespace LeeHyperrealMod.Content.Controllers
         private const float lerpSpeed = 10f;
         private float targetMeterAmount;
         private float currentMeterAmount;
+        private Material powerBarFilledMaterial;
         #endregion
 
         #region Invincibility Layer
@@ -147,6 +165,10 @@ namespace LeeHyperrealMod.Content.Controllers
         public bool shouldOverrideAutoSprintingStateCrosshair;
         #endregion
 
+        #region Skill Icons
+        private List<Material> skillIconMaterials;
+        #endregion
+
         private bool isInitialized = false;
 
         private HGTextMeshProUGUI CreateLabel(Transform parent, string name, string text, Vector2 position, float textScale)
@@ -186,6 +208,7 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             characterBody = GetComponent<CharacterBody>();
             orbController = GetComponent<OrbController>();
+            domainController = GetComponent<LeeHyperrealDomainController>();
             characterMaster = characterBody.master;
             BaseAI baseAI = characterMaster.GetComponent<BaseAI>();
             baseAIPresent = baseAI;
@@ -197,7 +220,9 @@ namespace LeeHyperrealMod.Content.Controllers
             // Besides, there should never be a UI element related to a non-existant master on screen if the attached master/charbody does not exist.
             if (!characterMaster) baseAIPresent = true; // Disable UI Just in case.
 
-            try 
+            selectedSkin = characterBody.skinIndex;
+
+            try
             {
                 InitializeUI();
             }
@@ -205,6 +230,15 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 Debug.Log($"Lee: Hyperreal - NRE on UI Initialization, trying again: {e}");
             }
+            catch (ForcedUIReInitException e) 
+            {
+                Debug.Log("Lee: Hyperreal - UI needs to Reinit!");
+            }
+        }
+
+        public bool IsRedSkin() 
+        {
+            return LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)selectedSkin);
         }
 
         public void InitializeUI() 
@@ -223,6 +257,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 InitializeOrbAmountLabel();
                 InitializeOrbBrackets();
                 InitializeCrosshair();
+                InitializeSkillIconMaterial();
 
                 if (orbController)
                 {
@@ -285,6 +320,10 @@ namespace LeeHyperrealMod.Content.Controllers
                             Debug.Log($"Lee: Hyperreal UI failed to initialize after more than {MAX_FAIL_ATTEMPTS} attempts. Stopping attempts to initialize.");
                         }
                     }
+                    catch (ForcedUIReInitException e)
+                    {
+                        Debug.Log("Lee: Hyperreal - UI needs to Reinit!");
+                    }
 
                     return;
                 }
@@ -297,7 +336,45 @@ namespace LeeHyperrealMod.Content.Controllers
                     HandleBulletUIChange();
                     UpdateGlyphPositions();
                     UpdateSprintingCrosshairState();
+                    HandleRGBMode();
                     LateUpdatePositions();
+                }
+            }
+        }
+
+        private void HandleRGBMode()
+        {
+            if (Modules.Config.rgbMode.Value) 
+            {
+                if (domainController.DomainEntryAllowed())
+                {
+                    rgbOffset += Time.deltaTime * Modules.Config.rgbPulseSpeed.Value;
+                    rgbOffset = rgbOffset % 360f;
+
+                    float offsetOffset = 0f;
+
+                    if (powerBarFilledMaterial)
+                    {
+                        SetCustomUIMaterial(powerBarFilledMaterial, rgbOffset + offsetOffset, -1f);
+                    }
+                    
+                    foreach (Material mat in skillIconMaterials)
+                    {
+                        offsetOffset += 10f;
+                        SetCustomUIMaterial(mat, (rgbOffset + offsetOffset) % 360f, -1f);
+                    }
+                }
+                else 
+                {
+                    if (powerBarFilledMaterial)
+                    {
+                        SetCustomUIMaterial(powerBarFilledMaterial, 0f, -1f);
+                    }
+
+                    foreach (Material mat in skillIconMaterials)
+                    {
+                        SetCustomUIMaterial(mat, 0f, -1f);
+                    }
                 }
             }
         }
@@ -445,6 +522,27 @@ namespace LeeHyperrealMod.Content.Controllers
             }
 
             meterAnimator = powerMeterUIObject.GetComponent<Animator>();
+            powerBarFilledMaterial = powerMeterUIObject.transform.Find("Power Bar Filled").GetComponent<Image>().material;
+
+            //Setup red variant
+            if (IsRedSkin())
+            {
+                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.redBaseHueOffset);
+            }
+            else 
+            {
+                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.defaultBaseHueOffset);
+            }
+        }
+
+        private void SetCustomUIMaterial(Material mat, float hueShiftDeg, float baseHueOffset) 
+        {
+            if (baseHueOffset >= 0f) 
+            {
+                mat.SetFloat("_BaseHueOffset", baseHueOffset);
+            }
+
+            mat.SetFloat("_HueShiftDegrees", hueShiftDeg);
         }
 
         public void SetMeterLevel(float percentageFill)
@@ -1345,6 +1443,69 @@ namespace LeeHyperrealMod.Content.Controllers
             }
             
             SetSprintingStateCrosshair(characterBody.isSprinting);
+        }
+        #endregion
+
+        #region Skill Icon Colour
+        private void InitializeSkillIconMaterial()
+        {
+            List<Image> imageList = new List<Image>();
+            skillIconMaterials = new List<Material>();
+
+            // Grab the skillicons and slap them into a material array
+            if (RoRHUDObject)
+            {
+                if (LeeHyperrealPlugin.isRiskUIInstalled)
+                {
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill1Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill2Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill3Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill4Root/IconPanel").GetComponent<Image>());
+                }
+                else if (LeeHyperrealPlugin.isBetterHudInstalled)
+                {
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill1Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill2Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill3Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill4Root/IconPanel").GetComponent<Image>());
+                }
+                else
+                {
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill1Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill2Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill3Root/IconPanel").GetComponent<Image>());
+                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill4Root/IconPanel").GetComponent<Image>());
+                }
+            }
+
+            //Set Material to our own custom one, steal the image and apply it to the material image.
+            foreach (Image img in imageList) 
+            {
+                Sprite sprite = img.sprite;
+
+                // Skill icons have not been properly initialized, throw this shit at the game
+                if (sprite.name == "texBanditSkill3Icon") 
+                {
+                    throw new ForcedUIReInitException();
+                }
+
+                img.material = new Material(Modules.LeeHyperrealAssets.UIFadeMat);
+                img.material.SetTexture("_IconTexture", sprite.texture);
+
+                //Depending on the skin, set the color
+
+                //Setup red variant
+                if (IsRedSkin())
+                {
+                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.redBaseHueOffset);
+                }
+                else
+                {
+                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.defaultBaseHueOffset);
+                }
+
+                skillIconMaterials.Add(img.material);
+            }
         }
         #endregion
 
