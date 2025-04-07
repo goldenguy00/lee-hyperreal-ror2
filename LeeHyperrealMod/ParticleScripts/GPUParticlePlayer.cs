@@ -16,7 +16,7 @@ namespace LeeHyperrealMod.ParticleScripts
         [SerializeField]
         XGPUParticleDataSO curData;
         [SerializeField]
-        Material mat;
+        public Material mat;
         Material backupMat;
         Material cacheMat;
         [SerializeField]
