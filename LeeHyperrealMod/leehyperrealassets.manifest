@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1095907726
+CRC: 2250302775
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1a693246a22f215bc0730a2afe5d34f4
+    Hash: b4acd34292f406b17b51a864f2175c79
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -1332,9 +1332,9 @@ Assets:
 - Assets/modelresource/effect/material/path056700.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md754.mat
 - Assets/modelresource/effect/texture/wuti307.png
-- Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4lianggcube301_2.asset
-- Assets/LeeHyperrealAssets/Texture/Albedo/GunHudTex2.png
 - Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/ProspectorSkinRedIcon.png
+- Assets/LeeHyperrealAssets/Texture/Albedo/GunHudTex2.png
+- Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4lianggcube301_2.asset
 - Assets/LeeHyperrealAssets/Mesh/leeSubMachineGunMesh.mesh
 - Assets/modelresource/effect/texture/mask301.png
 - Assets/modelresource/effect/texture/path039.png
@@ -1494,7 +1494,6 @@ Assets:
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatksuiping05_19.asset
 - Assets/LeeHyperrealAssets/AnimationCurves/Fxr4liangatk03hit01-lightSC.asset
 - Assets/modelresource/effect/material/fxcaoliwqwhite1401.mat
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/leefixxed9 Skin2.blend
 - Assets/modelresource/effect/texture/smoke012.png
 - Assets/modelresource/effect/prefab/fxr2nuoanprefab/materials/fxr2nuoanflash715.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md758.mat
