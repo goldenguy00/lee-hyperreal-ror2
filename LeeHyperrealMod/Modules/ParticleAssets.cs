@@ -14,6 +14,7 @@ namespace LeeHyperrealMod.Modules
         internal static string DEFAULT_PARTICLE_VARIANT = "default";
         internal static string RED_PARTICLE_VARIANT = "red";
         internal static Color RED_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
+        internal static List<Material> GENERATED_GPU_MATERIALS;
 
         internal class ParticleVariant 
         {
@@ -202,7 +203,7 @@ namespace LeeHyperrealMod.Modules
         {
             if (player.mat.shader.name == "Unlit/GPUParticle")
             {
-                Material material = player.mat;
+                Material material = new Material(player.mat);
 
                 //Get New Colour, figure out percentages for each and spread across colours in the same intensity
                 float oldR = material.GetFloat("_R_Intensity");
@@ -221,6 +222,8 @@ namespace LeeHyperrealMod.Modules
                 material.SetFloat("_R_Intensity", newR);
                 material.SetFloat("_G_Intensity", newG);
                 material.SetFloat("_B_Intensity", newB);
+
+                player.mat = material;
             }
         }
 

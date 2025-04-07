@@ -875,10 +875,10 @@ namespace LeeHyperrealMod.Modules.Survivors
             //adding the mesh replacements as above. 
             //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved
             prospectorSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
-                "leeArmsMeshBlend",
+                "LeeRor2Heart",
                 "LeeRor2ProspectorCloth",
                 "leeFaceMeshBlend",
-                "leeHairMeshBlend",
+                "LeeRor2Head",
                 "leeChestLegPlateMeshBlend",
                 "leeEyeMeshBlend",
                 "leeLegsMeshBlend",
@@ -912,10 +912,10 @@ namespace LeeHyperrealMod.Modules.Survivors
             //you can simply access the RendererInfos defaultMaterials and set them to the new materials for your skin.
             string[] prospectorMaterialStrings =
                 {
-                    "R4LiangMd019011Body",
+                    "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette",
                     "leeFaceMeshBlend",
-                    "R4LiangMd019011Hair",
+                    "LeeRor2ProspectorPalette",
                     "R4LiangMd019011Alpha",
                     "leeEyeMeshBlend",
                     "R4LiangMd019011Down",
@@ -961,7 +961,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 new SkinDef.GameObjectActivation
                 {
                     gameObject = childLocator.FindChildGameObject("ArmModel"),
-                    shouldActivate = false,
+                    shouldActivate = true,
                 },
                 new SkinDef.GameObjectActivation
                 {
@@ -971,7 +971,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 new SkinDef.GameObjectActivation
                 {
                     gameObject = childLocator.FindChildGameObject("FaceModel"),
-                    shouldActivate = true,
+                    shouldActivate = false,
                 },
                 new SkinDef.GameObjectActivation
                 {
