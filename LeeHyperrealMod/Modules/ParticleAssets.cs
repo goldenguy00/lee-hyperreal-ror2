@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 using LeeHyperrealMod.Content.Controllers;
 using R2API;
 using System;
+using LeeHyperrealMod.ParticleScripts;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -197,14 +198,16 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
-        private static void ModifyGPUParticles(Renderer rend, Color newColor) 
+        private static void ModifyGPUParticles(GPUParticlePlayer player, Color newColor) 
         {
-            if (rend.material.shader.name == "Unlit/GPUParticle")
+            if (player.mat.shader.name == "Unlit/GPUParticle")
             {
+                Material material = player.mat;
+
                 //Get New Colour, figure out percentages for each and spread across colours in the same intensity
-                float oldR = rend.material.GetFloat("_R_Intensity");
-                float oldG = rend.material.GetFloat("_G_Intensity");
-                float oldB = rend.material.GetFloat("_B_Intensity");
+                float oldR = material.GetFloat("_R_Intensity");
+                float oldG = material.GetFloat("_G_Intensity");
+                float oldB = material.GetFloat("_B_Intensity");
 
                 float totalToDistribute = oldR + oldG + oldB;
 
@@ -215,9 +218,9 @@ namespace LeeHyperrealMod.Modules
                 float newB = (newColor.b / totalColourVal) * totalToDistribute;
 
                 // Modify the following properties:
-                rend.material.SetFloat("_R_Intensity", newR);
-                rend.material.SetFloat("_G_Intensity", newG);
-                rend.material.SetFloat("_B_Intensity", newB);
+                material.SetFloat("_R_Intensity", newR);
+                material.SetFloat("_G_Intensity", newG);
+                material.SetFloat("_B_Intensity", newB);
             }
         }
 
@@ -229,6 +232,15 @@ namespace LeeHyperrealMod.Modules
                 rend.material.SetColor("_MainColor", newColor);
             }
         }
+
+        private static void ModifyLights(Light light, Color color)
+        {
+            if (light) 
+            {
+                light.color = color;
+            }
+        }
+
 
         #region Particle Effect Retrieval
 
@@ -295,9 +307,20 @@ namespace LeeHyperrealMod.Modules
                 {
                     //Modify with the new colour on XEffect, may need more functions to convert more later
                     ModifyXEffectOnRenderer(rend, color);
-                    ModifyGPUParticles(rend, color);
                     ModifyNoBatchingRenderers(rend, color);
                     ModifySnipeFloorRenderer(rend, color);
+                }
+
+                Light[] lights = clone.GetComponentsInChildren<Light>(true);
+                foreach (Light light in lights) 
+                {
+                    ModifyLights(light, color);
+                }
+
+                GPUParticlePlayer[] gpuPlayers = clone.GetComponentsInChildren<GPUParticlePlayer>();
+                foreach (GPUParticlePlayer player in gpuPlayers) 
+                {
+                    ModifyGPUParticles(player, color);
                 }
 
                 //check if the prefab is a clone prefab, and skip the ModifyEffect registration

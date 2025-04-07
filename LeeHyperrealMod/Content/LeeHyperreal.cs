@@ -21,7 +21,7 @@ namespace LeeHyperrealMod.Modules.Survivors
 
         public const string PLUGIN_PREFIX = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_";
 
-        public static List<int> redVFXSkins = new List<int> { 2 }; 
+        public static List<int> redVFXSkins;
 
         public override string survivorTokenPrefix => PLUGIN_PREFIX;
 
@@ -628,8 +628,44 @@ namespace LeeHyperrealMod.Modules.Survivors
                 "leeSubMachineGunMeshBlend"
             );
 
-            //add new skindef to our list of skindefs. this is what we'll be passing to the SkinController
-            skins.Add(defaultSkin);
+            defaultSkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
+            {
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("TorsoModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("FaceModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("HairModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmourPlateModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("EyeModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("LegModel"),
+                    shouldActivate = true,
+                }
+            };
             #endregion
 
             //uncomment this when you have a mastery skin
@@ -691,8 +727,44 @@ namespace LeeHyperrealMod.Modules.Survivors
             }
 
             //simply find an object on your child locator you want to activate/deactivate and set if you want to activate/deacitvate it with this skin
-
-            skins.Add(blueSkin);
+            blueSkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
+            {
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("TorsoModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("FaceModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("HairModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmourPlateModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("EyeModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("LegModel"),
+                    shouldActivate = true,
+                }
+            };
 
             #endregion
 
@@ -720,24 +792,6 @@ namespace LeeHyperrealMod.Modules.Survivors
                 "E3SuperlirifleMd030011",
                 null,
                 "E3SuperligunMd030011");
-
-
-            /*
-                    "leeArmMat",
-                    "leeTorsoClothmat", 
-                    "leeFaceMat", no replacement
-                    "leeHairMat", material replacement only
-                    "leeChestLegPlateMat", 
-                    "leeEyeMat", no replacement
-                    "leeLegMat", 
-                    "leeBoxGunMat", no replacement
-                    "leeSubmachineMat", no replacement
-                    "Cannon", no replacement
-                    "leeSuperRifleMat",
-                    some alpha bit
-                    "leePistolMat" no replacement
-             */
-
 
             //masterySkin has a new set of RendererInfos (based on default rendererinfos)
             //you can simply access the RendererInfos defaultMaterials and set them to the new materials for your skin.
@@ -770,27 +824,202 @@ namespace LeeHyperrealMod.Modules.Survivors
                 }
             }
 
+            scarletSkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
+            {
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("TorsoModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("FaceModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("HairModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmourPlateModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("EyeModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("LegModel"),
+                    shouldActivate = true,
+                }
+            };
+            #endregion
+
+            #region Prospector
+
+            //creating a new skindef as we did before
+            SkinDef prospectorSkin = Modules.Skins.CreateSkinDef(PLUGIN_PREFIX + "PROSPECTOR_SKIN_NAME",
+                LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("ProspectorSkinIcon"),
+                defaultRendererinfos,
+                prefabCharacterModel.gameObject);
+
+            //adding the mesh replacements as above. 
+            //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved
+            prospectorSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
+                "leeArmsMeshBlend",
+                "LeeRor2ProspectorCloth",
+                "leeFaceMeshBlend",
+                "leeHairMeshBlend",
+                "leeChestLegPlateMeshBlend",
+                "leeEyeMeshBlend",
+                "leeLegsMeshBlend",
+                "leeGunCaseMeshBlend",
+                "leePistolMeshBlend",
+                "E3SuperlicannonMd010011",
+                "leeSuperRifleMeshBlend",
+                "leeSuperRilfeAlphaMeshBlend",
+                "leeSubMachineGunMeshBlend"
+            );
+
+
+            /*
+                    "leeArmMat",
+                    "leeTorsoClothmat", 
+                    "leeFaceMat", no replacement
+                    "leeHairMat", material replacement only
+                    "leeChestLegPlateMat", 
+                    "leeEyeMat", no replacement
+                    "leeLegMat", 
+                    "leeBoxGunMat", no replacement
+                    "leeSubmachineMat", no replacement
+                    "Cannon", no replacement
+                    "leeSuperRifleMat",
+                    some alpha bit
+                    "leePistolMat" no replacement
+             */
+
+
+            //masterySkin has a new set of RendererInfos (based on default rendererinfos)
+            //you can simply access the RendererInfos defaultMaterials and set them to the new materials for your skin.
+            string[] prospectorMaterialStrings =
+                {
+                    "R4LiangMd019011Body",
+                    "LeeRor2ProspectorPalette",
+                    "leeFaceMeshBlend",
+                    "R4LiangMd019011Hair",
+                    "R4LiangMd019011Alpha",
+                    "leeEyeMeshBlend",
+                    "R4LiangMd019011Down",
+                    "E3SuperliboxMd030011",
+                    "E3SuperligunMd030011.001",
+                    "E3SuperlicannonMd010011",
+                    "E3SuperlirifleMd030011",
+                    null,
+                    "E3SuperligunMd030011"
+                };
+
+            for (int i = 0; i < prospectorMaterialStrings.Length; i++)
+            {
+                if (prospectorMaterialStrings[i] == null)
+                {
+                    prospectorSkin.rendererInfos[i].defaultMaterial = defaultRendererinfos[i].defaultMaterial;
+                }
+                else
+                {
+                    prospectorSkin.rendererInfos[i].defaultMaterial = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>(prospectorMaterialStrings[i]);
+                }
+            }
+
             //here's a barebones example of using gameobjectactivations that could probably be streamlined or rewritten entirely, truthfully, but it works
-            //scarletSkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
-            //{
-            //    new SkinDef.GameObjectActivation
-            //    {
-            //        gameObject = childLocator.FindChildGameObject("ArmModel"),
-            //        shouldActivate = false,
-            //    },
-            //    new SkinDef.GameObjectActivation
-            //    {
-            //        gameObject = childLocator.FindChildGameObject("ArmourPlateModel"),
-            //        shouldActivate = false,
-            //    }
-            //};
+
+            /*
+                "ArmModel"
+                "TorsoModel"
+                "FaceModel"
+                "HairModel"
+                "ArmourPlateModel"
+                "EyeModel"
+                "LegModel"
+                "GunCaseModel"
+                "SubMachineGunModel"
+                "SuperCannonModel"
+                "SuperRifleModel"
+                "SuperRifleModelAlphaBit"
+                "PistolModel"
+             */
+            prospectorSkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
+            {
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmModel"),
+                    shouldActivate = false,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("TorsoModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("FaceModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("HairModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmourPlateModel"),
+                    shouldActivate = false,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("EyeModel"),
+                    shouldActivate = false,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("LegModel"),
+                    shouldActivate = false,
+                }
+            };
             //simply find an object on your child locator you want to activate/deactivate and set if you want to activate/deacitvate it with this skin
 
-            skins.Add(scarletSkin);
             #endregion
 
 
-            skinController.skins = skins.ToArray();
+            if (Modules.Config.loreMode.Value)
+            {
+                // Put RoRified skin first
+                skins.Add(prospectorSkin);
+                skins.Add(defaultSkin);
+                skins.Add(blueSkin);
+                skins.Add(scarletSkin);
+
+                redVFXSkins = new List<int> { 3 };
+            }
+            else 
+            {
+                skins.Add(defaultSkin);
+                skins.Add(blueSkin);
+                skins.Add(scarletSkin);
+                skins.Add(prospectorSkin);
+
+                redVFXSkins = new List<int> { 2 };
+            }
+
+                skinController.skins = skins.ToArray();
         }
     }
 }
