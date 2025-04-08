@@ -718,7 +718,10 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             Transform labeltransform = orbUIObject.transform.GetChild(orbAmountIndex);
             Destroy(labeltransform.gameObject.GetComponent<Text>());
-            orbAmountLabel = CreateLabel(labeltransform, "Orb Amount", "0 / 16", Vector2.zero, 24f);
+            if (!orbAmountLabel) 
+            {
+                orbAmountLabel = CreateLabel(labeltransform, "Orb Amount", "0 / 16", Vector2.zero, 24f);
+            }
         }
 
         public void UpdateOrbAmount(int amount, int max) 
@@ -1390,13 +1393,16 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             if (RoRHUDObject) 
             {
-                if (LeeHyperrealPlugin.isRiskUIInstalled)
+                if (!crosshairObject) 
                 {
-                    crosshairObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.customCrosshair, RoRHUDObject.transform.Find("MainContainer/MainUIArea/CrosshairCanvas"));
-                }
-                else 
-                {
-                    crosshairObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.customCrosshair, RoRHUDObject.transform.Find("MainContainer/MainUIArea/CrosshairCanvas"));
+                    if (LeeHyperrealPlugin.isRiskUIInstalled)
+                    {
+                        crosshairObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.customCrosshair, RoRHUDObject.transform.Find("MainContainer/MainUIArea/CrosshairCanvas"));
+                    }
+                    else
+                    {
+                        crosshairObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.customCrosshair, RoRHUDObject.transform.Find("MainContainer/MainUIArea/CrosshairCanvas"));
+                    }
                 }
             }
 

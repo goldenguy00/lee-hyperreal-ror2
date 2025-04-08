@@ -204,7 +204,6 @@ namespace LeeHyperrealMod.Modules
 
             leeSurvivorPod.AddComponent<BuffPassengerWhileSeated>();
 
-
             customNotificationPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/NotificationPanel2.prefab").WaitForCompletion(), "LeeHyperrealNotification", false);
             LeeHyperrealNotification leeNotif = LeeHyperrealAssets.customNotificationPrefab.AddComponent<LeeHyperrealNotification>();
             GenericNotification genericComponent = LeeHyperrealAssets.customNotificationPrefab.GetComponent<GenericNotification>();

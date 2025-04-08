@@ -191,7 +191,6 @@ namespace LeeHyperrealMod.Content.Controllers
             startRotation = cameraObject.transform.localRotation;
 
             uiController.SetRORUIActiveState(true);
-            uiController.ReinitCrosshair();
         }
 
         public void UnsetDomainUltimate()
@@ -217,7 +216,6 @@ namespace LeeHyperrealMod.Content.Controllers
             cameraTargetParams.RemoveParamsOverride(handle);
 
             uiController.SetRORUIActiveState(true);
-            uiController.ReinitCrosshair();
         }
 
         public void TriggerDomainUlt()

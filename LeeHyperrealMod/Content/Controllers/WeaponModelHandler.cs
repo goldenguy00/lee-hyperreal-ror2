@@ -92,10 +92,20 @@ namespace LeeHyperrealMod.Content.Controllers
                 legModel = childLocator.FindChild("LegModel").gameObject;
             }
 
+            ChangeLaserColour();
             superCannonEffect.gameObject.SetActive(false);
             SetLaserState(false);
             TransitionState(WeaponState.SUBMACHINE);
             Hook();
+        }
+
+        private void ChangeLaserColour()
+        {
+            Transform parent = rifleLaser.transform.parent;
+
+            Destroy(rifleLaser);
+
+            rifleLaser = GameObject.Instantiate(Modules.ParticleAssets.RetrieveParticleEffectFromSkin("rifleLaser", characterBody), parent);
         }
 
         public void Hook() 

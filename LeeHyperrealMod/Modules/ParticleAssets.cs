@@ -14,6 +14,7 @@ namespace LeeHyperrealMod.Modules
         internal static string DEFAULT_PARTICLE_VARIANT = "default";
         internal static string RED_PARTICLE_VARIANT = "red";
         internal static Color RED_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
+        internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
 
         internal class ParticleVariant 
@@ -590,6 +591,10 @@ namespace LeeHyperrealMod.Modules
             ParticleVariant snipeAerialFloorVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeAerialFloor);
             snipeAerialFloorVariant.shouldVariantCloneUseModify = false;
 
+            GameObject rifleLaser = GetGameObjectFromBundle("fxr4liangatk25weaponcase1");
+            ParticleVariant rifleLaserVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, rifleLaser);
+            rifleLaserVariant.shouldVariantCloneUseModify = false;
+
             particleDictionary.Add("snipeStart", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeStart));
             particleDictionary.Add("snipe", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipe));
             particleDictionary.Add("snipeHitEnhanced", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeHitEnhanced));
@@ -598,6 +603,7 @@ namespace LeeHyperrealMod.Modules
             particleDictionary.Add("snipeBulletCasing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeBulletCasing));
             particleDictionary.Add("snipeDodge", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeDodge));
             particleDictionary.Add("snipeAerialFloor", snipeAerialFloorVariant);
+            particleDictionary.Add("rifleLaser", rifleLaserVariant);
         }
 
         private static void PopulateYellowOrbAssets()

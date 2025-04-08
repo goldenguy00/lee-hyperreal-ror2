@@ -32,13 +32,14 @@ namespace LeeHyperrealMod.SkillStates
 
             orbController.isExecutingSkill = true;
 
-            if (!isGrounded)
+            bool loreModeCheck = Modules.Config.loreMode.Value && Modules.Survivors.LeeHyperreal.voiceDisabledSkins.Contains((int)characterBody.skinIndex);
+
+            if (!isGrounded || loreModeCheck)
             {
                 TriggerRagdoll(true);
             }
             else 
             {
-                bool loreModeCheck = Modules.Config.loreMode.Value && Modules.Survivors.LeeHyperreal.voiceDisabledSkins.Contains((int)characterBody.skinIndex);
 
                 if (Modules.Config.voiceEnabled.Value && !loreModeCheck)
                 {
@@ -65,7 +66,7 @@ namespace LeeHyperrealMod.SkillStates
         public void TriggerRagdoll(bool useForce)
         {
             triggeredRagdoll = true;
-            Vector3 vector = Vector3.up * 3f;
+            Vector3 vector = Vector3.up * 5f;
             if (base.characterMotor)
             {
                 vector += base.characterMotor.velocity;
