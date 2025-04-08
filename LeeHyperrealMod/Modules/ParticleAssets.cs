@@ -64,6 +64,9 @@ namespace LeeHyperrealMod.Modules
             UpdateAllBundleMaterials();
             CreateMaterialStorage(Modules.LeeHyperrealAssets.mainAssetBundle);
             PopulateAssets();
+
+            // Generate Colour variants
+            GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR);
         }
 
         private static void UpdateAllBundleMaterials()
@@ -412,8 +415,6 @@ namespace LeeHyperrealMod.Modules
             #region Misc
             PopulateMiscAssets();
             #endregion
-
-            GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR);
         }
 
         private static void PopulateMiscAssets()

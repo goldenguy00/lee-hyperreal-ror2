@@ -1142,7 +1142,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 skins.Add(blueSkin);
                 skins.Add(scarletSkin);
 
-                redVFXSkins = new List<int> { 4 };
+                redVFXSkins = new List<int> { 1, 4 };
                 voiceDisabledSkins = new List<int> { 0, 1 };
             }
             else 
@@ -1153,7 +1153,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 skins.Add(prospectorSkin);
                 skins.Add(comradeSkin);
 
-                redVFXSkins = new List<int> { 2 };
+                redVFXSkins = new List<int> { 2, 4 };
                 voiceDisabledSkins = new List<int> { 3, 4 };
             }
 

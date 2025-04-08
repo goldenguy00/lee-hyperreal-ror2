@@ -38,13 +38,18 @@ namespace LeeHyperrealMod.SkillStates
             }
             else 
             {
-                if (Modules.Config.voiceLanguageOption.Value == Modules.Config.VoiceLanguage.ENG)
+                bool loreModeCheck = Modules.Config.loreMode.Value && Modules.Survivors.LeeHyperreal.voiceDisabledSkins.Contains((int)characterBody.skinIndex);
+
+                if (Modules.Config.voiceEnabled.Value && !loreModeCheck)
                 {
-                    Util.PlaySound("Play_Lee_Death_Voice_EN", gameObject);
-                }
-                else
-                {
-                    Util.PlaySound("Play_Lee_Death_Voice_JP", gameObject);
+                    if (Modules.Config.voiceLanguageOption.Value == Modules.Config.VoiceLanguage.ENG)
+                    {
+                        Util.PlaySound("Play_Lee_Death_Voice_EN", gameObject);
+                    }
+                    else
+                    {
+                        Util.PlaySound("Play_Lee_Death_Voice_JP", gameObject);
+                    }
                 }
             }
         }

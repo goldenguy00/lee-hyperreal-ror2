@@ -59,7 +59,9 @@ namespace LeeHyperrealMod.Content.Controllers
                 canPlayNextTime = false;
 
                 //Play voice line here.
-                if (healthComponent.body.hasEffectiveAuthority && Modules.Config.voiceEnabled.Value) 
+                bool loreModeCheck = Modules.Config.loreMode.Value && Modules.Survivors.LeeHyperreal.voiceDisabledSkins.Contains((int)healthComponent.body.skinIndex);
+
+                if (healthComponent.body.hasEffectiveAuthority && Modules.Config.voiceEnabled.Value && !loreModeCheck)
                 {
                     if (Modules.Config.voiceLanguageOption.Value == Modules.Config.VoiceLanguage.ENG)
                     {

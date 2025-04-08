@@ -115,7 +115,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             {
                 new PlaySoundNetworkRequest(characterBody.netId, "Play_c_liRk4_skill_ex_ultimate").Send(NetworkDestination.Clients);
 
-                if (Modules.Config.voiceEnabled.Value && !setCease)
+                bool loreModeCheck = Modules.Config.loreMode.Value && Modules.Survivors.LeeHyperreal.voiceDisabledSkins.Contains((int)characterBody.skinIndex);
+
+                if (Modules.Config.voiceEnabled.Value && !setCease && !loreModeCheck)
                 {
                     if (Modules.Config.voiceLanguageOption.Value == Modules.Config.VoiceLanguage.ENG)
                     {

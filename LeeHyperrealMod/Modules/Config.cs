@@ -214,7 +214,8 @@ namespace LeeHyperrealMod.Modules
             (
                 new ConfigDefinition("06 - Extras", "Lore Mode"),
                 true,
-                new ConfigDescription("Enables more RoR2 friendly names. Requires a reboot to take effect.")
+                new ConfigDescription("Does the following: Applies more Lore friendly names, Disables voice for RoR2 style skins, Puts the RoR2 style skins at the front of the list. Disabling this" +
+                " will revert the name to Lee: Hyperreal, Enable voice for all skins and puts the PGR skins in the front of the list. Requires a reboot to take effect.")
             );
 
             rgbMode = LeeHyperrealPlugin.instance.Config.Bind<bool>
