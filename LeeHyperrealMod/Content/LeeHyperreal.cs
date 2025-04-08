@@ -22,6 +22,7 @@ namespace LeeHyperrealMod.Modules.Survivors
         public const string PLUGIN_PREFIX = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_";
 
         public static List<int> redVFXSkins;
+        public static List<int> voiceDisabledSkins;
 
         public override string survivorTokenPrefix => PLUGIN_PREFIX;
 
@@ -882,12 +883,12 @@ namespace LeeHyperrealMod.Modules.Survivors
                 "leeChestLegPlateMeshBlend",
                 "leeEyeMeshBlend",
                 "leeLegsMeshBlend",
-                "leeGunCaseMeshBlend",
-                "leePistolMeshBlend",
-                "E3SuperlicannonMd010011",
-                "leeSuperRifleMeshBlend",
+                "LeeRor2ProspectorBoxMesh",
+                "LeeRor2ProspectorBoxPistolMesh",
+                "LeeRor2ProspsectorCannonMesh",
+                "LeeRor2ProspectorRifleMesh",
                 "leeSuperRilfeAlphaMeshBlend",
-                "leeSubMachineGunMeshBlend"
+                "LeeRor2ProspectorPistolMesh"
             );
 
 
@@ -919,12 +920,12 @@ namespace LeeHyperrealMod.Modules.Survivors
                     "R4LiangMd019011Alpha",
                     "leeEyeMeshBlend",
                     "R4LiangMd019011Down",
-                    "E3SuperliboxMd030011",
-                    "E3SuperligunMd030011.001",
-                    "E3SuperlicannonMd010011",
-                    "E3SuperlirifleMd030011",
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
                     null,
-                    "E3SuperligunMd030011"
+                    "LeeRor2ProspectorPalette"
                 };
 
             for (int i = 0; i < prospectorMaterialStrings.Length; i++)
@@ -998,16 +999,151 @@ namespace LeeHyperrealMod.Modules.Survivors
 
             #endregion
 
+            #region Comrade
+
+            //creating a new skindef as we did before
+            SkinDef comradeSkin = Modules.Skins.CreateSkinDef(PLUGIN_PREFIX + "PROSPECTOR_ALT_SKIN_NAME",
+                LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("ProspectorSkinRedIcon"),
+                defaultRendererinfos,
+                prefabCharacterModel.gameObject);
+
+            //adding the mesh replacements as above. 
+            //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved
+            comradeSkin.meshReplacements = Modules.Skins.getMeshReplacements(defaultRendererinfos,
+                "LeeRor2Heart",
+                "LeeRor2BodyComrade",
+                "leeFaceMeshBlend",
+                "LeeRor2HeadComrade",
+                "leeChestLegPlateMeshBlend",
+                "leeEyeMeshBlend",
+                "leeLegsMeshBlend",
+                "LeeRor2ProspectorBoxMesh",
+                "LeeRor2ProspectorBoxPistolMesh",
+                "LeeRor2ProspsectorCannonMesh",
+                "LeeRor2ProspectorRifleMesh",
+                "leeSuperRilfeAlphaMeshBlend",
+                "LeeRor2ProspectorPistolMesh"
+            );
+
+
+            /*
+                    "leeArmMat",
+                    "leeTorsoClothmat", 
+                    "leeFaceMat", no replacement
+                    "leeHairMat", material replacement only
+                    "leeChestLegPlateMat", 
+                    "leeEyeMat", no replacement
+                    "leeLegMat", 
+                    "leeBoxGunMat", no replacement
+                    "leeSubmachineMat", no replacement
+                    "Cannon", no replacement
+                    "leeSuperRifleMat",
+                    some alpha bit
+                    "leePistolMat" no replacement
+             */
+
+
+            //masterySkin has a new set of RendererInfos (based on default rendererinfos)
+            //you can simply access the RendererInfos defaultMaterials and set them to the new materials for your skin.
+            string[] comradeMaterialStrings =
+                {
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    "leeFaceMeshBlend",
+                    "LeeRor2ComradePalette",
+                    "R4LiangMd019011Alpha",
+                    "leeEyeMeshBlend",
+                    "R4LiangMd019011Down",
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    null,
+                    "LeeRor2ComradePalette"
+                };
+
+            for (int i = 0; i < comradeMaterialStrings.Length; i++)
+            {
+                if (comradeMaterialStrings[i] == null)
+                {
+                    comradeSkin.rendererInfos[i].defaultMaterial = defaultRendererinfos[i].defaultMaterial;
+                }
+                else
+                {
+                    comradeSkin.rendererInfos[i].defaultMaterial = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>(comradeMaterialStrings[i]);
+                }
+            }
+
+            //here's a barebones example of using gameobjectactivations that could probably be streamlined or rewritten entirely, truthfully, but it works
+
+            /*
+                "ArmModel"
+                "TorsoModel"
+                "FaceModel"
+                "HairModel"
+                "ArmourPlateModel"
+                "EyeModel"
+                "LegModel"
+                "GunCaseModel"
+                "SubMachineGunModel"
+                "SuperCannonModel"
+                "SuperRifleModel"
+                "SuperRifleModelAlphaBit"
+                "PistolModel"
+             */
+            comradeSkin.gameObjectActivations = new SkinDef.GameObjectActivation[]
+            {
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("TorsoModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("FaceModel"),
+                    shouldActivate = false,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("HairModel"),
+                    shouldActivate = true,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("ArmourPlateModel"),
+                    shouldActivate = false,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("EyeModel"),
+                    shouldActivate = false,
+                },
+                new SkinDef.GameObjectActivation
+                {
+                    gameObject = childLocator.FindChildGameObject("LegModel"),
+                    shouldActivate = false,
+                }
+            };
+            //simply find an object on your child locator you want to activate/deactivate and set if you want to activate/deacitvate it with this skin
+
+            #endregion
 
             if (Modules.Config.loreMode.Value)
             {
                 // Put RoRified skin first
                 skins.Add(prospectorSkin);
+                skins.Add(comradeSkin);
                 skins.Add(defaultSkin);
                 skins.Add(blueSkin);
                 skins.Add(scarletSkin);
 
-                redVFXSkins = new List<int> { 3 };
+                redVFXSkins = new List<int> { 4 };
+                voiceDisabledSkins = new List<int> { 0, 1 };
             }
             else 
             {
@@ -1015,8 +1151,10 @@ namespace LeeHyperrealMod.Modules.Survivors
                 skins.Add(blueSkin);
                 skins.Add(scarletSkin);
                 skins.Add(prospectorSkin);
+                skins.Add(comradeSkin);
 
                 redVFXSkins = new List<int> { 2 };
+                voiceDisabledSkins = new List<int> { 3, 4 };
             }
 
                 skinController.skins = skins.ToArray();

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2137938047
+CRC: 3940174790
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b56ad3283b73fbc8e51930d3c112e194
+    Hash: 540b62d30fb49b8d302e68f766d59a82
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2963416522028d4f30da5ca312090ef5
+    Hash: 204d51099c2276d67422bd1ceefe5149
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -46,9 +46,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c6e70bb247a8cd74aad98f5aca67911d, type: 3}
 - Class: 114
@@ -191,7 +191,7 @@ Assets:
 - Assets/modelresource/effect/mesh/luoxuan005.asset
 - Assets/modelresource/effect/material/normal10302.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk01dilie.prefab
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/E3SuperlirifleMd010011.mesh
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeRor2ProspectorRifleMesh.mesh
 - Assets/modelresource/effect/prefab/fxr3lunaprefab/textures/mask604.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011mdchunse718.mat
 - Assets/modelresource/effect/texture/mask112.png
@@ -319,7 +319,7 @@ Assets:
 - Assets/modelresource/effect/gpuparticles/fxr2nuoangpu/fxr2nuoanatk42dilie/10.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331mdwater303.mat
 - Assets/modelresource/effect/texture/zha500.png
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/E3SuperligunMd010011.001.mesh
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeRor2ProspectorBoxPistolMesh.mesh
 - Assets/modelresource/effect/texture/wenli90504.png
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatk41text_12.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md361.mat
@@ -1266,7 +1266,7 @@ Assets:
 - Assets/modelresource/effect/texture/dilie610.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331mdcao301.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md386.mat
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/E3SuperligunMd010011.mesh
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeRor2ProspectorPistolMesh.mesh
 - Assets/Prefabs/Extra Jump Floor.prefab
 - Assets/LeeHyperrealAssets/cannon.controller
 - Assets/modelresource/effect/prefab/fxmb1aolajiangprefabb/textures/keji805.png
@@ -1471,7 +1471,7 @@ Assets:
 - Assets/modelresource/effect/mesh/fxmb1starknightmesh/fxmb1starknightatk13dandao_2.asset
 - Assets/modelresource/effect/texture/mask533.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnims/evadeForward.anim
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/E3SuperliboxMd010011.mesh
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeRor2ProspectorBoxMesh.mesh
 - Assets/modelresource/effect/texture/smoke012a.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/SnipeEvadeRight.anim
 - Assets/modelresource/effect/prefab/fxr3lunaprefab/textures/mask114.png
@@ -1484,7 +1484,7 @@ Assets:
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk32.prefab
 - Assets/LeeHyperrealAssets/Icons/Lee Icon Material.mat
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Spawn2.anim
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/E3SuperlicannonMd010011.mesh
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeRor2ProspsectorCannonMesh.mesh
 - Assets/modelresource/effect/material/normal10202.mat
 - Assets/LeeHyperrealAssets/Icons/Ultimate.bmp
 - Assets/LeeHyperrealAssets/Material/ScarletRedeemer/scarletSemiGun.mat
