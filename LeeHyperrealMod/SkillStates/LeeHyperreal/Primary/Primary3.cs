@@ -277,6 +277,16 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             }
         }
 
+        public override void SetNextStateOnParry()
+        {
+            if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
+            {
+                this.outer.SetNextState(new Primary3 { xzMovementMultiplier = 0 });
+                return;
+
+            }
+        }
+
         protected override void TriggerOrbIncrementor(int timesHit)
         {
             if (orbController)
@@ -310,6 +320,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             return InterruptPriority.Skill;
         }
     
-    
+        
     }
 }

@@ -14,6 +14,8 @@ namespace LeeHyperrealMod.Modules
         internal static Color bodyColor = new Color(0.4f, 1f, 1f);
 
         internal static float redBaseHueOffset = 0.6f;
+        internal static float orangeBaseHueOffset = 0.539f;
+        internal static float lightBlueBaseHueOffset = 0.132f;
         internal static float defaultBaseHueOffset = 0f;
 
         internal static List<string> prefix = new List<string> { "Rift", "Void", "Phantom", "Dimension", "Dimensional", "Nether", "Chrono", "Echo", "Reality", "Quantum", "Portal", "Multiverse" };

@@ -22,6 +22,8 @@ namespace LeeHyperrealMod.Modules.Survivors
         public const string PLUGIN_PREFIX = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_";
 
         public static List<int> redVFXSkins;
+        public static List<int> orangeVFXSkins;
+        public static List<int> lightBlueVFXSkins;
         public static List<int> voiceDisabledSkins;
 
         public override string survivorTokenPrefix => PLUGIN_PREFIX;
@@ -1143,7 +1145,9 @@ namespace LeeHyperrealMod.Modules.Survivors
                 skins.Add(scarletSkin);
 
                 glitchSkinIndex = 3;
-                redVFXSkins = new List<int> { 1, 4 };
+                redVFXSkins = new List<int> { 4 };
+                orangeVFXSkins = new List<int> { 1 };
+                lightBlueVFXSkins = new List<int> { 3 };
                 voiceDisabledSkins = new List<int> { 0, 1 };
             }
             else 
@@ -1155,7 +1159,9 @@ namespace LeeHyperrealMod.Modules.Survivors
                 skins.Add(comradeSkin);
 
                 glitchSkinIndex = 1;
-                redVFXSkins = new List<int> { 2, 4 };
+                redVFXSkins = new List<int> { 2 };
+                orangeVFXSkins = new List<int> { 4 };
+                lightBlueVFXSkins = new List<int> { 1 };
                 voiceDisabledSkins = new List<int> { 3, 4 };
             }
 

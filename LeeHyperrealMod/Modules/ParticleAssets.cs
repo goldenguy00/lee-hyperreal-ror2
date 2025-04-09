@@ -14,7 +14,14 @@ namespace LeeHyperrealMod.Modules
         internal static string DEFAULT_PARTICLE_VARIANT = "default";
         internal static string RED_PARTICLE_VARIANT = "red";
         internal static Color RED_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
-        internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
+
+        internal static string ORANGE_PARTICLE_VARIANT = "orange";
+        internal static Color ORANGE_PARTICLE_COLOR = new Color(1f, 30f/255f, 0f);
+
+        internal static string LIGHTBLUE_PARTICLE_VARIANT = "lightblue";
+        internal static Color LIGHTBLUE_PARTICLE_COLOR = new Color(0, 247f / 255f, 1f);
+
+        //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
 
         internal class ParticleVariant 
@@ -68,6 +75,8 @@ namespace LeeHyperrealMod.Modules
 
             // Generate Colour variants
             GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR);
+            GenerateColorVariant(ORANGE_PARTICLE_VARIANT, ORANGE_PARTICLE_COLOR);
+            GenerateColorVariant(LIGHTBLUE_PARTICLE_VARIANT, LIGHTBLUE_PARTICLE_COLOR);
         }
 
         private static void UpdateAllBundleMaterials()
@@ -286,6 +295,22 @@ namespace LeeHyperrealMod.Modules
                 if (variants.colourVariants.ContainsKey(RED_PARTICLE_VARIANT)) 
                 {
                     return variants.colourVariants[RED_PARTICLE_VARIANT];
+                }
+            }
+
+            if (Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)skinIndex)) 
+            {
+                if (variants.colourVariants.ContainsKey(ORANGE_PARTICLE_VARIANT))
+                {
+                    return variants.colourVariants[ORANGE_PARTICLE_VARIANT];
+                }
+            }
+
+            if (Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)skinIndex)) 
+            {
+                if (variants.colourVariants.ContainsKey(LIGHTBLUE_PARTICLE_VARIANT))
+                {
+                    return variants.colourVariants[LIGHTBLUE_PARTICLE_VARIANT];
                 }
             }
 

@@ -241,6 +241,16 @@ namespace LeeHyperrealMod.Content.Controllers
             return LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)selectedSkin);
         }
 
+        public bool isOrangeSkin() 
+        {
+            return LeeHyperrealMod.Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)selectedSkin);
+        }
+
+        public bool isLightBlueSkin()
+        {
+            return LeeHyperrealMod.Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)selectedSkin);
+        }
+
         public void InitializeUI() 
         {
             if (!isInitialized && !baseAIPresent)
@@ -1485,12 +1495,12 @@ namespace LeeHyperrealMod.Content.Controllers
             }
 
             //Set Material to our own custom one, steal the image and apply it to the material image.
-            foreach (Image img in imageList) 
+            foreach (Image img in imageList)
             {
                 Sprite sprite = img.sprite;
 
                 // Skill icons have not been properly initialized, throw this shit at the game
-                if (sprite.name == "texBanditSkill3Icon") 
+                if (sprite.name == "texBanditSkill3Icon")
                 {
                     throw new ForcedUIReInitException();
                 }
@@ -1504,6 +1514,14 @@ namespace LeeHyperrealMod.Content.Controllers
                 if (IsRedSkin())
                 {
                     SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.redBaseHueOffset);
+                }
+                else if (isOrangeSkin())
+                {
+                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.orangeBaseHueOffset);
+                }
+                else if (isLightBlueSkin()) 
+                {
+                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.lightBlueBaseHueOffset);
                 }
                 else
                 {
