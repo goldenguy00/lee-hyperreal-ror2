@@ -99,6 +99,7 @@ namespace LeeHyperrealMod
             Modules.ItemDisplays.PopulateDisplays(); // collect item display prefabs for use in our display rules
             Modules.LeeHyperrealAssets.LatePopulateAssets();
             Modules.StaticValues.AddBlacklistStates();
+            Modules.Unlockables.Initialize();
             // survivor initialization
             new LeeHyperreal().Initialize();
 

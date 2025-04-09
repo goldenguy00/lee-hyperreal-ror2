@@ -1,19 +1,22 @@
 ﻿using RoR2;
-using System;
-using UnityEngine;
 
 namespace LeeHyperrealMod.Modules.Achievements
 {
-    internal class MasteryAchievement : BaseMasteryUnlockable
+    [RegisterAchievement(identifier, unlockableidentifier, null, 10)]
+    internal class MasteryAchievement: BaseMasteryUnlockable
     {
-        public override string AchievementTokenPrefix => LeeHyperrealPlugin.DEVELOPER_PREFIX + "_HENRY_BODY_MASTERY";
-        //the name of the sprite in your bundle
-        public override string AchievementSpriteName => "texMasteryAchievement";
-        //the token of your character's unlock achievement if you have one
-        public override string PrerequisiteUnlockableIdentifier => LeeHyperrealPlugin.DEVELOPER_PREFIX + "_HENRY_BODY_UNLOCKABLE_REWARD_ID";
+        public const string identifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_MASTERYUNLOCKABLE_ACHIEVEMENT";
+        public const string unlockableidentifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_MASTERYUNLOCKABLE_ACHIEVEMENT_ID";
+        //public const string prerequisiteAchievementIdentifier = ArsonistUnlockable.identifier;
 
-        public override string RequiredCharacterBody => "HenryBody";
-        //difficulty coeff 3 is monsoon. 3.5 is typhoon for grandmastery skins
+        public override string RequiredCharacterBody => "LeeHyperrealBody";
+
         public override float RequiredDifficultyCoefficient => 3;
+
+        public override BodyIndex LookUpRequiredBodyIndex()
+        {
+            return BodyCatalog.FindBodyIndex(RequiredCharacterBody);
+        }
+
     }
 }

@@ -193,8 +193,8 @@ namespace LeeHyperrealMod.Modules
             #endregion
 
             #region Achievements
-            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
-            LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESC", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game or obliterate on Monsoon.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game or obliterate on Monsoon.");
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
             #endregion
             #endregion

@@ -84,6 +84,13 @@ namespace LeeHyperrealMod.Modules
             return array;
         }
 
+        /// <summary>
+        /// gets langauge token from achievement's registered identifier
+        /// </summary>
+        public static string GetAchievementNameToken(string identifier)
+        {
+            return $"ACHIEVEMENT_{identifier.ToUpperInvariant()}_NAME";
+        }
         public static Func<T[], T[]> AppendDel<T>(List<T> list) => (r) => Append(ref r, list);
 
         public static void PlaySwingEffect(string muzzleString, float swingScale, GameObject effectPrefab, GameObject gameObject)

@@ -71,6 +71,19 @@ namespace LeeHyperrealMod.Modules
             yield break;
         }
 
+        internal static UnlockableDef CreateAndAddUnlockbleDef(string identifier, string nameToken, Sprite achievementIcon)
+        {
+            UnlockableDef unlockableDef = ScriptableObject.CreateInstance<UnlockableDef>();
+            unlockableDef.cachedName = identifier;
+            unlockableDef.nameToken = nameToken;
+            unlockableDef.achievementIcon = achievementIcon;
+            unlockableDef.sortScore = 200;
+
+            Content.AddUnlockableDef(unlockableDef);
+
+            return unlockableDef;
+        }
+
         public System.Collections.IEnumerator FinalizeAsync(FinalizeAsyncArgs args)
         {
             args.ReportProgress(1f);
@@ -143,5 +156,6 @@ namespace LeeHyperrealMod.Modules
         {
             ContentPacks.networkedObjectPrefabs.Add(networkObject);
         }
+
     }
 }

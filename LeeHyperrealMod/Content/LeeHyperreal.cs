@@ -1007,7 +1007,8 @@ namespace LeeHyperrealMod.Modules.Survivors
             SkinDef comradeSkin = Modules.Skins.CreateSkinDef(PLUGIN_PREFIX + "PROSPECTOR_ALT_SKIN_NAME",
                 LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("ProspectorSkinRedIcon"),
                 defaultRendererinfos,
-                prefabCharacterModel.gameObject);
+                prefabCharacterModel.gameObject,
+                Modules.Unlockables.masteryUnlockableDef);
 
             //adding the mesh replacements as above. 
             //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved
