@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3940174790
+CRC: 3134798574
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 540b62d30fb49b8d302e68f766d59a82
+    Hash: bc641a746aa32eefe9e2890c3d3641e6
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 204d51099c2276d67422bd1ceefe5149
+    Hash: 2963416522028d4f30da5ca312090ef5
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -46,9 +46,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: c6e70bb247a8cd74aad98f5aca67911d, type: 3}
 - Class: 114
@@ -401,6 +401,7 @@ Assets:
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md355.mat
 - Assets/LeeHyperrealAssets/Mesh/leeTorsoClothMesh.mesh
 - Assets/modelresource/effect/texture/mask210.png
+- Assets/LeeHyperrealAssets/Icons/ComradeCharacterIcon.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk42fire.prefab
 - Assets/modelresource/effect/mesh/liuguang015.asset
 - Assets/LeeHyperrealAssets/Animation/BodyAnims/primary3.anim
@@ -558,6 +559,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/AscendDescendMidpoint.anim
 - Assets/modelresource/effect/texture/mask237.png
 - Assets/LeeHyperrealAssets/AnimationCurves/fxr4liangatk03dilie2.asset
+- Assets/LeeHyperrealAssets/Texture/Albedo/leeBoxGunTexEmissionOld.png
 - Assets/modelresource/effect/mesh/e3superliboxmd1401_0.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md387.mat
 - Assets/modelresource/effect/texture/liuguang028.png
@@ -571,6 +573,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Animation/SuperRifleAnimations/Rifle_Attack23.anim
 - Assets/LeeHyperrealAssets/Mesh/leeGunCaseMesh.mesh
 - Assets/modelresource/effect/gpuparticles/fxr4liangmd010011gpu/fxr4liangatk25/10.asset
+- Assets/LeeHyperrealAssets/Icons/ProspectorCharacterIcon.png
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatk41text_14.asset
 - Assets/modelresource/effect/material/maskscene102.mat
 - Assets/modelresource/effect/texture/dilie402.png
@@ -660,7 +663,9 @@ Assets:
 - Assets/LeeHyperrealAssets/LeeHealth.prefab
 - Assets/LeeHyperrealAssets/Mesh/leeSuperRilfeAlphaMeshBlend.mesh
 - Assets/LeeHyperrealAssets/Animation/BodyAnims/runstart.anim
+- Assets/LeeHyperrealAssets/Texture/Albedo/leeLegTexEmissionOld.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/SnipeExit.anim
+- Assets/LeeHyperrealAssets/Texture/Albedo/leeSubmachineTexEmissionOld.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md748.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk34dilie.prefab
 - Assets/LeeHyperrealAssets/Material/CloneSkinMaterial/skinCloneFace.mat
@@ -1336,6 +1341,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Material/leeEffectPistol2Mat.mat
 - Assets/modelresource/effect/texture/mask435.png
 - Assets/modelresource/effect/texture/liuguang203.png
+- Assets/LeeHyperrealAssets/Texture/Albedo/FxE3SuperlicannonMd010011EmissionOld.png
 - Assets/modelresource/effect/material/path056700.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md754.mat
 - Assets/modelresource/effect/texture/wuti307.png
@@ -1363,6 +1369,7 @@ Assets:
 - Assets/modelresource/effect/texture/mask115clamp.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangmove01.prefab
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liangboardact1004.mat
+- Assets/LeeHyperrealAssets/Texture/Albedo/leeTorsoTexEmissionOld.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnims/yellowOrb2.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk51sound.prefab
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Unrenamed_Originals Left/Armature_Armature_Attack33_Base

@@ -26,6 +26,9 @@ namespace LeeHyperrealMod.Modules
         internal static Material yellowOrbMat;
         internal static Material redOrbMat;
         internal static Material UIFadeMat;
+        internal static Sprite prospectorSprite;
+        internal static Sprite comradeSprite;
+        internal static Sprite leeIconSprite;
 
         internal static GameObject ultimateCameraObject;
         internal static GameObject domainUltimateCameraObject;
@@ -162,6 +165,10 @@ namespace LeeHyperrealMod.Modules
             healthPrefabs = mainAssetBundle.LoadAsset<GameObject>("LeeHealth");
             orbsUIObject = mainAssetBundle.LoadAsset<GameObject>("Orbs");
             spinnyIconUIObject = mainAssetBundle.LoadAsset<GameObject>("Ult Base");
+
+            prospectorSprite = mainAssetBundle.LoadAsset<Sprite>("ProspectorCharacterIcon");
+            comradeSprite = mainAssetBundle.LoadAsset<Sprite>("ComradeCharacterIcon");
+            leeIconSprite = mainAssetBundle.LoadAsset<Sprite>("LeeCharacterIcon");
 
             UIFadeMat = mainAssetBundle.LoadAsset<Material>("UIFadeMat");
 

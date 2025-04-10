@@ -155,6 +155,7 @@ namespace LeeHyperrealMod
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.DoInitialSightResponse += BrotherSpeechDriver_DoInitialSightResponse;
             On.RoR2.UI.MainMenu.BaseMainMenuScreen.Awake += BaseMainMenuScreen_Awake;
             On.RoR2.UI.LoadoutPanelController.Row.FromSkillSlot += Row_FromSkillSlot;
+            On.RoR2.UI.CharacterSelectController.Awake += CharacterSelectController_Awake;
 
             //On.RoR2.CharacterBody.Update += CharacterBody_Update;
 
@@ -166,6 +167,19 @@ namespace LeeHyperrealMod
             if (isAutoSprintActive) 
             {
                 SetupAutoSprintBlacklist();
+            }
+        }
+
+        private void CharacterSelectController_Awake(On.RoR2.UI.CharacterSelectController.orig_Awake orig, CharacterSelectController self)
+        {
+            //Add the Lee menu listener controller.
+            orig(self);
+
+            LeeHyperrealCharacterMenuListener listener = self.GetComponent<LeeHyperrealCharacterMenuListener>();
+
+            if (!listener) 
+            {
+                listener = self.gameObject.AddComponent<LeeHyperrealCharacterMenuListener>();
             }
         }
 

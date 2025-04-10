@@ -234,6 +234,37 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 Debug.Log("Lee: Hyperreal - UI needs to Reinit!");
             }
+
+            if (Modules.Config.loreMode.Value)
+            {
+                switch (characterBody.skinIndex)
+                {
+                    case 0:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.prospectorSprite.texture;
+                        break;
+                    case 1:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.comradeSprite.texture;
+                        break;
+                    default:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.leeIconSprite.texture;
+                        break;
+                }
+            }
+            else
+            {
+                switch (characterBody.skinIndex)
+                {
+                    case 3:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.prospectorSprite.texture;
+                        break;
+                    case 4:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.comradeSprite.texture;
+                        break;
+                    default:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.leeIconSprite.texture;
+                        break;
+                }
+            }
         }
 
         public bool IsRedSkin() 

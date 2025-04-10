@@ -41,7 +41,7 @@ namespace LeeHyperrealMod.Modules.Survivors
             bodyNameToken = PLUGIN_PREFIX + "NAME",
             subtitleNameToken = PLUGIN_PREFIX + "SUBTITLE",
 
-            characterPortrait = LeeHyperrealAssets.mainAssetBundle.LoadAsset<Texture>("LeeCharacterIcon"),
+            characterPortrait = Modules.Config.loreMode.Value ? LeeHyperrealAssets.mainAssetBundle.LoadAsset<Texture>("ProspectorCharacterIcon") : LeeHyperrealAssets.mainAssetBundle.LoadAsset<Texture>("LeeCharacterIcon"),
             bodyColor = Modules.StaticValues.bodyColor,
             aimOriginPosition = new Vector3(0f, 0f ,0f),
 
