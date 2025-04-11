@@ -165,50 +165,56 @@ namespace LeeHyperrealMod.Modules
         public static void ModifyXEffectOnRenderer(Renderer rend, Color newColor) 
         {
             //Check if the material is Xeffect
-            if (rend.material.shader.name == "Unlit/XEffect")
+            foreach (Material mat in rend.materials) 
             {
-                //Get New Colour, figure out percentages for each and spread across colours in the same intensity
-                float oldR = rend.material.GetFloat("_EffectBrightnessR");
-                float oldG = rend.material.GetFloat("_EffectBrightnessG");
-                float oldB = rend.material.GetFloat("_EffectBrightnessB");
+                if (mat.shader.name == "Unlit/XEffect")
+                {
+                    //Get New Colour, figure out percentages for each and spread across colours in the same intensity
+                    float oldR = mat.GetFloat("_EffectBrightnessR");
+                    float oldG = mat.GetFloat("_EffectBrightnessG");
+                    float oldB = mat.GetFloat("_EffectBrightnessB");
 
-                float totalToDistribute = oldR + oldG + oldB;
+                    float totalToDistribute = oldR + oldG + oldB;
 
-                float totalColourVal = newColor.r + newColor.g + newColor.b;
+                    float totalColourVal = newColor.r + newColor.g + newColor.b;
 
-                float newR = (newColor.r / totalColourVal) * totalToDistribute;
-                float newG = (newColor.g / totalColourVal) * totalToDistribute;
-                float newB = (newColor.b / totalColourVal) * totalToDistribute;
+                    float newR = (newColor.r / totalColourVal) * totalToDistribute;
+                    float newG = (newColor.g / totalColourVal) * totalToDistribute;
+                    float newB = (newColor.b / totalColourVal) * totalToDistribute;
 
-                // Modify the following properties:
-                rend.material.SetFloat("_EffectBrightnessR", newR);
-                rend.material.SetFloat("_EffectBrightnessG", newG);
-                rend.material.SetFloat("_EffectBrightnessB", newB);
+                    // Modify the following properties:
+                    mat.SetFloat("_EffectBrightnessR", newR);
+                    mat.SetFloat("_EffectBrightnessG", newG);
+                    mat.SetFloat("_EffectBrightnessB", newB);
+                }
             }
         }
 
         private static void ModifyNoBatchingRenderers(Renderer rend, Color newColor)
         {
-            //Check if the material is Xeffect
-            if (rend.material.shader.name == "Unlit/EffectNoBatching")
+            foreach (Material mat in rend.materials)
             {
-                //Get New Colour, figure out percentages for each and spread across colours in the same intensity
-                float oldR = rend.material.GetFloat("_EffectBrightnessR");
-                float oldG = rend.material.GetFloat("_EffectBrightnessG");
-                float oldB = rend.material.GetFloat("_EffectBrightnessB");
+                //Check if the material is Xeffect
+                if (mat.shader.name == "Unlit/EffectNoBatching")
+                {
+                    //Get New Colour, figure out percentages for each and spread across colours in the same intensity
+                    float oldR = mat.GetFloat("_EffectBrightnessR");
+                    float oldG = mat.GetFloat("_EffectBrightnessG");
+                    float oldB = mat.GetFloat("_EffectBrightnessB");
 
-                float totalToDistribute = oldR + oldG + oldB;
+                    float totalToDistribute = oldR + oldG + oldB;
 
-                float totalColourVal = newColor.r + newColor.g + newColor.b;
+                    float totalColourVal = newColor.r + newColor.g + newColor.b;
 
-                float newR = (newColor.r / totalColourVal) * totalToDistribute;
-                float newG = (newColor.g / totalColourVal) * totalToDistribute;
-                float newB = (newColor.b / totalColourVal) * totalToDistribute;
+                    float newR = (newColor.r / totalColourVal) * totalToDistribute;
+                    float newG = (newColor.g / totalColourVal) * totalToDistribute;
+                    float newB = (newColor.b / totalColourVal) * totalToDistribute;
 
-                // Modify the following properties:
-                rend.material.SetFloat("_EffectBrightnessR", newR);
-                rend.material.SetFloat("_EffectBrightnessG", newG);
-                rend.material.SetFloat("_EffectBrightnessB", newB);
+                    // Modify the following properties:
+                    mat.SetFloat("_EffectBrightnessR", newR);
+                    mat.SetFloat("_EffectBrightnessG", newG);
+                    mat.SetFloat("_EffectBrightnessB", newB);
+                }
             }
         }
 
@@ -234,9 +240,22 @@ namespace LeeHyperrealMod.Modules
                 // Modify the following properties:
                 material.SetFloat("_R_Intensity", newR);
                 material.SetFloat("_G_Intensity", newG);
-                material.SetFloat("_B_Intensity", newB);
+                material.SetFloat("_B_Intensity", newB); 
 
                 player.mat = material;
+            }
+        }
+
+
+        private static void ModifyCloneRenderers(Renderer rend, Color newColor)
+        {
+            foreach (Material mat in rend.materials)
+            {
+                //Check if the material is Xeffect
+                if (mat.shader.name == "ASESampleShaders/DitheringFadeModify")
+                {
+                    mat.SetColor("_Tint", newColor);
+                }
             }
         }
 
@@ -341,6 +360,7 @@ namespace LeeHyperrealMod.Modules
                     ModifyXEffectOnRenderer(rend, color);
                     ModifyNoBatchingRenderers(rend, color);
                     ModifySnipeFloorRenderer(rend, color);
+                    ModifyCloneRenderers(rend, color);
                 }
 
                 Light[] lights = clone.GetComponentsInChildren<Light>(true);
