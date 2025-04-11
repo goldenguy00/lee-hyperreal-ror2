@@ -1,4 +1,5 @@
 ﻿using RoR2;
+using RoR2.SurvivorMannequins;
 using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Controllers
@@ -9,8 +10,11 @@ namespace LeeHyperrealMod.Content.Controllers
         ChildLocator childLocator;
         Transform bornPackTransform;
         Transform baseTransform;
+        SurvivorMannequinSlotController slotController;
+        Loadout loadout;
         int selectedNum;
         bool playedSound;
+        BodyIndex leeIndex;
 
         float duration = 6f;
         float timer = 0f;
@@ -19,6 +23,8 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             animator = GetComponent<Animator>();
             childLocator = GetComponent<ChildLocator>();
+            slotController = this.gameObject.transform.parent.GetComponent<SurvivorMannequinSlotController>();
+            loadout = slotController.currentLoadout;
 
             bornPackTransform = childLocator.FindChild("LeeBornAnimPack");
             baseTransform = childLocator.FindChild("BaseTransform"); 
@@ -26,6 +32,9 @@ namespace LeeHyperrealMod.Content.Controllers
             selectedNum = GenerateRandomNum();
             timer = 0f;
             SetDisableClone();
+
+            leeIndex = BodyCatalog.FindBodyIndex("LeeHyperrealBody");
+            loadout.bodyLoadoutManager.GetSkinIndex(leeIndex);
         }
 
         public void SetDisableClone() 
