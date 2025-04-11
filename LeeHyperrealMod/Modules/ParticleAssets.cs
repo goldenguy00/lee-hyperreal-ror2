@@ -458,9 +458,39 @@ namespace LeeHyperrealMod.Modules
             PopulateDisplayParticleAssets();
             #endregion
 
+            #region 
+            PopulateMasterClonePrefabs();
+            #endregion
+
             #region Misc
             PopulateMiscAssets();
             #endregion
+        }
+
+        private static void PopulateMasterClonePrefabs()
+        {
+            GameObject leeMasterClone = GetGameObjectFromBundle("LeeMasterClone");
+            leeMasterClone.AddComponent<LeeHyperrealCloneController>();
+            GameObject scarletMasterClone = GetGameObjectFromBundle("ScarletMasterClone");
+            scarletMasterClone.AddComponent<LeeHyperrealCloneController>();
+            GameObject prospectorMasterClone = GetGameObjectFromBundle("ProspectorMasterClone");
+            prospectorMasterClone.AddComponent<LeeHyperrealCloneController>();
+            GameObject comradeMasterClone = GetGameObjectFromBundle("ComradeMasterClone");
+            comradeMasterClone.AddComponent<LeeHyperrealCloneController>();
+
+            ParticleVariant leeMasterObjectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, leeMasterClone);
+            leeMasterObjectVariant.shouldVariantCloneUseModify = false;
+            ParticleVariant scarletMasterObjectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, scarletMasterClone);
+            scarletMasterObjectVariant.shouldVariantCloneUseModify = false;
+            ParticleVariant prospectorMasterObjectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, prospectorMasterClone);
+            prospectorMasterObjectVariant.shouldVariantCloneUseModify = false;
+            ParticleVariant comradeMasterObjectVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, comradeMasterClone);
+            comradeMasterObjectVariant.shouldVariantCloneUseModify = false;
+
+            particleDictionary.Add("leeMasterClone", leeMasterObjectVariant);
+            particleDictionary.Add("scarletMasterClone", scarletMasterObjectVariant);
+            particleDictionary.Add("prospectorMasterClone", prospectorMasterObjectVariant);
+            particleDictionary.Add("comradeMasterClone", comradeMasterObjectVariant);
         }
 
         private static void PopulateMiscAssets()
@@ -673,10 +703,10 @@ namespace LeeHyperrealMod.Modules
             ParticleVariant yellowOrbDomainBulletLeftoversVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbDomainBulletLeftovers);
             yellowOrbDomainBulletLeftoversVariant.shouldVariantCloneUseModify = false;
 
-            GameObject yellowOrbDomainClone = GetGameObjectFromBundle("YellowOrbDomainClone");
-            LeeHyperrealCloneFlicker flicker = yellowOrbDomainClone.AddComponent<LeeHyperrealCloneFlicker>();
-            ParticleVariant yellowOrbDomainCloneVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbDomainClone);
-            yellowOrbDomainCloneVariant.shouldVariantCloneUseModify = false;
+            //GameObject yellowOrbDomainClone = GetGameObjectFromBundle("YellowOrbDomainClone");
+            //LeeHyperrealCloneFlicker flicker = yellowOrbDomainClone.AddComponent<LeeHyperrealCloneFlicker>();
+            //ParticleVariant yellowOrbDomainCloneVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbDomainClone);
+            //yellowOrbDomainCloneVariant.shouldVariantCloneUseModify = false;
 
             particleDictionary.Add("yellowOrbSwing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbSwing));
             particleDictionary.Add("yellowOrbSwingHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbSwingHit));
@@ -684,7 +714,7 @@ namespace LeeHyperrealMod.Modules
             particleDictionary.Add("yellowOrbMultishot", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbMultishot));
             particleDictionary.Add("yellowOrbMultishotHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, yellowOrbMultishotHit));
             particleDictionary.Add("yellowOrbDomainBulletLeftovers", yellowOrbDomainBulletLeftoversVariant);
-            particleDictionary.Add("yellowOrbDomainClone", yellowOrbDomainCloneVariant);
+            //particleDictionary.Add("yellowOrbDomainClone", yellowOrbDomainCloneVariant);
         }
 
         private static void PopulateBlueOrbAssets()
@@ -723,15 +753,17 @@ namespace LeeHyperrealMod.Modules
             GameObject redOrbDomainHit = GetGameObjectFromBundle("fxr4liangatk14fshit01");
             ModifyEffect(redOrbDomainHit, "Play_c_liRk4_imp_ex_2_2", false);
 
-            GameObject redOrbDomainClone = GetGameObjectFromBundle("RedOrbDomainClone");
-            redOrbDomainClone.AddComponent<LeeHyperrealCloneFlicker>();
-            ParticleVariant redOrbDomainCloneVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainClone);
-            redOrbDomainCloneVariant.shouldVariantCloneUseModify = false;
+            //GameObject redOrbDomainClone = GetGameObjectFromBundle("RedOrbDomainClone");
+            //redOrbDomainClone.AddComponent<LeeHyperrealCloneFlicker>();
+            //redOrbDomainClone.AddComponent<LeeHyperrealCloneMeshSwapper>();
+            //ParticleVariant redOrbDomainCloneVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainClone);
+            //redOrbDomainCloneVariant.shouldVariantCloneUseModify = false;
 
-            GameObject redOrbDomainCloneStart = GetGameObjectFromBundle("RedOrbDomainCloneStart");
-            redOrbDomainCloneStart.AddComponent<LeeHyperrealCloneFlicker>();
-            ParticleVariant redOrbDomainCloneStartVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainCloneStart);
-            redOrbDomainCloneStartVariant.shouldVariantCloneUseModify = false;
+            //GameObject redOrbDomainCloneStart = GetGameObjectFromBundle("RedOrbDomainCloneStart");
+            //redOrbDomainCloneStart.AddComponent<LeeHyperrealCloneFlicker>();
+            //redOrbDomainClone.AddComponent<LeeHyperrealCloneMeshSwapper>();
+            //ParticleVariant redOrbDomainCloneStartVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainCloneStart);
+            //redOrbDomainCloneStartVariant.shouldVariantCloneUseModify = false;
 
             particleDictionary.Add("redOrbSwing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbSwing));
             particleDictionary.Add("redOrbHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbHit));
@@ -739,8 +771,8 @@ namespace LeeHyperrealMod.Modules
             particleDictionary.Add("redOrbPingGround", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbPingGround));
             particleDictionary.Add("redOrbDomainFloorImpact", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainFloorImpact));
             particleDictionary.Add("redOrbDomainHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, redOrbDomainHit));
-            particleDictionary.Add("redOrbDomainClone", redOrbDomainCloneVariant);
-            particleDictionary.Add("redOrbDomainCloneStart", redOrbDomainCloneStartVariant);
+            //particleDictionary.Add("redOrbDomainClone", redOrbDomainCloneVariant);
+            //particleDictionary.Add("redOrbDomainCloneStart", redOrbDomainCloneStartVariant);
         }
 
         private static void PopulatePrimary5Assets()

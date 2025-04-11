@@ -24,7 +24,6 @@ namespace LeeHyperrealMod.Content.Controllers
         public void Start() 
         {
             LoadoutPanel = this.gameObject.transform.Find("SafeArea/LeftHandPanel (Layer: Main)/SurvivorInfoPanel, Active (Layer: Secondary)/ContentPanel (Overview, Skills, Loadout)/LoadoutScrollContainer/LoadoutScrollPanel/LoadoutPanel").gameObject;
-            //survivorGrid = this.gameObject.transform.Find("SafeArea/LeftHandPanel (Layer: Main)/SurvivorChoiceGrid, Panel/SurvivorChoiceGridContainer/SurvivorGrid/").gameObject;
             Hook();
 
             eventSystemLocator = LoadoutPanel.GetComponent<MPEventSystemLocator>();

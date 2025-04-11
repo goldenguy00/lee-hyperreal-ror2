@@ -128,8 +128,10 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 
             if (domainController) 
             {
-                GameObject cloneObject = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("yellowOrbDomainClone", characterBody), baseTransform.transform.position, Quaternion.LookRotation(characterDirection.forward));
-                domainController.yellowCloneObjects.Add(cloneObject);
+                GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform.transform.position, Quaternion.LookRotation(characterDirection.forward));
+                LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();
+                cloneController.animationTrigger = "yellowDomain";
+                domainController.yellowCloneObjects.Add(domainClone);
             }
 
             if (base.isAuthority) 

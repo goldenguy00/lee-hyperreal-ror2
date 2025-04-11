@@ -93,6 +93,37 @@ namespace LeeHyperrealMod.Modules
         }
         public static Func<T[], T[]> AppendDel<T>(List<T> list) => (r) => Append(ref r, list);
 
+        public static string RetrieveClonePrefab(CharacterBody body) 
+        {
+            if (Modules.Config.loreMode.Value)
+            {
+                switch (body.skinIndex)
+                {
+                    case 0:
+                        return "prospectorMasterClone";
+                    case 1:
+                        return "comradeMasterClone";
+                    case 4:
+                        return "scarletMasterClone";
+                    default:
+                        return "leeMasterClone";
+                }
+            }
+            else
+            {
+                switch (body.skinIndex)
+                {
+                    case 2:
+                        return "scarletMasterClone";
+                    case 3:
+                        return "prospectorMasterClone";
+                    case 4:
+                        return "comradeMasterClone";
+                    default:
+                        return "leeMasterClone";
+                }
+            }
+        }
         public static void PlaySwingEffect(string muzzleString, float swingScale, GameObject effectPrefab, GameObject gameObject)
         {
             ModelLocator component = gameObject.GetComponent<ModelLocator>();

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.Modules;
-using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.Modules.Networking;
 using R2API.Networking;
 using System.Collections.Generic;
@@ -53,7 +52,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
 
         CharacterGravityParameters gravParams;
         CharacterGravityParameters oldGravParams;
-
+        public List<GameObject> domainClones;
         public override void OnEnter()
         {
             base.OnEnter();
@@ -62,6 +61,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             ultimateCameraController = gameObject.GetComponent<UltimateCameraController>();
             bulletController = gameObject.GetComponent<BulletController>();
             orbController = gameObject.GetComponent<OrbController>();
+            domainClones = new List<GameObject>();
 
             if (orbController)
             {
@@ -171,7 +171,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             Transform baseTransform = childLocator.FindChild("BaseTransform");
             Vector3 targetDir = Camera.main.transform.position - baseTransform.position;
 
-            if (base.isAuthority) 
+            //SPAWN ONLY FOR OTHER PEOPLE
+            if (!base.isAuthority) 
             {
                 EffectData effectData = new EffectData
                 {
@@ -191,6 +192,29 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone1", characterBody), effectData2, true);
                 EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone2", characterBody), effectData2, true);
                 EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone3", characterBody), effectData2, true);
+            }
+
+            //SPAWN FOR SELF ONLY
+            if (base.isAuthority) 
+            {
+                GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+                LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();
+                cloneController.animationTrigger = "ultDomain1";
+                cloneController.shouldFadeout = true;
+
+                GameObject domainClone2 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+                LeeHyperrealCloneController cloneController2 = domainClone2.GetComponent<LeeHyperrealCloneController>();
+                cloneController2.animationTrigger = "ultDomain2";
+                cloneController2.shouldFadeout = true;
+
+                GameObject domainClone3 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+                LeeHyperrealCloneController cloneController3 = domainClone3.GetComponent<LeeHyperrealCloneController>();
+                cloneController3.animationTrigger = "ultDomain3";
+                cloneController3.shouldFadeout = true;
+
+                domainClones.Add(domainClone);
+                domainClones.Add(domainClone2);
+                domainClones.Add(domainClone3);
             }
 
             if (NetworkServer.active)
@@ -266,6 +290,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             {
                 bulletController.snipeAerialPlatform.GetComponent<DestroyPlatformOnDelay>().StartDestroying();
                 bulletController.snipeAerialPlatform = null;
+            }
+
+            if (base.isAuthority) 
+            {
+                foreach (GameObject obj in domainClones) 
+                {
+                    Destroy(obj);
+                }
             }
         }
 

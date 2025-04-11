@@ -118,7 +118,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
 
             if (domainController)
             {
-                GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainCloneStart", characterBody), baseTransform.position, Quaternion.LookRotation(characterDirection.forward));
+                GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform.position, Quaternion.LookRotation(characterDirection.forward));
+                LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();
+                cloneController.animationTrigger = "redDomain";
                 domainController.redCloneObjects.Add(domainClone);
             }
 
@@ -193,7 +195,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 if (domainController)
                 {
                     spawnedClone = true;
-                    GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("redOrbDomainClone", characterBody), positionToSpawnClone, Quaternion.LookRotation(characterDirection.forward));
+                    GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), positionToSpawnClone, Quaternion.LookRotation(characterDirection.forward));
+                    LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();
+                    cloneController.animationTrigger = "redDomainStart";
                     domainController.redCloneObjects.Add(domainClone);
                 }
             }
