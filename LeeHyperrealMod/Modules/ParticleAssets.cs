@@ -190,7 +190,7 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
-        private static void ModifyNoBatchingRenderers(Renderer rend, Color newColor)
+        public static void ModifyNoBatchingRenderers(Renderer rend, Color newColor)
         {
             foreach (Material mat in rend.materials)
             {
@@ -218,7 +218,7 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
-        private static void ModifyGPUParticles(GPUParticlePlayer player, Color newColor) 
+        public static void ModifyGPUParticles(GPUParticlePlayer player, Color newColor) 
         {
             if (player.mat.shader.name == "Unlit/GPUParticle")
             {
@@ -247,7 +247,7 @@ namespace LeeHyperrealMod.Modules
         }
 
 
-        private static void ModifyCloneRenderers(Renderer rend, Color newColor)
+        public static void ModifyCloneRenderers(Renderer rend, Color newColor)
         {
             foreach (Material mat in rend.materials)
             {
@@ -259,7 +259,7 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
-        private static void ModifySnipeFloorRenderer(Renderer rend, Color newColor)
+        public static void ModifySnipeFloorRenderer(Renderer rend, Color newColor)
         {
             //Check if the material is Xeffect
             if (rend.material.shader.name == "Snipe Floor")
@@ -268,7 +268,7 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
-        private static void ModifyLights(Light light, Color color)
+        public static void ModifyLights(Light light, Color color)
         {
             if (light) 
             {

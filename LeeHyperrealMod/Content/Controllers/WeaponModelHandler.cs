@@ -1,8 +1,10 @@
 ﻿using BepInEx.Bootstrap;
 using EmotesAPI;
+using LeeHyperrealMod.ParticleScripts;
 using RoR2;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using UnityEngine;
 
@@ -102,7 +104,53 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void ChangeFlashEffect()
         {
+            UnityEngine.Color color = new UnityEngine.Color(0f, 0f, 0f);
+            bool skip = true;
 
+            if (Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)characterBody.skinIndex)) 
+            {
+                color = Modules.ParticleAssets.ORANGE_PARTICLE_COLOR;
+                skip = false;
+            }
+
+            if (Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)characterBody.skinIndex))
+            {
+                color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE_COLOR;
+                skip = false;
+            }
+
+            if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)characterBody.skinIndex))
+            {
+                color = Modules.ParticleAssets.RED_PARTICLE_COLOR;
+                skip = false;
+            }
+
+            if (skip) return;
+
+            GameObject[] objToModify = { boxFlashEffect.gameObject, rifleFlashEffect.gameObject };
+
+            foreach (GameObject obj in objToModify) 
+            {
+                Renderer[] rends = obj.GetComponentsInChildren<Renderer>();
+                foreach (Renderer rend in rends)
+                {
+                    //Modify with the new colour on XEffect, may need more functions to convert more later
+                    Modules.ParticleAssets.ModifyXEffectOnRenderer(rend, color);
+                    Modules.ParticleAssets.ModifyNoBatchingRenderers(rend, color);
+                }
+
+                Light[] lights = obj.GetComponentsInChildren<Light>(true);
+                foreach (Light light in lights)
+                {
+                    Modules.ParticleAssets.ModifyLights(light, color);
+                }
+
+                GPUParticlePlayer[] gpuPlayers = obj.GetComponentsInChildren<GPUParticlePlayer>();
+                foreach (GPUParticlePlayer player in gpuPlayers)
+                {
+                    Modules.ParticleAssets.ModifyGPUParticles(player, color);
+                }
+            }
         }
 
         private void ChangeLaserColour()
