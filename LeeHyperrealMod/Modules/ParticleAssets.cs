@@ -11,15 +11,29 @@ namespace LeeHyperrealMod.Modules
 {
     internal class ParticleAssets
     {
+        // BLUE
         internal static string DEFAULT_PARTICLE_VARIANT = "default";
+     
         internal static string RED_PARTICLE_VARIANT = "red";
         internal static Color RED_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
 
         internal static string ORANGE_PARTICLE_VARIANT = "orange";
         internal static Color ORANGE_PARTICLE_COLOR = new Color(1f, 30f/255f, 0f);
 
+        internal static string YELLOW_PARTICLE_VARIANT = "yellow";
+        internal static Color YELLOW_PARTICLE_COLOR = new Color(1f, 1f, 0f);
+
+        internal static string GREEN_PARTICLE_VARIANT = "green";
+        internal static Color GREEN_PARTICLE_COLOR = new Color(0f, 1f, 0f);
+
         internal static string LIGHTBLUE_PARTICLE_VARIANT = "lightblue";
         internal static Color LIGHTBLUE_PARTICLE_COLOR = new Color(0, 247f / 255f, 1f);
+
+        internal static string VIOLET_PARTICLE_VARIANT = "violet";
+        internal static Color VIOLET_PARTICLE_COLOR = new Color(132f / 255f, 18f / 255f, 1f);
+
+        internal static string PINK_PARTICLE_VARIANT = "pink";
+        internal static Color PINK_PARTICLE_COLOR = new Color(1, 105f / 255f, 180f / 255f);
 
         //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
@@ -76,11 +90,11 @@ namespace LeeHyperrealMod.Modules
             // Generate Colour variants
             GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR);
             GenerateColorVariant(ORANGE_PARTICLE_VARIANT, ORANGE_PARTICLE_COLOR);
+            GenerateColorVariant(YELLOW_PARTICLE_VARIANT, YELLOW_PARTICLE_COLOR);
+            GenerateColorVariant(GREEN_PARTICLE_VARIANT, GREEN_PARTICLE_COLOR);
             GenerateColorVariant(LIGHTBLUE_PARTICLE_VARIANT, LIGHTBLUE_PARTICLE_COLOR);
-            //GenerateColorVariant("yellow", new Color(1f, 1f, 0f));
-            //GenerateColorVariant("green",  new Color(0f, 1f, 0f));
-            //GenerateColorVariant("violet", new Color(132f/255f, 18f/255f, 1f));
-            //GenerateColorVariant("pink", new Color(1, 105f/255f, 180f/255f));
+            GenerateColorVariant(VIOLET_PARTICLE_VARIANT, VIOLET_PARTICLE_COLOR);
+            GenerateColorVariant(PINK_PARTICLE_VARIANT, PINK_PARTICLE_COLOR);
         }
 
         private static void UpdateAllBundleMaterials()
@@ -308,6 +322,29 @@ namespace LeeHyperrealMod.Modules
             {
                 return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
             }
+
+            //Check if the user has selected a passive instead'
+            switch (body.GetComponent<LeeHyperrealPassive>().GetVFXPassive()) 
+            {
+                case LeeHyperrealPassive.VFXPassive.RED:
+                    return variants.colourVariants[RED_PARTICLE_VARIANT];
+                case LeeHyperrealPassive.VFXPassive.ORANGE:
+                    return variants.colourVariants[ORANGE_PARTICLE_VARIANT];
+                case LeeHyperrealPassive.VFXPassive.YELLOW:
+                    return variants.colourVariants[YELLOW_PARTICLE_VARIANT];
+                case LeeHyperrealPassive.VFXPassive.GREEN:
+                    return variants.colourVariants[GREEN_PARTICLE_VARIANT];
+                case LeeHyperrealPassive.VFXPassive.BLUE:
+                    return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
+                case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
+                    return variants.colourVariants[LIGHTBLUE_PARTICLE_VARIANT];
+                case LeeHyperrealPassive.VFXPassive.VIOLET:
+                    return variants.colourVariants[VIOLET_PARTICLE_VARIANT];
+                case LeeHyperrealPassive.VFXPassive.PINK:
+                    return variants.colourVariants[PINK_PARTICLE_VARIANT];
+            }
+
+            //Well shit, they chose default, go back to the usual programming.
 
             //Get Skin index
             uint skinIndex = body.skinIndex;
