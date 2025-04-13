@@ -26,6 +26,7 @@ namespace LeeHyperrealMod.Modules
         internal static Material yellowOrbMat;
         internal static Material redOrbMat;
         internal static Material UIFadeMat;
+        internal static Sprite scarletSprite;
         internal static Sprite prospectorSprite;
         internal static Sprite comradeSprite;
         internal static Sprite leeIconSprite;
@@ -169,6 +170,7 @@ namespace LeeHyperrealMod.Modules
             prospectorSprite = mainAssetBundle.LoadAsset<Sprite>("ProspectorCharacterIcon");
             comradeSprite = mainAssetBundle.LoadAsset<Sprite>("ComradeCharacterIcon");
             leeIconSprite = mainAssetBundle.LoadAsset<Sprite>("LeeCharacterIcon");
+            scarletSprite = mainAssetBundle.LoadAsset<Sprite>("ScarletRedeemerCharacterIcon");
 
             UIFadeMat = mainAssetBundle.LoadAsset<Material>("UIFadeMat");
 

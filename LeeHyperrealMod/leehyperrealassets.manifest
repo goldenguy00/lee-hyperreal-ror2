@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1470150495
+CRC: 345828238
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7cbdfc9ca551646143357e0ef12ebad4
+    Hash: 895b82e17279ea82fb80723592f7060c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -679,6 +679,7 @@ Assets:
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk02hit01 ORIGINAL.prefab
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md749.mat
 - Assets/modelresource/effect/prefab/fxsceneeffect/textures/wenli401a02sz256.png
+- Assets/LeeHyperrealAssets/Material/LeeScarletHairMat.mat
 - Assets/modelresource/effect/texture/wenli228_0.png
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatksuiping05_20.asset
 - Assets/modelresource/effect/texture/keji015.png
@@ -1505,6 +1506,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Material/ScarletRedeemer/scarletSemiGun.mat
 - Assets/modelresource/effect/texture/uitexture/fxuimain/wenli406.png
 - Assets/modelresource/effect/mesh/fxmb1baiyangnvmesh/baiyangnvplane802.asset
+- Assets/LeeHyperrealAssets/Icons/ScarletRedeemerCharacterIcon.png
 - Assets/modelresource/effect/texture/zha100.png
 - Assets/modelresource/effect/texture/wenli806.png
 - Assets/modelresource/effect/material/mask039506.mat

@@ -245,6 +245,9 @@ namespace LeeHyperrealMod.Content.Controllers
                     case 1:
                         characterBody.portraitIcon = Modules.LeeHyperrealAssets.comradeSprite.texture;
                         break;
+                    case 4:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.scarletSprite.texture;
+                        break;
                     default:
                         characterBody.portraitIcon = Modules.LeeHyperrealAssets.leeIconSprite.texture;
                         break;
@@ -254,6 +257,9 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 switch (characterBody.skinIndex)
                 {
+                    case 2:
+                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.scarletSprite.texture;
+                        break;
                     case 3:
                         characterBody.portraitIcon = Modules.LeeHyperrealAssets.prospectorSprite.texture;
                         break;

@@ -69,6 +69,9 @@ namespace LeeHyperrealMod.Content.Controllers
                         case 1:
                             self.survivorIcon.texture = Modules.LeeHyperrealAssets.comradeSprite.texture;
                             break;
+                        case 4:
+                            self.survivorIcon.texture = Modules.LeeHyperrealAssets.scarletSprite.texture;
+                            break;
                         default:
                             self.survivorIcon.texture = Modules.LeeHyperrealAssets.leeIconSprite.texture;
                             break;
@@ -78,6 +81,9 @@ namespace LeeHyperrealMod.Content.Controllers
                 {
                     switch (loadout.bodyLoadoutManager.GetSkinIndex(leeIndex))
                     {
+                        case 2:
+                            self.survivorIcon.texture = Modules.LeeHyperrealAssets.scarletSprite.texture;
+                            break;
                         case 3:
                             self.survivorIcon.texture = Modules.LeeHyperrealAssets.prospectorSprite.texture;
                             break;
