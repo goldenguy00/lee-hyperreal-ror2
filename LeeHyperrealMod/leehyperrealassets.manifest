@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3713449291
+CRC: 3631778764
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5dd13e51c9fde33d742c885b05bea67a
+    Hash: ebe6f6a58bafe734475cb0ed6340d43f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -1754,6 +1754,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Animation/BodyAnims/primary1.anim
 - Assets/LeeHyperrealAssets/Texture/Albedo/leeSubmachineTex.png
 - Assets/modelresource/effect/mesh/heondilie700_0.asset
+- Assets/LeeHyperrealAssets/Animation/CloneFolder/glitchyToFade.anim
 - Assets/modelresource/effect/texture/mask132.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md377.mat
 - Assets/modelresource/effect/material/dilie01101.mat

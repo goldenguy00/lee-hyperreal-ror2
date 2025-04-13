@@ -7,6 +7,7 @@ using RoR2;
 using LeeHyperrealMod.Modules;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
 {
@@ -34,6 +35,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
 
         public bool shouldForceUpwards;
         DamageTypeCombo GenericDamageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified);
+
+        public List<GameObject> domainClones;
+
         /*
         Domain shift
         Sets isDomain in domain controller
@@ -46,6 +50,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
         public override void OnEnter()
         {
             base.OnEnter();
+            domainClones = new List<GameObject>();
             domainController = this.GetComponent<LeeHyperrealDomainController>();
             weaponModelHandler = this.GetComponent<WeaponModelHandler>();
             aoePos = this.gameObject.transform.position;
@@ -160,6 +165,28 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
 
             weaponModelHandler.TransitionState(WeaponModelHandler.WeaponState.RIFLE);
             weaponModelHandler.SetLaserState(true);
+
+            childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
+            Vector3 targetDir = Camera.main.transform.position - baseTransform.position;
+
+            GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+            LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();
+            cloneController.animationTrigger = "ultDomain1Reverse";
+            cloneController.shouldFadeout = true;
+
+            GameObject domainClone2 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+            LeeHyperrealCloneController cloneController2 = domainClone2.GetComponent<LeeHyperrealCloneController>();
+            cloneController2.animationTrigger = "ultDomain2Reverse";
+            cloneController2.shouldFadeout = true;
+
+            GameObject domainClone3 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+            LeeHyperrealCloneController cloneController3 = domainClone3.GetComponent<LeeHyperrealCloneController>();
+            cloneController3.animationTrigger = "ultDomain3Reverse";
+            cloneController3.shouldFadeout = true;
+
+            domainClones.Add(domainClone);
+            domainClones.Add(domainClone2);
+            domainClones.Add(domainClone3);
         }
 
         public void PlayAnimation() 
@@ -177,6 +204,11 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
             {
                 weaponModelHandler.TransitionState(WeaponModelHandler.WeaponState.SUBMACHINE);
                 weaponModelHandler.SetLaserState(false);
+            }
+
+            foreach (GameObject obj in domainClones)
+            {
+                Destroy(obj);
             }
         }
 

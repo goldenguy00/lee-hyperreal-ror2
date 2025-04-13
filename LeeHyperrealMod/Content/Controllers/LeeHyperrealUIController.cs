@@ -576,7 +576,15 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.redBaseHueOffset);
             }
-            else 
+            else if (isOrangeSkin())
+            {
+                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.orangeBaseHueOffset);
+            }
+            else if (isLightBlueSkin()) 
+            {
+                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.lightBlueBaseHueOffset);
+            }
+            else
             {
                 SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.defaultBaseHueOffset);
             }

@@ -127,13 +127,16 @@ There's no need for payment for mods, but a coffee would be nice once in awhile!
     - ethanol10 (Minor VFX creation)
 - Programming - Popcorn Factory team:
     - ethanol10 (Most of the mod programming and networking)
-    - teal5571 (Ultimate, Yellow/Red orb base functionality)
+    - teal5571 (Ultimate, Yellow/Red orb PoC)
+- RoR-ified skin:
+    - brynzananas (Prospector + Comrade skins)
 - Miscellaneous
     - Rob 
         - Character template
         - Notification style for bonus effects
     - nunchuk - Helping with Emotes
     - groove_salad - Shader Swapper
+    - Swuff (discord: en.wikipedia.org) - Icon Outlines
     - UnsavedTrash 
         - Helping with model and vfx
         - Icons

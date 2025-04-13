@@ -171,51 +171,24 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             Transform baseTransform = childLocator.FindChild("BaseTransform");
             Vector3 targetDir = Camera.main.transform.position - baseTransform.position;
 
-            //SPAWN ONLY FOR OTHER PEOPLE
-            if (!base.isAuthority) 
-            {
-                EffectData effectData = new EffectData
-                {
-                    origin = gameObject.transform.position,
-                    rotation = Quaternion.LookRotation(targetDir.normalized, Vector3.up),
-                    scale = 1.25f,
-                };
-                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainBulletFinisher", characterBody), effectData, true);
+            GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+            LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();
+            cloneController.animationTrigger = "ultDomain1";
+            cloneController.shouldFadeout = true;
 
-                EffectData effectData2 = new EffectData
-                {
-                    origin = gameObject.transform.position,
-                    rotation = Quaternion.LookRotation(targetDir.normalized, Vector3.up),
-                };
-                effectData2.SetChildLocatorTransformReference(base.gameObject, childLocator.FindChildIndex("BaseTransform"));
+            GameObject domainClone2 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+            LeeHyperrealCloneController cloneController2 = domainClone2.GetComponent<LeeHyperrealCloneController>();
+            cloneController2.animationTrigger = "ultDomain2";
+            cloneController2.shouldFadeout = true;
 
-                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone1", characterBody), effectData2, true);
-                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone2", characterBody), effectData2, true);
-                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainClone3", characterBody), effectData2, true);
-            }
+            GameObject domainClone3 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
+            LeeHyperrealCloneController cloneController3 = domainClone3.GetComponent<LeeHyperrealCloneController>();
+            cloneController3.animationTrigger = "ultDomain3";
+            cloneController3.shouldFadeout = true;
 
-            //SPAWN FOR SELF ONLY
-            if (base.isAuthority) 
-            {
-                GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
-                LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();
-                cloneController.animationTrigger = "ultDomain1";
-                cloneController.shouldFadeout = true;
-
-                GameObject domainClone2 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
-                LeeHyperrealCloneController cloneController2 = domainClone2.GetComponent<LeeHyperrealCloneController>();
-                cloneController2.animationTrigger = "ultDomain2";
-                cloneController2.shouldFadeout = true;
-
-                GameObject domainClone3 = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
-                LeeHyperrealCloneController cloneController3 = domainClone3.GetComponent<LeeHyperrealCloneController>();
-                cloneController3.animationTrigger = "ultDomain3";
-                cloneController3.shouldFadeout = true;
-
-                domainClones.Add(domainClone);
-                domainClones.Add(domainClone2);
-                domainClones.Add(domainClone3);
-            }
+            domainClones.Add(domainClone);
+            domainClones.Add(domainClone2);
+            domainClones.Add(domainClone3);
 
             if (NetworkServer.active)
             {
@@ -292,12 +265,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 bulletController.snipeAerialPlatform = null;
             }
 
-            if (base.isAuthority) 
+            foreach (GameObject obj in domainClones)
             {
-                foreach (GameObject obj in domainClones) 
-                {
-                    Destroy(obj);
-                }
+                Destroy(obj);
             }
         }
 
