@@ -93,10 +93,16 @@ namespace LeeHyperrealMod.Content.Controllers
             }
 
             ChangeLaserColour();
+            ChangeFlashEffect();
             superCannonEffect.gameObject.SetActive(false);
             SetLaserState(false);
             TransitionState(WeaponState.SUBMACHINE);
             Hook();
+        }
+
+        private void ChangeFlashEffect()
+        {
+
         }
 
         private void ChangeLaserColour()

@@ -18,6 +18,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         float duration = 6f;
         float timer = 0f;
+        uint skinIndex;
 
         public void Awake() 
         {
@@ -34,7 +35,8 @@ namespace LeeHyperrealMod.Content.Controllers
             SetDisableClone();
 
             leeIndex = BodyCatalog.FindBodyIndex("LeeHyperrealBody");
-            loadout.bodyLoadoutManager.GetSkinIndex(leeIndex);
+            skinIndex = loadout.bodyLoadoutManager.GetSkinIndex(leeIndex);
+            SetNewSkinForAll();
         }
 
         public void SetDisableClone() 
@@ -75,6 +77,11 @@ namespace LeeHyperrealMod.Content.Controllers
 
         public void Update() 
         {
+            if (skinIndex != loadout.bodyLoadoutManager.GetSkinIndex(leeIndex)) 
+            {
+                skinIndex = loadout.bodyLoadoutManager.GetSkinIndex(leeIndex);
+                SetNewSkinForAll();
+            }
 
             if (timer >= duration)
             {
@@ -94,7 +101,7 @@ namespace LeeHyperrealMod.Content.Controllers
             if (!playedSound) 
             {
                 playedSound = true;
-                if (Modules.Config.voiceEnabled.Value) 
+                if (Modules.Config.voiceEnabled.Value && !Modules.Survivors.LeeHyperreal.voiceDisabledSkins.Contains((int)skinIndex)) 
                 {
                     if (Modules.Config.voiceLanguageOption.Value == Modules.Config.VoiceLanguage.ENG)
                     {
@@ -114,6 +121,242 @@ namespace LeeHyperrealMod.Content.Controllers
                     Object.Instantiate(Modules.ParticleAssets.RetrieveParticleEffect("displayLandingEffect", Modules.ParticleAssets.DEFAULT_PARTICLE_VARIANT), baseTransform.position, Quaternion.identity, baseTransform);
                 }
             }
+        }
+
+        private void SetNewSkinForAll()
+        {
+            foreach (Transform obj in bornPackTransform) 
+            {
+                SetNewSkin(obj.gameObject, skinIndex);
+            }
+        }
+
+        private void SetNewSkin(GameObject obj, uint skinIndex)
+        {
+            if (Modules.Config.loreMode.Value)
+            {
+                switch (skinIndex)
+                {
+                    case 0: // Set Prospector
+                        SetProspectorSkin(obj);
+                        break;
+                    case 1:
+                        SetComradeSkin(obj);
+                        break;
+                    case 4:
+                        SetScarletSkin(obj);
+                        break;
+                    default:
+                        SetDefaultLeeSkin(obj);
+                        break;
+                }
+            }
+            else 
+            {
+                switch (skinIndex)
+                {
+                    case 2:
+                        SetScarletSkin(obj);
+                        break;
+                    case 3: // Set Prospector
+                        SetProspectorSkin(obj);
+                        break;
+                    case 4:
+                        SetComradeSkin(obj);
+                        break;
+                    default:
+                        SetDefaultLeeSkin(obj);
+                        break;
+                }
+            }
+        }
+
+        private void SetComradeSkin(GameObject obj)
+        {
+            SkinnedMeshRenderer box = obj.transform.Find("E3SuperliboxMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer submachine = obj.transform.Find("E3SuperligunMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer alpha = obj.transform.Find("R4LiangMd010011Alpha").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer body = obj.transform.Find("R4LiangMd010011Body").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer cloth = obj.transform.Find("R4LiangMd010011Cloth").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer down = obj.transform.Find("R4LiangMd010011Down").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer eye = obj.transform.Find("R4LiangMd010011Eye").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer face = obj.transform.Find("R4LiangMd010011Face").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer hair = obj.transform.Find("R4LiangMd010011Hair").gameObject.GetComponent<SkinnedMeshRenderer>();
+
+            //disable specific objs
+            box.gameObject.SetActive(true);
+            submachine.gameObject.SetActive(true);
+            alpha.gameObject.SetActive(false);
+            body.gameObject.SetActive(true);
+            cloth.gameObject.SetActive(true);
+            down.gameObject.SetActive(false);
+            eye.gameObject.SetActive(false);
+            face.gameObject.SetActive(false);
+            hair.gameObject.SetActive(true);
+
+            //Replace Meshes
+            box.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorBoxMesh");
+            submachine.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorPistolMesh");
+            body.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2Heart");
+            cloth.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2BodyComrade");
+            hair.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2HeadComrade");
+
+            //Replace Materials with clone mats
+            Material cloneComrade = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneComrade"));
+            box.material = cloneComrade;
+            submachine.material = cloneComrade;
+            body.material = cloneComrade;
+            cloth.material = cloneComrade;
+            hair.material = cloneComrade;
+
+            //Set Material color
+            cloneComrade.SetColor("_Tint", Modules.ParticleAssets.ORANGE_PARTICLE_COLOR);
+        }
+
+        private void SetDefaultLeeSkin(GameObject obj) 
+        {
+            SkinnedMeshRenderer box = obj.transform.Find("E3SuperliboxMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer submachine = obj.transform.Find("E3SuperligunMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer alpha = obj.transform.Find("R4LiangMd010011Alpha").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer body = obj.transform.Find("R4LiangMd010011Body").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer cloth = obj.transform.Find("R4LiangMd010011Cloth").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer down = obj.transform.Find("R4LiangMd010011Down").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer eye = obj.transform.Find("R4LiangMd010011Eye").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer face = obj.transform.Find("R4LiangMd010011Face").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer hair = obj.transform.Find("R4LiangMd010011Hair").gameObject.GetComponent<SkinnedMeshRenderer>();
+
+            //disable specific objs
+            box.gameObject.SetActive(true);
+            submachine.gameObject.SetActive(true);
+            alpha.gameObject.SetActive(true);
+            body.gameObject.SetActive(true);
+            cloth.gameObject.SetActive(true);
+            down.gameObject.SetActive(true);
+            eye.gameObject.SetActive(true);
+            face.gameObject.SetActive(true);
+            hair.gameObject.SetActive(true);
+
+            //Replace Meshes
+            box.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeGunCaseMeshBlend");
+            submachine.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeSubMachineGunMeshBlend");
+            alpha.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeChestLegPlateMeshBlend");
+            body.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeArmsMeshBlend");
+            cloth.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeTorsoClothMeshBlend");
+            down.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeLegsMeshBlend");
+            eye.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeEyeMeshBlend");
+            face.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeFaceMeshBlend");
+            hair.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeHairMeshBlend");
+
+            //Replace Materials with clone mats
+            box.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneSuperBox");
+            submachine.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("clonePistol");
+            alpha.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneAlpha");
+            body.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneBody");
+            cloth.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneCloth");
+            down.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneDown");
+            eye.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneEye");
+            face.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneFace");
+            hair.material = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneHair");
+        }
+
+        private void SetScarletSkin(GameObject obj)
+        {
+            SkinnedMeshRenderer box = obj.transform.Find("E3SuperliboxMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer submachine = obj.transform.Find("E3SuperligunMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer alpha = obj.transform.Find("R4LiangMd010011Alpha").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer body = obj.transform.Find("R4LiangMd010011Body").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer cloth = obj.transform.Find("R4LiangMd010011Cloth").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer down = obj.transform.Find("R4LiangMd010011Down").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer eye = obj.transform.Find("R4LiangMd010011Eye").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer face = obj.transform.Find("R4LiangMd010011Face").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer hair = obj.transform.Find("R4LiangMd010011Hair").gameObject.GetComponent<SkinnedMeshRenderer>();
+
+            //disable specific objs
+            box.gameObject.SetActive(true);
+            submachine.gameObject.SetActive(true);
+            alpha.gameObject.SetActive(true);
+            body.gameObject.SetActive(true);
+            cloth.gameObject.SetActive(true);
+            down.gameObject.SetActive(true);
+            eye.gameObject.SetActive(true);
+            face.gameObject.SetActive(true);
+            hair.gameObject.SetActive(true);
+
+            //Replace Meshes
+            box.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("E3SuperliboxMd030011");
+            submachine.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("E3SuperligunMd030011");
+            alpha.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("R4LiangMd019011Alpha");
+            body.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("R4LiangMd019011Body");
+            cloth.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("R4LiangMd019011Cloth");
+            down.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("R4LiangMd019011Down");
+            eye.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeEyeMeshBlend");
+            face.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("leeFaceMeshBlend");
+            hair.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("R4LiangMd019011Hair");
+
+            //Replace Materials with clone mats
+            box.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneScarletBox") );
+            submachine.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneScarletSemiGun"));
+            alpha.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneAlpha"));
+            body.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneScarletUpper"));
+            cloth.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneScarletUpper"));
+            down.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneScarletLower"));
+            eye.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneEye"));
+            face.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneFace"));
+            hair.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneScarletHair"));
+
+            box.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            submachine.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            alpha.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            body.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            cloth.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            down.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            eye.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            face.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            hair.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+        }
+
+
+        private void SetProspectorSkin(GameObject obj) 
+        {
+            SkinnedMeshRenderer box = obj.transform.Find("E3SuperliboxMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer submachine = obj.transform.Find("E3SuperligunMd010011").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer alpha = obj.transform.Find("R4LiangMd010011Alpha").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer body = obj.transform.Find("R4LiangMd010011Body").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer cloth = obj.transform.Find("R4LiangMd010011Cloth").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer down = obj.transform.Find("R4LiangMd010011Down").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer eye = obj.transform.Find("R4LiangMd010011Eye").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer face = obj.transform.Find("R4LiangMd010011Face").gameObject.GetComponent<SkinnedMeshRenderer>();
+            SkinnedMeshRenderer hair = obj.transform.Find("R4LiangMd010011Hair").gameObject.GetComponent<SkinnedMeshRenderer>();
+
+            //disable specific objs
+            box.gameObject.SetActive(true);
+            submachine.gameObject.SetActive(true);
+            alpha.gameObject.SetActive(false);
+            body.gameObject.SetActive(true);
+            cloth.gameObject.SetActive(true);
+            down.gameObject.SetActive(false);
+            eye.gameObject.SetActive(false);
+            face.gameObject.SetActive(false);
+            hair.gameObject.SetActive(true);
+
+            //Replace Meshes
+            box.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorBoxMesh");
+            submachine.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorPistolMesh");
+            //alpha.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorBoxMesh");
+            body.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2Heart");
+            cloth.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorCloth");
+            //down.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorBoxMesh");
+            //eye.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorBoxMesh");
+            //face.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2ProspectorBoxMesh");
+            hair.sharedMesh = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Mesh>("LeeRor2Head");
+
+            //Replace Materials with clone mats
+            Material cloneProspector = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneProspector"));
+            box.material = cloneProspector;
+            submachine.material = cloneProspector;
+            body.material = cloneProspector;
+            cloth.material = cloneProspector;
+            hair.material = cloneProspector;
         }
     }
 }
