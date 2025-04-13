@@ -406,6 +406,236 @@ namespace LeeHyperrealMod.Modules.Survivors
             });
             #endregion
 
+            #region VFX Colors
+            passive.defaultVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_DEFAULT_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_DEFAULT_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_DEFAULT_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.redVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_RED_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_RED_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_RED_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.orangeVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_ORANGE_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_ORANGE_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_ORANGE_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.yellowVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_YELLOW_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_YELLOW_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_YELLOW_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.greenVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_GREEN_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_GREEN_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_GREEN_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.blueVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_BLUE_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_BLUE_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_BLUE_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.lightBlueVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_LIGHTBLUE_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_LIGHTBLUE_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_LIGHTBLUE_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.violetVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_VIOLET_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_VIOLET_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_VIOLET_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            passive.pinkVFXPassive = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "PASSIVE_PINK_VFX_NAME",
+                skillNameToken = prefix + "PASSIVE_PINK_VFX_NAME",
+                skillDescriptionToken = prefix + "PASSIVE_PINK_VFX_DESCRIPTION",
+                skillIcon = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("Passive Hypermatrix"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.LeeHyperreal.Primary.PrimaryEntry)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0f,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.Skill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = true,
+                cancelSprintingOnActivation = false,
+                rechargeStock = 1,
+                requiredStock = 1,
+                stockToConsume = 1,
+                keywordTokens = new string[] { }
+            });
+            Modules.Skills.AddPassiveSkills(passive.VFXColorPassiveSkillSlot.skillFamily, new SkillDef[] {
+                passive.defaultVFXPassive,
+                passive.redVFXPassive,
+                passive.orangeVFXPassive,
+                passive.yellowVFXPassive,
+                passive.greenVFXPassive,
+                passive.blueVFXPassive,
+                passive.lightBlueVFXPassive,
+                passive.violetVFXPassive,
+                passive.pinkVFXPassive
+            });
+            #endregion
+
             #region Primary
             //Creates a skilldef for a typical primary 
             SkillDef primarySkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo

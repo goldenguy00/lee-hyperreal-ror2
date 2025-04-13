@@ -91,6 +91,27 @@ namespace LeeHyperrealMod.Modules
                 $"{Lee("Lee: Hyperreal", generatedName)} has access to the {UtilDesc("[Hypermatrix]")}, by holding the Primary button" +
                 $" down with a full {UtilDesc("[Power Gauge]")}." +
                 $" {Lee("Lee: Hyperreal", generatedName)} gains damage in place of attack speed, however {UtilDesc("[Snipe Stance]")} scales normally.");
+
+            LanguageAPI.Add(prefix + "PASSIVE_VFX_COLOR_NAME", "VFX Color");
+
+            LanguageAPI.Add(prefix + "PASSIVE_DEFAULT_VFX_NAME", "Default VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_DEFAULT_VFX_DESCRIPTION", "Sets the VFX colour to the default based on the skin choice");
+            LanguageAPI.Add(prefix + "PASSIVE_RED_VFX_NAME", "Red VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_RED_VFX_DESCRIPTION", "Sets the VFX colour to Red");
+            LanguageAPI.Add(prefix + "PASSIVE_ORANGE_VFX_NAME", "Orange VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_ORANGE_VFX_DESCRIPTION", "Sets the VFX colour to Orange");
+            LanguageAPI.Add(prefix + "PASSIVE_YELLOW_VFX_NAME", "Yellow VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_YELLOW_VFX_DESCRIPTION", "Sets the VFX colour to Yellow");
+            LanguageAPI.Add(prefix + "PASSIVE_GREEN_VFX_NAME", "Green VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_GREEN_VFX_DESCRIPTION", "Sets the VFX colour to Green");
+            LanguageAPI.Add(prefix + "PASSIVE_BLUE_VFX_NAME", "Blue VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_BLUE_VFX_DESCRIPTION", "Sets the VFX colour to Blue");
+            LanguageAPI.Add(prefix + "PASSIVE_LIGHTBLUE_VFX_NAME", "Light Blue VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_LIGHTBLUE_VFX_DESCRIPTION", "Sets the VFX colour to Light Blue");
+            LanguageAPI.Add(prefix + "PASSIVE_VIOLET_VFX_NAME", "Violet VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_VIOLET_VFX_DESCRIPTION", "Sets the VFX colour to Violet");
+            LanguageAPI.Add(prefix + "PASSIVE_PINK_VFX_NAME", "Pink VFX");
+            LanguageAPI.Add(prefix + "PASSIVE_PINK_VFX_DESCRIPTION", "Sets the VFX colour to Pink");
             #endregion
 
             #region Primary

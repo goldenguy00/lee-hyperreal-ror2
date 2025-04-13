@@ -19,7 +19,7 @@ Shader "Custom Ui Icon Lee"
 
         _IconTexture("Icon Texture", 2D) = "white" {}
         _HueShiftDegrees("Hue Shift Degrees", Range( 0 , 360)) = 0
-        _BaseHueOffset("Base Hue Offset", Range( 0 , 1)) = 0.6
+        _BaseHueOffset("Base Hue Offset", Range( -1 , 1)) = 0.6
         _SaturationMultiplier("Saturation Multiplier", Float) = 1
         _LuminanceMultiplier("Luminance Multiplier", Float) = 1
         [HideInInspector] _texcoord( "", 2D ) = "white" {}
@@ -192,8 +192,7 @@ Node;AmplifyShaderEditor.SimpleAddOpNode;5;-376.9662,-310.0785;Inherit;False;2;2
 Node;AmplifyShaderEditor.ClampOpNode;6;-128.1601,-332.3006;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;7;-371.0101,-410.4265;Inherit;False;Constant;_Float1;Float 1;1;0;Create;True;0;0;0;False;0;False;6.28;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleSubtractOpNode;13;-571.9505,-348.9111;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;14;-1002.769,-368.5817;Inherit;False;Property;_BaseHueOffset;Base Hue Offset;2;0;Create;True;0;0;0;False;0;False;0.6;0.6;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;4;-1119.271,-526.287;Inherit;False;Property;_HueShiftDegrees;Hue Shift Degrees;1;0;Create;True;0;0;0;False;0;False;0;352;0;360;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;4;-1119.271,-526.287;Inherit;False;Property;_HueShiftDegrees;Hue Shift Degrees;1;0;Create;True;0;0;0;False;0;False;0;0;0;360;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;21;-1090.52,-645.3721;Inherit;False;Constant;_Float3;Float 3;1;0;Create;True;0;0;0;False;0;False;360;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleDivideOpNode;22;-757.7853,-538.556;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.DynamicAppendNode;10;208.0066,101.0739;Inherit;False;FLOAT4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT4;0
@@ -203,6 +202,7 @@ Node;AmplifyShaderEditor.RangedFloatNode;24;-431.4714,67.76941;Inherit;False;Pro
 Node;AmplifyShaderEditor.RangedFloatNode;25;-489.8115,158.3513;Inherit;False;Property;_LuminanceMultiplier;Luminance Multiplier;4;0;Create;True;0;0;0;False;0;False;1;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;23;-139.002,-25.11468;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;26;-149.748,127.6458;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;14;-1002.769,-368.5817;Inherit;False;Property;_BaseHueOffset;Base Hue Offset;2;0;Create;True;0;0;0;False;0;False;0.6;0.06159642;-1;1;0;1;FLOAT;0
 WireConnection;0;0;10;0
 WireConnection;5;0;2;1
 WireConnection;5;1;13;0
@@ -225,4 +225,4 @@ WireConnection;23;1;24;0
 WireConnection;26;0;2;3
 WireConnection;26;1;25;0
 ASEEND*/
-//CHKSM=E3A3802C367D38FC50097DB57E195AB064073B7D
+//CHKSM=E75407AC55521CF192E675143559E42831ED8B59

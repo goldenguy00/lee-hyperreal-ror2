@@ -47,6 +47,7 @@ namespace LeeHyperrealMod.Modules
                 {
                     passive.orbPassiveSkillSlot = CreateGenericSkillWithSkillFamily(targetPrefab, "Lee: Hyperreal - Orbs and Ammo");
                     passive.hypermatrixPassiveSkillSlot = CreateGenericSkillWithSkillFamily(targetPrefab, "Lee: Hyperreal - Hypermatrix");
+                    passive.VFXColorPassiveSkillSlot = CreateGenericSkillWithSkillFamily(targetPrefab, "Lee: Hyperreal - VFX Color");
                 }
                 //if (Modules.Config.enableOldLoadout.Value) 
                 //{

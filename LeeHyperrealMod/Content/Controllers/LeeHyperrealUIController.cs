@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static RoR2.Skills.SkillFamily;
 
 namespace LeeHyperrealMod.Content.Controllers
 {
@@ -35,6 +36,7 @@ namespace LeeHyperrealMod.Content.Controllers
         private GameObject LeeHyperrealNotificationObject;
         private OrbController orbController;
         private LeeHyperrealDomainController domainController;
+        private LeeHyperrealPassive passiveController;
         public bool baseAIPresent;
         public bool enabledUI;
 
@@ -209,6 +211,7 @@ namespace LeeHyperrealMod.Content.Controllers
             characterBody = GetComponent<CharacterBody>();
             orbController = GetComponent<OrbController>();
             domainController = GetComponent<LeeHyperrealDomainController>();
+            passiveController = GetComponent<LeeHyperrealPassive>();
             characterMaster = characterBody.master;
             BaseAI baseAI = characterMaster.GetComponent<BaseAI>();
             baseAIPresent = baseAI;
@@ -273,17 +276,63 @@ namespace LeeHyperrealMod.Content.Controllers
             }
         }
 
+        public float ResolveColor()
+        {
+            if (passiveController)
+            {
+                switch (passiveController.GetVFXPassive())
+                {
+                    case LeeHyperrealPassive.VFXPassive.RED:
+                        return Modules.StaticValues.redBaseHueOffset;
+                    case LeeHyperrealPassive.VFXPassive.ORANGE:
+                        return Modules.StaticValues.orangeBaseHueOffset;
+                    case LeeHyperrealPassive.VFXPassive.YELLOW:
+                        return Modules.StaticValues.yellowBaseHueOffset;
+                    case LeeHyperrealPassive.VFXPassive.GREEN:
+                        return Modules.StaticValues.greenBaseHueOffset;
+                    case LeeHyperrealPassive.VFXPassive.BLUE:
+                        return 0f; // Don't set anything, it's the default blue.
+                    case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
+                        return Modules.StaticValues.lightBlueBaseHueOffset;
+                    case LeeHyperrealPassive.VFXPassive.VIOLET:
+                        return Modules.StaticValues.violetBaseHueOffset;
+                    case LeeHyperrealPassive.VFXPassive.PINK:
+                        return Modules.StaticValues.pinkBaseHueOffset;
+                }
+            }
+
+            //Do skin resolution
+            if (IsRedSkin())
+            {
+                return Modules.StaticValues.redBaseHueOffset;
+            }
+
+            if (IsOrangeSkin())
+            {
+                return Modules.StaticValues.orangeBaseHueOffset;
+            }
+
+            if (IsLightBlueSkin()) 
+            {
+                return Modules.StaticValues.lightBlueBaseHueOffset;
+            }
+
+
+            // I GIVE UP, LEAVE IT BLUEEEE
+            return 0f;
+        }
+
         public bool IsRedSkin() 
         {
             return LeeHyperrealMod.Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)selectedSkin);
         }
 
-        public bool isOrangeSkin() 
+        public bool IsOrangeSkin() 
         {
             return LeeHyperrealMod.Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)selectedSkin);
         }
 
-        public bool isLightBlueSkin()
+        public bool IsLightBlueSkin()
         {
             return LeeHyperrealMod.Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)selectedSkin);
         }
@@ -393,7 +442,7 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             if (Modules.Config.rgbMode.Value) 
             {
-                if (domainController.DomainEntryAllowed())
+                if (domainController.GetDomainState() || domainController.DomainEntryAllowed())
                 {
                     rgbOffset += Time.deltaTime * Modules.Config.rgbPulseSpeed.Value;
                     rgbOffset = rgbOffset % 360f;
@@ -572,22 +621,8 @@ namespace LeeHyperrealMod.Content.Controllers
             powerBarFilledMaterial = powerMeterUIObject.transform.Find("Power Bar Filled").GetComponent<Image>().material;
 
             //Setup red variant
-            if (IsRedSkin())
-            {
-                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.redBaseHueOffset);
-            }
-            else if (isOrangeSkin())
-            {
-                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.orangeBaseHueOffset);
-            }
-            else if (isLightBlueSkin()) 
-            {
-                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.lightBlueBaseHueOffset);
-            }
-            else
-            {
-                SetCustomUIMaterial(powerBarFilledMaterial, 0f, Modules.StaticValues.defaultBaseHueOffset);
-            }
+
+            SetCustomUIMaterial(powerBarFilledMaterial, 0f, ResolveColor());
         }
 
         private void SetCustomUIMaterial(Material mat, float hueShiftDeg, float baseHueOffset) 
@@ -1556,23 +1591,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 //Depending on the skin, set the color
 
                 //Setup red variant
-                if (IsRedSkin())
-                {
-                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.redBaseHueOffset);
-                }
-                else if (isOrangeSkin())
-                {
-                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.orangeBaseHueOffset);
-                }
-                else if (isLightBlueSkin()) 
-                {
-                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.lightBlueBaseHueOffset);
-                }
-                else
-                {
-                    SetCustomUIMaterial(img.material, 0f, Modules.StaticValues.defaultBaseHueOffset);
-                }
-
+                SetCustomUIMaterial(img.material, 0f, ResolveColor());
                 skillIconMaterials.Add(img.material);
             }
         }

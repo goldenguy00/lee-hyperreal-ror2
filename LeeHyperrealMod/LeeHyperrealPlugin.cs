@@ -204,6 +204,10 @@ namespace LeeHyperrealMod
             {
                 newToken = DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_PASSIVE_DOMAIN_NAME";    
             }
+            if ((skillSlot.skillFamily as ScriptableObject).name.Contains("Lee: Hyperreal - VFX Color"))
+            {
+                newToken = DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_PASSIVE_VFX_COLOR_NAME";
+            }
             if (newToken != "") 
             {
                 Transform label = row.rowPanelTransform.Find("SlotLabel") ?? row.rowPanelTransform.Find("LabelContainer").Find("SlotLabel");
