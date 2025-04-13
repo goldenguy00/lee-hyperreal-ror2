@@ -77,6 +77,10 @@ namespace LeeHyperrealMod.Modules
             GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR);
             GenerateColorVariant(ORANGE_PARTICLE_VARIANT, ORANGE_PARTICLE_COLOR);
             GenerateColorVariant(LIGHTBLUE_PARTICLE_VARIANT, LIGHTBLUE_PARTICLE_COLOR);
+            //GenerateColorVariant("yellow", new Color(1f, 1f, 0f));
+            //GenerateColorVariant("green",  new Color(0f, 1f, 0f));
+            //GenerateColorVariant("violet", new Color(132f/255f, 18f/255f, 1f));
+            //GenerateColorVariant("pink", new Color(1, 105f/255f, 180f/255f));
         }
 
         private static void UpdateAllBundleMaterials()
