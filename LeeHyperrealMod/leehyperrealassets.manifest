@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1733153199
+CRC: 403392861
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 231ceffb73f974208f3a9ebea700422c
+    Hash: 8ccfaaf2cdbf2826c8626cb88ccb064f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -423,6 +423,7 @@ Assets:
 - Assets/modelresource/effect/texture/mask500.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011mdchunse701D.mat
 - Assets/LeeHyperrealAssets/Texture/Albedo/leeArmTex.png
+- Assets/LeeHyperrealAssets/Icons/VFXIconYellow.png
 - Assets/modelresource/effect/mesh/fxmb1punishdatamdmesh/fxmb1punishdata2atkjiejing05.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk03dilie2.prefab
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk51xuli.prefab
@@ -661,6 +662,7 @@ Assets:
 - Assets/modelresource/effect/texture/liuguang013.png
 - Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeRor2BodyComrade.mesh
 - Assets/modelresource/effect/mesh/r3yongyechao51smoke.asset
+- Assets/LeeHyperrealAssets/Icons/VFXIconBlue.png
 - Assets/LeeHyperrealAssets/Animation/humanoidAvatar.asset
 - Assets/modelresource/effect/texture/mask005x.png
 - Assets/LeeHyperrealAssets/LeeHealth.prefab
@@ -686,6 +688,7 @@ Assets:
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatksuiping05_40.asset
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatksuiping05_22.asset
 - Assets/VFX/Cease/Cease your existence.anim
+- Assets/LeeHyperrealAssets/Icons/VFXIconRed.png
 - Assets/modelresource/effect/material/normal10203.mat
 - Assets/LeeHyperrealAssets/Mesh/skin2/r4liangmd010011eyevc.asset
 - Assets/LeeHyperrealAssets/Animation/BodyAnims/runstartend01.anim
@@ -1222,6 +1225,7 @@ Assets:
 - Assets/modelresource/effect/gpuparticles/fxr4liangmd010011gpu/fxr4liangatk42zhongjie01.asset
 - Assets/modelresource/effect/texture/mask700c.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md371.mat
+- Assets/LeeHyperrealAssets/Icons/VFXIconViolet.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4lianguistandnew02.prefab
 - Assets/modelresource/effect/texture/keji007.png
 - Assets/modelresource/effect/texture/mask504.png
@@ -1291,6 +1295,7 @@ Assets:
 - Assets/modelresource/effect/texture/yuan041.png
 - Assets/modelresource/effect/texture/liuguang106_exclude.png
 - Assets/modelresource/effect/texture/liuguang512.png
+- Assets/LeeHyperrealAssets/Icons/VFXIconGreen.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk20bao.prefab
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk51weaponcase.prefab
 - Assets/modelresource/effect/texture/lizi003rx.png
@@ -1345,6 +1350,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/ArmatureAttack25Aim Up.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md369.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangcanyingma.prefab
+- Assets/LeeHyperrealAssets/Icons/VFXIconDefault.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk11weaponcase2.prefab
 - Assets/modelresource/effect/mesh/wuti111.asset
 - Assets/LeeHyperrealAssets/Material/leeEffectPistol2Mat.mat
@@ -1690,6 +1696,7 @@ Assets:
 - Assets/modelresource/effect/texture/wenli510.png
 - Assets/LeeHyperrealAssets/AnimationCurves/fxr4liangatk02hit01.asset
 - Assets/LeeHyperrealAssets/Texture/Albedo/FxE3SuperlicannonMd010011.png
+- Assets/LeeHyperrealAssets/Icons/VFXIconPink.png
 - Assets/modelresource/effect/texture/mask103x.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk35dandao.prefab
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatk24jujijing_4.asset
@@ -1700,6 +1707,7 @@ Assets:
 - Assets/modelresource/effect/texture/wenli018.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangborn1.prefab
 - Assets/LeeHyperrealAssets/Shaders/StandardFade.shader
+- Assets/LeeHyperrealAssets/Icons/VFXIconLightBlue.png
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatksuiping05_14.asset
 - Assets/modelresource/effect/texture/lizi017.png
 - Assets/modelresource/effect/mesh/heondilie700_1.asset
@@ -1711,6 +1719,7 @@ Assets:
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md791.mat
 - Assets/LeeHyperrealAssets/Mesh/leeHairMeshBlend.mesh
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk51pingmu.prefab
+- Assets/LeeHyperrealAssets/Icons/VFXIconOrange.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk03dilie2
   ORIGINAL.prefab
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md337.mat
