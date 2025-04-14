@@ -6,6 +6,7 @@ using LeeHyperrealMod.Content.Controllers;
 using R2API;
 using System;
 using LeeHyperrealMod.ParticleScripts;
+using static Rewired.Controller;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -19,6 +20,7 @@ namespace LeeHyperrealMod.Modules
 
         internal static string ORANGE_PARTICLE_VARIANT = "orange";
         internal static Color ORANGE_PARTICLE_COLOR = new Color(1f, 30f/255f, 0f);
+        internal static float ORANGE_INTENSITY_MULT = 2f;
 
         internal static string YELLOW_PARTICLE_VARIANT = "yellow";
         internal static Color YELLOW_PARTICLE_COLOR = new Color(1f, 1f, 0f);
@@ -78,7 +80,7 @@ namespace LeeHyperrealMod.Modules
         #region Misc
         public static GameObject customCrosshair;
         #endregion
-
+                
         public static void Initialize() 
         {
             particleDictionary = new Dictionary<string, ParticleVariant>();
@@ -89,7 +91,7 @@ namespace LeeHyperrealMod.Modules
 
             // Generate Colour variants
             GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR);
-            GenerateColorVariant(ORANGE_PARTICLE_VARIANT, ORANGE_PARTICLE_COLOR);
+            GenerateColorVariant(ORANGE_PARTICLE_VARIANT, ORANGE_PARTICLE_COLOR, ORANGE_INTENSITY_MULT);
             GenerateColorVariant(YELLOW_PARTICLE_VARIANT, YELLOW_PARTICLE_COLOR);
             GenerateColorVariant(GREEN_PARTICLE_VARIANT, GREEN_PARTICLE_COLOR);
             GenerateColorVariant(LIGHTBLUE_PARTICLE_VARIANT, LIGHTBLUE_PARTICLE_COLOR);
@@ -180,7 +182,7 @@ namespace LeeHyperrealMod.Modules
             psr.material.SetColor("_TintColor", color);
         }
 
-        public static void ModifyXEffectOnRenderer(Renderer rend, Color newColor) 
+        public static void ModifyXEffectOnRenderer(Renderer rend, Color newColor, float intensity) 
         {
             //Check if the material is Xeffect
             foreach (Material mat in rend.materials) 
@@ -215,7 +217,10 @@ namespace LeeHyperrealMod.Modules
                     Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
 
                     Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
-
+                    if (intensity >= 0)
+                    {
+                        divisor = divisor * intensity;
+                    }
                     float newR = outputNonHDRColor.r * divisor;
                     float newG = outputNonHDRColor.g * divisor;
                     float newB = outputNonHDRColor.b * divisor;
@@ -232,11 +237,16 @@ namespace LeeHyperrealMod.Modules
                     mat.SetFloat("_EffectBrightnessR", newR);
                     mat.SetFloat("_EffectBrightnessG", newG);
                     mat.SetFloat("_EffectBrightnessB", newB);
+
+                    if (intensity >= 0f)
+                    {
+                        mat.SetFloat("_EffectBrightness", mat.GetFloat("_EffectBrightness") * intensity);
+                    }
                 }
             }
         }
 
-        public static void ModifyNoBatchingRenderers(Renderer rend, Color newColor)
+        public static void ModifyNoBatchingRenderers(Renderer rend, Color newColor, float intensity)
         {
             foreach (Material mat in rend.materials)
             {
@@ -272,6 +282,11 @@ namespace LeeHyperrealMod.Modules
 
                     Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
 
+                    if (intensity >= 0) 
+                    {
+                        divisor = divisor * intensity;
+                    }
+
                     float newR = outputNonHDRColor.r * divisor;
                     float newG = outputNonHDRColor.g * divisor;
                     float newB = outputNonHDRColor.b * divisor;
@@ -280,11 +295,17 @@ namespace LeeHyperrealMod.Modules
                     mat.SetFloat("_EffectBrightnessR", newR);
                     mat.SetFloat("_EffectBrightnessG", newG);
                     mat.SetFloat("_EffectBrightnessB", newB);
+
+
+                    if (intensity >= 0f)
+                    {
+                        mat.SetFloat("_EffectBrightness", mat.GetFloat("_EffectBrightness") * intensity);
+                    }
                 }
             }
         }
 
-        public static void ModifyGPUParticles(GPUParticlePlayer player, Color newColor) 
+        public static void ModifyGPUParticles(GPUParticlePlayer player, Color newColor, float intensity) 
         {
             if (player.mat.shader.name == "Unlit/GPUParticle")
             {
@@ -318,7 +339,10 @@ namespace LeeHyperrealMod.Modules
                 Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
 
                 Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
-
+                if (intensity >= 0)
+                {
+                    divisor = divisor * intensity;
+                }
                 float newR = outputNonHDRColor.r * divisor;
                 float newG = outputNonHDRColor.g * divisor;
                 float newB = outputNonHDRColor.b * divisor;
@@ -326,7 +350,12 @@ namespace LeeHyperrealMod.Modules
                 // Modify the following properties:
                 material.SetFloat("_R_Intensity", newR);
                 material.SetFloat("_G_Intensity", newG);
-                material.SetFloat("_B_Intensity", newB); 
+                material.SetFloat("_B_Intensity", newB);
+
+                if (intensity >= 0f)
+                {
+                    material.SetFloat("_Intensity", material.GetFloat("_Intensity") * intensity);
+                }
 
                 player.mat = material;
             }
@@ -446,7 +475,7 @@ namespace LeeHyperrealMod.Modules
             return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
         }
 
-        private static void GenerateColorVariant(string name, Color color)
+        private static void GenerateColorVariant(string name, Color color, float intensity = -1)
         {
             foreach (KeyValuePair<string, ParticleVariant> item in particleDictionary)
             {
@@ -466,8 +495,8 @@ namespace LeeHyperrealMod.Modules
                 foreach (Renderer rend in rends)
                 {
                     //Modify with the new colour on XEffect, may need more functions to convert more later
-                    ModifyXEffectOnRenderer(rend, color);
-                    ModifyNoBatchingRenderers(rend, color);
+                    ModifyXEffectOnRenderer(rend, color, intensity);
+                    ModifyNoBatchingRenderers(rend, color, intensity);
                     ModifySnipeFloorRenderer(rend, color);
                     ModifyCloneRenderers(rend, color);
                 }
@@ -481,7 +510,7 @@ namespace LeeHyperrealMod.Modules
                 GPUParticlePlayer[] gpuPlayers = clone.GetComponentsInChildren<GPUParticlePlayer>();
                 foreach (GPUParticlePlayer player in gpuPlayers) 
                 {
-                    ModifyGPUParticles(player, color);
+                    ModifyGPUParticles(player, color, intensity);
                 }
 
                 //check if the prefab is a clone prefab, and skip the ModifyEffect registration

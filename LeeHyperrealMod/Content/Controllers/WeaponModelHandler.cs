@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using UnityEngine;
+using static RoR2.Skills.SkillFamily;
 
 namespace LeeHyperrealMod.Content.Controllers
 {
@@ -42,6 +43,7 @@ namespace LeeHyperrealMod.Content.Controllers
         private bool isCannonEnabled;
 
         CharacterBody characterBody;
+        LeeHyperrealPassive passive;
         private WeaponState state;
         private ChildLocator childLocator;
 
@@ -64,8 +66,9 @@ namespace LeeHyperrealMod.Content.Controllers
         public void Start() 
         {
             characterBody = GetComponent<CharacterBody>();
+            passive = GetComponent<LeeHyperrealPassive>();
             childLocator = characterBody.modelLocator.modelTransform.GetComponent<ChildLocator>();
-            Debug.Log("childLocator " + childLocator);
+
             if (childLocator)
             {
                 submachineModel = childLocator.FindChild("PistolModel").gameObject;
@@ -107,22 +110,66 @@ namespace LeeHyperrealMod.Content.Controllers
             UnityEngine.Color color = new UnityEngine.Color(0f, 0f, 0f);
             bool skip = true;
 
-            if (Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)characterBody.skinIndex)) 
+            if (passive) 
             {
-                color = Modules.ParticleAssets.ORANGE_PARTICLE_COLOR;
-                skip = false;
-            }
+                if (passive.GetVFXPassive() != LeeHyperrealPassive.VFXPassive.DEFAULT)
+                {
+                    switch (passive.GetVFXPassive())
+                    {
+                        case LeeHyperrealPassive.VFXPassive.RED:
+                            color = Modules.ParticleAssets.RED_PARTICLE_COLOR;
+                            skip = false;
+                            break;
+                        case LeeHyperrealPassive.VFXPassive.ORANGE:
+                            color = Modules.ParticleAssets.ORANGE_PARTICLE_COLOR;
+                            skip = false;
+                            break;
+                        case LeeHyperrealPassive.VFXPassive.YELLOW:
+                            color = Modules.ParticleAssets.YELLOW_PARTICLE_COLOR;
+                            skip = false;
+                            break;
+                        case LeeHyperrealPassive.VFXPassive.GREEN:
+                            color = Modules.ParticleAssets.GREEN_PARTICLE_COLOR;
+                            skip = false;
+                            break;
+                        case LeeHyperrealPassive.VFXPassive.BLUE:
+                            skip = true;
+                            break;
+                        case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
+                            color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE_COLOR;
+                            skip = false;
+                            break;
+                        case LeeHyperrealPassive.VFXPassive.VIOLET:
+                            color = Modules.ParticleAssets.VIOLET_PARTICLE_COLOR;
+                            skip = false;
+                            break;
+                        case LeeHyperrealPassive.VFXPassive.PINK:
+                            color = Modules.ParticleAssets.PINK_PARTICLE_COLOR;
+                            skip = false;
+                            break;
+                    }
+                }
+                else 
+                {
+                    // Run default skin check
+                    if (Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)characterBody.skinIndex))
+                    {
+                        color = Modules.ParticleAssets.ORANGE_PARTICLE_COLOR;
+                        skip = false;
+                    }
 
-            if (Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)characterBody.skinIndex))
-            {
-                color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE_COLOR;
-                skip = false;
-            }
+                    if (Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)characterBody.skinIndex))
+                    {
+                        color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE_COLOR;
+                        skip = false;
+                    }
 
-            if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)characterBody.skinIndex))
-            {
-                color = Modules.ParticleAssets.RED_PARTICLE_COLOR;
-                skip = false;
+                    if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)characterBody.skinIndex))
+                    {
+                        color = Modules.ParticleAssets.RED_PARTICLE_COLOR;
+                        skip = false;
+                    }
+                }
             }
 
             if (skip) return;
@@ -131,12 +178,14 @@ namespace LeeHyperrealMod.Content.Controllers
 
             foreach (GameObject obj in objToModify) 
             {
+                float intensity = passive.GetVFXPassive() == LeeHyperrealPassive.VFXPassive.ORANGE ? Modules.ParticleAssets.ORANGE_INTENSITY_MULT : -1f;
+
                 Renderer[] rends = obj.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in rends)
                 {
                     //Modify with the new colour on XEffect, may need more functions to convert more later
-                    Modules.ParticleAssets.ModifyXEffectOnRenderer(rend, color);
-                    Modules.ParticleAssets.ModifyNoBatchingRenderers(rend, color);
+                    Modules.ParticleAssets.ModifyXEffectOnRenderer(rend, color, intensity);
+                    Modules.ParticleAssets.ModifyNoBatchingRenderers(rend, color, intensity);
                 }
 
                 Light[] lights = obj.GetComponentsInChildren<Light>(true);
@@ -148,7 +197,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 GPUParticlePlayer[] gpuPlayers = obj.GetComponentsInChildren<GPUParticlePlayer>();
                 foreach (GPUParticlePlayer player in gpuPlayers)
                 {
-                    Modules.ParticleAssets.ModifyGPUParticles(player, color);
+                    Modules.ParticleAssets.ModifyGPUParticles(player, color, intensity);
                 }
             }
         }
