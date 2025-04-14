@@ -162,14 +162,21 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             Freeze();
             PlayAttackAnimation();
 
-
+            ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
+            Transform baseTransform = childLocator.FindChild("BaseTransform");
             if (base.isAuthority)
             {
                 ultimateCameraController.TriggerDomainUlt();
+
+                Vector3 targetDir = Camera.main.transform.position - baseTransform.position;
+                EffectData effectData = new EffectData
+                {
+                    origin = gameObject.transform.position,
+                    rotation = Quaternion.LookRotation(targetDir.normalized, Vector3.up),
+                    scale = 1.25f,
+                };
+                EffectManager.SpawnEffect(ParticleAssets.RetrieveParticleEffectFromSkin("ultimateDomainBulletFinisher", characterBody), effectData, true);
             }
-            ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
-            Transform baseTransform = childLocator.FindChild("BaseTransform");
-            Vector3 targetDir = Camera.main.transform.position - baseTransform.position;
 
             GameObject domainClone = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin(Helpers.RetrieveClonePrefab(characterBody), characterBody), baseTransform);
             LeeHyperrealCloneController cloneController = domainClone.GetComponent<LeeHyperrealCloneController>();

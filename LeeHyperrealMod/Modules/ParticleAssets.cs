@@ -33,7 +33,7 @@ namespace LeeHyperrealMod.Modules
         internal static Color VIOLET_PARTICLE_COLOR = new Color(132f / 255f, 18f / 255f, 1f);
 
         internal static string PINK_PARTICLE_VARIANT = "pink";
-        internal static Color PINK_PARTICLE_COLOR = new Color(1, 105f / 255f, 180f / 255f);
+        internal static Color PINK_PARTICLE_COLOR = new Color(1f, 1f, 1f);
 
         //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
@@ -192,13 +192,41 @@ namespace LeeHyperrealMod.Modules
                     float oldG = mat.GetFloat("_EffectBrightnessG");
                     float oldB = mat.GetFloat("_EffectBrightnessB");
 
-                    float totalToDistribute = oldR + oldG + oldB;
+                    float divisor = oldR;
+                    if (divisor < oldG) 
+                    {
+                        divisor = oldG;
+                    }
 
-                    float totalColourVal = newColor.r + newColor.g + newColor.b;
+                    if (divisor < oldB) 
+                    {
+                        divisor = oldB;
+                    }
 
-                    float newR = (newColor.r / totalColourVal) * totalToDistribute;
-                    float newG = (newColor.g / totalColourVal) * totalToDistribute;
-                    float newB = (newColor.b / totalColourVal) * totalToDistribute;
+                    Color nonHDRColor = new Color(oldR / divisor, oldG / divisor, oldB / divisor);
+                    float oldHue;
+                    float oldSat;
+                    float oldVal;
+                    Color.RGBToHSV(nonHDRColor, out oldHue, out oldSat, out oldVal);
+                    
+                    float newHue;
+                    float newSat;
+                    float newVal;
+                    Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
+
+                    Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
+
+                    float newR = outputNonHDRColor.r * divisor;
+                    float newG = outputNonHDRColor.g * divisor;
+                    float newB = outputNonHDRColor.b * divisor;
+
+                    //float totalToDistribute = oldR + oldG + oldB;
+
+                    //float totalColourVal = newColor.r + newColor.g + newColor.b;
+
+                    //float newR = (newColor.r / totalColourVal) * totalToDistribute;
+                    //float newG = (newColor.g / totalColourVal) * totalToDistribute;
+                    //float newB = (newColor.b / totalColourVal) * totalToDistribute;
 
                     // Modify the following properties:
                     mat.SetFloat("_EffectBrightnessR", newR);
@@ -220,13 +248,33 @@ namespace LeeHyperrealMod.Modules
                     float oldG = mat.GetFloat("_EffectBrightnessG");
                     float oldB = mat.GetFloat("_EffectBrightnessB");
 
-                    float totalToDistribute = oldR + oldG + oldB;
+                    float divisor = oldR;
+                    if (divisor < oldG)
+                    {
+                        divisor = oldG;
+                    }
 
-                    float totalColourVal = newColor.r + newColor.g + newColor.b;
+                    if (divisor < oldB)
+                    {
+                        divisor = oldB;
+                    }
 
-                    float newR = (newColor.r / totalColourVal) * totalToDistribute;
-                    float newG = (newColor.g / totalColourVal) * totalToDistribute;
-                    float newB = (newColor.b / totalColourVal) * totalToDistribute;
+                    Color nonHDRColor = new Color(oldR / divisor, oldG / divisor, oldB / divisor);
+                    float oldHue;
+                    float oldSat;
+                    float oldVal;
+                    Color.RGBToHSV(nonHDRColor, out oldHue, out oldSat, out oldVal);
+
+                    float newHue;
+                    float newSat;
+                    float newVal;
+                    Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
+
+                    Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
+
+                    float newR = outputNonHDRColor.r * divisor;
+                    float newG = outputNonHDRColor.g * divisor;
+                    float newB = outputNonHDRColor.b * divisor;
 
                     // Modify the following properties:
                     mat.SetFloat("_EffectBrightnessR", newR);
@@ -247,13 +295,33 @@ namespace LeeHyperrealMod.Modules
                 float oldG = material.GetFloat("_G_Intensity");
                 float oldB = material.GetFloat("_B_Intensity");
 
-                float totalToDistribute = oldR + oldG + oldB;
+                float divisor = oldR;
+                if (divisor < oldG)
+                {
+                    divisor = oldG;
+                }
 
-                float totalColourVal = newColor.r + newColor.g + newColor.b;
+                if (divisor < oldB)
+                {
+                    divisor = oldB;
+                }
 
-                float newR = (newColor.r / totalColourVal) * totalToDistribute;
-                float newG = (newColor.g / totalColourVal) * totalToDistribute;
-                float newB = (newColor.b / totalColourVal) * totalToDistribute;
+                Color nonHDRColor = new Color(oldR / divisor, oldG / divisor, oldB / divisor);
+                float oldHue;
+                float oldSat;
+                float oldVal;
+                Color.RGBToHSV(nonHDRColor, out oldHue, out oldSat, out oldVal);
+
+                float newHue;
+                float newSat;
+                float newVal;
+                Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
+
+                Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
+
+                float newR = outputNonHDRColor.r * divisor;
+                float newG = outputNonHDRColor.g * divisor;
+                float newB = outputNonHDRColor.b * divisor;
 
                 // Modify the following properties:
                 material.SetFloat("_R_Intensity", newR);

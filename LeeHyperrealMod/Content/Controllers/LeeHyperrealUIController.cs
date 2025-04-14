@@ -291,7 +291,7 @@ namespace LeeHyperrealMod.Content.Controllers
                     case LeeHyperrealPassive.VFXPassive.GREEN:
                         return Modules.StaticValues.greenBaseHueOffset;
                     case LeeHyperrealPassive.VFXPassive.BLUE:
-                        return 0f; // Don't set anything, it's the default blue.
+                        return Modules.StaticValues.defaultBaseHueOffset; // Don't set anything, it's the default blue.
                     case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
                         return Modules.StaticValues.lightBlueBaseHueOffset;
                     case LeeHyperrealPassive.VFXPassive.VIOLET:
@@ -319,7 +319,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
 
             // I GIVE UP, LEAVE IT BLUEEEE
-            return 0f;
+            return Modules.StaticValues.defaultBaseHueOffset;
         }
 
         public bool IsRedSkin() 
@@ -451,25 +451,25 @@ namespace LeeHyperrealMod.Content.Controllers
 
                     if (powerBarFilledMaterial)
                     {
-                        SetCustomUIMaterial(powerBarFilledMaterial, rgbOffset + offsetOffset, -1f);
+                        SetCustomUIMaterial(powerBarFilledMaterial, rgbOffset + offsetOffset, -2f);
                     }
                     
                     foreach (Material mat in skillIconMaterials)
                     {
                         offsetOffset += 10f;
-                        SetCustomUIMaterial(mat, (rgbOffset + offsetOffset) % 360f, -1f);
+                        SetCustomUIMaterial(mat, (rgbOffset + offsetOffset) % 360f, -2f);
                     }
                 }
                 else 
                 {
                     if (powerBarFilledMaterial)
                     {
-                        SetCustomUIMaterial(powerBarFilledMaterial, 0f, -1f);
+                        SetCustomUIMaterial(powerBarFilledMaterial, 0f, -2f);
                     }
 
                     foreach (Material mat in skillIconMaterials)
                     {
-                        SetCustomUIMaterial(mat, 0f, -1f);
+                        SetCustomUIMaterial(mat, 0f, -2f);
                     }
                 }
             }
@@ -627,7 +627,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void SetCustomUIMaterial(Material mat, float hueShiftDeg, float baseHueOffset) 
         {
-            if (baseHueOffset >= 0f) 
+            if (baseHueOffset >= -1.1f) 
             {
                 mat.SetFloat("_BaseHueOffset", baseHueOffset);
             }
