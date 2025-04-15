@@ -178,7 +178,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
             foreach (GameObject obj in objToModify) 
             {
-                float intensity = passive.GetVFXPassive() == LeeHyperrealPassive.VFXPassive.ORANGE ? Modules.ParticleAssets.ORANGE_INTENSITY_MULT : -1f;
+                float intensity = Modules.ParticleAssets.GetVFXIntensity(passive.GetVFXPassive());
 
                 Renderer[] rends = obj.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in rends)
