@@ -169,12 +169,14 @@ namespace LeeHyperrealMod.Modules
             {
                 netid = newEffect.AddComponent<NetworkIdentity>();
             }
-            else 
-            {
-                //Reinit netid.
-                UnityEngine.Object.DestroyImmediate(netid);
-                netid = newEffect.AddComponent<NetworkIdentity>();
-            }
+
+            Debug.Log(newEffect.name + " " + netid.netId);
+            //else 
+            //{
+            //    //Reinit netid.
+            //    UnityEngine.Object.DestroyImmediate(netid);
+            //    netid = newEffect.AddComponent<NetworkIdentity>();
+            //}
             VFXAttributes attr = newEffect.GetComponent<VFXAttributes>();
             if (!attr) 
             {
