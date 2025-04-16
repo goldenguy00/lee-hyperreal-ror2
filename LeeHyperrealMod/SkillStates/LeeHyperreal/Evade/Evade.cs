@@ -22,8 +22,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 
         private bool isForwardRoll;
 
-        private float earlyExitFrac = 0.32f;
-        private float p3Cancel = 0.2f;
+        private float earlyExitFrac = 0.28f;
+        private float p3Cancel = 0.18f;
         private Vector3 forwardDirection;
         private Vector3 moveVector;
 
