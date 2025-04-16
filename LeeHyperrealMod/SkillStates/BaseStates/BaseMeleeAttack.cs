@@ -74,6 +74,7 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
         internal bool parryFreeze;
         internal bool isInParryFreeze;
         internal bool resetComboOnParry;
+        internal bool lockIntoParryState;
         internal Collider[] targetList;
 
         internal BulletController bulletController;
@@ -515,11 +516,12 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
                 {
                     base.inputBank.skill1.hasPressBeenClaimed = true;
                     SetNextStateOnParry();
+                    lockIntoParryState = true;
                     return;
                 }
             }
 
-            if ( (base.inputBank.skill3.justPressed || base.inputBank.skill4.justPressed) && base.isAuthority)
+            if ( (base.inputBank.skill3.justPressed || base.inputBank.skill4.justPressed) && base.isAuthority && !lockIntoParryState)
             {
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
             }
@@ -532,7 +534,7 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
                 }
             }
             
-            if (this.stopwatch >= (this.duration * this.earlyExitTime) && base.isAuthority)
+            if (this.stopwatch >= (this.duration * this.earlyExitTime) && base.isAuthority && !lockIntoParryState)
             {
                 //Check this first.
                 if (base.inputBank.skill1.down || bufferTriggerNextState)

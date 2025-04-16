@@ -183,6 +183,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
             {
                 base.outer.SetNextState(new Primary2 { });
+                return;
             }
         }
 
