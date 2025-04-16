@@ -91,8 +91,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             gravParams.channeledAntiGravityGranterCount = 1;
 
             characterMotor.gravityParameters = gravParams;
-
-            Chat.AddMessage("P3 Entry");
         }
 
         public RootMotionAccumulator InitMeleeRootMotion()
@@ -127,7 +125,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         }
         public override void Update()
         {
-            Chat.AddMessage($"stopwatch p3: {stopwatch}");
             if (!base.inputBank.skill1.down && base.isAuthority)
             {
                 ifButtonLifted = true;
@@ -250,7 +247,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         }
         public override void OnExit()
         {
-            Chat.AddMessage($"exit");
             animator.SetBool("isGrounded", base.isGrounded);
             base.PlayAnimation("Body", "BufferEmpty");
             base.characterMotor.gravityParameters = oldGravParams;

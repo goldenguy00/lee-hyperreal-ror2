@@ -92,8 +92,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             }
 
             ParryTransform = childLocator.FindChild("FootL");
-
-            Chat.AddMessage("P1 Entry");
         }
 
         public RootMotionAccumulator InitMeleeRootMotion()
@@ -129,7 +127,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
         public override void Update()
         {
-            Chat.AddMessage($"stopwatch p1: {stopwatch}");
+
             if (!base.inputBank.skill1.down && base.isAuthority) 
             {
                 ifButtonLifted = true;
@@ -157,7 +155,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
         public override void OnExit()
         {
-            Chat.AddMessage($"exit");
             base.OnExit();
             base.PlayAnimation("Body", "BufferEmpty");
         }
