@@ -15,37 +15,103 @@ namespace LeeHyperrealMod.Modules
     {
         // BLUE
         internal static string DEFAULT_PARTICLE_VARIANT = "default";
-     
-        internal static string RED_PARTICLE_VARIANT = "red";
-        internal static Color RED_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
-        internal static float RED_INTENSITY_MULT = 1.8f;
 
+        internal static ParticleColorInfo RED_PARTICLE = new ParticleColorInfo
+        {
+            name = "red",
+            mainColor = new Color(1f, 0f, 0f),
+            secondaryColor = new Color(1f, 0f, 0f),
+            rimColor = new Color(1f, 0f, 0f),
+            intensityMult = 1.8f
+        };
+        
+        internal static ParticleColorInfo ORANGE_PARTICLE = new ParticleColorInfo(
+            "orange",
+            new Color(1f, 30f / 255f, 0f),
+            new Color(1f, 30f / 255f, 0f),
+            new Color(1f, 30f / 255f, 0f),
+            1.8f
+        );
         internal static string ORANGE_PARTICLE_VARIANT = "orange";
         internal static Color ORANGE_PARTICLE_COLOR = new Color(1f, 30f/255f, 0f);
         internal static float ORANGE_INTENSITY_MULT = 1.8f;
 
+        internal static ParticleColorInfo YELLOW_PARTICLE = new ParticleColorInfo(
+            "yellow",
+            new Color(1f, 0.85f, 0f),
+            new Color(1f, 0.85f, 0f),
+            new Color(1f, 0.85f, 0f),
+            1.6f
+        );
         internal static string YELLOW_PARTICLE_VARIANT = "yellow";
         internal static Color YELLOW_PARTICLE_COLOR = new Color(1f, 0.85f, 0f);
         internal static float YELLOW_INTENSITY_MULT = 1.6f;
 
+        internal static ParticleColorInfo GREEN_PARTICLE = new ParticleColorInfo(
+            "green",
+            new Color(0f, 1f, 0f),
+            new Color(0f, 1f, 0f),
+            new Color(0f, 1f, 0f),
+            1.8f
+        );
         internal static string GREEN_PARTICLE_VARIANT = "green";
         internal static Color GREEN_PARTICLE_COLOR = new Color(0f, 1f, 0f);
         internal static float GREEN_INTENSITY_MULT = 1.8f;
 
+        internal static ParticleColorInfo LIGHTBLUE_PARTICLE = new ParticleColorInfo(
+            "lightblue",
+            new Color(0, 247f / 255f, 1f),
+            new Color(0, 247f / 255f, 1f),
+            new Color(0, 247f / 255f, 1f),
+            1.6f
+        );
         internal static string LIGHTBLUE_PARTICLE_VARIANT = "lightblue";
         internal static Color LIGHTBLUE_PARTICLE_COLOR = new Color(0, 247f / 255f, 1f);
         internal static float LIGHTBLUE_INTENSITY_MULT = 1.6f;
 
+        internal static ParticleColorInfo VIOLET_PARTICLE = new ParticleColorInfo(
+            "violet",
+            new Color(120f / 255f, 75f / 255f, 1f),
+            new Color(120f / 255f, 75f / 255f, 1f),
+            new Color(120f / 255f, 75f / 255f, 1f),
+            2.15f
+        );
         internal static string VIOLET_PARTICLE_VARIANT = "violet";
         internal static Color VIOLET_PARTICLE_COLOR = new Color(120f / 255f, 75f / 255f, 1f);
         internal static float VIOLET_INTENSITY_MULT = 2.15f;
 
+        internal static ParticleColorInfo PINK_PARTICLE = new ParticleColorInfo(
+            "pink",
+            new Color(1f, 1f, 1f),
+            new Color(1f, 1f, 1f),
+            new Color(1f, 1f, 1f),
+            1.6f
+        );
         internal static string PINK_PARTICLE_VARIANT = "pink";
         internal static Color PINK_PARTICLE_COLOR = new Color(1f, 1f, 1f);
         internal static float PINK_INTENSITY_MULT = 1.6f;
 
         //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
+
+        internal class ParticleColorInfo
+        {
+            internal string name;
+            internal Color mainColor;
+            internal Color secondaryColor;
+            internal Color rimColor;
+            internal float intensityMult;
+
+            internal ParticleColorInfo() { }
+            internal ParticleColorInfo(string name, Color mainColor, Color secondaryColor, Color rimColor, float intensityMult)
+            {
+                this.name = name;
+                this.mainColor = mainColor;
+                this.secondaryColor = secondaryColor;
+                this.rimColor = rimColor;
+                this.intensityMult = intensityMult;
+            }
+        }
 
         internal class ParticleVariant 
         {
@@ -93,7 +159,7 @@ namespace LeeHyperrealMod.Modules
             switch (passive)
             {
                 case LeeHyperrealPassive.VFXPassive.RED:
-                    return RED_INTENSITY_MULT;
+                    return RED_PARTICLE.intensityMult;
                 case LeeHyperrealPassive.VFXPassive.ORANGE:
                     return ORANGE_INTENSITY_MULT;
                 case LeeHyperrealPassive.VFXPassive.YELLOW:
@@ -123,7 +189,7 @@ namespace LeeHyperrealMod.Modules
             PopulateAssets();
 
             // Generate Colour variants
-            GenerateColorVariant(RED_PARTICLE_VARIANT, RED_PARTICLE_COLOR, RED_INTENSITY_MULT);
+            GenerateColorVariant(RED_PARTICLE.name, RED_PARTICLE.mainColor, RED_PARTICLE.intensityMult);
             GenerateColorVariant(ORANGE_PARTICLE_VARIANT, ORANGE_PARTICLE_COLOR, ORANGE_INTENSITY_MULT);
             GenerateColorVariant(YELLOW_PARTICLE_VARIANT, YELLOW_PARTICLE_COLOR, YELLOW_INTENSITY_MULT);
             GenerateColorVariant(GREEN_PARTICLE_VARIANT, GREEN_PARTICLE_COLOR,GREEN_INTENSITY_MULT);
@@ -211,12 +277,6 @@ namespace LeeHyperrealMod.Modules
             Modules.Content.AddEffectDef(newEffectDef);
         }
 
-        public static void ModifyParticleSystemColorOnUberShader(Transform obj, Color color) 
-        {
-            ParticleSystemRenderer psr = obj.GetComponent<ParticleSystemRenderer>();
-            psr.material.SetColor("_TintColor", color);
-        }
-
         public static void ModifyXEffectOnRenderer(Renderer rend, Color newColor, float intensity) 
         {
             //Check if the material is Xeffect
@@ -259,14 +319,6 @@ namespace LeeHyperrealMod.Modules
                     float newR = outputNonHDRColor.r * divisor;
                     float newG = outputNonHDRColor.g * divisor;
                     float newB = outputNonHDRColor.b * divisor;
-
-                    //float totalToDistribute = oldR + oldG + oldB;
-
-                    //float totalColourVal = newColor.r + newColor.g + newColor.b;
-
-                    //float newR = (newColor.r / totalColourVal) * totalToDistribute;
-                    //float newG = (newColor.g / totalColourVal) * totalToDistribute;
-                    //float newB = (newColor.b / totalColourVal) * totalToDistribute;
 
                     // Modify the following properties:
                     mat.SetFloat("_EffectBrightnessR", newR);
@@ -459,7 +511,7 @@ namespace LeeHyperrealMod.Modules
             switch (body.GetComponent<LeeHyperrealPassive>().GetVFXPassive()) 
             {
                 case LeeHyperrealPassive.VFXPassive.RED:
-                    return variants.colourVariants[RED_PARTICLE_VARIANT];
+                    return variants.colourVariants[RED_PARTICLE.name];
                 case LeeHyperrealPassive.VFXPassive.ORANGE:
                     return variants.colourVariants[ORANGE_PARTICLE_VARIANT];
                 case LeeHyperrealPassive.VFXPassive.YELLOW:
@@ -484,9 +536,9 @@ namespace LeeHyperrealMod.Modules
             //Get related skin particle effect
             if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)skinIndex)) 
             {
-                if (variants.colourVariants.ContainsKey(RED_PARTICLE_VARIANT)) 
+                if (variants.colourVariants.ContainsKey(RED_PARTICLE.name)) 
                 {
-                    return variants.colourVariants[RED_PARTICLE_VARIANT];
+                    return variants.colourVariants[RED_PARTICLE.name];
                 }
             }
 
@@ -524,7 +576,7 @@ namespace LeeHyperrealMod.Modules
 
                 //Get default 
                 GameObject defaultVariant = pVarColourVar[DEFAULT_PARTICLE_VARIANT];
-                GameObject clone = PrefabAPI.InstantiateClone(defaultVariant, defaultVariant.name + "-" + name);
+                GameObject clone = PrefabAPI.InstantiateClone(defaultVariant, defaultVariant.name + "-" + name, false);
 
                 Renderer[] rends = clone.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in rends)

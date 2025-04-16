@@ -117,7 +117,7 @@ namespace LeeHyperrealMod.Content.Controllers
                     switch (passive.GetVFXPassive())
                     {
                         case LeeHyperrealPassive.VFXPassive.RED:
-                            color = Modules.ParticleAssets.RED_PARTICLE_COLOR;
+                            color = Modules.ParticleAssets.RED_PARTICLE.mainColor;
                             skip = false;
                             break;
                         case LeeHyperrealPassive.VFXPassive.ORANGE:
@@ -166,7 +166,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
                     if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)characterBody.skinIndex))
                     {
-                        color = Modules.ParticleAssets.RED_PARTICLE_COLOR;
+                        color = Modules.ParticleAssets.RED_PARTICLE.mainColor;
                         skip = false;
                     }
                 }

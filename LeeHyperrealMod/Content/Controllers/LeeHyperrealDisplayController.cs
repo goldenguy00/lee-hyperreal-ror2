@@ -1,4 +1,5 @@
-﻿using RoR2;
+﻿using LeeHyperrealMod.Modules;
+using RoR2;
 using RoR2.SurvivorMannequins;
 using UnityEngine;
 
@@ -304,15 +305,15 @@ namespace LeeHyperrealMod.Content.Controllers
             face.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneFace"));
             hair.material = new Material(Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>("cloneScarletHair"));
 
-            box.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            submachine.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            alpha.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            body.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            cloth.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            down.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            eye.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            face.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
-            hair.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE_COLOR);
+            box.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            submachine.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            alpha.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            body.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            cloth.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            down.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            eye.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            face.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
+            hair.material.SetColor("_Tint", Modules.ParticleAssets.RED_PARTICLE.mainColor);
         }
 
 
