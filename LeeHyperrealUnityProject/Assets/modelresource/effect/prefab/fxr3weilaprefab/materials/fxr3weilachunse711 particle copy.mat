@@ -8,21 +8,19 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: fxr3weilachunse711 particle copy
-  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 1dec7b30702e7054abc2f770235a80dc, type: 2}
   m_ValidKeywords:
   - _ALPHABLEND_ON
-  - _EMISSION
   m_InvalidKeywords:
   - S_BILLBOARD
+  - _EMISSION
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     DebugOverDraw: Off
-    RenderType: Transparent
-  disabledShaderPasses:
-  - GRABPASS
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -112,8 +110,8 @@ Material:
     - _DistortionStrengthScaled: 0
     - _Dst: 10
     - _DstBlend: 10
-    - _EffectBrightness: 3.8
-    - _EffectBrightnessB: 5
+    - _EffectBrightness: 4.5
+    - _EffectBrightnessB: 7
     - _EffectBrightnessG: 1
     - _EffectBrightnessR: 1
     - _EmissionEnabled: 1
@@ -179,7 +177,7 @@ Material:
     - _SecondRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _ShakeVertexData: {r: 1, g: 0, b: 0, a: 3}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0.3443396, g: 0.4888968, b: 1, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _VAT_MaxBound: {r: 0, g: 0, b: 0, a: 1}
     - _VAT_MinBound: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
