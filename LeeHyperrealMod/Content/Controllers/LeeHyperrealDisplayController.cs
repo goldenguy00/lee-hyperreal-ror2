@@ -211,7 +211,7 @@ namespace LeeHyperrealMod.Content.Controllers
             hair.material = cloneComrade;
 
             //Set Material color
-            cloneComrade.SetColor("_Tint", Modules.ParticleAssets.ORANGE_PARTICLE_COLOR);
+            cloneComrade.SetColor("_Tint", Modules.ParticleAssets.ORANGE_PARTICLE.mainColor);
         }
 
         private void SetDefaultLeeSkin(GameObject obj) 

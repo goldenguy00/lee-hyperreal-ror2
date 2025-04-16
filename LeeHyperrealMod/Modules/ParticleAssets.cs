@@ -24,72 +24,60 @@ namespace LeeHyperrealMod.Modules
             rimColor = new Color(1f, 0f, 0f),
             intensityMult = 1.8f
         };
-        
-        internal static ParticleColorInfo ORANGE_PARTICLE = new ParticleColorInfo(
-            "orange",
-            new Color(1f, 30f / 255f, 0f),
-            new Color(1f, 30f / 255f, 0f),
-            new Color(1f, 30f / 255f, 0f),
-            1.8f
-        );
-        internal static string ORANGE_PARTICLE_VARIANT = "orange";
-        internal static Color ORANGE_PARTICLE_COLOR = new Color(1f, 30f/255f, 0f);
-        internal static float ORANGE_INTENSITY_MULT = 1.8f;
 
-        internal static ParticleColorInfo YELLOW_PARTICLE = new ParticleColorInfo(
-            "yellow",
-            new Color(1f, 0.85f, 0f),
-            new Color(1f, 0.85f, 0f),
-            new Color(1f, 0.85f, 0f),
-            1.6f
-        );
-        internal static string YELLOW_PARTICLE_VARIANT = "yellow";
-        internal static Color YELLOW_PARTICLE_COLOR = new Color(1f, 0.85f, 0f);
-        internal static float YELLOW_INTENSITY_MULT = 1.6f;
+        internal static ParticleColorInfo ORANGE_PARTICLE = new ParticleColorInfo
+        {
+            name = "orange",
+            mainColor = new Color(1f, 30f / 255f, 0f),
+            secondaryColor = new Color(1f, 30f / 255f, 0f),
+            rimColor = new Color(1f, 30f / 255f, 0f),
+            intensityMult = 1.8f
+        };
 
-        internal static ParticleColorInfo GREEN_PARTICLE = new ParticleColorInfo(
-            "green",
-            new Color(0f, 1f, 0f),
-            new Color(0f, 1f, 0f),
-            new Color(0f, 1f, 0f),
-            1.8f
-        );
-        internal static string GREEN_PARTICLE_VARIANT = "green";
-        internal static Color GREEN_PARTICLE_COLOR = new Color(0f, 1f, 0f);
-        internal static float GREEN_INTENSITY_MULT = 1.8f;
+        internal static ParticleColorInfo YELLOW_PARTICLE = new ParticleColorInfo
+        {
+            name = "yellow",
+            mainColor = new Color(1f, 0.85f, 0f),
+            secondaryColor = new Color(1f, 0.85f, 0f),
+            rimColor = new Color(1f, 0.85f, 0f),
+            intensityMult = 1.6f
+        };
 
-        internal static ParticleColorInfo LIGHTBLUE_PARTICLE = new ParticleColorInfo(
-            "lightblue",
-            new Color(0, 247f / 255f, 1f),
-            new Color(0, 247f / 255f, 1f),
-            new Color(0, 247f / 255f, 1f),
-            1.6f
-        );
-        internal static string LIGHTBLUE_PARTICLE_VARIANT = "lightblue";
-        internal static Color LIGHTBLUE_PARTICLE_COLOR = new Color(0, 247f / 255f, 1f);
-        internal static float LIGHTBLUE_INTENSITY_MULT = 1.6f;
+        internal static ParticleColorInfo GREEN_PARTICLE = new ParticleColorInfo
+        {
+            name = "green",
+            mainColor = new Color(0f, 1f, 0f),
+            secondaryColor = new Color(0f, 1f, 0f),
+            rimColor = new Color(0f, 1f, 0f),
+            intensityMult = 1.8f
+        };
 
-        internal static ParticleColorInfo VIOLET_PARTICLE = new ParticleColorInfo(
-            "violet",
-            new Color(120f / 255f, 75f / 255f, 1f),
-            new Color(120f / 255f, 75f / 255f, 1f),
-            new Color(120f / 255f, 75f / 255f, 1f),
-            2.15f
-        );
-        internal static string VIOLET_PARTICLE_VARIANT = "violet";
-        internal static Color VIOLET_PARTICLE_COLOR = new Color(120f / 255f, 75f / 255f, 1f);
-        internal static float VIOLET_INTENSITY_MULT = 2.15f;
+        internal static ParticleColorInfo LIGHTBLUE_PARTICLE = new ParticleColorInfo
+        {
+            name = "lightblue",
+            mainColor = new Color(0f, 247f / 255f, 1f),
+            secondaryColor = new Color(0f, 247f / 255f, 1f),
+            rimColor = new Color(0f, 247f / 255f, 1f),
+            intensityMult = 1.6f
+        };
 
-        internal static ParticleColorInfo PINK_PARTICLE = new ParticleColorInfo(
-            "pink",
-            new Color(1f, 1f, 1f),
-            new Color(1f, 1f, 1f),
-            new Color(1f, 1f, 1f),
-            1.6f
-        );
-        internal static string PINK_PARTICLE_VARIANT = "pink";
-        internal static Color PINK_PARTICLE_COLOR = new Color(1f, 1f, 1f);
-        internal static float PINK_INTENSITY_MULT = 1.6f;
+        internal static ParticleColorInfo VIOLET_PARTICLE = new ParticleColorInfo
+        {
+            name = "violet",
+            mainColor = new Color(120f / 255f, 75f / 255f, 1f),
+            secondaryColor = new Color(120f / 255f, 75f / 255f, 1f),
+            rimColor = new Color(120f / 255f, 75f / 255f, 1f),
+            intensityMult = 2.15f
+        };
+
+        internal static ParticleColorInfo PINK_PARTICLE = new ParticleColorInfo
+        {
+            name = "pink",
+            mainColor = new Color(1f, 1f, 1f),
+            secondaryColor = new Color(1f, 1f, 1f),
+            rimColor = new Color(1f, 1f, 1f),
+            intensityMult = 1.6f
+        };
 
         //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
@@ -161,19 +149,19 @@ namespace LeeHyperrealMod.Modules
                 case LeeHyperrealPassive.VFXPassive.RED:
                     return RED_PARTICLE.intensityMult;
                 case LeeHyperrealPassive.VFXPassive.ORANGE:
-                    return ORANGE_INTENSITY_MULT;
+                    return ORANGE_PARTICLE.intensityMult;
                 case LeeHyperrealPassive.VFXPassive.YELLOW:
-                    return YELLOW_INTENSITY_MULT;
+                    return YELLOW_PARTICLE.intensityMult;
                 case LeeHyperrealPassive.VFXPassive.GREEN:
-                    return GREEN_INTENSITY_MULT;
+                    return GREEN_PARTICLE.intensityMult;
                 case LeeHyperrealPassive.VFXPassive.BLUE:
                     return -1f;
                 case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
-                    return LIGHTBLUE_INTENSITY_MULT;
+                    return LIGHTBLUE_PARTICLE.intensityMult;
                 case LeeHyperrealPassive.VFXPassive.VIOLET:
-                    return VIOLET_INTENSITY_MULT;
+                    return VIOLET_PARTICLE.intensityMult;
                 case LeeHyperrealPassive.VFXPassive.PINK:
-                    return PINK_INTENSITY_MULT;
+                    return PINK_PARTICLE.intensityMult;
                 default:
                     return -1f;
 
@@ -189,13 +177,13 @@ namespace LeeHyperrealMod.Modules
             PopulateAssets();
 
             // Generate Colour variants
-            GenerateColorVariant(RED_PARTICLE.name, RED_PARTICLE.mainColor, RED_PARTICLE.intensityMult);
-            GenerateColorVariant(ORANGE_PARTICLE_VARIANT, ORANGE_PARTICLE_COLOR, ORANGE_INTENSITY_MULT);
-            GenerateColorVariant(YELLOW_PARTICLE_VARIANT, YELLOW_PARTICLE_COLOR, YELLOW_INTENSITY_MULT);
-            GenerateColorVariant(GREEN_PARTICLE_VARIANT, GREEN_PARTICLE_COLOR,GREEN_INTENSITY_MULT);
-            GenerateColorVariant(LIGHTBLUE_PARTICLE_VARIANT, LIGHTBLUE_PARTICLE_COLOR, LIGHTBLUE_INTENSITY_MULT);
-            GenerateColorVariant(VIOLET_PARTICLE_VARIANT, VIOLET_PARTICLE_COLOR, VIOLET_INTENSITY_MULT);
-            GenerateColorVariant(PINK_PARTICLE_VARIANT, PINK_PARTICLE_COLOR, PINK_INTENSITY_MULT);
+            GenerateColorVariant(RED_PARTICLE);
+            GenerateColorVariant(ORANGE_PARTICLE);
+            GenerateColorVariant(YELLOW_PARTICLE);
+            GenerateColorVariant(GREEN_PARTICLE);
+            GenerateColorVariant(LIGHTBLUE_PARTICLE);
+            GenerateColorVariant(VIOLET_PARTICLE);
+            GenerateColorVariant(PINK_PARTICLE);
         }
 
         private static void UpdateAllBundleMaterials()
@@ -277,7 +265,7 @@ namespace LeeHyperrealMod.Modules
             Modules.Content.AddEffectDef(newEffectDef);
         }
 
-        public static void ModifyXEffectOnRenderer(Renderer rend, Color newColor, float intensity) 
+        public static void ModifyXEffectOnRenderer(Renderer rend, ParticleColorInfo newColor) 
         {
             //Check if the material is Xeffect
             foreach (Material mat in rend.materials) 
@@ -309,12 +297,12 @@ namespace LeeHyperrealMod.Modules
                     float newHue;
                     float newSat;
                     float newVal;
-                    Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
+                    Color.RGBToHSV(newColor.mainColor, out newHue, out newSat, out newVal);
 
                     Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
-                    if (intensity >= 0)
+                    if (newColor.intensityMult >= 0)
                     {
-                        divisor = divisor * intensity;
+                        divisor = divisor * newColor.intensityMult;
                     }
                     float newR = outputNonHDRColor.r * divisor;
                     float newG = outputNonHDRColor.g * divisor;
@@ -325,15 +313,15 @@ namespace LeeHyperrealMod.Modules
                     mat.SetFloat("_EffectBrightnessG", newG);
                     mat.SetFloat("_EffectBrightnessB", newB);
 
-                    if (intensity >= 0f)
+                    if (newColor.intensityMult >= 0f)
                     {
-                        mat.SetFloat("_EffectBrightness", mat.GetFloat("_EffectBrightness") * intensity);
+                        mat.SetFloat("_EffectBrightness", mat.GetFloat("_EffectBrightness") * newColor.intensityMult);
                     }
                 }
             }
         }
 
-        public static void ModifyNoBatchingRenderers(Renderer rend, Color newColor, float intensity)
+        public static void ModifyNoBatchingRenderers(Renderer rend, ParticleColorInfo newColor)
         {
             foreach (Material mat in rend.materials)
             {
@@ -365,13 +353,13 @@ namespace LeeHyperrealMod.Modules
                     float newHue;
                     float newSat;
                     float newVal;
-                    Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
+                    Color.RGBToHSV(newColor.mainColor, out newHue, out newSat, out newVal);
 
                     Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
 
-                    if (intensity >= 0) 
+                    if (newColor.intensityMult >= 0) 
                     {
-                        divisor = divisor * intensity;
+                        divisor = divisor * newColor.intensityMult;
                     }
 
                     float newR = outputNonHDRColor.r * divisor;
@@ -384,15 +372,15 @@ namespace LeeHyperrealMod.Modules
                     mat.SetFloat("_EffectBrightnessB", newB);
 
 
-                    if (intensity >= 0f)
+                    if (newColor.intensityMult >= 0f)
                     {
-                        mat.SetFloat("_EffectBrightness", mat.GetFloat("_EffectBrightness") * intensity);
+                        mat.SetFloat("_EffectBrightness", mat.GetFloat("_EffectBrightness") * newColor.intensityMult);
                     }
                 }
             }
         }
 
-        public static void ModifyGPUParticles(GPUParticlePlayer player, Color newColor, float intensity) 
+        public static void ModifyGPUParticles(GPUParticlePlayer player, ParticleColorInfo newColor) 
         {
             if (player.mat.shader.name == "Unlit/GPUParticle")
             {
@@ -423,12 +411,12 @@ namespace LeeHyperrealMod.Modules
                 float newHue;
                 float newSat;
                 float newVal;
-                Color.RGBToHSV(newColor, out newHue, out newSat, out newVal);
+                Color.RGBToHSV(newColor.mainColor, out newHue, out newSat, out newVal);
 
                 Color outputNonHDRColor = Color.HSVToRGB(newHue, 1f, oldVal);
-                if (intensity >= 0)
+                if (newColor.intensityMult >= 0)
                 {
-                    divisor = divisor * intensity;
+                    divisor = divisor * newColor.intensityMult;
                 }
                 float newR = outputNonHDRColor.r * divisor;
                 float newG = outputNonHDRColor.g * divisor;
@@ -439,9 +427,9 @@ namespace LeeHyperrealMod.Modules
                 material.SetFloat("_G_Intensity", newG);
                 material.SetFloat("_B_Intensity", newB);
 
-                if (intensity >= 0f)
+                if (newColor.intensityMult >= 0f)
                 {
-                    material.SetFloat("_Intensity", material.GetFloat("_Intensity") * intensity);
+                    material.SetFloat("_Intensity", material.GetFloat("_Intensity") * newColor.intensityMult);
                 }
 
                 player.mat = material;
@@ -449,32 +437,32 @@ namespace LeeHyperrealMod.Modules
         }
 
 
-        public static void ModifyCloneRenderers(Renderer rend, Color newColor)
+        public static void ModifyCloneRenderers(Renderer rend, ParticleColorInfo newColor)
         {
             foreach (Material mat in rend.materials)
             {
                 //Check if the material is Xeffect
                 if (mat.shader.name == "ASESampleShaders/DitheringFadeModify")
                 {
-                    mat.SetColor("_Tint", newColor);
+                    mat.SetColor("_Tint", newColor.mainColor);
                 }
             }
         }
 
-        public static void ModifySnipeFloorRenderer(Renderer rend, Color newColor)
+        public static void ModifySnipeFloorRenderer(Renderer rend, ParticleColorInfo newColor)
         {
             //Check if the material is Xeffect
             if (rend.material.shader.name == "Snipe Floor")
             {
-                rend.material.SetColor("_MainColor", newColor);
+                rend.material.SetColor("_MainColor", newColor.mainColor);
             }
         }
 
-        public static void ModifyLights(Light light, Color color)
+        public static void ModifyLights(Light light, ParticleColorInfo color)
         {
             if (light) 
             {
-                light.color = color;
+                light.color = color.mainColor;
             }
         }
 
@@ -513,19 +501,19 @@ namespace LeeHyperrealMod.Modules
                 case LeeHyperrealPassive.VFXPassive.RED:
                     return variants.colourVariants[RED_PARTICLE.name];
                 case LeeHyperrealPassive.VFXPassive.ORANGE:
-                    return variants.colourVariants[ORANGE_PARTICLE_VARIANT];
+                    return variants.colourVariants[ORANGE_PARTICLE.name];
                 case LeeHyperrealPassive.VFXPassive.YELLOW:
-                    return variants.colourVariants[YELLOW_PARTICLE_VARIANT];
+                    return variants.colourVariants[YELLOW_PARTICLE.name];
                 case LeeHyperrealPassive.VFXPassive.GREEN:
-                    return variants.colourVariants[GREEN_PARTICLE_VARIANT];
+                    return variants.colourVariants[GREEN_PARTICLE.name];
                 case LeeHyperrealPassive.VFXPassive.BLUE:
                     return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
                 case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
-                    return variants.colourVariants[LIGHTBLUE_PARTICLE_VARIANT];
+                    return variants.colourVariants[LIGHTBLUE_PARTICLE.name];
                 case LeeHyperrealPassive.VFXPassive.VIOLET:
-                    return variants.colourVariants[VIOLET_PARTICLE_VARIANT];
+                    return variants.colourVariants[VIOLET_PARTICLE.name];
                 case LeeHyperrealPassive.VFXPassive.PINK:
-                    return variants.colourVariants[PINK_PARTICLE_VARIANT];
+                    return variants.colourVariants[PINK_PARTICLE.name];
             }
 
             //Well shit, they chose default, go back to the usual programming.
@@ -544,17 +532,17 @@ namespace LeeHyperrealMod.Modules
 
             if (Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)skinIndex)) 
             {
-                if (variants.colourVariants.ContainsKey(ORANGE_PARTICLE_VARIANT))
+                if (variants.colourVariants.ContainsKey(ORANGE_PARTICLE.name))
                 {
-                    return variants.colourVariants[ORANGE_PARTICLE_VARIANT];
+                    return variants.colourVariants[ORANGE_PARTICLE.name];
                 }
             }
 
             if (Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)skinIndex)) 
             {
-                if (variants.colourVariants.ContainsKey(LIGHTBLUE_PARTICLE_VARIANT))
+                if (variants.colourVariants.ContainsKey(LIGHTBLUE_PARTICLE.name))
                 {
-                    return variants.colourVariants[LIGHTBLUE_PARTICLE_VARIANT];
+                    return variants.colourVariants[LIGHTBLUE_PARTICLE.name];
                 }
             }
 
@@ -562,13 +550,13 @@ namespace LeeHyperrealMod.Modules
             return variants.colourVariants[DEFAULT_PARTICLE_VARIANT];
         }
 
-        private static void GenerateColorVariant(string name, Color color, float intensity = -1)
+        private static void GenerateColorVariant(ParticleColorInfo color)
         {
             foreach (KeyValuePair<string, ParticleVariant> item in particleDictionary)
             {
                 ParticleVariant pVar = item.Value;
                 Dictionary<string, GameObject> pVarColourVar = item.Value.colourVariants;
-                if (pVarColourVar.ContainsKey(name)) 
+                if (pVarColourVar.ContainsKey(color.name)) 
                 {
                     //Skip processing, we already have a variant e.g RED for this prefab.
                     continue;
@@ -576,14 +564,14 @@ namespace LeeHyperrealMod.Modules
 
                 //Get default 
                 GameObject defaultVariant = pVarColourVar[DEFAULT_PARTICLE_VARIANT];
-                GameObject clone = PrefabAPI.InstantiateClone(defaultVariant, defaultVariant.name + "-" + name, false);
+                GameObject clone = PrefabAPI.InstantiateClone(defaultVariant, defaultVariant.name + "-" + color.name, false);
 
                 Renderer[] rends = clone.GetComponentsInChildren<Renderer>();
                 foreach (Renderer rend in rends)
                 {
                     //Modify with the new colour on XEffect, may need more functions to convert more later
-                    ModifyXEffectOnRenderer(rend, color, intensity);
-                    ModifyNoBatchingRenderers(rend, color, intensity);
+                    ModifyXEffectOnRenderer(rend, color);
+                    ModifyNoBatchingRenderers(rend, color);
                     ModifySnipeFloorRenderer(rend, color);
                     ModifyCloneRenderers(rend, color);
                 }
@@ -597,7 +585,7 @@ namespace LeeHyperrealMod.Modules
                 GPUParticlePlayer[] gpuPlayers = clone.GetComponentsInChildren<GPUParticlePlayer>();
                 foreach (GPUParticlePlayer player in gpuPlayers) 
                 {
-                    ModifyGPUParticles(player, color, intensity);
+                    ModifyGPUParticles(player, color);
                 }
 
                 //check if the prefab is a clone prefab, and skip the ModifyEffect registration
@@ -626,7 +614,7 @@ namespace LeeHyperrealMod.Modules
                 }
 
                 //Register the new prefab under name
-                pVarColourVar.Add(name, clone);
+                pVarColourVar.Add(color.name, clone);
             }
         }
 

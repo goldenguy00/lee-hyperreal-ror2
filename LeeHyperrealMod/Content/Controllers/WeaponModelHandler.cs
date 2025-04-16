@@ -1,5 +1,6 @@
 ﻿using BepInEx.Bootstrap;
 using EmotesAPI;
+using LeeHyperrealMod.Modules;
 using LeeHyperrealMod.ParticleScripts;
 using RoR2;
 using System;
@@ -107,7 +108,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void ChangeFlashEffect()
         {
-            UnityEngine.Color color = new UnityEngine.Color(0f, 0f, 0f);
+            ParticleAssets.ParticleColorInfo color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE;
             bool skip = true;
 
             if (passive) 
@@ -117,34 +118,34 @@ namespace LeeHyperrealMod.Content.Controllers
                     switch (passive.GetVFXPassive())
                     {
                         case LeeHyperrealPassive.VFXPassive.RED:
-                            color = Modules.ParticleAssets.RED_PARTICLE.mainColor;
+                            color = Modules.ParticleAssets.RED_PARTICLE;
                             skip = false;
                             break;
                         case LeeHyperrealPassive.VFXPassive.ORANGE:
-                            color = Modules.ParticleAssets.ORANGE_PARTICLE_COLOR;
+                            color = Modules.ParticleAssets.ORANGE_PARTICLE;
                             skip = false;
                             break;
                         case LeeHyperrealPassive.VFXPassive.YELLOW:
-                            color = Modules.ParticleAssets.YELLOW_PARTICLE_COLOR;
+                            color = Modules.ParticleAssets.YELLOW_PARTICLE;
                             skip = false;
                             break;
                         case LeeHyperrealPassive.VFXPassive.GREEN:
-                            color = Modules.ParticleAssets.GREEN_PARTICLE_COLOR;
+                            color = Modules.ParticleAssets.GREEN_PARTICLE;
                             skip = false;
                             break;
                         case LeeHyperrealPassive.VFXPassive.BLUE:
                             skip = true;
                             break;
                         case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
-                            color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE_COLOR;
+                            color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE;
                             skip = false;
                             break;
                         case LeeHyperrealPassive.VFXPassive.VIOLET:
-                            color = Modules.ParticleAssets.VIOLET_PARTICLE_COLOR;
+                            color = Modules.ParticleAssets.VIOLET_PARTICLE;
                             skip = false;
                             break;
                         case LeeHyperrealPassive.VFXPassive.PINK:
-                            color = Modules.ParticleAssets.PINK_PARTICLE_COLOR;
+                            color = Modules.ParticleAssets.PINK_PARTICLE;
                             skip = false;
                             break;
                     }
@@ -154,19 +155,19 @@ namespace LeeHyperrealMod.Content.Controllers
                     // Run default skin check
                     if (Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)characterBody.skinIndex))
                     {
-                        color = Modules.ParticleAssets.ORANGE_PARTICLE_COLOR;
+                        color = Modules.ParticleAssets.ORANGE_PARTICLE;
                         skip = false;
                     }
 
                     if (Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)characterBody.skinIndex))
                     {
-                        color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE_COLOR;
+                        color = Modules.ParticleAssets.LIGHTBLUE_PARTICLE;
                         skip = false;
                     }
 
                     if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)characterBody.skinIndex))
                     {
-                        color = Modules.ParticleAssets.RED_PARTICLE.mainColor;
+                        color = Modules.ParticleAssets.RED_PARTICLE;
                         skip = false;
                     }
                 }
@@ -184,8 +185,8 @@ namespace LeeHyperrealMod.Content.Controllers
                 foreach (Renderer rend in rends)
                 {
                     //Modify with the new colour on XEffect, may need more functions to convert more later
-                    Modules.ParticleAssets.ModifyXEffectOnRenderer(rend, color, intensity);
-                    Modules.ParticleAssets.ModifyNoBatchingRenderers(rend, color, intensity);
+                    Modules.ParticleAssets.ModifyXEffectOnRenderer(rend, color);
+                    Modules.ParticleAssets.ModifyNoBatchingRenderers(rend, color);
                 }
 
                 Light[] lights = obj.GetComponentsInChildren<Light>(true);
@@ -197,7 +198,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 GPUParticlePlayer[] gpuPlayers = obj.GetComponentsInChildren<GPUParticlePlayer>();
                 foreach (GPUParticlePlayer player in gpuPlayers)
                 {
-                    Modules.ParticleAssets.ModifyGPUParticles(player, color, intensity);
+                    Modules.ParticleAssets.ModifyGPUParticles(player, color);
                 }
             }
         }
