@@ -152,11 +152,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             base.Update();
         }
 
-        public override void FixedUpdate()
-        {
-            base.FixedUpdate();
-        }
-
         public override void OnExit()
         {
             base.OnExit();
