@@ -263,7 +263,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             base.Update();
 
-            UpdateMeleeRootMotion(movementMultiplier);
             stopwatch += Time.deltaTime;
 
             if (this.age >= (this.duration * moveStartFrac) && this.age <= (this.duration * moveEndFrac)) 
@@ -314,7 +313,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         {
             attack.position = this.gameObject.transform.position;
             BlastAttack.Result result = attack.Fire();
-
+            UpdateMeleeRootMotion(movementMultiplier);
             if (result.hitCount > 0) 
             {
                 new PlaySoundNetworkRequest(characterBody.netId, "Play_c_liRk4_imp_nml_4").Send(R2API.Networking.NetworkDestination.Clients);

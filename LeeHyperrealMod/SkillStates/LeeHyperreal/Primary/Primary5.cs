@@ -157,7 +157,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
 
             base.Update();
-            UpdateMeleeRootMotion(1.8f);
         }
         public void PlaySwing(string muzzleString, float swingScale, GameObject effectPrefab)
         {
@@ -190,6 +189,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
         public override void FixedUpdate()
         {
             base.FixedUpdate();
+
+            UpdateMeleeRootMotion(1.8f);
         }
 
         public override void OnExit()

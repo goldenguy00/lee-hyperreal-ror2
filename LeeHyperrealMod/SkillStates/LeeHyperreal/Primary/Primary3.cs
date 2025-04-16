@@ -163,12 +163,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             }
 
             base.Update();
-            UpdateMeleeRootMotion(1.6f);
         }
 
         public override void FixedUpdate()
         {
             base.FixedUpdate();
+            UpdateMeleeRootMotion(1.6f);
             if (base.isAuthority && stopwatch >= duration * attack2StartFrac && stopwatch <= duration * attack2EndFrac) 
             {
                 FireSecondAttack();
