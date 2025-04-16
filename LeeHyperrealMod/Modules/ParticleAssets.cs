@@ -18,31 +18,31 @@ namespace LeeHyperrealMod.Modules
      
         internal static string RED_PARTICLE_VARIANT = "red";
         internal static Color RED_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
-        internal static float RED_INTENSITY_MULT = 1f;
+        internal static float RED_INTENSITY_MULT = 1.8f;
 
         internal static string ORANGE_PARTICLE_VARIANT = "orange";
         internal static Color ORANGE_PARTICLE_COLOR = new Color(1f, 30f/255f, 0f);
-        internal static float ORANGE_INTENSITY_MULT = 2f;
+        internal static float ORANGE_INTENSITY_MULT = 1.8f;
 
         internal static string YELLOW_PARTICLE_VARIANT = "yellow";
-        internal static Color YELLOW_PARTICLE_COLOR = new Color(1f, 1f, 0f);
-        internal static float YELLOW_INTENSITY_MULT = 1f;
+        internal static Color YELLOW_PARTICLE_COLOR = new Color(1f, 0.85f, 0f);
+        internal static float YELLOW_INTENSITY_MULT = 1.6f;
 
         internal static string GREEN_PARTICLE_VARIANT = "green";
         internal static Color GREEN_PARTICLE_COLOR = new Color(0f, 1f, 0f);
-        internal static float GREEN_INTENSITY_MULT = 1f;
+        internal static float GREEN_INTENSITY_MULT = 1.8f;
 
         internal static string LIGHTBLUE_PARTICLE_VARIANT = "lightblue";
         internal static Color LIGHTBLUE_PARTICLE_COLOR = new Color(0, 247f / 255f, 1f);
-        internal static float LIGHTBLUE_INTENSITY_MULT = 1f;
+        internal static float LIGHTBLUE_INTENSITY_MULT = 1.6f;
 
         internal static string VIOLET_PARTICLE_VARIANT = "violet";
-        internal static Color VIOLET_PARTICLE_COLOR = new Color(132f / 255f, 18f / 255f, 1f);
-        internal static float VIOLET_INTENSITY_MULT = 1f;
+        internal static Color VIOLET_PARTICLE_COLOR = new Color(120f / 255f, 75f / 255f, 1f);
+        internal static float VIOLET_INTENSITY_MULT = 2.15f;
 
         internal static string PINK_PARTICLE_VARIANT = "pink";
         internal static Color PINK_PARTICLE_COLOR = new Color(1f, 1f, 1f);
-        internal static float PINK_INTENSITY_MULT = 1f;
+        internal static float PINK_INTENSITY_MULT = 1.6f;
 
         //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
