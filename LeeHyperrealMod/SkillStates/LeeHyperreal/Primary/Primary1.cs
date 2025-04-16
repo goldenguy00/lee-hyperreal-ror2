@@ -125,6 +125,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             }
         }
 
+        public override void FixedUpdate() 
+        {
+            base.FixedUpdate();
+            UpdateMeleeRootMotion(1.5f);
+        }
+
         public override void Update()
         {
 
@@ -144,13 +150,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             }
 
             base.Update();
-            UpdateMeleeRootMotion(1.5f);
-
-        }
-
-        public override void FixedUpdate()
-        {
-            base.FixedUpdate();
         }
 
         public override void OnExit()
