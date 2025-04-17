@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: fxr4liang010011md778
+  m_Name: fxr4liang010011md778 custom Domain Ult
   m_Shader: {fileID: 4800000, guid: 4aa51fefc4ef77e49aed092d94481aa9, type: 3}
   m_ValidKeywords:
   - _ALPHABLEND_ON
@@ -88,10 +88,10 @@ Material:
     - _DissolutionSoftness: 0.291
     - _DissolutionThreshold: 1
     - _DstBlend: 10
-    - _EffectBrightness: 20.8
-    - _EffectBrightnessB: 2
-    - _EffectBrightnessG: 1
-    - _EffectBrightnessR: 1
+    - _EffectBrightness: 40
+    - _EffectBrightnessB: 4
+    - _EffectBrightnessG: 1.5
+    - _EffectBrightnessR: 1.5
     - _FlowIntensity: 0.1
     - _HideDistance: 2
     - _MainRotation: 0
