@@ -11010,7 +11010,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5604b87d6c255494692513a130602466, type: 2}
-  - {fileID: 2100000, guid: 5604b87d6c255494692513a130602466, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29409,7 +29408,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0e73c9499d002614996f9aca44460422, type: 2}
-  - {fileID: 2100000, guid: 0e73c9499d002614996f9aca44460422, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37087,7 +37085,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64bc34a4833c433438bcab592ad58a8c, type: 2}
   - {fileID: 2100000, guid: 64bc34a4833c433438bcab592ad58a8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -58773,9 +58770,9 @@ Transform:
   - {fileID: 4087140421172056}
   - {fileID: 7372038993063927097}
   - {fileID: 3600772076485877442}
-  - {fileID: 8259452572186240205}
-  - {fileID: 2947403668667654339}
   - {fileID: 7532000372171017279}
+  - {fileID: 2947403668667654339}
+  - {fileID: 8259452572186240205}
   - {fileID: 2373110786107015177}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61666,7 +61663,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f9d9cb1475ff66419620b1967152a14, type: 2}
   - {fileID: 2100000, guid: 2f9d9cb1475ff66419620b1967152a14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -69168,7 +69164,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d11d2aaf58355004dac41d577102bc5b, type: 2}
   - {fileID: 2100000, guid: d11d2aaf58355004dac41d577102bc5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -105527,7 +105522,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: af58cd2add597ed4396582427de08b46, type: 2}
-  - {fileID: 2100000, guid: af58cd2add597ed4396582427de08b46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115996,7 +115990,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40
+      scalar: 20
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -118221,7 +118215,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4406202631972415}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 1.302669, y: 90, z: 0}
 --- !u!198 &2023508469723167121
 ParticleSystem:
@@ -118246,7 +118240,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2.4
+    scalar: 2.5
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -122979,7 +122973,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4406202631972415}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!198 &8854317839198225463
 ParticleSystem:
@@ -125361,7 +125355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5184119510741719982}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.188, y: 1.295, z: 1.283}
+  m_LocalPosition: {x: 0, y: 1.739, z: 0}
   m_LocalScale: {x: 1.4999998, y: 1.4999995, z: 1.5000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127764,7 +127758,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6133400813131483080}
   serializedVersion: 8
-  lengthInSec: 0.65
+  lengthInSec: 0.7
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -127999,8 +127993,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.2
+      scalar: 0.75
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -128458,7 +128452,7 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0.01
+    randomDirectionAmount: 0.001
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
@@ -128519,7 +128513,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 15.64
+      value: 25
       mode: 0
       spread: 0
       speed:
@@ -128581,7 +128575,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 150
       minScalar: 10
       maxCurve:
         serializedVersion: 2

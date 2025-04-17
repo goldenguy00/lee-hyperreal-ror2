@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: fxr3weilachunse711
   m_Shader: {fileID: 4800000, guid: 8f767d6ddad4f0e4bafcb930820f149f, type: 3}
-  m_ShaderKeywords: S_BILLBOARD
+  m_ValidKeywords:
+  - S_BILLBOARD
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -25,6 +27,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6b126b0f393582c4e8c7d213651606b7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _Alpha_Intensity: 3.5
     - _AspectRatio: 0.2
@@ -41,3 +44,4 @@ Material:
     - _VelocityScale: 0.02
     - _ZWrite: 0
     m_Colors: []
+  m_BuildTextureStacks: []

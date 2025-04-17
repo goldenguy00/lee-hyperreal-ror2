@@ -89,9 +89,9 @@ Material:
     - _DissolutionThreshold: 1
     - _DstBlend: 10
     - _EffectBrightness: 40
-    - _EffectBrightnessB: 4
-    - _EffectBrightnessG: 1.5
-    - _EffectBrightnessR: 1.5
+    - _EffectBrightnessB: 24
+    - _EffectBrightnessG: 9
+    - _EffectBrightnessR: 9
     - _FlowIntensity: 0.1
     - _HideDistance: 2
     - _MainRotation: 0
