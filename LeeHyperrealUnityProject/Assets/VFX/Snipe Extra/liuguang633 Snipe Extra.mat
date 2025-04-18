@@ -87,7 +87,7 @@ Material:
     - _DstBlend: 10
     - _EffectBrightness: 15
     - _EffectBrightnessB: 10
-    - _EffectBrightnessG: 1
+    - _EffectBrightnessG: 2
     - _EffectBrightnessR: 0
     - _FlowIntensity: 0.5
     - _HideDistance: 2
