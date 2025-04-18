@@ -26469,10 +26469,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1668245664276087, guid: cf12287d9fb06764bb3ac7e2fe571389, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1705916644522745, guid: cf12287d9fb06764bb3ac7e2fe571389, type: 3}
       propertyPath: m_Name
       value: fxr4liangatk42suiping
@@ -26480,10 +26476,6 @@ PrefabInstance:
     - target: {fileID: 1705916644522745, guid: cf12287d9fb06764bb3ac7e2fe571389, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1800926646621831, guid: cf12287d9fb06764bb3ac7e2fe571389, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4635107437046299, guid: cf12287d9fb06764bb3ac7e2fe571389, type: 3}
       propertyPath: m_RootOrder
@@ -26528,11 +26520,6 @@ PrefabInstance:
     - target: {fileID: 4635107437046299, guid: cf12287d9fb06764bb3ac7e2fe571389, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4811500746941606445, guid: cf12287d9fb06764bb3ac7e2fe571389,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf12287d9fb06764bb3ac7e2fe571389, type: 3}

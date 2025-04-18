@@ -85,10 +85,10 @@ Material:
     - _DissolutionSoftness: 0.02
     - _DissolutionThreshold: 0.5
     - _DstBlend: 10
-    - _EffectBrightness: 25
-    - _EffectBrightnessB: 15
-    - _EffectBrightnessG: 18
-    - _EffectBrightnessR: 9
+    - _EffectBrightness: 15
+    - _EffectBrightnessB: 10
+    - _EffectBrightnessG: 1
+    - _EffectBrightnessR: 0
     - _FlowIntensity: 0.5
     - _HideDistance: 2
     - _MainRotation: 0
@@ -128,7 +128,7 @@ Material:
     - _DissolutionRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _FlowSpeed: {r: 0.1, g: 0.1, b: -0.1, a: 0.1}
     - _MainRotationParams: {r: 1, g: 0, b: 0, a: 1}
-    - _MainTexColor: {r: 0.3803922, g: 0.5372549, b: 1, a: 1}
+    - _MainTexColor: {r: 1, g: 1, b: 1, a: 1}
     - _MaskRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _SecondColor: {r: 0.3803922, g: 0.5372549, b: 1, a: 1}
