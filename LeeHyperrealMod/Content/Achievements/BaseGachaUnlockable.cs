@@ -11,6 +11,8 @@ namespace LeeHyperrealMod.Content.Achievements
         public abstract string RequiredCharacterBody { get; }
         public abstract float RequiredDifficultyCoefficient { get; }
 
+
+
         public override void OnBodyRequirementMet()
         {
             base.OnBodyRequirementMet();
@@ -24,44 +26,6 @@ namespace LeeHyperrealMod.Content.Achievements
         public override BodyIndex LookUpRequiredBodyIndex()
         {
             return BodyCatalog.FindBodyIndex(RequiredCharacterBody);
-        }
-
-        public override void OnInstall()
-        {
-            base.OnInstall();
-
-            Hook();
-        }
-
-        public override void OnUninstall()
-        {
-            base.OnUninstall();
-
-            Unhook();
-        }
-
-        private void Unhook()
-        {
-            On.RoR2.CostTypeDef.PayCost -= CostTypeDef_PayCost;
-        }
-
-        private void Hook()
-        {
-            On.RoR2.CostTypeDef.PayCost += CostTypeDef_PayCost;
-        }
-
-        private CostTypeDef.PayCostResults CostTypeDef_PayCost(On.RoR2.CostTypeDef.orig_PayCost orig, CostTypeDef self, int cost, Interactor activator, UnityEngine.GameObject purchasedObject, Xoroshiro128Plus rng, ItemIndex avoidedItemIndex)
-        {
-            CostTypeDef.PayCostResults result =  orig(self, cost, activator, purchasedObject, rng, avoidedItemIndex);
-
-            Debug.Log($"Body: {activator.GetComponent<CharacterBody>().baseNameToken}");
-            Debug.Log($"Purchased: {purchasedObject.name}");
-
-            //check if the body matches us
-            // Check purchased object
-            //Roll the dice and see if you earn it
-
-            return result;
         }
 
         private void OnClientGameOverGlobal(Run run, RunReport runReport)

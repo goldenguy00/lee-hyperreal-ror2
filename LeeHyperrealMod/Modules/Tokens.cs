@@ -218,9 +218,13 @@ namespace LeeHyperrealMod.Modules
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "MASTERYUNLOCKABLE_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game or obliterate on Monsoon.");
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
 
-            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "BLUESKIN_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
-            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "BLUESKIN_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon with Transcendence, or spend money during a run for a 5% chance from a medium chest.");
-            LanguageAPI.Add(prefix + "BLUESKIN_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "BLUESKIN_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Real");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "BLUESKIN_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon with Transcendence, or Roll for a 5% chance from a Medium chest.");
+            LanguageAPI.Add(prefix + "BLUESKIN_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Real");
+
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "SCARLET_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Scarlet");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "SCARLET_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon with no watches and bleed items, or Roll for a 5% chance from a Legendary chest.");
+            LanguageAPI.Add(prefix + "SCARLET_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Scarlet");
             #endregion
             #endregion
         }

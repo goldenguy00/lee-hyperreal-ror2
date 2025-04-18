@@ -224,7 +224,6 @@ namespace LeeHyperrealMod.Modules
                 netid = newEffect.AddComponent<NetworkIdentity>();
             }
 
-            Debug.Log(newEffect.name + " " + netid.netId);
             //else 
             //{
             //    //Reinit netid.

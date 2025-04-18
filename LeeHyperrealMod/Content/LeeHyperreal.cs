@@ -625,15 +625,16 @@ namespace LeeHyperrealMod.Modules.Survivors
             });
             Modules.Skills.AddPassiveSkills(passive.VFXColorPassiveSkillSlot.skillFamily, new SkillDef[] {
                 passive.defaultVFXPassive,
-                passive.redVFXPassive,
-                passive.orangeVFXPassive,
                 passive.yellowVFXPassive,
                 passive.greenVFXPassive,
                 passive.blueVFXPassive,
-                passive.lightBlueVFXPassive,
                 passive.violetVFXPassive,
                 passive.pinkVFXPassive
             });
+            
+            Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.redVFXPassive, Unlockables.scarletUnlockableDef);
+            Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.orangeVFXPassive, Unlockables.masteryUnlockableDef);
+            Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.lightBlueVFXPassive, Unlockables.blueSkinUnlockableDef);
             #endregion
 
             #region Primary
@@ -908,7 +909,8 @@ namespace LeeHyperrealMod.Modules.Survivors
             SkinDef blueSkin = Modules.Skins.CreateSkinDef(PLUGIN_PREFIX + "ALT_SKIN_NAME",
                 LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("texCloneSkin"),
                 defaultRendererinfos,
-                prefabCharacterModel.gameObject);
+                prefabCharacterModel.gameObject, 
+                Unlockables.blueSkinUnlockableDef);
 
             //adding the mesh replacements as above. 
             //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved
@@ -1007,7 +1009,8 @@ namespace LeeHyperrealMod.Modules.Survivors
             SkinDef scarletSkin = Modules.Skins.CreateSkinDef(PLUGIN_PREFIX + "SCARLET_SKIN_NAME",
                 LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("texScarletSkin"),
                 defaultRendererinfos,
-                prefabCharacterModel.gameObject);
+                prefabCharacterModel.gameObject,
+                Unlockables.scarletUnlockableDef);
 
             //adding the mesh replacements as above. 
             //if you don't want to replace the mesh (for example, you only want to replace the material), pass in null so the order is preserved

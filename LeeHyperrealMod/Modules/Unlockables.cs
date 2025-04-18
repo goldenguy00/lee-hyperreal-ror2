@@ -9,6 +9,7 @@ namespace LeeHyperrealMod.Modules
     {
         public static UnlockableDef masteryUnlockableDef;
         public static UnlockableDef blueSkinUnlockableDef;
+        public static UnlockableDef scarletUnlockableDef;
 
         public static void Initialize() 
         {
@@ -22,6 +23,12 @@ namespace LeeHyperrealMod.Modules
                 BlueSkinTransendanceAchievement.unlockableidentifier,
                 Modules.Helpers.GetAchievementNameToken(BlueSkinTransendanceAchievement.identifier),
                 Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("texCloneSkin")
+            );
+
+            scarletUnlockableDef = Modules.ContentPacks.CreateAndAddUnlockbleDef(
+                ScarletAchievement.unlockableidentifier,
+                Modules.Helpers.GetAchievementNameToken(ScarletAchievement.identifier),
+                Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("texScarletSkin")
             );
         }
     }
