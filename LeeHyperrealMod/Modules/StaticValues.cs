@@ -58,11 +58,11 @@ namespace LeeHyperrealMod.Modules
         internal const float primary3ProcCoefficient = 1f;
         internal const float primary3PushForce = 300f;
         internal const float primary3HitHopVelocity = 4f;
-        internal const float primary3ParryLength = 0.45f; //How long the parry window is openf or
-        internal const float primary3ParryTiming = 0.08f; // A percentage of the duration in which the parry starts
+        internal const float primary3ParryLength = 0.55f; //How long the parry window is openf or
+        internal const float primary3ParryTiming = 0.03f; // A percentage of the duration in which the parry starts
         internal const float primary3ParryPauseLength = 0.2f; // How long YOU are stuck in hit pause when a parry is triggered
-        internal const float primary3ParryProjectileTimingStart = 0.08f; // Percentage of the duration of the move where a projectile parry can be triggered
-        internal const float primary3ParryProjectileTimingEnd = 0.30f; // Percentage of the duration of the move when a projectile parry can be triggered. In this case it's ranging from 5% to 10% of the move, this value should never be higher than 1f
+        internal const float primary3ParryProjectileTimingStart = 0.03f; // Percentage of the duration of the move where a projectile parry can be triggered
+        internal const float primary3ParryProjectileTimingEnd = 0.55f; // Percentage of the duration of the move when a projectile parry can be triggered. In this case it's ranging from 5% to 10% of the move, this value should never be higher than 1f
         #endregion
 
         #region Primary 4
@@ -84,7 +84,7 @@ namespace LeeHyperrealMod.Modules
         internal const float primaryAerialMaxDamageMultiplier = 3f;
         internal const float primaryAerialDamageCoefficient = 4f;
         internal const float primaryAerialProcCoefficient = 1f;
-        internal const float primaryAerialSlamSpeed = 75f;
+        internal const float primaryAerialSlamSpeed = 125f;
         #endregion
 
         #region Domain Shift
@@ -156,14 +156,14 @@ namespace LeeHyperrealMod.Modules
         #endregion
 
         #region Red Orb
-        internal const float redOrbDamageCoefficient = 1.25f;
+        internal const float redOrbDamageCoefficient = 1f;
         internal const int redOrbBaseHitAmount = 3; // Amount of shots at 1 attack speed
         internal const float redOrbProcCoefficient = 1f;
         internal const float redOrbBulletRange = 256f;
         internal const float redOrbBulletForce = 800f;
         internal const float redOrbTripleMultiplier = 4f;
 
-        internal const float redOrbFinisherDamageCoefficient = 5f;
+        internal const float redOrbFinisherDamageCoefficient = 4f;
         internal const float redOrbFinisherProcCoefficient = 1f;
         internal const float redOrbFinisherBulletRange = 256f;
         internal const float redOrbFinisherBulletForce = 800f;

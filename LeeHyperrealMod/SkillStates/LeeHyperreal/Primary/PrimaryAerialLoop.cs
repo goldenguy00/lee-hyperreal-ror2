@@ -41,7 +41,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 base.characterBody.ApplyBuff(Modules.Buffs.fallDamageNegateBuff.buffIndex, 1);
             }
 
-            base.characterMotor.velocity = Vector3.SmoothDamp(base.characterMotor.velocity, ((Vector3.down).normalized * Modules.StaticValues.primaryAerialSlamSpeed), ref velocity, 0.1f);
+            base.characterMotor.velocity = Vector3.SmoothDamp(base.characterMotor.velocity, ((Vector3.down).normalized * Modules.StaticValues.primaryAerialSlamSpeed), ref velocity, 0.2f);
         }
 
 

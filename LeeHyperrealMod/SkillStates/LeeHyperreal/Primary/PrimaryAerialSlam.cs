@@ -29,14 +29,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             base.OnEnter();
             orbController = GetComponent<OrbController>();
 
-            float maxAirTime = 2f;
+            float maxAirTime = 1.5f;
 
             if (airTime > maxAirTime) 
             {
                 airTime = maxAirTime;
             }
 
-            airTime = Util.Remap(airTime, 0f, maxAirTime, 0.8f, Modules.StaticValues.primaryAerialMaxDamageMultiplier);
+            airTime = Util.Remap(airTime, 0f, maxAirTime, 0.4f, Modules.StaticValues.primaryAerialMaxDamageMultiplier);
 
             //Fire as soon as this state is triggered.
 

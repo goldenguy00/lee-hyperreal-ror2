@@ -11,9 +11,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
     internal class PrimaryAerialStart : BaseRootMotionMoverState
     {
         LeeHyperrealDomainController domainController;
-        private float duration = 0.8f;
+        private float duration = 0.6f;
 
-        public static float heldButtonThreshold = 0.4f;
+        public static float heldButtonThreshold = 0.3f;
         public bool ifButtonLifted = false;
 
         public override void OnEnter()

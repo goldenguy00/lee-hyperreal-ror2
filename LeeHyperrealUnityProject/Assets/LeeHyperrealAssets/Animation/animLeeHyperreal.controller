@@ -8735,7 +8735,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Midair Attack Start
-  m_Speed: 1.2
+  m_Speed: 1.599996
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1004918051796085994}
