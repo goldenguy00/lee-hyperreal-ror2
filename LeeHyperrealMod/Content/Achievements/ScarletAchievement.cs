@@ -1,4 +1,6 @@
-﻿using RoR2;
+﻿using LeeHyperrealMod.Modules.Networking;
+using R2API.Networking.Interfaces;
+using RoR2;
 using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Achievements
@@ -24,7 +26,7 @@ namespace LeeHyperrealMod.Content.Achievements
             public override int Chance => 5;
             public override string RequiredChestType => "GoldChest";
 
-            internal override void CheckRoll(string chestName)
+            internal override void CheckRoll(string chestName, CharacterBody body)
             {
                 Debug.Log("rolling for Scarlet");
                 if (chestName.Contains(RequiredChestType))
@@ -36,26 +38,10 @@ namespace LeeHyperrealMod.Content.Achievements
 
                     if (rnd <= Chance)
                     {
-                        base.Grant();   
+                        new AchievementGranterNetworkRequest(this.achievementDef.serverIndex.intValue, body.netId).Send(R2API.Networking.NetworkDestination.Clients);
                     }
                 }
             }
-
-            /*
-             		public void RpcGrantAchievement(ServerAchievementIndex serverAchievementIndex)
-		{
-			LocalUser localUser = this.networkUser.localUser;
-			if (localUser != null)
-			{
-				UserAchievementManager userAchievementManager = AchievementManager.GetUserAchievementManager(localUser);
-				if (userAchievementManager == null)
-				{
-					return;
-				}
-				userAchievementManager.HandleServerAchievementCompleted(serverAchievementIndex);
-			}
-		}
-             */
         }
     }
 }

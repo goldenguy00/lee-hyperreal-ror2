@@ -16,7 +16,6 @@ using System.Collections.ObjectModel;
 using R2API;
 using System;
 using MonoMod.RuntimeDetour;
-using static RoR2.MasterSpawnSlotController;
 using RoR2.UI;
 using System.Runtime.CompilerServices;
 
@@ -128,6 +127,7 @@ namespace LeeHyperrealMod
             NetworkingAPI.RegisterMessageType<UltimateObjectSpawnNetworkRequest>();
             NetworkingAPI.RegisterMessageType<SetDomainUltimateNetworkRequest>();
             NetworkingAPI.RegisterMessageType<ForceSpawnStateNetworkRequest>();
+            NetworkingAPI.RegisterMessageType<AchievementGranterNetworkRequest>();
         }
 
         private static bool AddBank(Func<AkSoundEngineInitialization, bool> orig, AkSoundEngineInitialization self)

@@ -1,5 +1,6 @@
-﻿using RoR2;
-using System;
+﻿using LeeHyperrealMod.Modules.Networking;
+using R2API.Networking.Interfaces;
+using RoR2;
 using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Achievements
@@ -25,7 +26,7 @@ namespace LeeHyperrealMod.Content.Achievements
             public override int Chance => 5;
             public override string RequiredChestType => "Chest2";
 
-            internal override void CheckRoll(string chestName)
+            internal override void CheckRoll(string chestName, CharacterBody body)
             {
                 Debug.Log("rolling for Blue");
                 if (chestName.Contains(RequiredChestType))
@@ -37,7 +38,7 @@ namespace LeeHyperrealMod.Content.Achievements
 
                     if (rnd <= Chance)
                     {
-                        base.Grant();
+                        new AchievementGranterNetworkRequest(this.achievementDef.serverIndex.intValue, body.netId).Send(R2API.Networking.NetworkDestination.Clients);
                     }
                 }
             }

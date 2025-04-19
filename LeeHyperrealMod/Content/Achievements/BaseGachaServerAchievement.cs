@@ -6,7 +6,10 @@ namespace LeeHyperrealMod.Content.Achievements
     internal abstract class BaseGachaServerAchievement : BaseServerAchievement
     {
 
-        public static int lastOpenedItem = 0;
+        public static int lastOpenedLarge = 0;
+        public static int lastOpenedLegendary = 0;
+        public static int lastOpenedSmall = 0;
+
         public abstract string RequiredChestType { get; }
         public abstract int Chance { get; }
 
@@ -35,43 +38,76 @@ namespace LeeHyperrealMod.Content.Achievements
         }
 
         //Check to prevent multiple rolls on different achievements.
-        private CostTypeDef.PayCostResults CostTypeDef_PayCost(On.RoR2.CostTypeDef.orig_PayCost orig, CostTypeDef self, int cost, Interactor activator, UnityEngine.GameObject purchasedObject, Xoroshiro128Plus rng, ItemIndex avoidedItemIndex)
+        internal virtual CostTypeDef.PayCostResults CostTypeDef_PayCost(On.RoR2.CostTypeDef.orig_PayCost orig, CostTypeDef self, int cost, Interactor activator, UnityEngine.GameObject purchasedObject, Xoroshiro128Plus rng, ItemIndex avoidedItemIndex)
         {
             CostTypeDef.PayCostResults result = orig(self, cost, activator, purchasedObject, rng, avoidedItemIndex);
             bool allowRoll = false;
+            CharacterBody body = activator.GetComponent<CharacterBody>();
 
             //check if the body matches us
             // Check purchased object
             //Roll the dice and see if you earn it
-            if (activator.GetComponent<CharacterBody>().baseNameToken != LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_NAME")
+            if (body.baseNameToken != LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_NAME")
             {
                 // Exit
                 return result;
             }
 
-
-            if (lastOpenedItem == 0)
+            if (purchasedObject.name.Contains("Chest1")) 
             {
-                lastOpenedItem = purchasedObject.GetInstanceID();
-                allowRoll = true;
+                if (lastOpenedSmall == 0)
+                {
+                    lastOpenedSmall = purchasedObject.GetInstanceID();
+                    allowRoll = true;
+                }
+
+                if (lastOpenedSmall != purchasedObject.GetInstanceID() && !allowRoll)
+                {
+                    lastOpenedSmall = purchasedObject.GetInstanceID();
+                    allowRoll = true;
+                }
             }
 
-            if (lastOpenedItem != purchasedObject.GetInstanceID() && !allowRoll)
+            if (purchasedObject.name.Contains("Chest2")) 
             {
-                lastOpenedItem = purchasedObject.GetInstanceID();
-                allowRoll = true;
+                if (lastOpenedLarge == 0) 
+                {
+                    lastOpenedLarge = purchasedObject.GetInstanceID();
+                    allowRoll = true;
+                }
+
+                if(lastOpenedLarge != purchasedObject.GetInstanceID() && !allowRoll) 
+                {
+                    lastOpenedLarge = purchasedObject.GetInstanceID();
+                    allowRoll = true;
+                }
+            }
+
+            if (purchasedObject.name.Contains("GoldChest"))
+            {
+                if (lastOpenedLegendary == 0)
+                {
+                    lastOpenedLegendary = purchasedObject.GetInstanceID();
+                    allowRoll = true;
+                }
+
+                if (lastOpenedLegendary != purchasedObject.GetInstanceID() && !allowRoll)
+                {
+                    lastOpenedLegendary = purchasedObject.GetInstanceID();
+                    allowRoll = true;
+                }
             }
 
             if (allowRoll)
             {
                 //Roll the dice and see what you get.
-                CheckRoll(purchasedObject.name);
+                CheckRoll(purchasedObject.name, body);
             }
 
             return result;
         }
 
-        internal virtual void CheckRoll(string chestName)
+        internal virtual void CheckRoll(string chestName, CharacterBody body)
         {
             // Implement above.
         }
