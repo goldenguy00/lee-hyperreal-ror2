@@ -169,6 +169,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         #region Skill Icons
         private List<Material> skillIconMaterials;
+        List<Image> imageList;
         #endregion
 
         private bool isInitialized = false;
@@ -524,6 +525,7 @@ namespace LeeHyperrealMod.Content.Controllers
             Destroy(powerMeterUIObject);
             Destroy(healthLayers);
             Destroy(ultimateIndicatorObject);
+            UnsetSkillIconMat();
             Unhook();
         }
         #endregion
@@ -1545,7 +1547,7 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Skill Icon Colour
         private void InitializeSkillIconMaterial()
         {
-            List<Image> imageList = new List<Image>();
+            imageList = new List<Image>();
             skillIconMaterials = new List<Material>();
 
             // Grab the skillicons and slap them into a material array
@@ -1593,6 +1595,14 @@ namespace LeeHyperrealMod.Content.Controllers
                 //Setup red variant
                 SetCustomUIMaterial(img.material, 0f, ResolveColor());
                 skillIconMaterials.Add(img.material);
+            }
+        }
+
+        private void UnsetSkillIconMat()
+        {
+            foreach (Image img in imageList)
+            {
+                img.material = img.defaultMaterial;
             }
         }
         #endregion
