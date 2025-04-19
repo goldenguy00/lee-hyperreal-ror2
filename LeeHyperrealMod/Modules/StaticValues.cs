@@ -285,11 +285,27 @@ namespace LeeHyperrealMod.Modules
             {
                 // It's in the right direction
                 outputVector = new Vector3(1, 0, 0);
+                return outputVector;
             }
-            else
+            else if( Vector3.Dot(rotatedVector, moveVector) <= -0.833f)
             {
                 outputVector = new Vector3(-1, 0, 0);
+                return outputVector;
             }
+
+            //Cases where strict input failed.
+            float dotProduct = Vector3.Dot(rotatedVector, moveVector);
+
+            if (dotProduct >= 0f)
+            {
+                // Right prioritised
+                return new Vector3(1, 0, 0);
+            }
+            else if (dotProduct < 0f) 
+            {
+                return new Vector3(-1, 0, 0);
+            }
+
 
             return outputVector;
         }
