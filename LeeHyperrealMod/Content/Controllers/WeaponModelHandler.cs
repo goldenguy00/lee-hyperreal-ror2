@@ -289,15 +289,27 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             if (armModel)
             {
-                armModel.SetActive(state);
-                torsoModel.SetActive(state);
-                faceModel.SetActive(state);
-                hairModel.SetActive(state);
-                armourPlateModel.SetActive(state);
-                eyeModel.SetActive(state);
-                legModel.SetActive(state);
+                if (Modules.Survivors.LeeHyperreal.rorSkins.Contains((int)characterBody.skinIndex))
+                {
+                    armModel.SetActive(state);
+                    torsoModel.SetActive(state);
+                    faceModel.SetActive(false);
+                    hairModel.SetActive(state);
+                    armourPlateModel.SetActive(false);
+                    eyeModel.SetActive(false);
+                    legModel.SetActive(false);
+                }
+                else 
+                {
+                    armModel.SetActive(state);
+                    torsoModel.SetActive(state);
+                    faceModel.SetActive(state);
+                    hairModel.SetActive(state);
+                    armourPlateModel.SetActive(state);
+                    eyeModel.SetActive(state);
+                    legModel.SetActive(state);
+                }
 
-                //Disable the submachine gun.
                 guncaseModel.SetActive(state);
                 submachineModel.SetActive(state);
             }

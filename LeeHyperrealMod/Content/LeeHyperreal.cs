@@ -25,6 +25,7 @@ namespace LeeHyperrealMod.Modules.Survivors
         public static List<int> orangeVFXSkins;
         public static List<int> lightBlueVFXSkins;
         public static List<int> voiceDisabledSkins;
+        public static List<int> rorSkins;
 
         public override string survivorTokenPrefix => PLUGIN_PREFIX;
 
@@ -1056,7 +1057,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 }
                 else
                 {
-                    scarletSkin.rendererInfos[i].defaultMaterial = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>(scarletMaterialStrings[i]);
+                    scarletSkin.rendererInfos[i].defaultMaterial = Materials.CreateHopooMaterial(scarletMaterialStrings[i]);
                 }
             }
 
@@ -1150,16 +1151,16 @@ namespace LeeHyperrealMod.Modules.Survivors
                 {
                     "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette",
-                    "leeFaceMeshBlend",
-                    "LeeRor2ProspectorPalette",
-                    "R4LiangMd019011Alpha",
-                    "leeEyeMeshBlend",
-                    "R4LiangMd019011Down",
                     "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette",
-                    null,
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
+                    "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette"
                 };
 
@@ -1171,7 +1172,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 }
                 else
                 {
-                    prospectorSkin.rendererInfos[i].defaultMaterial = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>(prospectorMaterialStrings[i]);
+                    prospectorSkin.rendererInfos[i].defaultMaterial = Materials.CreateHopooMaterial(prospectorMaterialStrings[i]);
                 }
             }
 
@@ -1285,16 +1286,16 @@ namespace LeeHyperrealMod.Modules.Survivors
                 {
                     "LeeRor2ComradePalette",
                     "LeeRor2ComradePalette",
-                    "leeFaceMeshBlend",
-                    "LeeRor2ComradePalette",
-                    "R4LiangMd019011Alpha",
-                    "leeEyeMeshBlend",
-                    "R4LiangMd019011Down",
                     "LeeRor2ComradePalette",
                     "LeeRor2ComradePalette",
                     "LeeRor2ComradePalette",
                     "LeeRor2ComradePalette",
-                    null,
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
+                    "LeeRor2ComradePalette",
                     "LeeRor2ComradePalette"
                 };
 
@@ -1306,7 +1307,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 }
                 else
                 {
-                    comradeSkin.rendererInfos[i].defaultMaterial = Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Material>(comradeMaterialStrings[i]);
+                    comradeSkin.rendererInfos[i].defaultMaterial = Materials.CreateHopooMaterial(comradeMaterialStrings[i]);
                 }
             }
 
@@ -1383,6 +1384,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 orangeVFXSkins = new List<int> { 1 };
                 lightBlueVFXSkins = new List<int> { 3 };
                 voiceDisabledSkins = new List<int> { 0, 1 };
+                rorSkins = new List<int> { 0, 1 };
             }
             else 
             {
@@ -1397,9 +1399,10 @@ namespace LeeHyperrealMod.Modules.Survivors
                 orangeVFXSkins = new List<int> { 4 };
                 lightBlueVFXSkins = new List<int> { 1 };
                 voiceDisabledSkins = new List<int> { 3, 4 };
+                rorSkins = new List<int> { 3, 4 };
             }
 
-                skinController.skins = skins.ToArray();
+            skinController.skins = skins.ToArray();
         }
     }
 }
