@@ -3051,6 +3051,124 @@
 										<ActiveSource Name="Stage Intro" ID="{6A0BCF5F-CF2F-4AD7-BC2C-B372E18D90AF}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<RandomSequenceContainer Name="Loot Box" ID="{4AE80572-2F07-4C6D-93C2-A1F2E3B65D13}" ShortID="371388022">
+									<PropertyList>
+										<Property Name="Color" Type="int16" Value="16"/>
+										<Property Name="EnableAttenuation" Type="bool" Value="False"/>
+										<Property Name="OverrideColor" Type="bool" Value="True"/>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-2</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{28AE32FD-BEC9-4785-9867-C344424BD8B3}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BF54F147-DF16-41D1-A6ED-83FE94450779}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="loot box 2" ID="{32B238E4-54D8-45E6-85AA-E0ADD0B9D73F}" ShortID="709193716">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{28AE32FD-BEC9-4785-9867-C344424BD8B3}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BF54F147-DF16-41D1-A6ED-83FE94450779}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="loot box 2" ID="{77DA834A-BA17-4F6C-88ED-F0C6001C9223}">
+													<Language>SFX</Language>
+													<AudioFile>Loot Box\loot box 2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="366414953"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="loot box 2" ID="{77DA834A-BA17-4F6C-88ED-F0C6001C9223}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="loot box 3" ID="{65EF7AB4-E7B5-4E4D-9414-D8212AD74DD3}" ShortID="20410552">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-6</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{28AE32FD-BEC9-4785-9867-C344424BD8B3}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BF54F147-DF16-41D1-A6ED-83FE94450779}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="loot box 3" ID="{8C6CE0AD-6AE3-4839-B9BE-E3CA57E326B2}">
+													<Language>SFX</Language>
+													<AudioFile>Loot Box\loot box 3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="130852533"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="loot box 3" ID="{8C6CE0AD-6AE3-4839-B9BE-E3CA57E326B2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="loot box 4" ID="{701FA6CB-9C30-4F05-97CB-65A21B51EE67}" ShortID="985655449">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{28AE32FD-BEC9-4785-9867-C344424BD8B3}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BF54F147-DF16-41D1-A6ED-83FE94450779}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="loot box 4" ID="{F5FD5B03-E118-4BA2-A4C1-8F81F73AD8AF}">
+													<Language>SFX</Language>
+													<AudioFile>Loot Box\loot box 4.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="183622106"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="loot box 4" ID="{F5FD5B03-E118-4BA2-A4C1-8F81F73AD8AF}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="Opening Loot Box overwatch" ID="{241BC0E9-77A6-4F68-941D-09435D6A2BF5}" ShortID="790507149">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{28AE32FD-BEC9-4785-9867-C344424BD8B3}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{BF54F147-DF16-41D1-A6ED-83FE94450779}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="Opening Loot Box overwatch" ID="{46C2B71B-AE29-4153-9D4D-FF8F0A0332AB}">
+													<Language>SFX</Language>
+													<AudioFile>Loot Box\Opening Loot Box overwatch.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="181010998"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="Opening Loot Box overwatch" ID="{46C2B71B-AE29-4153-9D4D-FF8F0A0332AB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
@@ -3389,13 +3507,6 @@
 									</ChildrenList>
 								</Folder>
 								<Sound Name="cease_your_existance_NOW" ID="{ED802562-9F4C-4ACC-B0D9-DFB4563DD6F2}" ShortID="292767781">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-1</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{28AE32FD-BEC9-4785-9867-C344424BD8B3}"/>

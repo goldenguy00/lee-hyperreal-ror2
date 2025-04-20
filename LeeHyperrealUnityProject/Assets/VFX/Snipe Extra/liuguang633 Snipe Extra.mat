@@ -87,7 +87,7 @@ Material:
     - _DstBlend: 10
     - _EffectBrightness: 15
     - _EffectBrightnessB: 10
-    - _EffectBrightnessG: 2
+    - _EffectBrightnessG: 1
     - _EffectBrightnessR: 0
     - _FlowIntensity: 0.5
     - _HideDistance: 2
@@ -131,10 +131,10 @@ Material:
     - _MainTexColor: {r: 1, g: 1, b: 1, a: 1}
     - _MaskRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SecondColor: {r: 0.3803922, g: 0.5372549, b: 1, a: 1}
+    - _SecondColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _ShakeVertexData: {r: 1, g: 0, b: 0, a: 3}
-    - _TintColor: {r: 0.3803922, g: 0.5372549, b: 1, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _VAT_MaxBound: {r: 0, g: 0, b: 0, a: 1}
     - _VAT_MinBound: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
