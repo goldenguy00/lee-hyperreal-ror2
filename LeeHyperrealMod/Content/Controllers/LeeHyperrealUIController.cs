@@ -525,6 +525,7 @@ namespace LeeHyperrealMod.Content.Controllers
             Destroy(powerMeterUIObject);
             Destroy(healthLayers);
             Destroy(ultimateIndicatorObject);
+            Destroy(crosshairObject);
             UnsetSkillIconMat();
             Unhook();
         }
