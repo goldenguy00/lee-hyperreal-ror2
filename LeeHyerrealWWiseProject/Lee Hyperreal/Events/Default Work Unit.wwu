@@ -713,6 +713,17 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="Play_Loot_Box" ID="{652930C2-166F-4661-B965-8A56B06C6064}">
+							<ChildrenList>
+								<Action Name="" ID="{5AA56D82-6CC5-4E5F-AA2B-8D1925E02AC1}" ShortID="1009807967">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Loot Box" ID="{4AE80572-2F07-4C6D-93C2-A1F2E3B65D13}" WorkUnitID="{295F2DBF-FE43-43D5-B353-585A578C4F9D}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Lee Voice" ID="{BD9BEE8B-1DF9-4CEE-A79C-B0F6FD89A428}" ShortID="44920354">
