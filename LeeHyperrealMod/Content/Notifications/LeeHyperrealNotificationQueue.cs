@@ -59,7 +59,12 @@ namespace LeeHyperrealMod.Content.Notifications
 
         public float GetCurrentNotificationT()
         {
-            return (Run.instance.fixedTime - this.notification.startTime) / this.notification.duration;
+            if (Run.instance != null && this.notification != null) 
+            {
+                return (Run.instance.fixedTime - this.notification.startTime) / this.notification.duration;
+            }
+
+            return 1f;
         }
 
         public CharacterMasterNotificationQueue.NotificationInfo GetCurrentNotification()

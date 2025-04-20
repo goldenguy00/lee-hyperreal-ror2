@@ -1,5 +1,7 @@
 ﻿using RoR2;
 using RoR2.Achievements;
+using System;
+using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Achievements
 {
@@ -12,6 +14,11 @@ namespace LeeHyperrealMod.Content.Achievements
 
         public abstract string RequiredChestType { get; }
         public abstract int Chance { get; }
+
+        public enum ChestType 
+        {
+            
+        }
 
         public override void OnInstall()
         {
@@ -53,50 +60,7 @@ namespace LeeHyperrealMod.Content.Achievements
                 return result;
             }
 
-            if (purchasedObject.name.Contains("Chest1")) 
-            {
-                if (lastOpenedSmall == 0)
-                {
-                    lastOpenedSmall = purchasedObject.GetInstanceID();
-                    allowRoll = true;
-                }
-
-                if (lastOpenedSmall != purchasedObject.GetInstanceID() && !allowRoll)
-                {
-                    lastOpenedSmall = purchasedObject.GetInstanceID();
-                    allowRoll = true;
-                }
-            }
-
-            if (purchasedObject.name.Contains("Chest2")) 
-            {
-                if (lastOpenedLarge == 0) 
-                {
-                    lastOpenedLarge = purchasedObject.GetInstanceID();
-                    allowRoll = true;
-                }
-
-                if(lastOpenedLarge != purchasedObject.GetInstanceID() && !allowRoll) 
-                {
-                    lastOpenedLarge = purchasedObject.GetInstanceID();
-                    allowRoll = true;
-                }
-            }
-
-            if (purchasedObject.name.Contains("GoldChest"))
-            {
-                if (lastOpenedLegendary == 0)
-                {
-                    lastOpenedLegendary = purchasedObject.GetInstanceID();
-                    allowRoll = true;
-                }
-
-                if (lastOpenedLegendary != purchasedObject.GetInstanceID() && !allowRoll)
-                {
-                    lastOpenedLegendary = purchasedObject.GetInstanceID();
-                    allowRoll = true;
-                }
-            }
+            allowRoll = ChestValidator(purchasedObject);
 
             if (allowRoll)
             {
@@ -107,9 +71,59 @@ namespace LeeHyperrealMod.Content.Achievements
             return result;
         }
 
+        internal virtual bool ChestValidator(GameObject purchasedObject)
+        {
+            if (purchasedObject.name.Contains("Chest1"))
+            {
+                if (lastOpenedSmall == 0)
+                {
+                    lastOpenedSmall = purchasedObject.GetInstanceID();
+                    return true;
+                }
+
+                if (lastOpenedSmall != purchasedObject.GetInstanceID())
+                {
+                    lastOpenedSmall = purchasedObject.GetInstanceID();
+                    return true;
+                }
+            }
+
+            if (purchasedObject.name.Contains("Chest2"))
+            {
+                if (lastOpenedLarge == 0)
+                {
+                    lastOpenedLarge = purchasedObject.GetInstanceID();
+                    return true;
+                }
+
+                if (lastOpenedLarge != purchasedObject.GetInstanceID())
+                {
+                    lastOpenedLarge = purchasedObject.GetInstanceID();
+                    return true;
+                }
+            }
+
+            if (purchasedObject.name.Contains("GoldChest"))
+            {
+                if (lastOpenedLegendary == 0)
+                {
+                    lastOpenedLegendary = purchasedObject.GetInstanceID();
+                    return true;
+                }
+
+                if (lastOpenedLegendary != purchasedObject.GetInstanceID())
+                {
+                    lastOpenedLegendary = purchasedObject.GetInstanceID();
+                    return true;
+                }
+            }
+            return false;
+        }
+
         internal virtual void CheckRoll(string chestName, CharacterBody body)
         {
             // Implement above.
+            Debug.Log("rolling");
         }
     }
 }

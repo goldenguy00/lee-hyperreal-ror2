@@ -1,0 +1,51 @@
+﻿using LeeHyperrealMod.Modules.Networking;
+using R2API.Networking.Interfaces;
+using RoR2;
+using UnityEngine;
+
+namespace LeeHyperrealMod.Content.Achievements
+{
+    [RegisterAchievement(identifier, unlockableidentifier, null, 10, typeof(GreenVFXServerAchievement))]
+    class GreenVFXAchievement : BaseGachaUnlockable
+    {
+        public const string identifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_GREEN_VFX_ACHIEVEMENT";
+        public const string unlockableidentifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_GREEN_VFX_ACHIEVEMENT_ID";
+
+        public override string RequiredCharacterBody => "LeeHyperrealBody";
+
+        public override float RequiredDifficultyCoefficient => 3;
+
+        public override void OnInstall()
+        {
+            base.OnInstall();
+            base.SetServerTracked(true);
+        }
+
+        internal class GreenVFXServerAchievement : BaseGachaServerAchievement
+        {
+            public override int Chance => 2;
+            public override string RequiredChestType => "Chest1";
+
+            internal override bool ChestValidator(GameObject purchasedObject)
+            {
+                return base.ChestValidator(purchasedObject);
+            }
+
+            internal override void CheckRoll(string chestName, CharacterBody body)
+            {
+                base.CheckRoll(chestName, body);
+                if (chestName.Contains(RequiredChestType))
+                {
+                    int rnd = UnityEngine.Random.Range(0, 101);
+
+                    Debug.Log("green: " + rnd);
+
+                    if (rnd <= Chance)
+                    {
+                        new AchievementGranterNetworkRequest(this.achievementDef.serverIndex.intValue, body.netId).Send(R2API.Networking.NetworkDestination.Clients);
+                    }
+                }
+            }
+        }
+    }
+}

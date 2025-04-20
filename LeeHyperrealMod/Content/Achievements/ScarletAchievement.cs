@@ -26,15 +26,34 @@ namespace LeeHyperrealMod.Content.Achievements
             public override int Chance => 5;
             public override string RequiredChestType => "GoldChest";
 
+            internal override bool ChestValidator(GameObject purchasedObject)
+            {
+                if (purchasedObject.name.Contains(RequiredChestType))
+                {
+                    if (lastOpenedLegendary == 0)
+                    {
+                        lastOpenedLegendary = purchasedObject.GetInstanceID();
+                        return true;
+                    }
+
+                    if (lastOpenedLegendary != purchasedObject.GetInstanceID())
+                    {
+                        lastOpenedLegendary = purchasedObject.GetInstanceID();
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
             internal override void CheckRoll(string chestName, CharacterBody body)
             {
-                Debug.Log("rolling for Scarlet");
+                base.CheckRoll(chestName, body);
                 if (chestName.Contains(RequiredChestType))
                 {
-                    //Medium Chest! Roll to see the result
                     int rnd = UnityEngine.Random.Range(0, 101);
 
-                    Debug.Log("rnd: " + rnd + " Chance: " + Chance);
+                    Debug.Log("scarlet: " + rnd);
 
                     if (rnd <= Chance)
                     {

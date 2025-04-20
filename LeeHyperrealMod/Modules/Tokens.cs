@@ -219,12 +219,20 @@ namespace LeeHyperrealMod.Modules
             LanguageAPI.Add(prefix + "MASTERYUNLOCKABLE_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Mastery");
 
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "BLUESKIN_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Real");
-            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "BLUESKIN_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon with Transcendence, or Roll for a 5% chance from a Medium chest.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "BLUESKIN_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon with Transcendence, or Roll for a 5% chance from a Medium chest or higher tier.");
             LanguageAPI.Add(prefix + "BLUESKIN_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Real");
 
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "SCARLET_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Scarlet");
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "SCARLET_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon with no watches and bleed items, or Roll for a 5% chance from a Legendary chest.");
             LanguageAPI.Add(prefix + "SCARLET_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Scarlet");
+
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "YELLOW_VFX_ACHIEVEMENT_NAME", $"Yellow VFX");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "YELLOW_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon while holding 1 or more Planulas, or Roll any chest for a 2% chance.");
+            LanguageAPI.Add(prefix + "YELLOW_VFX_UNLOCKABLE_NAME", $"Yellow VFX");
+
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "GREEN_VFX_ACHIEVEMENT_NAME", $"Green VFX");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "GREEN_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon while holding 5 or more healing items (RoR2 items only), or Roll any chest for a 2% chance.");
+            LanguageAPI.Add(prefix + "GREEN_VFX_UNLOCKABLE_NAME", $"Green VFX");
             #endregion
             #endregion
         }

@@ -626,8 +626,6 @@ namespace LeeHyperrealMod.Modules.Survivors
             });
             Modules.Skills.AddPassiveSkills(passive.VFXColorPassiveSkillSlot.skillFamily, new SkillDef[] {
                 passive.defaultVFXPassive,
-                passive.yellowVFXPassive,
-                passive.greenVFXPassive,
                 passive.blueVFXPassive,
                 passive.violetVFXPassive,
                 passive.pinkVFXPassive
@@ -635,6 +633,8 @@ namespace LeeHyperrealMod.Modules.Survivors
             
             Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.redVFXPassive, Unlockables.scarletUnlockableDef);
             Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.orangeVFXPassive, Unlockables.masteryUnlockableDef);
+            Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.yellowVFXPassive, Unlockables.yellowVFXUnlockableDef);
+            Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.greenVFXPassive, Unlockables.greenVFXUnlockableDef);
             Modules.Skills.AddSkillToFamily(passive.VFXColorPassiveSkillSlot.skillFamily, passive.lightBlueVFXPassive, Unlockables.blueSkinUnlockableDef);
             #endregion
 
