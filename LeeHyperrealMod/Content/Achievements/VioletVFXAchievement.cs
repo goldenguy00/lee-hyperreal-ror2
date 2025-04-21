@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Achievements
 {
-    [RegisterAchievement(identifier, unlockableidentifier, null, 10, typeof(ScarletServerAchievement))]
-    class ScarletAchievement : BaseGachaUnlockable
+    [RegisterAchievement(identifier, unlockableidentifier, null, 10, typeof(VioletVFXServerAchievement))]
+    class VioletVFXAchievement : BaseGachaUnlockable
     {
-        public const string identifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_SCARLET_ACHIEVEMENT";
-        public const string unlockableidentifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_SCARLET_ACHIEVEMENT_ID";
+        public const string identifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_VIOLET_VFX_ACHIEVEMENT";
+        public const string unlockableidentifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_VIOLET_VFX_ACHIEVEMENT_ID";
 
         public override string RequiredCharacterBody => "LeeHyperrealBody";
 
@@ -21,9 +21,9 @@ namespace LeeHyperrealMod.Content.Achievements
             base.SetServerTracked(true);
         }
 
-        internal class ScarletServerAchievement : BaseGachaServerAchievement
+        internal class VioletVFXServerAchievement : BaseGachaServerAchievement
         {
-            public override int Chance => 5;
+            public override int Chance => 1;
             public override string RequiredChestType => "GoldChest";
 
             internal override bool ChestValidator(GameObject purchasedObject)

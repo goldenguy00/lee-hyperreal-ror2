@@ -12,6 +12,8 @@ namespace LeeHyperrealMod.Modules
         public static UnlockableDef scarletUnlockableDef;
         public static UnlockableDef yellowVFXUnlockableDef;
         public static UnlockableDef greenVFXUnlockableDef;
+        public static UnlockableDef pinkVFXUnlockableDef;
+        public static UnlockableDef violetVFXUnlockableDef;
 
         public static void Initialize() 
         {
@@ -43,6 +45,18 @@ namespace LeeHyperrealMod.Modules
                 GreenVFXAchievement.unlockableidentifier,
                 Modules.Helpers.GetAchievementNameToken(GreenVFXAchievement.identifier),
                 Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("VFXIconGreen")
+            );
+
+            pinkVFXUnlockableDef = Modules.ContentPacks.CreateAndAddUnlockbleDef(
+                PinkVFXAchievement.unlockableidentifier,
+                Modules.Helpers.GetAchievementNameToken(PinkVFXAchievement.identifier),
+                Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("VFXIconPink")
+            );
+
+            violetVFXUnlockableDef = Modules.ContentPacks.CreateAndAddUnlockbleDef(
+                VioletVFXAchievement.unlockableidentifier,
+                Modules.Helpers.GetAchievementNameToken(VioletVFXAchievement.identifier),
+                Modules.LeeHyperrealAssets.mainAssetBundle.LoadAsset<Sprite>("VFXIconViolet")
             );
         }
     }

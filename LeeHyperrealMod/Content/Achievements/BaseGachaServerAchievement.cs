@@ -65,7 +65,7 @@ namespace LeeHyperrealMod.Content.Achievements
             if (allowRoll)
             {
                 //Roll the dice and see what you get.
-                CheckRoll(purchasedObject.name, body);
+                CheckRoll(body);
             }
 
             return result;
@@ -120,10 +120,9 @@ namespace LeeHyperrealMod.Content.Achievements
             return false;
         }
 
-        internal virtual void CheckRoll(string chestName, CharacterBody body)
+        internal virtual void CheckRoll(CharacterBody body)
         {
             // Implement above.
-            Debug.Log("rolling");
         }
     }
 }

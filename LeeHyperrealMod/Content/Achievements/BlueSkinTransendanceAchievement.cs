@@ -61,20 +61,14 @@ namespace LeeHyperrealMod.Content.Achievements
                 return false;
             }
 
-            internal override void CheckRoll(string chestName, CharacterBody body)
+            internal override void CheckRoll(CharacterBody body)
             {
-                base.CheckRoll(chestName, body);
-                if (chestName.Contains(RequiredChestType))
+                base.CheckRoll(body);
+                int rnd = UnityEngine.Random.Range(0, 101);
+
+                if (rnd <= Chance)
                 {
-                    //Medium Chest! Roll to see the result
-                    int rnd = UnityEngine.Random.Range(0, 101);
-
-                    Debug.Log("blue: " + rnd);
-
-                    if (rnd <= Chance)
-                    {
-                        new AchievementGranterNetworkRequest(this.achievementDef.serverIndex.intValue, body.netId).Send(R2API.Networking.NetworkDestination.Clients);
-                    }
+                    new AchievementGranterNetworkRequest(this.achievementDef.serverIndex.intValue, body.netId).Send(R2API.Networking.NetworkDestination.Clients);
                 }
             }
         }

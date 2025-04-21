@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Achievements
 {
-    [RegisterAchievement(identifier, unlockableidentifier, null, 10, typeof(YellowVFXServerAchievement))]
-    class YellowVFXAchievement : BaseGachaUnlockable
+    [RegisterAchievement(identifier, unlockableidentifier, null, 10, typeof(PinkVFXServerAchievement))]
+    class PinkVFXAchievement : BaseGachaUnlockable
     {
-        public const string identifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_YELLOW_VFX_ACHIEVEMENT";
-        public const string unlockableidentifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_YELLOW_VFX_ACHIEVEMENT_ID";
+        public const string identifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_PINK_VFX_ACHIEVEMENT";
+        public const string unlockableidentifier = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_PINK_VFX_ACHIEVEMENT_ID";
 
         public override string RequiredCharacterBody => "LeeHyperrealBody";
 
@@ -21,7 +21,7 @@ namespace LeeHyperrealMod.Content.Achievements
             base.SetServerTracked(true);
         }
 
-        internal class YellowVFXServerAchievement : BaseGachaServerAchievement
+        internal class PinkVFXServerAchievement : BaseGachaServerAchievement
         {
             public override int Chance => 2;
             public override string RequiredChestType => "Chest1";
