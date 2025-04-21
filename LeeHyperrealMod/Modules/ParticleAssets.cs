@@ -73,9 +73,9 @@ namespace LeeHyperrealMod.Modules
         internal static ParticleColorInfo PINK_PARTICLE = new ParticleColorInfo
         {
             name = "pink",
-            mainColor = new Color(1f, 1f, 1f),
-            secondaryColor = new Color(1f, 1f, 1f),
-            rimColor = new Color(1f, 1f, 1f),
+            mainColor = new Color(1f, 105f/ 255f, 180f/255f),
+            secondaryColor = new Color(1f, 105f / 255f, 180f / 255f),
+            rimColor = new Color(1f, 105f / 255f, 180f / 255f),
             intensityMult = 1.6f
         };
 
@@ -271,6 +271,14 @@ namespace LeeHyperrealMod.Modules
             {
                 if (mat.shader.name == "Unlit/XEffect")
                 {
+                    Color tintOld = mat.GetColor("_TintColor");
+                    float averagedVal = (tintOld.r + tintOld.g + tintOld.b) / 3f;
+                    mat.SetColor("_TintColor", new Color(averagedVal, averagedVal, averagedVal, tintOld.a));
+
+                    Color secondaryOld = mat.GetColor("_SecondColor");
+                    float averagedSecond = (secondaryOld.r + secondaryOld.g + secondaryOld.b) / 3f;
+                    mat.SetColor("_SecondColor", new Color(averagedSecond, averagedSecond, averagedSecond, secondaryOld.a));
+
                     //Get New Colour, figure out percentages for each and spread across colours in the same intensity
                     float oldR = mat.GetFloat("_EffectBrightnessR");
                     float oldG = mat.GetFloat("_EffectBrightnessG");
@@ -327,6 +335,14 @@ namespace LeeHyperrealMod.Modules
                 //Check if the material is Xeffect
                 if (mat.shader.name == "Unlit/EffectNoBatching")
                 {
+                    Color tintOld = mat.GetColor("_TintColor");
+                    float averagedVal = (tintOld.r + tintOld.g + tintOld.b) / 3f;
+                    mat.SetColor("_TintColor", new Color(averagedVal, averagedVal, averagedVal, tintOld.a));
+
+                    Color secondaryOld = mat.GetColor("_SecondColor");
+                    float averagedSecond = (secondaryOld.r + secondaryOld.g + secondaryOld.b) / 3f;
+                    mat.SetColor("_SecondColor", new Color(averagedSecond, averagedSecond, averagedSecond, secondaryOld.a));
+
                     //Get New Colour, figure out percentages for each and spread across colours in the same intensity
                     float oldR = mat.GetFloat("_EffectBrightnessR");
                     float oldG = mat.GetFloat("_EffectBrightnessG");
