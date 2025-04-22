@@ -9,6 +9,12 @@ namespace LeeHyperrealMod.Content.Controllers
         float stopwatch;
         bool hasUnparented;
 
+        public void OnEnable() 
+        {
+            stopwatch = 0f;
+            hasUnparented = false;
+        }
+
         public void Update()
         {
             stopwatch += Time.deltaTime;

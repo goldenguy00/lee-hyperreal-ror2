@@ -726,7 +726,7 @@ namespace LeeHyperrealMod.Modules
             GameObject jumpEffect = GetGameObjectFromBundle("Extra Jump Floor");
             EffectUnparenter effectUnparenter = jumpEffect.AddComponent<EffectUnparenter>();
             effectUnparenter.duration = 0.175f;
-            ModifyEffect(jumpEffect, "", true, 1.5f, VFXAttributes.VFXPriority.Always, true);
+            ModifyEffect(jumpEffect, "", true, 1.5f, VFXAttributes.VFXPriority.Always);
 
 
             customCrosshair = GetGameObjectFromBundle("Lee Crosshair");

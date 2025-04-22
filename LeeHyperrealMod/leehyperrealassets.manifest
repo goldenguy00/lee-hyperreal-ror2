@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1057425413
+CRC: 1322785895
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b0db5762f26c543f346c0656682538fe
+    Hash: eee102aaf7e4f2ba3b3509979bb821a8
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -374,6 +374,7 @@ Assets:
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md773.mat
 - Assets/LeeHyperrealAssets/Animation/SuperRifleAnimations/attack24.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk35hit ORIGINAL.prefab
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeComradeWeaponPalette.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk14fshit01
   ORIGINAL.prefab
 - Assets/modelresource/effect/texture/trail01102.png
@@ -1233,6 +1234,7 @@ Assets:
 - Assets/modelresource/effect/texture/mask123.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Ult Aim Dow.anim
 - Assets/LeeHyperrealAssets/AnimationCurves/fxr4liangatk04hit-lightSC.asset
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeProspectorWeaponPalette.png
 - Assets/LeeHyperrealAssets/Material/leeHairMat.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331mdbaodian301.mat
 - Assets/modelresource/effect/texture/mask824.png
@@ -1477,8 +1479,8 @@ Assets:
 - Assets/LeeHyperrealAssets/Texture/Albedo/leeEffectFaceTex.png
 - Assets/Prefabs/Camera Ultimate Root.prefab
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011mdliuguang700.mat
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeComradeWeaponPalette.png
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeProspectorWeaponPalette.png
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeComradeWeaponPalette2.png
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeProspectorWeaponPalette2.png
 - Assets/modelresource/effect/prefab/fxr2nuoanprefab/materials/fxr2nuoanchunse703-red.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md357.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md307.mat
