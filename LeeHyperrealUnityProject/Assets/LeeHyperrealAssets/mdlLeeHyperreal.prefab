@@ -9354,7 +9354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Center: {x: 0, y: 0.235, z: 0}
-  m_Radius: 0.12
+  m_Radius: 0.14
   m_Height: 0.42
   m_Direction: 1
   m_Bound: 0
@@ -10697,7 +10697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Center: {x: 0, y: 0.235, z: 0}
-  m_Radius: 0.12
+  m_Radius: 0.14
   m_Height: 0.42
   m_Direction: 1
   m_Bound: 0
@@ -27131,14 +27131,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.02
+  m_Stiffness: 0.1
   m_StiffnessDistrib:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0
+  m_Inert: 0.05
   m_InertDistrib:
     serializedVersion: 2
     m_Curve: []
