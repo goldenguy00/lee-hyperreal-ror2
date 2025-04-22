@@ -31,7 +31,7 @@ namespace LeeHyperrealMod.Modules
             mainColor = new Color(1f, 30f / 255f, 0f),
             secondaryColor = new Color(1f, 30f / 255f, 0f),
             rimColor = new Color(1f, 30f / 255f, 0f),
-            intensityMult = 1.8f
+            intensityMult = 1.7f
         };
 
         internal static ParticleColorInfo YELLOW_PARTICLE = new ParticleColorInfo
@@ -58,16 +58,16 @@ namespace LeeHyperrealMod.Modules
             mainColor = new Color(0f, 247f / 255f, 1f),
             secondaryColor = new Color(0f, 247f / 255f, 1f),
             rimColor = new Color(0f, 247f / 255f, 1f),
-            intensityMult = 1.6f
+            intensityMult = 1.8f
         };
 
         internal static ParticleColorInfo VIOLET_PARTICLE = new ParticleColorInfo
         {
             name = "violet",
-            mainColor = new Color(120f / 255f, 75f / 255f, 1f),
-            secondaryColor = new Color(120f / 255f, 75f / 255f, 1f),
-            rimColor = new Color(120f / 255f, 75f / 255f, 1f),
-            intensityMult = 2.15f
+            mainColor = new Color(120f / 255f, 35f / 255f, 1f),
+            secondaryColor = new Color(120f / 255f, 0f / 255f, 1f),
+            rimColor = new Color(120f / 255f, 100f / 255f, 1f),
+            intensityMult = 2.1f
         };
 
         internal static ParticleColorInfo PINK_PARTICLE = new ParticleColorInfo
@@ -76,7 +76,7 @@ namespace LeeHyperrealMod.Modules
             mainColor = new Color(1f, 105f/ 255f, 180f/255f),
             secondaryColor = new Color(1f, 105f / 255f, 180f / 255f),
             rimColor = new Color(1f, 105f / 255f, 180f / 255f),
-            intensityMult = 1.6f
+            intensityMult = 1.7f
         };
 
         //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
@@ -970,10 +970,10 @@ namespace LeeHyperrealMod.Modules
             ModifyEffect(redOrbHit, "Play_c_liRk4_imp_red_1", false);
 
             GameObject redOrbPingSwing = GetGameObjectFromBundle("fxr4liangatk11");
-            ModifyEffect(redOrbPingSwing, "", false);
+            ModifyEffect(redOrbPingSwing, "", false, 3f);
 
             GameObject redOrbPingGround = GetGameObjectFromBundle("fxr4liangatk11dilie");
-            ModifyEffect(redOrbPingGround, "", false);
+            ModifyEffect(redOrbPingGround, "", false, 3f);
 
             GameObject redOrbDomainFloorImpact = GetGameObjectFromBundle("fxr4liangatk14dilie");
             ModifyEffect(redOrbDomainFloorImpact, "Play_c_liRk4_atk_ex_2", false);
@@ -1034,10 +1034,10 @@ namespace LeeHyperrealMod.Modules
         public static void PopulatePrimary3Assets() 
         {
             GameObject primary3Swing1 = GetGameObjectFromBundle("fxr4liangatk03dilie1");
-            ModifyEffect(primary3Swing1, "Play_c_liRk4_atk_nml_3_dilie_1", true);
+            ModifyEffect(primary3Swing1, "Play_c_liRk4_atk_nml_3_dilie_1", true, 3f);
 
             GameObject primary3Swing2 = GetGameObjectFromBundle("fxr4liangatk03dilie2");
-            ModifyEffect(primary3Swing2, "Play_c_liRk4_atk_nml_3_dilie_2", true);
+            ModifyEffect(primary3Swing2, "Play_c_liRk4_atk_nml_3_dilie_2", true, 3f);
 
             GameObject primary3hit = GetGameObjectFromBundle("fxr4liangatk03hit01");
             ModifyEffect(primary3hit, "", false, 1.5f);
