@@ -1156,12 +1156,12 @@ namespace LeeHyperrealMod.Modules.Survivors
                     "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette",
                     "LeeRor2ProspectorPalette",
+                    "LeeRoR2ProspectorWeaponPalette",
+                    "LeeRoR2ProspectorWeaponPalette",
+                    "LeeRoR2ProspectorWeaponPalette",
+                    "LeeRoR2ProspectorWeaponPalette",
                     "LeeRor2ProspectorPalette",
-                    "LeeRor2ProspectorPalette",
-                    "LeeRor2ProspectorPalette",
-                    "LeeRor2ProspectorPalette",
-                    "LeeRor2ProspectorPalette",
-                    "LeeRor2ProspectorPalette"
+                    "LeeRoR2ProspectorWeaponPalette"
                 };
 
             for (int i = 0; i < prospectorMaterialStrings.Length; i++)
@@ -1291,12 +1291,12 @@ namespace LeeHyperrealMod.Modules.Survivors
                     "LeeRor2ComradePalette",
                     "LeeRor2ComradePalette",
                     "LeeRor2ComradePalette",
+                    "LeeRoR2ComradeWeaponPalette",
+                    "LeeRoR2ComradeWeaponPalette",
+                    "LeeRoR2ComradeWeaponPalette",
+                    "LeeRoR2ComradeWeaponPalette",
                     "LeeRor2ComradePalette",
-                    "LeeRor2ComradePalette",
-                    "LeeRor2ComradePalette",
-                    "LeeRor2ComradePalette",
-                    "LeeRor2ComradePalette",
-                    "LeeRor2ComradePalette"
+                    "LeeRoR2ComradeWeaponPalette"
                 };
 
             for (int i = 0; i < comradeMaterialStrings.Length; i++)
