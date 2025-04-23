@@ -728,10 +728,15 @@ namespace LeeHyperrealMod.Modules
             effectUnparenter.duration = 0.175f;
             ModifyEffect(jumpEffect, "", true, 1.5f, VFXAttributes.VFXPriority.Always);
 
+            GameObject jetpack = GetGameObjectFromBundle("Ror Skin Jetpack");
+            ParticleVariant jetpackVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, jumpEffect);
+            jetpackVariant.shouldVariantCloneUseModify = false;
+
 
             customCrosshair = GetGameObjectFromBundle("Lee Crosshair");
 
             particleDictionary.Add("jumpEffect", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, jumpEffect));
+            particleDictionary.Add("skinJetpack", jetpackVariant);
         }
 
         private static void PopulateAerialDomainAssets()

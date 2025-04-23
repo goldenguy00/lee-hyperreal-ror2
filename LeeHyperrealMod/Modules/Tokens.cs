@@ -227,15 +227,15 @@ namespace LeeHyperrealMod.Modules
             LanguageAPI.Add(prefix + "SCARLET_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Scarlet");
 
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "YELLOW_VFX_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Yellow VFX");
-            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "YELLOW_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon while holding 1 or more Planulas, or Roll any chest for a 2% chance.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "YELLOW_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon while holding 5 or more Boss Tier Items, or Roll any chest for a 2% chance.");
             LanguageAPI.Add(prefix + "YELLOW_VFX_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Yellow VFX");
 
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "GREEN_VFX_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Green VFX");
-            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "GREEN_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon while holding 5 or more Healing items (RoR2 items only), or Roll any chest for a 2% chance.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "GREEN_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon while holding 15 or more Healing items (RoR2 items only), or Roll any chest for a 2% chance.");
             LanguageAPI.Add(prefix + "GREEN_VFX_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Green VFX");
 
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "PINK_VFX_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Pink VFX");
-            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "PINK_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, beat the game on Monsoon while holding 5 or more Bison Steaks, or Roll any chest for a 2% chance.");
+            LanguageAPI.Add("ACHIEVEMENT_" + prefix + "PINK_VFX_ACHIEVEMENT_DESCRIPTION", $"As {Lee("Lee: Hyperreal", generatedName)}, kill the Teleporter boss with End of Time at max strength, or Roll any chest for a 2% chance.");
             LanguageAPI.Add(prefix + "PINK_VFX_UNLOCKABLE_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Pink VFX");
 
             LanguageAPI.Add("ACHIEVEMENT_" + prefix + "VIOLET_VFX_ACHIEVEMENT_NAME", $"{Lee("Lee: Hyperreal", generatedName)}: Violet VFX");

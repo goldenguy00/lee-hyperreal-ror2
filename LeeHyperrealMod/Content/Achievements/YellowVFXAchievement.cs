@@ -21,6 +21,27 @@ namespace LeeHyperrealMod.Content.Achievements
             base.SetServerTracked(true);
         }
 
+        public override bool CheckInventory(RunReport.PlayerInfo info) 
+        {
+            CharacterMaster master = info.master;
+            if (master) 
+            {
+                Inventory inventory = master.inventory;
+
+                if (inventory)
+                {
+                    int yellowItemCount = inventory.GetTotalItemCountOfTier(ItemTier.Boss);
+
+                    if (yellowItemCount >= 5) 
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         internal class YellowVFXServerAchievement : BaseGachaServerAchievement
         {
             public override int Chance => 2;

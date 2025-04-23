@@ -12,6 +12,11 @@ namespace LeeHyperrealMod.Content.Achievements
         public abstract float RequiredDifficultyCoefficient { get; }
 
 
+        public virtual bool CheckInventory(RunReport.PlayerInfo info) 
+        {
+            return false;
+        }
+
 
         public override void OnBodyRequirementMet()
         {
@@ -47,7 +52,10 @@ namespace LeeHyperrealMod.Content.Achievements
 
                     if (isDifficulty || isInferno || isEclipse)
                     {
-                        base.Grant();
+                        if (CheckInventory(runReport.GetPlayerInfo(runReport.FindPlayerIndex(localUser)))) 
+                        {
+                            base.Grant();
+                        }
                     }
                 }
             }

@@ -88,6 +88,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             {
                 sightStacks = 1;
             }
+            docon.SetFlagForAchievement();
             docon.DisableDomain(false);
             docon.SetTapped();
             docon.DisableLoopEffect();
@@ -276,6 +277,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             {
                 Destroy(obj);
             }
+
+            docon.SetFlagForAchievement();
         }
 
         public override void Update()

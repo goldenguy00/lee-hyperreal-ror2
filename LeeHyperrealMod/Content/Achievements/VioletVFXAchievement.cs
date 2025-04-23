@@ -19,7 +19,47 @@ namespace LeeHyperrealMod.Content.Achievements
         {
             base.OnInstall();
             base.SetServerTracked(true);
+
+            Run.onClientGameOverGlobal += this.ClearCheck;
         }
+
+        public override void OnUninstall()
+        {
+            base.OnUninstall();
+
+            Run.onClientGameOverGlobal -= this.ClearCheck;
+        }
+
+        public override bool CheckInventory(RunReport.PlayerInfo info)
+        {
+            //avoiding inventory check
+            return false;
+        }
+
+
+        public void ClearCheck(Run run, RunReport runReport)
+        {
+            if (run is null) return;
+            if (runReport is null) return;
+
+            if (!runReport.gameEnding) return;
+
+            if (runReport.gameEnding.isWin)
+            {
+                DifficultyDef difficultyDef = DifficultyCatalog.GetDifficultyDef(runReport.ruleBook.FindDifficulty());
+
+                bool eclipseDifficultyCheck = (difficultyDef.nameToken == "ECLIPSE_8_NAME");
+
+                if (difficultyDef != null && eclipseDifficultyCheck)
+                {
+                    if (base.meetsBodyRequirement)
+                    {
+                        base.Grant();
+                    }
+                }
+            }
+        }
+
 
         internal class VioletVFXServerAchievement : BaseGachaServerAchievement
         {

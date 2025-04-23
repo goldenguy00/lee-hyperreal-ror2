@@ -34,6 +34,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         public bool JustEnded = false;
 
+        public bool HasBuiltUpMaxStack = false;
 
         //UI Controller
         private LeeHyperrealUIController uiController;
@@ -367,6 +368,17 @@ namespace LeeHyperrealMod.Content.Controllers
 
             //Update UI
             uiController.SetIntuitionStacks(intuitionStacks);
+        }
+
+        public void SetFlagForAchievement() 
+        {
+            if (intuitionStacks >= maxIntuitionStack) 
+            {
+                HasBuiltUpMaxStack = true;
+                return;
+            }
+
+            HasBuiltUpMaxStack = false;
         }
 
         public int GetIntuitionStacks()

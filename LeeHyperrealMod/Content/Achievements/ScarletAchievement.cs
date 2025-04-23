@@ -1,6 +1,7 @@
 ﻿using LeeHyperrealMod.Modules.Networking;
 using R2API.Networking.Interfaces;
 using RoR2;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Achievements
@@ -15,11 +16,50 @@ namespace LeeHyperrealMod.Content.Achievements
 
         public override float RequiredDifficultyCoefficient => 3;
 
+        public List<ItemDef> bannedItems;
+
         public override void OnInstall()
         {
             base.OnInstall();
             base.SetServerTracked(true);
+
+            bannedItems = new List<ItemDef>();
+
+            bannedItems.Add(RoR2Content.Items.BleedOnHit);
+            bannedItems.Add(RoR2Content.Items.BleedOnHitAndExplode);
+            bannedItems.Add(DLC1Content.Items.FragileDamageBonus);
+            bannedItems.Add(DLC1Content.Items.FragileDamageBonusConsumed);
+            bannedItems.Add(DLC2Content.Items.TriggerEnemyDebuffs);
+            bannedItems.Add(DLC2Content.Items.TeleportOnLowHealthConsumed);
         }
+
+        public override bool CheckInventory(RunReport.PlayerInfo info)
+        {
+            CharacterMaster master = info.master;
+            if (master)
+            {
+                Inventory inventory = master.inventory;
+
+                if (inventory)
+                {
+                    int bannedCount = 0;
+
+                    foreach (ItemDef item in bannedItems) 
+                    {
+                        bannedCount += inventory.GetItemCount(item);
+                        if (bannedCount > 0) 
+                        {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 
         internal class ScarletServerAchievement : BaseGachaServerAchievement
         {

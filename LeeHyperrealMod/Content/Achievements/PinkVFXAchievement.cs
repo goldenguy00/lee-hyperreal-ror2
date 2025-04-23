@@ -1,6 +1,8 @@
-﻿using LeeHyperrealMod.Modules.Networking;
+﻿using LeeHyperrealMod.Content.Controllers;
+using LeeHyperrealMod.Modules.Networking;
 using R2API.Networking.Interfaces;
 using RoR2;
+using System;
 using UnityEngine;
 
 namespace LeeHyperrealMod.Content.Achievements
@@ -15,10 +17,72 @@ namespace LeeHyperrealMod.Content.Achievements
 
         public override float RequiredDifficultyCoefficient => 3;
 
+        public LeeHyperrealDomainController domainController;
+
         public override void OnInstall()
         {
             base.OnInstall();
             base.SetServerTracked(true);
+
+            Hook();
+        }
+
+        private void Hook()
+        {
+            On.RoR2.CharacterBody.OnDeathStart += CharacterBody_OnDeathStart;
+            On.RoR2.CharacterBody.FixedUpdate += CharacterBody_FixedUpdate;
+        }
+
+        private void CharacterBody_FixedUpdate(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
+        {
+            orig(self);
+
+            if (self) 
+            {
+                if (self.baseNameToken == LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_NAME" && self.hasEffectiveAuthority) 
+                {
+                    if (!domainController)
+                    {
+                        domainController = self.gameObject.GetComponent<LeeHyperrealDomainController>();
+                    }
+                }
+            }
+        }
+
+        private void CharacterBody_OnDeathStart(On.RoR2.CharacterBody.orig_OnDeathStart orig, CharacterBody self)
+        {
+            if (self)
+            {
+                if (self.isChampion || self.isBoss)
+                {
+                    if (domainController) 
+                    {
+                        if (domainController.HasBuiltUpMaxStack) 
+                        {
+                            //Has died, and has the OnFire debuff? sounds good to me. Grant it!
+                            base.Grant();
+                        }
+                    }
+                }
+            }
+            orig(self);
+        }
+
+        public override void OnUninstall()
+        {
+            base.OnUninstall();
+            Unhook();
+        }
+
+        private void Unhook()
+        {
+            On.RoR2.CharacterBody.OnDeathStart -= CharacterBody_OnDeathStart;
+        }
+
+        public override bool CheckInventory(RunReport.PlayerInfo info)
+        {
+            // This is not going to be run
+            return false;
         }
 
         internal class PinkVFXServerAchievement : BaseGachaServerAchievement
