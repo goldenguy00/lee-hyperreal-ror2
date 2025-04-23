@@ -58,6 +58,10 @@ namespace LeeHyperrealMod.Content.Controllers
         private GameObject eyeModel;
         private GameObject legModel;
 
+
+        private GameObject chestBone;
+        private GameObject jetpackObj;
+
         public void Awake() 
         {
             state = WeaponState.SUBMACHINE;
@@ -96,14 +100,29 @@ namespace LeeHyperrealMod.Content.Controllers
                 armourPlateModel = childLocator.FindChild("ArmourPlateModel").gameObject;
                 eyeModel = childLocator.FindChild("EyeModel").gameObject;
                 legModel = childLocator.FindChild("LegModel").gameObject;
+
+                chestBone = childLocator.FindChild("Chest").gameObject;
             }
 
             ChangeLaserColour();
             ChangeFlashEffect();
+
+            SpawnChestJetpack();
             superCannonEffect.gameObject.SetActive(false);
             SetLaserState(false);
             TransitionState(WeaponState.SUBMACHINE);
             Hook();
+        }
+
+        private void SpawnChestJetpack()
+        {
+            if (Modules.Survivors.LeeHyperreal.rorSkins.Contains((int)characterBody.skinIndex)) 
+            {
+                if (!jetpackObj) 
+                {
+                    jetpackObj = UnityEngine.Object.Instantiate(ParticleAssets.RetrieveParticleEffectFromSkin("skinJetpack", this.characterBody), chestBone.transform);
+                }
+            }
         }
 
         private void ChangeFlashEffect()
@@ -263,6 +282,8 @@ namespace LeeHyperrealMod.Content.Controllers
         public void OnDestroy() 
         {
             Unhook();
+
+            Destroy(jetpackObj);
         }
 
         public void Update()
@@ -298,6 +319,11 @@ namespace LeeHyperrealMod.Content.Controllers
                     armourPlateModel.SetActive(false);
                     eyeModel.SetActive(false);
                     legModel.SetActive(false);
+
+                    if (jetpackObj) 
+                    {
+                        jetpackObj.SetActive(state);
+                    }
                 }
                 else 
                 {

@@ -729,7 +729,7 @@ namespace LeeHyperrealMod.Modules
             ModifyEffect(jumpEffect, "", true, 1.5f, VFXAttributes.VFXPriority.Always);
 
             GameObject jetpack = GetGameObjectFromBundle("Ror Skin Jetpack");
-            ParticleVariant jetpackVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, jumpEffect);
+            ParticleVariant jetpackVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, jetpack);
             jetpackVariant.shouldVariantCloneUseModify = false;
 
 
