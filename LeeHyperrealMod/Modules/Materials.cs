@@ -9,7 +9,7 @@ namespace LeeHyperrealMod.Modules
 
         internal static Shader hotpoo = RoR2.LegacyResourcesAPI.Load<Shader>("Shaders/Deferred/HGStandard");
 
-        public static Material CreateHopooMaterial(string materialName)
+        public static Material CreateHopooMaterial(string materialName, float emPower = 1f)
         {
             Material tempMat = cachedMaterials.Find(mat =>
             {
@@ -27,10 +27,10 @@ namespace LeeHyperrealMod.Modules
                 return new Material(hotpoo);
             }
 
-            return tempMat.SetHopooMaterial();
+            return tempMat.SetHopooMaterial(emPower);
         }
 
-        public static Material SetHopooMaterial(this Material tempMat)
+        public static Material SetHopooMaterial(this Material tempMat, float emPower = 1f)
         {
             if (cachedMaterials.Contains(tempMat))
                 return tempMat;
@@ -63,7 +63,7 @@ namespace LeeHyperrealMod.Modules
             if (emissionColor != null)
             {
                 tempMat.SetColor("_EmColor", (Color)emissionColor); 
-                tempMat.SetFloat("_EmPower", 1);
+                tempMat.SetFloat("_EmPower", emPower);
             }
 
             //set this keyword in unity if you want your model to show backfaces
