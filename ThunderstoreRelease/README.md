@@ -40,13 +40,15 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
             - This can be disabled, but please ensure that people you're playing with have this option synchronised!
                 - Disabling reverts the aforementioned changes
     - Achievements
-        - Added achievements to unlock skins! There are a total of 3 to unlock
-        - <strike>Added Gacha mechanics into RoR2</strike>
+        - Added achievements to unlock skins! There are a total of 7 to unlock
+            - If you don't want to unlock it manually, just use Cheat unlocks, we won't shame you
+        - <strike>Added Gacha mechanics for unlocks into RoR2</strike>
     - Skins
         - RoR2-like skins have now been added! (Credits to Brynzananas)
     - VFX
         - A unique color is assigned for most of the skins, which changes every VFX colour for that skin
         - Some clones were added in for Hypermatrix Entry
+        - New End of Time VFX has been added.
 
 ## Video
 <a href="http://www.youtube.com/watch?v=DP7mswsHHZ0">Video Link:</a>

@@ -1,6 +1,25 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- v2.0.0
+    - Lore mode has been added!
+        - By default, Lore mode is on! This changes the following:
+            - Voice lines are disabled by default
+                - Note: In a cease event, the voiceline will still play
+            - RoR2 skins are moved to the front, PGR skins are moved to the back of the list.
+            - A randomly generated RoR2 fitting name is used instead of Lee: Hyperreal
+            - This can be disabled, but please ensure that people you're playing with have this option synchronised!
+                - Disabling reverts the aforementioned changes
+    - Achievements
+        - Added achievements to unlock skins! There are a total of 7 to unlock
+            - If you don't want to unlock it manually, just use Cheat unlocks, we won't shame you
+        - <strike>Added Gacha mechanics for unlocks into RoR2</strike>
+    - Skins
+        - RoR2-like skins have now been added! (Credits to Brynzananas)
+    - VFX
+        - A unique color is assigned for most of the skins, which changes every VFX colour for that skin
+        - Some clones were added in for Hypermatrix Entry
+        - New End of Time VFX has been added.
 - 1.1.14
     - Primary 4 will now flash between invisible and visible during the move
     - Actually fixing the overlay from not disappearing properly on counters and ultimate freezes

@@ -2,7 +2,7 @@
   "name": "Lee_Hyperreal",
   "version_number": "2.0.0",
   "website_url": "https://github.com/Popcorn-Factory/lee-hyperreal-ror2",
-  "description": "Simulation complete... Commandant, we're going to win this fight. -> v2.0.0 - Skins and Achievements!",
+  "description": "Simulation complete... Commandant, we're going to win this fight. -> v2.0.0 - RoR Styled Skins and Achievements!",
   "dependencies": [
     "bbepis-BepInExPack-5.4.1905",
     "RiskofThunder-HookGenPatcher-1.2.3",
