@@ -59,6 +59,11 @@ namespace LeeHyperrealMod.Content.Achievements
 
                 if (rnd <= Chance)
                 {
+                    if (Modules.Config.playLootBoxSound.Value) 
+                    {
+                        new PlaySoundNetworkRequest(body.netId, "Play_Loot_Box").Send(R2API.Networking.NetworkDestination.Clients);
+                    }
+
                     new AchievementGranterNetworkRequest(this.achievementDef.serverIndex.intValue, body.netId).Send(R2API.Networking.NetworkDestination.Clients);
                 }
             }

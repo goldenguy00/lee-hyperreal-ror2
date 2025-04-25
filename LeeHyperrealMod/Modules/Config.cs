@@ -49,6 +49,7 @@ namespace LeeHyperrealMod.Modules
         public static ConfigEntry<bool> loreMode;
         public static ConfigEntry<bool> rgbMode;
         public static ConfigEntry<float> rgbPulseSpeed;
+        public static ConfigEntry<bool> playLootBoxSound;
 
         public static void ReadConfig()
         {
@@ -231,6 +232,13 @@ namespace LeeHyperrealMod.Modules
                 80f,
                 new ConfigDescription("Specifies how fast the RGB should pulse between colours, if enabled.")
             );
+
+            playLootBoxSound = LeeHyperrealPlugin.instance.Config.Bind<bool>
+            (
+                new ConfigDefinition("06 - Extras", "Play Lootbox SFX on Gacha"),
+                true,
+                new ConfigDescription("Plays the Lootbox SFX when successfully rolling the achievment unlock through the chest. Server sided, cannot disable this!")
+            );
         }
 
         public static void SetupRiskOfOptions() 
@@ -346,6 +354,7 @@ namespace LeeHyperrealMod.Modules
                     }
                 )
             );
+            ModSettingsManager.AddOption(new CheckBoxOption(playLootBoxSound));
         }
 
         // this helper automatically makes config entries for disabling survivors

@@ -62,7 +62,7 @@ namespace LeeHyperrealMod.Modules
         internal const float primary3ParryTiming = 0.03f; // A percentage of the duration in which the parry starts
         internal const float primary3ParryPauseLength = 0.2f; // How long YOU are stuck in hit pause when a parry is triggered
         internal const float primary3ParryProjectileTimingStart = 0.03f; // Percentage of the duration of the move where a projectile parry can be triggered
-        internal const float primary3ParryProjectileTimingEnd = 0.55f; // Percentage of the duration of the move when a projectile parry can be triggered. In this case it's ranging from 5% to 10% of the move, this value should never be higher than 1f
+        internal const float primary3ParryProjectileTimingEnd = 0.193f; // Percentage of the duration of the move when a projectile parry can be triggered. In this case it's ranging from 5% to 10% of the move, this value should never be higher than 1f
         #endregion
 
         #region Primary 4
