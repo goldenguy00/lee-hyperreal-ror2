@@ -624,12 +624,33 @@ namespace LeeHyperrealMod.Modules
                         duration = timer.duration;
                     }
 
+                    VFXAttributes.VFXPriority priority = VFXAttributes.VFXPriority.Always;
+                    bool shouldNotPool = false;
+
+                    //Get custom variables
+                    SetPriorityAndPooling(ref priority, ref shouldNotPool, item.Key);
+
                     //Finally resetup the prefab
-                    ModifyEffect(clone, soundname, parentToTransform, duration);
+                    ModifyEffect(clone, soundname, parentToTransform, duration, priority, shouldNotPool);
                 }
 
                 //Register the new prefab under name
                 pVarColourVar.Add(color.name, clone);
+            }
+        }
+
+        private static void SetPriorityAndPooling(ref VFXAttributes.VFXPriority priority, ref bool shouldNotPool, string effectName) 
+        {
+            switch (effectName) 
+            {
+                case "snipe":
+                    priority = VFXAttributes.VFXPriority.Medium;
+                    shouldNotPool = false;
+                    return;
+                case "snipeBulletCasing":
+                    priority = VFXAttributes.VFXPriority.Low;
+                    shouldNotPool = false;
+                    return;
             }
         }
 
