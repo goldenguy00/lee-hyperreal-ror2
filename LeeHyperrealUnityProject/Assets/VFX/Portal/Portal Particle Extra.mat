@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Portal Particle Extra
   m_Shader: {fileID: 4800000, guid: 4aa51fefc4ef77e49aed092d94481aa9, type: 3}
-  m_ShaderKeywords: _ALPHABLEND_ON
+  m_ValidKeywords:
+  - _ALPHABLEND_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -67,6 +69,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - IF_DissolutionFlowMap: 0
     - IF_MainTexFlowMap: 1
@@ -84,9 +87,9 @@ Material:
     - _DissolutionThreshold: 0.6676507
     - _DstBlend: 10
     - _EffectBrightness: 40
-    - _EffectBrightnessB: 6
-    - _EffectBrightnessG: 4
-    - _EffectBrightnessR: 1
+    - _EffectBrightnessB: 3
+    - _EffectBrightnessG: 3
+    - _EffectBrightnessR: 3
     - _FlowIntensity: 0.5
     - _HideDistance: 2
     - _MainRotation: 0
@@ -122,16 +125,17 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _DepthMatchColor: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolutionColor: {r: 1, g: 0, b: 0, a: 0}
+    - _DissolutionColor: {r: 1, g: 1, b: 1, a: 0}
     - _DissolutionRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _FlowSpeed: {r: 0.1, g: 0.1, b: -0.1, a: 0.1}
     - _MainRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _MainTexColor: {r: 1, g: 1, b: 1, a: 1}
     - _MaskRotationParams: {r: 1, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0.6062656, g: 0.70388705, b: 0.9811321, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondColor: {r: 1, g: 1, b: 1, a: 1}
     - _SecondRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _ShakeVertexData: {r: 1, g: 0, b: 0, a: 3}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _VAT_MaxBound: {r: 0, g: 0, b: 0, a: 1}
     - _VAT_MinBound: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
