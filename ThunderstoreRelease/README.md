@@ -49,6 +49,11 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
         - A unique color is assigned for most of the skins, which changes every VFX colour for that skin
         - Some clones were added in for Hypermatrix Entry
         - New End of Time VFX has been added.
+    - Miscellaneous Bug fixes and changes:
+        - Fixed some animators from breaking between UI disables
+        - Parrying from Primary 3 now chains into Primary 3 instead of Primary 1
+        - Dodging should reduce your falling speed when you exit the state.
+        - ...And some other fixes I forgot to write
 
 ## Video
 <a href="http://www.youtube.com/watch?v=DP7mswsHHZ0">Video Link:</a>
