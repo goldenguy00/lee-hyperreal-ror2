@@ -21775,6 +21775,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4657720423533130114, guid: c1a9a606845ba694784e0925b31b30ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8001397436237108416, guid: c1a9a606845ba694784e0925b31b30ed,
         type: 3}
       propertyPath: m_RootOrder
@@ -21834,6 +21839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: stageIntroPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8001397436237108417, guid: c1a9a606845ba694784e0925b31b30ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1a9a606845ba694784e0925b31b30ed, type: 3}
@@ -21967,6 +21977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ror Skin Jetpack
+      objectReference: {fileID: 0}
+    - target: {fileID: 642120342607072366, guid: baa1cf964673de941b7b310ba150913b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 642120342607072367, guid: baa1cf964673de941b7b310ba150913b,
         type: 3}
@@ -30332,6 +30347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 83609785792921106, guid: be9f28902dc93f94f82bca2e97e34e7b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be9f28902dc93f94f82bca2e97e34e7b, type: 3}
