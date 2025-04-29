@@ -30,6 +30,14 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
+- v2.0.1
+    - ExtraSkillSlots has been made mandatory, as there are some weird quirks with how the game loads with HIFU's Inferno mod.
+    - Added on-hit snipe particles that were missing.
+    - Changed the colours on RoR-Skins for the weapons.
+    - Reduced Emission on all skins
+    - Updated README with screenshots
+    - Reduced brightness on some effects
+
 - v2.0.0
     - Lore mode has been added!
         - By default, Lore mode is on! This changes the following:
@@ -61,10 +69,20 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 [![Risk of Rain 2 - Lee Hyperreal Mod Showcase](http://img.youtube.com/vi/DP7mswsHHZ0/0.jpg)](http://www.youtube.com/watch?v=DP7mswsHHZ0 "Risk of Rain 2 - Lee Hyperreal Mod Showcase")
 
 ## Screenshots
-<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/lee1.png"/>
+<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/v2lee1.png"/>
 
 <details>
-<summary>Click to expand for more screenshots:</summary>
+<summary>v2 Screenshots:</summary>
+<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/v2lee2.png"/>
+<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/v2lee3.png"/>
+<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/v2lee4.png"/>
+<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/v2lee5.png"/>
+<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/v2lee6.png"/>
+</details>
+
+<details>
+<summary>v1 Screenshots:</summary>
+<img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/lee1.png"/>
 <img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/lee2.png"/>
 <img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/lee3.png"/>
 <img width="720" src="https://raw.githubusercontent.com/Popcorn-Factory/PopcornFactoryModMediaFiles/main/LeeHyperreal/lee4.png"/>

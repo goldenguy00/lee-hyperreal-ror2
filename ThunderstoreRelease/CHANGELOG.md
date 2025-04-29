@@ -1,6 +1,13 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- v2.0.1
+    - ExtraSkillSlots has been made mandatory, as there are some weird quirks with how the game loads with HIFU's Inferno mod.
+    - Added on-hit snipe particles that were missing.
+    - Changed the colours on RoR-Skins for the weapons.
+    - Reduced Emission on all skins
+    - Updated README with screenshots
+    - Reduced brightness on some effects
 - v2.0.0
     - Lore mode has been added!
         - By default, Lore mode is on! This changes the following:
