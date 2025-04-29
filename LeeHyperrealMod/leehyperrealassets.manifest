@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1458614208
+CRC: 54102247
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c5abc97c7f1e11d10b152fff199b1bc9
+    Hash: d094078d3fac7a285a1614a2a1d3c84e
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -374,7 +374,6 @@ Assets:
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md773.mat
 - Assets/LeeHyperrealAssets/Animation/SuperRifleAnimations/attack24.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk35hit ORIGINAL.prefab
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeComradeWeaponPalette.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk14fshit01
   ORIGINAL.prefab
 - Assets/modelresource/effect/texture/trail01102.png
@@ -446,6 +445,7 @@ Assets:
 - Assets/modelresource/effect/gpuparticles/fxr3luosaitamd019241gpu/fxr3luosaitaatk51zhagpu/0.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md336.mat
 - Assets/modelresource/effect/prefab/fxr2qishi/textures/liuguang019.png
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeComradeWeaponPalette1.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liangboardact1005.mat
 - Assets/LeeHyperrealAssets/Animation/animLeeHyperreal.controller
 - Assets/modelresource/effect/texture/xulielizi011.png
@@ -1236,7 +1236,6 @@ Assets:
 - Assets/modelresource/effect/texture/mask123.png
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Ult Aim Dow.anim
 - Assets/LeeHyperrealAssets/AnimationCurves/fxr4liangatk04hit-lightSC.asset
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeProspectorWeaponPalette.png
 - Assets/LeeHyperrealAssets/Material/leeHairMat.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331mdbaodian301.mat
 - Assets/modelresource/effect/texture/mask824.png
@@ -1482,8 +1481,8 @@ Assets:
 - Assets/LeeHyperrealAssets/Texture/Albedo/leeEffectFaceTex.png
 - Assets/Prefabs/Camera Ultimate Root.prefab
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011mdliuguang700.mat
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeComradeWeaponPalette2.png
-- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeProspectorWeaponPalette2.png
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeComradeWeaponPalette.png
+- Assets/LeeHyperrealAssets/Skin-Prospector-Comrade/LeeProspectorWeaponPalette.png
 - Assets/modelresource/effect/prefab/fxr2nuoanprefab/materials/fxr2nuoanchunse703-red.mat
 - Assets/VFX/Ror Skin Jetpack/fxr4liang010011md711 Jetpack.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md307.mat
