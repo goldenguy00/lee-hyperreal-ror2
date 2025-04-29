@@ -36,6 +36,8 @@ namespace LeeHyperrealMod.Modules.Survivors
         public static SkillDef domainUltimateSkill;
         public static int glitchSkinIndex = 1;
 
+        public static float emStr = 2f;
+
         public override BodyInfo bodyInfo { get; set; } = new BodyInfo
         {
             bodyName = "LeeHyperrealBody",
@@ -61,58 +63,58 @@ namespace LeeHyperrealMod.Modules.Survivors
                 new CustomRendererInfo 
                 { 
                     childName = "ArmModel",
-                    material = Materials.CreateHopooMaterial("leeArmMat", 2.5f)
+                    material = Materials.CreateHopooMaterial("leeArmMat", emStr)
                 },
                 new CustomRendererInfo
                 {
                     childName = "TorsoModel",
-                    material = Materials.CreateHopooMaterial("leeTorsoClothmat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeTorsoClothmat", emStr),
                 },
                 new CustomRendererInfo
                 {
                     childName = "FaceModel",
-                    material = Materials.CreateHopooMaterial("leeFaceMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeFaceMat", emStr),
                 },
                 new CustomRendererInfo
                 {
                     childName = "HairModel",
-                    material = Materials.CreateHopooMaterial("leeHairMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeHairMat", emStr),
                 },
                 new CustomRendererInfo
                 {
                     childName = "ArmourPlateModel",
-                    material = Materials.CreateHopooMaterial("leeChestLegPlateMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeChestLegPlateMat", emStr),
                 },
                 new CustomRendererInfo
                 {
                     childName = "EyeModel",
-                    material = Materials.CreateHopooMaterial("leeEyeMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeEyeMat", emStr),
                 },
                 new CustomRendererInfo
                 {
                     childName = "LegModel",
-                    material = Materials.CreateHopooMaterial("leeLegMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeLegMat", emStr),
                 },
                 new CustomRendererInfo
                 {
                     childName = "GunCaseModel",
-                    material = Materials.CreateHopooMaterial("leeBoxGunMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeBoxGunMat", emStr),
                 },
                 new CustomRendererInfo
                 {
                     childName = "SubMachineGunModel",
-                    material = Materials.CreateHopooMaterial("leeSubmachineMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeSubmachineMat", emStr),
                 },
                 new CustomRendererInfo 
                 {
                     childName = "SuperCannonModel",
-                    material = Materials.CreateHopooMaterial("Cannon", 2.5f),
+                    material = Materials.CreateHopooMaterial("Cannon", emStr),
                     ignoreOverlays = true,
                 },
                 new CustomRendererInfo
                 {
                     childName = "SuperRifleModel",
-                    material = Materials.CreateHopooMaterial("leeSuperRifleMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leeSuperRifleMat", emStr),
                 },
                 new CustomRendererInfo
                 {
@@ -121,7 +123,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 new CustomRendererInfo
                 {
                     childName = "PistolModel",
-                    material = Materials.CreateHopooMaterial("leePistolMat", 2.5f),
+                    material = Materials.CreateHopooMaterial("leePistolMat", emStr),
                 }
         };
 
@@ -1172,7 +1174,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 }
                 else
                 {
-                    prospectorSkin.rendererInfos[i].defaultMaterial = Materials.CreateHopooMaterial(prospectorMaterialStrings[i], 2.5f);
+                    prospectorSkin.rendererInfos[i].defaultMaterial = Materials.CreateHopooMaterial(prospectorMaterialStrings[i], emStr);
                 }
             }
 
@@ -1307,7 +1309,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 }
                 else
                 {
-                    comradeSkin.rendererInfos[i].defaultMaterial = Materials.CreateHopooMaterial(comradeMaterialStrings[i], 2.5f);
+                    comradeSkin.rendererInfos[i].defaultMaterial = Materials.CreateHopooMaterial(comradeMaterialStrings[i], emStr);
                 }
             }
 

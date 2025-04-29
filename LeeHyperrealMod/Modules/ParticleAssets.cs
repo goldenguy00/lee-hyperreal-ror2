@@ -927,7 +927,7 @@ namespace LeeHyperrealMod.Modules
             particleDictionary.Add("snipeStart", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeStart));
             particleDictionary.Add("snipe", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipe));
             particleDictionary.Add("snipeHitEnhanced", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeHitEnhanced));
-            particleDictionary.Add("snipeHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeStart));
+            particleDictionary.Add("snipeHit", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeHit));
             particleDictionary.Add("snipeGround", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeGround));
             particleDictionary.Add("snipeBulletCasing", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeBulletCasing));
             particleDictionary.Add("snipeDodge", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, snipeDodge));
