@@ -20,6 +20,11 @@
         - A unique color is assigned for most of the skins, which changes every VFX colour for that skin
         - Some clones were added in for Hypermatrix Entry
         - New End of Time VFX has been added.
+    - Miscellaneous Bug fixes and changes:
+        - Fixed some animators from breaking between UI disables
+        - Parrying from Primary 3 now chains into Primary 3 instead of Primary 1
+        - Dodging should reduce your falling speed when you exit the state.
+        - ...And some other fixes I forgot to write
 - 1.1.14
     - Primary 4 will now flash between invisible and visible during the move
     - Actually fixing the overlay from not disappearing properly on counters and ultimate freezes

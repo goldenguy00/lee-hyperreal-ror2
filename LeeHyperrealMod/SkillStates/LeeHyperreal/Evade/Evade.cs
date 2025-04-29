@@ -5,6 +5,7 @@ using RoR2;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules;
+using UnityEngine.UIElements.UIR;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 {
@@ -36,6 +37,10 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
         private Vector3 previousMovementVector;
 
         public Transform baseTransform;
+
+        CharacterGravityParameters gravParams;
+        CharacterGravityParameters oldGravParams;
+        float turnOffGravityFrac = 0.13f;
 
         public override void OnEnter()
         {
@@ -122,6 +127,13 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 
             this.characterDirection.forward = base.inputBank.moveVector;
             this.characterDirection.moveVector = base.inputBank.moveVector;
+
+            oldGravParams = base.characterMotor.gravityParameters;
+            gravParams = new CharacterGravityParameters();
+            gravParams.environmentalAntiGravityGranterCount = 1;
+            gravParams.channeledAntiGravityGranterCount = 1;
+
+            characterMotor.gravityParameters = gravParams;
         }
 
 
@@ -179,6 +191,17 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                 }
             }
 
+            if (age <= duration * turnOffGravityFrac)
+            {
+                base.characterMotor.Motor.ForceUnground();
+                base.characterMotor.gravityParameters = gravParams;
+            }
+
+            if (age >= duration * turnOffGravityFrac)
+            {
+                base.characterMotor.gravityParameters = oldGravParams;
+            }
+
             if (age >= duration * earlyExitFrac && isAuthority)
             {
                 if (!isForwardRoll)
@@ -210,10 +233,11 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
         public override void OnExit()
         {
             base.OnExit();
-            float y = base.characterMotor.velocity.y;
+            float y = base.characterMotor.velocity.y * 0.2f;
             base.characterMotor.velocity = new Vector3(previousMovementVector.x, y, previousMovementVector.z);
             base.characterBody.SetAimTimer(0);
             base.PlayAnimation("Body", "BufferEmpty");
+            base.characterMotor.gravityParameters = oldGravParams;
         }
 
         public void PlayAnimation()
