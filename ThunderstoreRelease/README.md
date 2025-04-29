@@ -30,6 +30,12 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
+- v2.0.1
+    - ExtraSkillSlots has been made mandatory, as there are some weird quirks with how the game loads with Inferno.
+    - Added on-hit snipe particles that were missing.
+    - Changed the colours on RoR-Skins for the weapons.
+    - Reduced Emission on all skins
+
 - v2.0.0
     - Lore mode has been added!
         - By default, Lore mode is on! This changes the following:
