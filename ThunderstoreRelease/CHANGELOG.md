@@ -1,6 +1,11 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- v2.0.2
+    - Added option to remove blue colouring on name
+    - Fixed No-input dodge from moving weird.
+    - Fixed some particles from blinding players
+    - 
 - v2.0.1
     - ExtraSkillSlots has been made mandatory, as there are some weird quirks with how the game loads with HIFU's Inferno mod.
     - Added on-hit snipe particles that were missing.

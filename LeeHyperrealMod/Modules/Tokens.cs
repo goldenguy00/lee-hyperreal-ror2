@@ -64,7 +64,7 @@ namespace LeeHyperrealMod.Modules
             string outroFailure = "..and so he vanished, with a mission unfulfilled.";
 
 
-            LanguageAPI.Add(prefix + "NAME", $"{Lee("Lee: Hyperreal", generatedName)}");
+            LanguageAPI.Add(prefix + "NAME", $"{Lee("Lee: Hyperreal", generatedName, Modules.Config.isBlueName.Value)}");
             LanguageAPI.Add(prefix + "DESCRIPTION", desc);
             LanguageAPI.Add(prefix + "SUBTITLE", "Hypermatrix Traverser");
             LanguageAPI.Add(prefix + "LORE", lore);

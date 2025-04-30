@@ -51,12 +51,24 @@ namespace LeeHyperrealMod.Modules
 
         internal static string Lee(string desc, string altDesc) 
         {
+            return Lee(desc, altDesc, true);
+        }
+
+        internal static string Lee(string desc, string altDesc, bool isColoured) 
+        {
 
             if (Modules.Config.loreMode.Value)
             {
+                if (isColoured) 
+                {
+                    return altDesc;
+                }
                 return $"<color=#{ColorUtility.ToHtmlStringRGB(Modules.StaticValues.bodyColor)}>{altDesc}</color>";
             }
-            
+            if (isColoured)
+            {
+                return desc;
+            }
             return $"<color=#{ColorUtility.ToHtmlStringRGB(Modules.StaticValues.bodyColor)}>{desc}</color>";
         }
 

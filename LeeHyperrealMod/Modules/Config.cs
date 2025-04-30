@@ -50,6 +50,7 @@ namespace LeeHyperrealMod.Modules
         public static ConfigEntry<bool> rgbMode;
         public static ConfigEntry<float> rgbPulseSpeed;
         public static ConfigEntry<bool> playLootBoxSound;
+        public static ConfigEntry<bool> isBlueName;
 
         public static void ReadConfig()
         {
@@ -239,6 +240,13 @@ namespace LeeHyperrealMod.Modules
                 true,
                 new ConfigDescription("Plays the Lootbox SFX when successfully rolling the achievment unlock through the chest. Server sided, cannot disable this!")
             );
+
+            isBlueName = LeeHyperrealPlugin.instance.Config.Bind<bool>
+            (
+                new ConfigDefinition("06 - Extras", "Name set to blue on Lore Mode"),
+                true,
+                new ConfigDescription("Grants coloured name. If disabled, reverts to a white coloured name. Requires a reboot to take effect.")
+            );
         }
 
         public static void SetupRiskOfOptions() 
@@ -355,6 +363,7 @@ namespace LeeHyperrealMod.Modules
                 )
             );
             ModSettingsManager.AddOption(new CheckBoxOption(playLootBoxSound));
+            ModSettingsManager.AddOption(new CheckBoxOption(isBlueName));
         }
 
         // this helper automatically makes config entries for disabling survivors
