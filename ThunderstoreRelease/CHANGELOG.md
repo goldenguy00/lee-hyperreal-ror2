@@ -5,7 +5,8 @@
     - Added option to remove blue colouring on name (not in descriptions).
     - Fixed No-input dodge from moving weird.
     - Fixed some particles from blinding players
-    - 
+    - Updated RoR2 GameLibs
+    - Added Item Displays for Seekers of the Storm
 - v2.0.1
     - ExtraSkillSlots has been made mandatory, as there are some weird quirks with how the game loads with HIFU's Inferno mod.
     - Added on-hit snipe particles that were missing.
