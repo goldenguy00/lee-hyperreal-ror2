@@ -2,7 +2,7 @@
 ## Changelog
 
 - v2.0.2
-    - Added option to remove blue colouring on name
+    - Added option to remove blue colouring on name (not in descriptions).
     - Fixed No-input dodge from moving weird.
     - Fixed some particles from blinding players
     - 

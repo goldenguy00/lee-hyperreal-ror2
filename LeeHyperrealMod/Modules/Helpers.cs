@@ -59,13 +59,13 @@ namespace LeeHyperrealMod.Modules
 
             if (Modules.Config.loreMode.Value)
             {
-                if (isColoured) 
+                if (!isColoured) 
                 {
                     return altDesc;
                 }
                 return $"<color=#{ColorUtility.ToHtmlStringRGB(Modules.StaticValues.bodyColor)}>{altDesc}</color>";
             }
-            if (isColoured)
+            if (!isColoured)
             {
                 return desc;
             }
