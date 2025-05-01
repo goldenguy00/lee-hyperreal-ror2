@@ -6,13 +6,30 @@ namespace LeeHyperrealMod.Content.Notifications
     //Shamelessly stolen from HUNK: thank you for making my job easier ROB
     internal class LeeHyperrealNotification : GenericNotification
     {
-        public void SetText(string title, string desc)
+        public void SetText(string title, string desc, CharacterMaster master)
         {
             this.titleText.token = title;
             this.descriptionText.token = desc;
 
-            this.iconImage.texture = LeeHyperrealMod.Modules.Survivors.LeeHyperreal.staticBodyPrefab.GetComponent<CharacterBody>().portraitIcon;
+            bool iconSet = false;
+            if (master) 
+            {
+                if (master.GetBody()) 
+                {
+                    if (master.GetBody().portraitIcon) 
+                    {
+                        iconSet = true;
 
+                        this.iconImage.texture = master.GetBody().portraitIcon;
+                    }
+                }
+            }
+
+            if (!iconSet) 
+            {
+                this.iconImage.texture = LeeHyperrealMod.Modules.Survivors.LeeHyperreal.staticBodyPrefab.GetComponent<CharacterBody>().portraitIcon;
+            }
+            
             this.titleTMP.color = Modules.StaticValues.bodyColor;
         }
     }

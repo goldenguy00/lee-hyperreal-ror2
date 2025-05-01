@@ -47,7 +47,7 @@ namespace LeeHyperrealMod.Modules.Notifications
             var obj = (Modules.StaticValues.CustomItemEffect)notificationInfo.data;
             if (obj != null)
             {
-                this.currentNotification.SetText(obj.titleToken, obj.descToken);
+                this.currentNotification.SetText(obj.titleToken, obj.descToken, this.targetMaster);
             }
 
             this.currentNotification.GetComponent<RectTransform>().SetParent(base.GetComponent<RectTransform>(), false);
