@@ -2372,10 +2372,10 @@ localScale = new Vector3(0.08832F, 0.08832F, 0.08832F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayElephantFigure"),
-childName = "ThighR",
-localPos = new Vector3(0.10484F, 0.21463F, -0.00907F),
-localAngles = new Vector3(90F, 90F, 0F),
-localScale = new Vector3(0.3346F, 0.3346F, 0.3346F),
+                            childName = "ThighR",
+                            localPos = new Vector3(0.10162F, 0.32125F, -0.00365F),
+                            localAngles = new Vector3(90F, 90F, 0F),
+                            localScale = new Vector3(0.3346F, 0.3346F, 0.3346F),
                             limbMask = LimbFlags.None
                         }
                     }
@@ -2435,10 +2435,10 @@ localScale = new Vector3(0.1891F, 0.1891F, 0.1891F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayWaterPack"),
-childName = "WeaponCase",
-localPos = new Vector3(0.00453F, -0.67471F, 0.1165F),
-localAngles = new Vector3(71.09172F, 178.6231F, 181.0301F),
-localScale = new Vector3(0.05318F, 0.05318F, 0.05318F),
+                            childName = "Chest",
+                            localPos = new Vector3(0.11293F, 0.0609F, -0.00656F),
+                            localAngles = new Vector3(341.6276F, 101.7895F, 355.4566F),
+                            localScale = new Vector3(0.05318F, 0.05318F, 0.05318F),
                             limbMask = LimbFlags.None
                         }
                     }
@@ -3477,10 +3477,10 @@ localScale = new Vector3(0.03935F, 0.03935F, 0.03935F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayIncreaseDamageOnMultiKill"),
-                            childName = "UpperarmL",
-                            localPos = new Vector3(-0.03088F, 0.08443F, -0.00453F),
-                            localAngles = new Vector3(82.2011F, 259.8068F, 157.6496F),
-                            localScale = new Vector3(0.07471F, 0.07471F, 0.07471F),
+                            childName = "Chest",
+                            localPos = new Vector3(0.09197F, 0.06024F, -0.06984F),
+                            localAngles = new Vector3(275.1508F, 161.2419F, 297.4984F),
+                            localScale = new Vector3(0.08751F, 0.08751F, 0.08751F),
                             limbMask = LimbFlags.None
                         }
                     }
