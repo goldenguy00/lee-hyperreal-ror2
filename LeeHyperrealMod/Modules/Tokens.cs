@@ -90,7 +90,7 @@ namespace LeeHyperrealMod.Modules
             LanguageAPI.Add(prefix + "PASSIVE_DOMAIN_DESCRIPTION", "" +
                 $"{Lee("Lee: Hyperreal", generatedName)} has access to the {UtilDesc("[Hypermatrix]")}, by holding the Primary button" +
                 $" down with a full {UtilDesc("[Power Gauge]")}." +
-                $" {Lee("Lee: Hyperreal", generatedName)} gains damage in place of attack speed, however Snipe Stance scales normally.");
+                $" {Lee("Lee: Hyperreal", generatedName)} gains more hits in place of attack speed, however Snipe Stance scales normally.");
 
             LanguageAPI.Add(prefix + "PASSIVE_VFX_COLOR_NAME", "VFX Color");
 
@@ -116,10 +116,10 @@ namespace LeeHyperrealMod.Modules
 
             #region Primary
             LanguageAPI.Add(prefix + "PRIMARY_NAME", "Armament Barrage");
-            LanguageAPI.Add(prefix + "PRIMARY_DESCRIPTION", "Launch a 5-hit-combo attack. On hit 1 and 3, " +
+            LanguageAPI.Add(prefix + "PRIMARY_DESCRIPTION", "Launch a 5-string-combo attack. On hit 1 and 3, " +
                 $"perform a {UtilDesc("[Parry]")} active for a short time. " +
-                $"In the air, slam down, dealing {DmgDesc($"{primaryAerialDamageCoefficient * 100}% damage")}, increasing up to {DmgDesc($"{primaryAerialMaxDamageMultiplier}x times,")} dependant on vertical distance travelled. " +
-                $"Hold down at anytime in the combo with a full {UtilDesc("[Power Gauge]")} to enter the {UtilDesc("[Hypermatrix]")}");
+                $"In the air, slam down, dealing {DmgDesc($"{primaryAerialDamageCoefficient * 100}% damage")}, increasing up to {DmgDesc($"{primaryAerialMaxDamageMultiplier}x times,")} based on distance travelled. " +
+                $"Hold down at anytime with a full {UtilDesc("[Power Gauge]")} to enter the {UtilDesc("[Hypermatrix]")}");
             #endregion
 
             #region Secondary
@@ -155,7 +155,7 @@ namespace LeeHyperrealMod.Modules
 
             #region Item Effects
             LanguageAPI.Add(prefix + "ITEM_EFFECT_TITLE", "Hyper effect");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_BACKUPMAG_DESC", $"{Lee("Lee: Hyperreal", generatedName)} gains {UtilDesc("+1")} {Stack("(+1 per stack)")} EFnhanced bullet(s) on each successful {UtilDesc("[Parry]")}");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_BACKUPMAG_DESC", $"{Lee("Lee: Hyperreal", generatedName)} gains {UtilDesc("+1")} {Stack("(+1 per stack)")} Enhanced bullet(s) on each successful {UtilDesc("[Parry]")}");
             LanguageAPI.Add(prefix + "ITEM_EFFECT_ALIEN_HEAD_DESC", $"{Lee("Lee: Hyperreal's", generatedName)} orbs charge {UtilDesc("25% faster")}.");
             LanguageAPI.Add(prefix + "ITEM_EFFECT_PURITY_DESC", $"{Lee("Lee: Hyperreal's", generatedName)} orb recharge rate is reduced by {UtilDesc("2")} {Stack("(+1 per stack)")} seconds");
             LanguageAPI.Add(prefix + "ITEM_EFFECT_ATTACK_SPEED_DESC", $"{Lee("Lee: Hyperreal", generatedName)} primary gains more {UtilDesc("hits")} instead of attack speed. E.g. 250% attack speed = 2 hits and a half damage hit.");
@@ -177,7 +177,7 @@ namespace LeeHyperrealMod.Modules
                 Environment.NewLine + $"" +
                 $"{Lee("Lee: Hyperreal", generatedName)} can store and use a variety of {UtilDesc("Ammo")}, indicated above the {UtilDesc("[Power Gauge]")}." +
                 Environment.NewLine +
-                $"Using a {UtilDesc("[3-ping]")} will store a {UtilDesc("[Coloured Bullet]")}, which can be used in the {UtilDesc("[Hypermatrix]")} to add 3 Orbs of that shots colour back into your {UtilDesc("[Orb System]")} by Sniping during it" +
+                $"Using a {UtilDesc("[3-ping]")} will store a {UtilDesc("[Coloured Bullet]")}, which can be used in the {UtilDesc("[Hypermatrix]")} to add 3 Orbs of that shots colour back into your {UtilDesc("[Orb System]")} by Sniping during it." +
                 Environment.NewLine +
                 $"Upon a successful {UtilDesc("[Parry]")}, {UtilDesc("[Enhancedd Bullet]'s")} are granted, increasing the damage of your next shot in {UtilDesc("[Snipe Stance]")} by {DmgDesc($"{empoweredBulletMultiplier}x times.  ")}");
             LanguageAPI.Add(prefix + "KEYWORD_SNIPE_STANCE",
@@ -189,7 +189,7 @@ namespace LeeHyperrealMod.Modules
                 Environment.NewLine + $"The Power Gauge situated above the Health gauge determines when you can enter the {UtilDesc("[Hypermatrix]")}, and how long left before exiting. Hold the {UserSetting("Primary Skill")} to enter the {UtilDesc("[Hypermatrix]")}.");
             LanguageAPI.Add(prefix + "KEYWORD_PARRY",
                 $"{Keyword("Parry")}" +
-                Environment.NewLine + $"Upon a successful parry, stun the enemy that dealt the damage, if they can be stunned. Any projectile parried will be shot back in the direction you aim at. A successful parry resets {UtilDesc("[Armament Barrage]")}, starting from the first hit again.");
+                Environment.NewLine + $"Upon a successful parry, stun the enemy that dealt the damage if they can be stunned. Any projectile parried will be shot back in the direction you aim at. A successful parry resets {UtilDesc("[Armament Barrage]")}, starting from the move used to parry again.");
             LanguageAPI.Add(prefix + "KEYWORD_DOMAIN",
                 $"{Keyword("Hypermatrix System")}" +
                 Environment.NewLine +
