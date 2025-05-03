@@ -204,7 +204,7 @@ namespace LeeHyperrealMod
             {
                 newToken = DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_PASSIVE_DOMAIN_NAME";    
             }
-            if ((skillSlot.skillFamily as ScriptableObject).name.Contains("Lee: Hyperreal - VFX Color"))
+            if ((skillSlot.skillFamily as ScriptableObject).name.Contains("Lee:_Hyperreal_-_VFX_Color"))
             {
                 newToken = DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_PASSIVE_VFX_COLOR_NAME";
             }
