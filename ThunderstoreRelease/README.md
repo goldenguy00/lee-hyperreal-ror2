@@ -30,12 +30,10 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
-- v2.0.2
-    - Added option to remove blue colouring on name (not in descriptions).
-    - Fixed No-input dodge from moving weird.
-    - Fixed some particles from blinding players
-    - Updated RoR2 GameLibs
-    - Added Item Displays for Seekers of the Storm
+- v2.0.3
+    - Changed the sizes of some hitboxes on Primary
+    - Changed the wording on some descriptions
+    - Fixing some unlocks from breaking due to some incorrect naming
     
 - v2.0.0
     - Lore mode has been added!

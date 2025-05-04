@@ -1,6 +1,10 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- v2.0.3
+    - Changed the sizes of some hitboxes on Primary
+    - Changed the wording on some descriptions
+    - Fixing some unlocks from breaking due to some incorrect naming
 - v2.0.2
     - Added option to remove blue colouring on name (not in descriptions).
     - Fixed No-input dodge from moving weird.
