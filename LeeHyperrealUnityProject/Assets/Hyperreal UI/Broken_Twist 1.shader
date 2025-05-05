@@ -25,6 +25,8 @@ Shader "Broken_Twist"
         _NormalU("NormalU", Float) = 0
         _TextureSample0("Texture Sample 0", 2D) = "white" {}
         _TextureSample1("Texture Sample 0", 2D) = "white" {}
+        _TextureSample2("Texture Sample 2", 2D) = "white" {}
+        [HideInInspector] _texcoord( "", 2D ) = "white" {}
 
     }
 
@@ -107,6 +109,7 @@ Shader "Broken_Twist"
             float _UIMaskSoftnessY;
 
             ASE_DECLARE_SCREENSPACE_TEXTURE( _GrabTexture )
+            uniform sampler2D _TextureSample2;
             uniform sampler2D _TextureSample0;
             uniform sampler2D _NormalTex;
             uniform float _NormalU;
@@ -114,6 +117,8 @@ Shader "Broken_Twist"
             uniform float _NormalIntensity;
             uniform sampler2D _TextureSample1;
             UNITY_INSTANCING_BUFFER_START(Broken_Twist)
+            	UNITY_DEFINE_INSTANCED_PROP(float4, _TextureSample2_ST)
+#define _TextureSample2_ST_arr Broken_Twist
             	UNITY_DEFINE_INSTANCED_PROP(float4, _NormalTex_ST)
 #define _NormalTex_ST_arr Broken_Twist
             UNITY_INSTANCING_BUFFER_END(Broken_Twist)
@@ -179,6 +184,9 @@ Shader "Broken_Twist"
                 float4 temp_cast_0 = (distance( _WorldSpaceCameraPos , ase_worldPos )).xxxx;
                 float4 appendResult98 = (float4(1.0 , 1.0 , 0.0 , 0.0));
                 float4 lerpResult86 = lerp( temp_cast_0 , appendResult98 , 1.0);
+                float4 _TextureSample2_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(_TextureSample2_ST_arr, _TextureSample2_ST);
+                float2 uv_TextureSample2 = IN.texcoord.xy * _TextureSample2_ST_Instance.xy + _TextureSample2_ST_Instance.zw;
+                float4 tex2DNode147 = tex2D( _TextureSample2, uv_TextureSample2 );
                 float temp_output_110_0 = floor( ( _Time.y / 0.3 ) );
                 float2 temp_cast_1 = (temp_output_110_0).xx;
                 float dotResult4_g7 = dot( temp_cast_1 , float2( 12.9898,78.233 ) );
@@ -193,6 +201,12 @@ Shader "Broken_Twist"
                 float temp_output_111_0 = ( _Time.x * lerpResult10_g6 );
                 float4 appendResult123 = (float4(temp_output_111_0 , ( temp_output_111_0 * 1.3 ) , 0.0 , 0.0));
                 float2 texCoord112 = IN.texcoord.xy * ( appendResult134 * 1.0 ).xy + appendResult123.xy;
+                float temp_output_116_0 = (0.98 + (tex2D( _TextureSample0, texCoord112 ).r - 0.0) * (1.02 - 0.98) / (1.0 - 0.0));
+                float ifLocalVar148 = 0;
+                if( tex2DNode147.a >= 1.0 )
+                ifLocalVar148 = temp_output_116_0;
+                else
+                ifLocalVar148 = 1.0;
                 float4 screenPos = IN.ase_texcoord4;
                 float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( screenPos );
                 float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
@@ -203,7 +217,13 @@ Shader "Broken_Twist"
                 float2 panner9 = ( 1.0 * _Time.y * appendResult12 + uv_NormalTex);
                 float4 Normal15 = ( tex2D( _NormalTex, panner9 ) * ( _NormalIntensity / distance( _WorldSpaceCameraPos , ase_worldPos ) ) );
                 float2 texCoord135 = IN.texcoord.xy * ( appendResult134 * 1.0 ).xy + ( 1.0 * appendResult123 ).xy;
-                float2 appendResult44 = (float2(( ( (0.98 + (tex2D( _TextureSample0, texCoord112 ).r - 0.0) * (1.02 - 0.98) / (1.0 - 0.0)) * (ScreenUV16).x ) + Normal15 ).r , ( (0.98 + (tex2D( _TextureSample1, texCoord135 ).r - 0.0) * (1.02 - 0.98) / (1.0 - 0.0)) * (ScreenUV16).y )));
+                float temp_output_126_0 = (0.98 + (tex2D( _TextureSample1, texCoord135 ).r - 0.0) * (1.02 - 0.98) / (1.0 - 0.0));
+                float ifLocalVar149 = 0;
+                if( tex2DNode147.a >= 1.0 )
+                ifLocalVar149 = temp_output_126_0;
+                else
+                ifLocalVar149 = 1.0;
+                float2 appendResult44 = (float2(( ( ifLocalVar148 * (ScreenUV16).x ) + Normal15 ).r , ( ifLocalVar149 * (ScreenUV16).y )));
                 float4 screenColor2 = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_GrabTexture,( lerpResult86 * float4( appendResult44, 0.0 , 0.0 ) ).xy);
                 
 
@@ -322,6 +342,10 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;146;-277.0518,-264.7446;Flo
 Node;AmplifyShaderEditor.TextureCoordinatesNode;135;986.217,-890.9592;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;138;1278.217,-801.9592;Inherit;False;2;2;0;FLOAT4;0,0,0,0;False;1;FLOAT;0;False;1;FLOAT4;0
 Node;AmplifyShaderEditor.RangedFloatNode;133;1641.217,-346.9594;Inherit;False;Constant;_Float15;Float 14;11;0;Create;True;0;0;0;False;0;False;0.5;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;150;-511.5402,-752.1104;Inherit;False;Constant;_Float18;Float 18;12;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.ConditionalIfNode;149;-129.0407,-591.0427;Inherit;False;False;5;0;FLOAT;0;False;1;FLOAT;1;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.ConditionalIfNode;148;6.748669,-853.5577;Inherit;False;False;5;0;FLOAT;0;False;1;FLOAT;1;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;147;-373.5587,-1015.109;Inherit;True;Property;_TextureSample2;Texture Sample 2;11;0;Create;True;0;0;0;False;0;False;-1;None;f6e79c75cb4fd204b827041aa010e70a;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;12;0;10;0
 WireConnection;12;1;11;0
 WireConnection;60;0;59;0
@@ -369,9 +393,9 @@ WireConnection;7;0;93;0
 WireConnection;7;1;18;0
 WireConnection;56;0;86;0
 WireConnection;56;1;44;0
-WireConnection;93;0;116;0
+WireConnection;93;0;148;0
 WireConnection;93;1;42;0
-WireConnection;95;0;126;0
+WireConnection;95;0;149;0
 WireConnection;95;1;43;0
 WireConnection;98;0;96;0
 WireConnection;98;1;97;0
@@ -422,5 +446,13 @@ WireConnection;135;0;138;0
 WireConnection;135;1;136;0
 WireConnection;138;0;134;0
 WireConnection;138;1;137;0
+WireConnection;149;0;147;4
+WireConnection;149;2;126;0
+WireConnection;149;3;126;0
+WireConnection;149;4;150;0
+WireConnection;148;0;147;4
+WireConnection;148;2;116;0
+WireConnection;148;3;116;0
+WireConnection;148;4;150;0
 ASEEND*/
-//CHKSM=E41F687E11D46DF56DBD4FC5C9A91A297B9FB4B0
+//CHKSM=565F9DA6299E125055974C27D5AEC55D245593FE
