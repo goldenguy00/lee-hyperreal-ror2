@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 576559570
+CRC: 471120098
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 91f58bca6096ac7ebd7adc67b73a9813
+    Hash: eb9ba70e807406130f711be862b05c18
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2963416522028d4f30da5ca312090ef5
@@ -1013,6 +1013,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Spawn4.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatkshiting.prefab
 - Assets/modelresource/effect/texture/dilie111.png
+- Assets/LeeHyperrealAssets/LeeHealthHunkHud.prefab
 - Assets/modelresource/effect/texture/baodian703.png
 - Assets/modelresource/effect/mesh/fxr4liangmesh/fxr4liangatksuiping05_9.asset
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md305.mat
