@@ -487,6 +487,11 @@ namespace LeeHyperrealMod.Content.Controllers
                 return;
             }
 
+            if (LeeHyperrealPlugin.isHunkHudInstalled)
+            {
+                return;
+            }
+
             if (LeeHyperrealPlugin.isRiskUIInstalled)
             {
                 orbUIObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
