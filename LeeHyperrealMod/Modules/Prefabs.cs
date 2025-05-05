@@ -195,7 +195,6 @@ namespace LeeHyperrealMod.Modules {
             characterModel.body = prefab.GetComponent<CharacterBody>();
 
             characterModel.autoPopulateLightInfos = true;
-            characterModel._invisibilityCount = 0;
             characterModel.temporaryOverlays = new List<TemporaryOverlayInstance>();
 
             characterModel.body.overrideCoreTransform = childLocator.FindChild("Center");

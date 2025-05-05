@@ -38,6 +38,8 @@ namespace LeeHyperrealMod.Content.Controllers
         private OrbController orbController;
         private LeeHyperrealDomainController domainController;
         private LeeHyperrealPassive passiveController;
+        private RectTransform OrbPositionComponent;
+        private RectTransform PowerMeterPositionComponent;
         public bool baseAIPresent;
         public bool enabledUI;
 
@@ -628,7 +630,16 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             if (RoRHUDObject && !powerMeterUIObject) 
             {
-                if (LeeHyperrealPlugin.isRiskUIInstalled)
+                if (LeeHyperrealPlugin.isHunkHudInstalled)
+                {
+                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
+                    PowerMeterPositionComponent = powerMeterUIObject.GetComponent<RectTransform>();
+                    PowerMeterPositionComponent.anchoredPosition = new Vector2(160f, 215f);
+                    Debug.Log("component", PowerMeterPositionComponent);
+                    Debug.Log("ishunkhudinstalled");
+                    
+                }
+                else if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
                     powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
                     powerMeterUIObject.transform.localScale = new Vector3(1, 1, 1);
@@ -636,6 +647,7 @@ namespace LeeHyperrealMod.Content.Controllers
                     powerMeterUIObject.transform.localPosition = new Vector3(200f, 220f, -42f);
                     powerMeterUIObjectBullet = powerMeterUIObject.transform.GetChild(1);
                     powerMeterUIObjectBullet.transform.localPosition = new Vector3(-30f, -4f, 11f);
+                    Debug.Log("isriskuiinstalled");
 
                 }
                 else if (LeeHyperrealPlugin.isBetterHudInstalled) 
@@ -644,10 +656,12 @@ namespace LeeHyperrealMod.Content.Controllers
                     powerMeterUIObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
                     powerMeterUIObject.transform.localRotation = Quaternion.identity;
                     powerMeterUIObject.transform.localPosition = new Vector3(-500f, 100.709f, - 47.7458f);
+                    Debug.Log("isbetterhudinstalled");
                 }
                 else
                 {
                     powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
+                    Debug.Log("nohudmodinstalled");
                 }
             }
 
@@ -1007,7 +1021,13 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             if (RoRHUDObject && !orbUIObject) 
             {
-                if (LeeHyperrealPlugin.isRiskUIInstalled)
+                if (LeeHyperrealPlugin.isHunkHudInstalled)
+                {
+                    orbUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.orbsUIObject, RoRHUDSpringCanvasTransform.Find("BottomCenterCluster"));
+                    OrbPositionComponent = orbUIObject.GetComponent<RectTransform>();
+                    OrbPositionComponent.anchoredPosition = new Vector3(800f, -19f);
+                }
+                else if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
                     emptyParent = UnityEngine.GameObject.Instantiate(new GameObject("Empty Orb Parent"), RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
                     orbUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.orbsUIObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
