@@ -39,6 +39,7 @@ namespace LeeHyperrealMod.Modules
         // UI objects
         internal static GameObject powerMeterObject;
         internal static GameObject healthPrefabs;
+        internal static GameObject healthPrefabsHunkHud;
         internal static GameObject orbsUIObject;
         internal static GameObject spinnyIconUIObject;
 
@@ -164,6 +165,7 @@ namespace LeeHyperrealMod.Modules
             uiObject = mainAssetBundle.LoadAsset<GameObject>("LeeHyperrealUI");
             powerMeterObject = mainAssetBundle.LoadAsset<GameObject>("Power Bar Empty");
             healthPrefabs = mainAssetBundle.LoadAsset<GameObject>("LeeHealth");
+            healthPrefabsHunkHud = mainAssetBundle.LoadAsset<GameObject>("LeeHealthHunkHud");
             orbsUIObject = mainAssetBundle.LoadAsset<GameObject>("Orbs");
             spinnyIconUIObject = mainAssetBundle.LoadAsset<GameObject>("Ult Base");
 

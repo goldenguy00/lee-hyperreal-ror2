@@ -18,6 +18,7 @@ using System;
 using MonoMod.RuntimeDetour;
 using RoR2.UI;
 using System.Runtime.CompilerServices;
+using Rewired;
 
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
@@ -53,6 +54,7 @@ namespace LeeHyperrealMod
         public static bool isControllerCheck = false;
         public static bool isRiskUIInstalled = false;
         public static bool isBetterHudInstalled = false;
+        public static bool isHunkHudInstalled => Chainloader.PluginInfos.ContainsKey("com.public_ParticleSystem.HunkHud");
         public static bool isAutoSprintActive = false;
         private static Hook AddBankAfterAKSoundEngineInit;
 

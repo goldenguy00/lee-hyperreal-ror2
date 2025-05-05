@@ -6,6 +6,7 @@ using LeeHyperrealMod.Modules;
 using RoR2.UI;
 using System;
 using System.Collections.Generic;
+using BepInEx.Bootstrap;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +47,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         public uint selectedSkin = 0;
         public float rgbOffset = 0f;
-
+        public static bool isHunkHudInstalled => Chainloader.PluginInfos.ContainsKey("com.public_ParticleSystem.HunkHud");
 
         #region Orb Variables
         private int maxShownOrbs = 8;
@@ -106,6 +107,9 @@ namespace LeeHyperrealMod.Content.Controllers
         private GameObject layerInvincibilityHealthObject;
         private GameObject layerInvincibilityHazeObject;
         private Image invincibilityBorder;
+        private GameObject layerInvincibilityHealthObjectHunk;
+        private GameObject layerInvincibilityHazeObjectHunk;
+        private Image invincibilityBorderHunk;
         private int healthIndex = 2;
         private int hazeIndex = 3;
         #endregion
@@ -536,7 +540,11 @@ namespace LeeHyperrealMod.Content.Controllers
         {
             if (RoRHUDObject && !healthLayers)
             {
-                if (LeeHyperrealPlugin.isRiskUIInstalled)
+                if (LeeHyperrealPlugin.isHunkHudInstalled)
+                {
+                    healthLayers = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.healthPrefabsHunkHud, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster/CustomHealthBar/Center/BarHolder"));
+                }
+                else if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
                     healthLayers = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.healthPrefabs, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster/BarRoots/Healthbar"));
                     healthLayers.transform.rotation = Quaternion.identity;
@@ -556,6 +564,12 @@ namespace LeeHyperrealMod.Content.Controllers
             layerInvincibilityHealthObject = healthLayers.transform.GetChild(0).gameObject;
             layerInvincibilityHazeObject = healthLayers.transform.GetChild(1).gameObject;
             invincibilityBorder = layerInvincibilityHealthObject.transform.GetChild(0).gameObject.GetComponent<Image>();
+            if (isHunkHudInstalled)
+            {
+                layerInvincibilityHealthObjectHunk = healthLayers.transform.GetChild(2).gameObject;
+                layerInvincibilityHazeObjectHunk = healthLayers.transform.GetChild(2).GetChild(1).gameObject;
+                invincibilityBorderHunk = healthLayers.transform.GetChild(2).GetChild(0).gameObject.GetComponent<Image>();
+            }
         }
 
         public void SetActiveHealthUIObject(bool state, Color color)
@@ -563,16 +577,28 @@ namespace LeeHyperrealMod.Content.Controllers
             if (layerInvincibilityHazeObject)
             {
                 layerInvincibilityHazeObject.SetActive(state);
+                if (isHunkHudInstalled)
+                {
+                    layerInvincibilityHazeObjectHunk.SetActive(state);
+                }
             }
 
             if (layerInvincibilityHealthObject)
             {
                 layerInvincibilityHealthObject.SetActive(state);
+                if (isHunkHudInstalled)
+                {
+                    layerInvincibilityHealthObjectHunk.SetActive(state);
+                }
             }
 
             if (invincibilityBorder) 
             {
                 invincibilityBorder.color = color;
+                if (isHunkHudInstalled)
+                {
+                    invincibilityBorderHunk.color = color;
+                }
             }
         }
 
