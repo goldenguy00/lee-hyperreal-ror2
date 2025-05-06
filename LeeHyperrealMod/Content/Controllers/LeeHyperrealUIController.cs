@@ -57,6 +57,7 @@ namespace LeeHyperrealMod.Content.Controllers
         private int endIndex = 8;
         private int orbAmountIndex = 0;
         GameObject orbUIObject;
+        Transform orbUIObjectExtraParent;
         HGTextMeshProUGUI orbAmountLabel;
         List<Animator> orbAnimators;
         List<Image> orbImages;
@@ -95,6 +96,7 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Power Meter
         private int meterindex = 15;
         private GameObject powerMeterUIObject;
+        private Transform powerMeterUIObjectExtraParent;
         private Transform powerMeterUIObjectBullet;
         private Animator meterAnimator;
         private bool isLerpingBetweenValues;
@@ -633,10 +635,9 @@ namespace LeeHyperrealMod.Content.Controllers
                 if (LeeHyperrealPlugin.isHunkHudInstalled)
                 {
                     powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
-                    PowerMeterPositionComponent = powerMeterUIObject.GetComponent<RectTransform>();
-                    PowerMeterPositionComponent.anchoredPosition = new Vector2(160f, 215f);
-                    Debug.Log("component", PowerMeterPositionComponent);
-                    Debug.Log("ishunkhudinstalled");
+                    powerMeterUIObjectExtraParent = powerMeterUIObject.transform.GetChild(0);
+                    OrbPositionComponent = powerMeterUIObjectExtraParent.GetComponent<RectTransform>();
+                    OrbPositionComponent.anchoredPosition = new Vector3(170f, 255f, 0f);
                     
                 }
                 else if (LeeHyperrealPlugin.isRiskUIInstalled)
@@ -666,7 +667,7 @@ namespace LeeHyperrealMod.Content.Controllers
             }
 
             meterAnimator = powerMeterUIObject.GetComponent<Animator>();
-            powerBarFilledMaterial = powerMeterUIObject.transform.Find("Power Bar Filled").GetComponent<Image>().material;
+            powerBarFilledMaterial = powerMeterUIObject.transform.GetChild(0).Find("Power Bar Filled").GetComponent<Image>().material;
 
             //Setup red variant
 
@@ -755,9 +756,9 @@ namespace LeeHyperrealMod.Content.Controllers
                 yellowSimpleGlyph = new BracketContainerProps();
             }
 
-            if (!blueSimpleGlyph.bracketContainer) { blueSimpleGlyph.bracketContainer = orbUIObject.transform.GetChild(blueBracketIndex).gameObject; }
-            if (!redSimpleGlyph.bracketContainer) { redSimpleGlyph.bracketContainer = orbUIObject.transform.GetChild(redBracketIndex).gameObject; }
-            if (!yellowSimpleGlyph.bracketContainer) { yellowSimpleGlyph.bracketContainer = orbUIObject.transform.GetChild(yellowBracketIndex).gameObject; }
+            if (!blueSimpleGlyph.bracketContainer) { blueSimpleGlyph.bracketContainer = orbUIObject.transform.GetChild(0).GetChild(blueBracketIndex).gameObject; }
+            if (!redSimpleGlyph.bracketContainer) { redSimpleGlyph.bracketContainer = orbUIObject.transform.GetChild(0).GetChild(redBracketIndex).gameObject; }
+            if (!yellowSimpleGlyph.bracketContainer) { yellowSimpleGlyph.bracketContainer = orbUIObject.transform.GetChild(0).GetChild(yellowBracketIndex).gameObject; }
 
             //Go through each object and destroy the text label and replace it.
 
@@ -854,7 +855,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void InitializeOrbAmountLabel()
         {
-            Transform labeltransform = orbUIObject.transform.GetChild(orbAmountIndex);
+            Transform labeltransform = orbUIObject.transform.GetChild(0).GetChild(orbAmountIndex);
             Destroy(labeltransform.gameObject.GetComponent<Text>());
             if (!orbAmountLabel) 
             {
@@ -1024,8 +1025,11 @@ namespace LeeHyperrealMod.Content.Controllers
                 if (LeeHyperrealPlugin.isHunkHudInstalled)
                 {
                     orbUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.orbsUIObject, RoRHUDSpringCanvasTransform.Find("BottomCenterCluster"));
-                    OrbPositionComponent = orbUIObject.GetComponent<RectTransform>();
-                    OrbPositionComponent.anchoredPosition = new Vector3(800f, -19f);
+                    orbUIObjectExtraParent = orbUIObject.transform.GetChild(0);
+                    OrbPositionComponent = orbUIObjectExtraParent.GetComponent<RectTransform>();
+                    OrbPositionComponent.anchoredPosition = new Vector3(300f, 155f, 0f);
+                    OrbPositionComponent.localScale = new Vector3(0.65f, 0.65f, 0.65f);
+
                 }
                 else if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
@@ -1053,8 +1057,8 @@ namespace LeeHyperrealMod.Content.Controllers
             // blegh not modular at all
             for (int i = startIndex; i <= endIndex; i++)
             {
-                orbAnimators.Add(orbUIObject.transform.GetChild(i).GetComponent<Animator>());
-                orbImages.Add(orbUIObject.transform.GetChild(i).GetChild(0).GetComponent<Image>());
+                orbAnimators.Add(orbUIObject.transform.GetChild(0).GetChild(i).GetComponent<Animator>());
+                orbImages.Add(orbUIObject.transform.GetChild(0).GetChild(i).GetChild(0).GetComponent<Image>());
             }
 
             UpdateOrbList(new List<OrbController.OrbType>());// Update with empty list.
@@ -1227,23 +1231,23 @@ namespace LeeHyperrealMod.Content.Controllers
             bulletObjects = new List<GameObject>();
             for (int i = bulletIndex; i <= endBulletIndex; i++) 
             {
-                bulletObjects.Add(powerMeter.GetChild(1).GetChild(i).gameObject);
+                bulletObjects.Add(powerMeter.GetChild(0).GetChild(1).GetChild(i).gameObject);
             }
 
             parryBullets = new List<GameObject>();
             for (int i = parryPoweredIndex; i <= endParryPoweredIndex; i++) 
             {
-                parryBullets.Add(powerMeter.GetChild(1).GetChild(i).gameObject);
+                parryBullets.Add(powerMeter.GetChild(0).GetChild(1).GetChild(i).gameObject);
             }
 
             extraParryBullets = new List<GameObject>();
             for (int i = extraParryPoweredIndex; i <= endExtraParryPoweredIndex; i++) 
             {
-                extraParryBullets.Add(powerMeter.GetChild(1).GetChild(i).gameObject);
+                extraParryBullets.Add(powerMeter.GetChild(0).GetChild(1).GetChild(i).gameObject);
             }
 
-            IncomingExtraParryBullet = powerMeter.GetChild(1).GetChild(incomingExtraParryPoweredIndex).gameObject;
-            IncomingParryBullet = powerMeter.GetChild(1).GetChild(incomingParryBulletIndex).gameObject;
+            IncomingExtraParryBullet = powerMeter.GetChild(0).GetChild(1).GetChild(incomingExtraParryPoweredIndex).gameObject;
+            IncomingParryBullet = powerMeter.GetChild(0).GetChild(1).GetChild(incomingParryBulletIndex).gameObject;
 
             //Disable all UI elements as there are no bullets.
             foreach (GameObject bullet in bulletObjects) 

@@ -30,10 +30,9 @@ Use of Risk Of Options is highly recommended! If some options don't exist even a
 
 ## Latest Update
 
-- v2.0.3
-    - Changed the sizes of some hitboxes on Primary
-    - Changed the wording on some descriptions
-    - Fixing some unlocks from breaking due to some incorrect naming
+- v2.0.4
+    - Full Hunk Hud Support
+    - Update for Phase 3
     
 - v2.0.0
     - Lore mode has been added!

@@ -1,6 +1,11 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- v2.0.5
+    - oops (dont worry about it this never happened)
+- v2.0.4
+    - Full Hunk Hud Support
+    - Update for Phase 3
 - v2.0.3
     - Changed the sizes of some hitboxes on Primary
     - Changed the wording on some descriptions
