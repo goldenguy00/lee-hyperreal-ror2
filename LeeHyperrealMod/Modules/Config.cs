@@ -51,6 +51,7 @@ namespace LeeHyperrealMod.Modules
         public static ConfigEntry<float> rgbPulseSpeed;
         public static ConfigEntry<bool> playLootBoxSound;
         public static ConfigEntry<bool> isBlueName;
+        public static ConfigEntry<bool> enableUltimateCamera;
 
         public static void ReadConfig()
         {
@@ -219,6 +220,13 @@ namespace LeeHyperrealMod.Modules
                 new ConfigDescription("Does the following: Applies more Lore friendly names, Disables voice for RoR2 style skins, Puts the RoR2 style skins at the front of the list. Disabling this" +
                 " will revert the name to Lee: Hyperreal, Enable voice for all skins and puts the PGR skins in the front of the list. Requires a reboot to take effect.")
             );
+            
+            enableUltimateCamera = LeeHyperrealPlugin.instance.Config.Bind<bool>
+            (
+                new ConfigDefinition("06 - Extras", "Ultimate Cutscene Camera"),
+                true,
+                new ConfigDescription("Enables camera Cutscene on Ultimate")
+            );
 
             rgbMode = LeeHyperrealPlugin.instance.Config.Bind<bool>
             (
@@ -348,7 +356,8 @@ namespace LeeHyperrealMod.Modules
                       }
                   )
               );
-
+            
+            ModSettingsManager.AddOption(new CheckBoxOption(enableUltimateCamera));
             ModSettingsManager.AddOption(new CheckBoxOption(loreMode));
             ModSettingsManager.AddOption(new CheckBoxOption(rgbMode));
             ModSettingsManager.AddOption(

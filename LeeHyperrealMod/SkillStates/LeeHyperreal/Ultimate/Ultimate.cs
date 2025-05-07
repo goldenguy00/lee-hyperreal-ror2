@@ -188,7 +188,10 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                     }
                 }
 
-                ultimateCameraController.TriggerUlt();
+                if (Modules.Config.enableUltimateCamera.Value)
+                {
+                    ultimateCameraController.TriggerUlt();
+                }
             }
 
             ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
@@ -219,7 +222,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 characterBody.SetBuffCount(Modules.Buffs.invincibilityBuff.buffIndex, 0);
             }
 
-            if (base.isAuthority)
+            if (base.isAuthority && Modules.Config.enableUltimateCamera.Value)
             {
                 ultimateCameraController.UnsetUltimate();
             }

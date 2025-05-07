@@ -167,7 +167,10 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             Transform baseTransform = childLocator.FindChild("BaseTransform");
             if (base.isAuthority)
             {
-                ultimateCameraController.TriggerDomainUlt();
+                if (Modules.Config.enableUltimateCamera.Value)
+                {
+                    ultimateCameraController.TriggerDomainUlt();
+                }
 
                 Vector3 targetDir = Camera.main.transform.position - baseTransform.position;
                 EffectData effectData = new EffectData
@@ -244,7 +247,10 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             base.OnExit();
             if (base.isAuthority)
             {
-                ultimateCameraController.UnsetUltimate();
+                if (Modules.Config.enableUltimateCamera.Value)
+                {
+                    ultimateCameraController.UnsetUltimate();
+                }
 
                 skillLocator.special.UnsetSkillOverride(skillLocator.special, LeeHyperrealMod.Modules.Survivors.LeeHyperreal.domainUltimateSkill, RoR2.GenericSkill.SkillOverridePriority.Contextual);
                 skillLocator.special.rechargeStopwatch = docon.ultCooldownBeforeSwitch;
