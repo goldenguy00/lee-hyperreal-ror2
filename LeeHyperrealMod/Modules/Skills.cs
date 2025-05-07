@@ -176,6 +176,7 @@ namespace LeeHyperrealMod.Modules
             skillDef.stockToConsume = skillDefInfo.stockToConsume;
 
             skillDef.keywordTokens = skillDefInfo.keywordTokens;
+            skillDef.autoHandleLuminousShot = skillDefInfo.autoHandleLuminousShot;
 
             LeeHyperrealMod.Modules.Content.AddSkillDef(skillDef);
 
@@ -216,6 +217,7 @@ namespace LeeHyperrealMod.Modules
         public bool fullRestockOnAssign = true;
         public bool resetCooldownTimerOnUse;
         public bool mustKeyPress;
+        public bool autoHandleLuminousShot = true;
 
         #region constructors
         public SkillDefInfo() { }
@@ -247,6 +249,7 @@ namespace LeeHyperrealMod.Modules
             this.stockToConsume = 0;
 
             this.cancelSprintingOnActivation = !agile;
+            this.autoHandleLuminousShot = true;
 
             if (agile) this.keywordTokens = new string[] { "KEYWORD_AGILE" };
 

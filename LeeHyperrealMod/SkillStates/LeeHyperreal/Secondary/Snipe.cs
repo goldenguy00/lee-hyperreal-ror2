@@ -8,6 +8,7 @@ using RoR2;
 using UnityEngine;
 using LeeHyperrealMod.Modules;
 using static LeeHyperrealMod.Content.Controllers.BulletController;
+using UnityEngine.Networking;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
 {
@@ -58,6 +59,15 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
             animator.SetFloat("attack.playbackRate", base.attackSpeedStat);
 
             duration = baseDuration / base.attackSpeedStat;
+
+            if (NetworkServer.active) 
+            {
+                int itemCount = this.characterBody.inventory ? this.characterBody.inventory.GetItemCount(DLC2Content.Items.IncreasePrimaryDamage) : 0;
+                if (itemCount > 0) 
+                {
+                    this.characterBody.AddIncreasePrimaryDamageStack();
+                } 
+            }
 
 
 
