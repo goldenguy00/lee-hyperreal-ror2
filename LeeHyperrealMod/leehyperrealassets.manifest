@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 471120098
+CRC: 1579944384
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: eb9ba70e807406130f711be862b05c18
+    Hash: c0c45952e895c6473b1e629a9c5ebb9c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2963416522028d4f30da5ca312090ef5
+    Hash: 6638d3fa877fd2ea0e5a1f3dc021589c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -70,7 +70,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: fc41cd48bee14034db80323ab44fbd3e, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: a62e0fdb1790ab64eb8ddcdcf400b7f3, type: 3}
 - Class: 114
@@ -118,8 +122,36 @@ SerializeReferenceClassIdentifiers:
   ClassName: LeeHyperrealMod.ParticleScripts.UVScrollerBase/XScroller
 - AssemblyName: LeeHyperrealMod
   ClassName: LeeHyperrealMod.ParticleScripts.XGPUParticlePlayerInfo
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FaceInfo_Legacy
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FontAssetCreationSettings
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.KerningTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontFeatureTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontWeightPair
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphAdjustmentRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphPairAdjustmentRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphValueRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.VertexGradient
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.FaceInfo
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphMetrics
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphRect
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.FontData
 - AssemblyName: UnityEngine.UI
@@ -1354,6 +1386,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/ArmatureAttack25Aim Up.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010331md369.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangcanyingma.prefab
+- Assets/LeeHyperrealAssets/LeeNotification.prefab
 - Assets/LeeHyperrealAssets/Icons/VFXIconDefault.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk11weaponcase2.prefab
 - Assets/modelresource/effect/mesh/wuti111.asset

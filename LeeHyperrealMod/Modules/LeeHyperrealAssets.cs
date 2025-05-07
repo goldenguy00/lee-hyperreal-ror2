@@ -42,6 +42,7 @@ namespace LeeHyperrealMod.Modules
         internal static GameObject healthPrefabsHunkHud;
         internal static GameObject orbsUIObject;
         internal static GameObject spinnyIconUIObject;
+        internal static GameObject leenotificationBoxPrefab;
 
         //Material
         internal static Material glitchMaterial;
@@ -168,6 +169,7 @@ namespace LeeHyperrealMod.Modules
             healthPrefabsHunkHud = mainAssetBundle.LoadAsset<GameObject>("LeeHealthHunkHud");
             orbsUIObject = mainAssetBundle.LoadAsset<GameObject>("Orbs");
             spinnyIconUIObject = mainAssetBundle.LoadAsset<GameObject>("Ult Base");
+            leenotificationBoxPrefab = mainAssetBundle.LoadAsset<GameObject>("LeeNotification");
 
             prospectorSprite = mainAssetBundle.LoadAsset<Sprite>("ProspectorCharacterIcon");
             comradeSprite = mainAssetBundle.LoadAsset<Sprite>("ComradeCharacterIcon");
