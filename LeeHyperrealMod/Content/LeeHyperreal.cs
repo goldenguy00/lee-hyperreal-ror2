@@ -50,10 +50,12 @@ namespace LeeHyperrealMod.Modules.Survivors
 
             podPrefab = Modules.LeeHyperrealAssets.leeSurvivorPod,
 
-            maxHealth = 110f,
+            maxHealth = 90f,
+            shield = 30f,
             healthRegen = 1.5f,
             armor = 0f,
 
+            shieldGrowth = 100 * 0.1f,
             jumpCount = 1,
             moveSpeed = Modules.StaticValues.baseMoveSpeed,
         };
@@ -74,6 +76,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 {
                     childName = "FaceModel",
                     material = Materials.CreateHopooMaterial("leeFaceMat", emStr),
+                    ignoreOverlays = true,
                 },
                 new CustomRendererInfo
                 {
@@ -89,6 +92,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 {
                     childName = "EyeModel",
                     material = Materials.CreateHopooMaterial("leeEyeMat", emStr),
+                    ignoreOverlays = true,
                 },
                 new CustomRendererInfo
                 {
