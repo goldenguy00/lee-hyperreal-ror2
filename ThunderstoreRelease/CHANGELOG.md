@@ -10,6 +10,8 @@
     - Changed Notification Style on Hyper Effects
     - Walking doesnt stutter step you at the end anymore
     - slightly better hunkhud support
+    - slightly enhanced Orb animations
+    - 20% more non domain ultimate pull range
 - v2.0.5
     - oops (dont worry about it this never happened)
 - v2.0.4
