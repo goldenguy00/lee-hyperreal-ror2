@@ -1,6 +1,13 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
+- v2.0.6
+    - Added Base Shield Stat
+        - Should make it easier to engage with enemies
+    - Set Luminous Shot Charges to build up on Snipe Stance Shot (Primary in snipe stance)
+        - Primary non-snipe stance should use these charges
+    - Added option to disable the Ultimate Camera animation
+    - Changed Notification Style on Hyper Effects
 - v2.0.5
     - oops (dont worry about it this never happened)
 - v2.0.4
