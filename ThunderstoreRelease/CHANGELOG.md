@@ -8,6 +8,8 @@
         - Primary non-snipe stance should use these charges
     - Added option to disable the Ultimate Camera animation
     - Changed Notification Style on Hyper Effects
+    - Walking doesnt stutter step you at the end anymore
+    - slightly better hunkhud support
 - v2.0.5
     - oops (dont worry about it this never happened)
 - v2.0.4
