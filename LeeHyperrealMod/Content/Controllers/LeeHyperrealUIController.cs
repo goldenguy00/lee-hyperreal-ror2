@@ -551,7 +551,7 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 if (LeeHyperrealPlugin.isHunkHudInstalled)
                 {
-                    healthLayers = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.healthPrefabsHunkHud, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster/CustomHealthBar/Center/BarHolder"));
+                    healthLayers = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.healthPrefabsHunkHud, HunkHud.Components.UI.CustomHealthBar.instance.transform);
                 }
                 else if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
@@ -1027,8 +1027,8 @@ namespace LeeHyperrealMod.Content.Controllers
                     orbUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.orbsUIObject, RoRHUDSpringCanvasTransform.Find("BottomCenterCluster"));
                     orbUIObjectExtraParent = orbUIObject.transform.GetChild(0);
                     OrbPositionComponent = orbUIObjectExtraParent.GetComponent<RectTransform>();
-                    OrbPositionComponent.anchoredPosition = new Vector3(300f, 155f, 0f);
-                    OrbPositionComponent.localScale = new Vector3(0.65f, 0.65f, 0.65f);
+                    OrbPositionComponent.anchoredPosition3D = new Vector3(60f, 255f, 0f);
+                    OrbPositionComponent.localScale = new Vector3(0.75f, 0.75f, 0.75f);
 
                 }
                 else if (LeeHyperrealPlugin.isRiskUIInstalled)

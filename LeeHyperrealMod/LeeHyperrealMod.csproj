@@ -40,6 +40,9 @@
     <Reference Include="ExtraSkillSlots">
       <HintPath>..\libs\ExtraSkillSlots.dll</HintPath>
     </Reference>
+    <Reference Include="HunkHud">
+      <HintPath>bin\Debug\netstandard2.1\HunkHud.dll</HintPath>
+    </Reference>
     <Reference Include="MMHOOK_RoR2">
       <HintPath>..\libs\MMHOOK_RoR2.dll</HintPath>
     </Reference>
