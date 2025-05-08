@@ -181,6 +181,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             if ((base.inputBank.skill3.justPressed || base.inputBank.skill4.justPressed) && base.isAuthority)
             {
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
+                return;
             }
 
             if (currentIndex < timings.Count)

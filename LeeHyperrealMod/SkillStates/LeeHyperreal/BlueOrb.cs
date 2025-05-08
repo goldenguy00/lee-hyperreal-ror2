@@ -283,6 +283,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
             if ((base.inputBank.skill3.down || base.inputBank.skill4.down) && base.isAuthority)
             {
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
+                return;
             }
 
             if (base.age >= duration * orbCancelFrac && base.isAuthority) 

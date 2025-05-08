@@ -138,6 +138,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
             if ((base.inputBank.skill3.down || base.inputBank.skill4.down) && base.isAuthority)
             {
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
+                return;
             }
             UpdateMeleeRootMotion(1f);
 

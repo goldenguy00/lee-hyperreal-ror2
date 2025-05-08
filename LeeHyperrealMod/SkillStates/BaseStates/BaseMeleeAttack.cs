@@ -524,6 +524,7 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
             if ( (base.inputBank.skill3.justPressed || base.inputBank.skill4.justPressed) && base.isAuthority && !lockIntoParryState)
             {
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
+                return;
             }
 
             if (this.stopwatch >= (this.duration * this.bufferActiveTime) && base.isAuthority) 
