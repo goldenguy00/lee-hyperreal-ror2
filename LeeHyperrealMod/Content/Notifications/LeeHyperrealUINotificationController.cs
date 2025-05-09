@@ -35,7 +35,7 @@ namespace LeeHyperrealMod.Modules.Notifications
 
             if (this.currentNotification && this.notificationQueue)
             {
-                this.currentNotification.SetNotificationT(this.notificationQueue.GetCurrentNotificationT());
+                this.currentNotification.CheckNotificationVisibility(this.notificationQueue.GetCurrentNotificationT());
             }
         }
 

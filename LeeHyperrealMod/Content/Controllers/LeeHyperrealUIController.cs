@@ -11,6 +11,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static RoR2.Skills.SkillFamily;
+using System.Runtime.CompilerServices;
 
 namespace LeeHyperrealMod.Content.Controllers
 {
@@ -374,31 +375,32 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void InitializeRoRHUD()
         {
-            if (RoRHUDObject) 
+            if (RoRHUDObject)
             {
                 // Get this transform for easier reference.
                 RoRHUDSpringCanvasTransform = RoRHUDObject.transform.Find("MainContainer").Find("MainUIArea").Find("SpringCanvas");
 
                 //Add a clone of the notification area object to use to show the Notification controller.
                 HUD rorHUD = RoRHUDObject.GetComponent<HUD>();
-                if (!LeeHyperrealNotificationObject) 
-                {
-                    LeeHyperrealNotificationObject = UnityEngine.Object.Instantiate<GameObject>(RoRHUDObject.transform.Find("MainContainer").Find("NotificationArea").gameObject);
-                }
-                LeeHyperrealNotificationObject.transform.SetParent(RoRHUDObject.transform.Find("MainContainer"), true);
-                LeeHyperrealNotificationObject.GetComponent<RectTransform>().localPosition = new Vector3(0f, -265f, -150f);
-                LeeHyperrealNotificationObject.transform.localScale = Vector3.one;
-                NotificationUIController genericNotif = LeeHyperrealNotificationObject.GetComponent<NotificationUIController>();
 
-                LeeHyperrealUINotificationController leeUINotifController = LeeHyperrealNotificationObject.GetComponent<LeeHyperrealUINotificationController>();
-                if (!leeUINotifController) 
+                GameObject RoRNotificationArea = RoRHUDObject.transform.Find("MainContainer").Find("NotificationArea").gameObject;
+                NotificationUIController genericNotif = RoRNotificationArea.GetComponent<NotificationUIController>();
+
+                LeeHyperrealUINotificationController leeUINotifController = genericNotif.gameObject.GetComponent<LeeHyperrealUINotificationController>();
+                if (!leeUINotifController)
                 {
-                    leeUINotifController = LeeHyperrealNotificationObject.AddComponent<LeeHyperrealUINotificationController>();
+                    leeUINotifController = genericNotif.gameObject.AddComponent<LeeHyperrealUINotificationController>();
                 }
+
+                LeeHyperrealNotificationQueue queue = rorHUD.targetMaster.gameObject.GetComponent<LeeHyperrealNotificationQueue>();
+                if (!queue)
+                {
+                    queue = rorHUD.targetMaster.gameObject.AddComponent<LeeHyperrealNotificationQueue>();
+                }
+
                 leeUINotifController.hud = genericNotif.hud;
-                leeUINotifController.genericNotificationPrefab = Modules.LeeHyperrealAssets.customNotificationPrefab;
-                leeUINotifController.notificationQueue = rorHUD.targetMaster.gameObject.AddComponent<LeeHyperrealNotificationQueue>();
-                genericNotif.enabled = false;
+                leeUINotifController.genericNotificationPrefab = Modules.LeeHyperrealAssets.leenotificationBoxPrefab;
+                leeUINotifController.notificationQueue = queue;
                 return;    
             }
             throw new NullReferenceException();
@@ -551,7 +553,7 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 if (LeeHyperrealPlugin.isHunkHudInstalled)
                 {
-                    healthLayers = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.healthPrefabsHunkHud, HunkHud.Components.UI.CustomHealthBar.instance.transform);
+                    InitHunkHUDHealthLayer();
                 }
                 else if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
@@ -579,6 +581,12 @@ namespace LeeHyperrealMod.Content.Controllers
                 layerInvincibilityHazeObjectHunk = healthLayers.transform.GetChild(2).GetChild(1).gameObject;
                 invincibilityBorderHunk = healthLayers.transform.GetChild(2).GetChild(0).gameObject.GetComponent<Image>();
             }
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public void InitHunkHUDHealthLayer() 
+        {
+            healthLayers = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.healthPrefabsHunkHud, HunkHud.Components.UI.CustomHealthBar.instance.transform);
         }
 
         public void SetActiveHealthUIObject(bool state, Color color)

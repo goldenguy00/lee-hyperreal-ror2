@@ -169,7 +169,6 @@ namespace LeeHyperrealMod.Modules
             healthPrefabsHunkHud = mainAssetBundle.LoadAsset<GameObject>("LeeHealthHunkHud");
             orbsUIObject = mainAssetBundle.LoadAsset<GameObject>("Orbs");
             spinnyIconUIObject = mainAssetBundle.LoadAsset<GameObject>("Ult Base");
-            leenotificationBoxPrefab = mainAssetBundle.LoadAsset<GameObject>("LeeNotification");
 
             prospectorSprite = mainAssetBundle.LoadAsset<Sprite>("ProspectorCharacterIcon");
             comradeSprite = mainAssetBundle.LoadAsset<Sprite>("ComradeCharacterIcon");
@@ -217,18 +216,18 @@ namespace LeeHyperrealMod.Modules
 
             leeSurvivorPod.AddComponent<BuffPassengerWhileSeated>();
 
+            leenotificationBoxPrefab = mainAssetBundle.LoadAsset<GameObject>("LeeNotification");
+            LeeHyperrealNotification leeNotification = leenotificationBoxPrefab.AddComponent<LeeHyperrealNotification>();
             customNotificationPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/NotificationPanel2.prefab").WaitForCompletion(), "LeeHyperrealNotification", false);
-            LeeHyperrealNotification leeNotif = LeeHyperrealAssets.customNotificationPrefab.AddComponent<LeeHyperrealNotification>();
             GenericNotification genericComponent = LeeHyperrealAssets.customNotificationPrefab.GetComponent<GenericNotification>();
-            leeNotif.titleText = genericComponent.titleText;
-            leeNotif.titleTMP = genericComponent.titleTMP;
-            leeNotif.descriptionText = genericComponent.descriptionText;
-            leeNotif.iconImage = genericComponent.iconImage;
-            leeNotif.previousIconImage = genericComponent.previousIconImage;
-            leeNotif.canvasGroup = genericComponent.canvasGroup;
-            leeNotif.fadeOutT = genericComponent.fadeOutT;
-            genericComponent.enabled = false;
 
+            leeNotification.titleText = genericComponent.titleText;
+            leeNotification.titleTMP = genericComponent.titleTMP;
+            leeNotification.descriptionText = genericComponent.descriptionText;
+            leeNotification.iconImage = genericComponent.iconImage;
+            leeNotification.previousIconImage = genericComponent.previousIconImage;
+            leeNotification.canvasGroup = genericComponent.canvasGroup;
+            leeNotification.fadeOutT = genericComponent.fadeOutT;
         }
 
         private static string HashString(string str) 
