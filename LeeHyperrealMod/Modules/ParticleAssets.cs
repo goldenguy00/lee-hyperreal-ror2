@@ -79,6 +79,15 @@ namespace LeeHyperrealMod.Modules
             intensityMult = 1.7f
         };
 
+        internal static ParticleColorInfo DEFAULT_PARTICLE = new ParticleColorInfo
+        {
+            name = "default",
+            mainColor = new Color(0f, 130f / 255f, 1f),
+            secondaryColor = new Color(0f, 130f / 255f, 1f),
+            rimColor = new Color(0f, 130f / 255f, 1f),
+            intensityMult = 1f
+        };
+
         //internal static Color BLUE_PARTICLE_COLOR = new Color(1f, 0f, 0f); //new Color(0.5176f, 0.0705f, 1f);
         internal static List<Material> GENERATED_GPU_MATERIALS;
 
@@ -492,6 +501,50 @@ namespace LeeHyperrealMod.Modules
             }
 
             return particleDictionary[particleName].colourVariants[variant];
+        }
+
+        public static UnityEngine.Color RetrieveParticleColor(CharacterBody body) 
+        {
+            switch (body.GetComponent<LeeHyperrealPassive>().GetVFXPassive())
+            {
+                case LeeHyperrealPassive.VFXPassive.RED:
+                    return RED_PARTICLE.mainColor;
+                case LeeHyperrealPassive.VFXPassive.ORANGE:
+                    return ORANGE_PARTICLE.mainColor;
+                case LeeHyperrealPassive.VFXPassive.YELLOW:
+                    return YELLOW_PARTICLE.mainColor;
+                case LeeHyperrealPassive.VFXPassive.GREEN:
+                    return GREEN_PARTICLE.mainColor;
+                case LeeHyperrealPassive.VFXPassive.BLUE:
+                    return DEFAULT_PARTICLE.mainColor;
+                case LeeHyperrealPassive.VFXPassive.LIGHTBLUE:
+                    return LIGHTBLUE_PARTICLE.mainColor;
+                case LeeHyperrealPassive.VFXPassive.VIOLET:
+                    return VIOLET_PARTICLE.mainColor;
+                case LeeHyperrealPassive.VFXPassive.PINK:
+                    return PINK_PARTICLE.mainColor;
+            }
+
+            //Get Skin index
+            uint skinIndex = body.skinIndex;
+
+            //Get related skin particle effect
+            if (Modules.Survivors.LeeHyperreal.redVFXSkins.Contains((int)skinIndex))
+            {
+                return RED_PARTICLE.mainColor;
+            }
+
+            if (Modules.Survivors.LeeHyperreal.orangeVFXSkins.Contains((int)skinIndex))
+            {
+                return ORANGE_PARTICLE.mainColor;
+            }
+
+            if (Modules.Survivors.LeeHyperreal.lightBlueVFXSkins.Contains((int)skinIndex))
+            {
+                return LIGHTBLUE_PARTICLE.mainColor;
+            }
+
+            return DEFAULT_PARTICLE.mainColor;
         }
 
         public static GameObject RetrieveParticleEffectFromSkin(string particleName, CharacterBody body = null) 

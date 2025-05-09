@@ -1,4 +1,5 @@
-﻿using RoR2;
+﻿using LeeHyperrealMod.Content.Controllers;
+using RoR2;
 using RoR2.UI;
 using TMPro;
 using UnityEngine;
@@ -11,27 +12,20 @@ namespace LeeHyperrealMod.Content.Notifications
     {
         public Animator animator;
         public bool triggeredHide;
-        
+
+        public Material portraitOutline;
+        public Material descriptionOutline;
+        public Material descriptionInner;
+
         public void Start() 
         {
             // Replace everything with the notif text and image here as the prefab before was serialized. This is not so we need to do it ourselves
             animator = this.gameObject.GetComponent<Animator>();
             triggeredHide = false;
 
-            Transform hyperLabel = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(3);
-            Destroy(hyperLabel.gameObject.GetComponent<TextMeshPro>());
-            if (!this.titleText)
-            {
-                this.titleText = CreateLabel(hyperLabel, "Hyper Effect", 24f);
-                this.titleTMP = hyperLabel.GetComponent<HGTextMeshProUGUI>();
-            }
+            // GetChild(0).GetChild(0).GetChild(1).GetChild(0).GetChild(0) fck
 
-            Transform descriptionLabel = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(2);
-            Destroy(descriptionLabel.gameObject.GetComponent<TextMeshPro>());
-            if (!descriptionText) 
-            {
-                this.descriptionText = CreateLabel(descriptionLabel, "", 16f);
-            }
+
         }
 
         public void CheckNotificationVisibility(float t) 
@@ -45,6 +39,11 @@ namespace LeeHyperrealMod.Content.Notifications
             {
                 triggeredHide = true;
                 animator.SetTrigger("Outro");
+            }
+
+            if (t > 1.1f && triggeredHide) 
+            {
+                Destroy(this.gameObject);
             }
         }
 
@@ -73,20 +72,21 @@ namespace LeeHyperrealMod.Content.Notifications
             }
             
             this.titleTMP.color = Modules.StaticValues.bodyColor;
-        }
 
-        private LanguageTextMeshController CreateLabel(Transform parent, string text, float textScale)
-        {
-            LanguageTextMeshController controller = parent.gameObject.AddComponent<LanguageTextMeshController>();
-            HGTextMeshProUGUI hgtextMeshProUGUI = parent.gameObject.AddComponent<HGTextMeshProUGUI>();
-            hgtextMeshProUGUI.text = text;
-            hgtextMeshProUGUI.fontSize = textScale;
-            hgtextMeshProUGUI.color = Color.white;
-            hgtextMeshProUGUI.alignment = TextAlignmentOptions.Center;
-            hgtextMeshProUGUI.enableWordWrapping = false;
 
-            controller.textMeshPro = hgtextMeshProUGUI;
-            return controller;
+            //Get Body and then skill loc
+            CharacterBody body = master.GetBody();
+
+            if (body) 
+            {
+                Color color = Modules.ParticleAssets.RetrieveParticleColor(body);
+                portraitOutline = this.gameObject.transform.Find("LeeNotificationExtraParent/LeeNotificationExtraParent2/CharacterPortraitbackground/CharacterPortrait/CharacterPortraitOutline").gameObject.GetComponent<Image>().material;
+                descriptionOutline = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Image>().material;
+                descriptionInner = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Image>().material;
+                portraitOutline.SetColor("_GlowColor", color);
+                descriptionOutline.SetColor("_GlowColor", color);
+                descriptionInner.SetColor("_glowcolor", color);
+            }
         }
     }
 }

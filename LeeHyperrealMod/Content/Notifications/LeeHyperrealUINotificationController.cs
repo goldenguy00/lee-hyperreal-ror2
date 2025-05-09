@@ -28,9 +28,12 @@ namespace LeeHyperrealMod.Modules.Notifications
 
         public void Update()
         {
-            if (this.hud.targetMaster != this.targetMaster)
+            if (this.hud) 
             {
-                this.SetTargetMaster(this.hud.targetMaster);
+                if (this.hud.targetMaster != this.targetMaster)
+                {
+                    this.SetTargetMaster(this.hud.targetMaster);
+                }
             }
 
             if (this.currentNotification && this.notificationQueue)

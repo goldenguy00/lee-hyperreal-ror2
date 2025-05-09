@@ -14,6 +14,8 @@ using LeeHyperrealMod.Content.Notifications;
 using R2API.Utils;
 using System.Security.Cryptography;
 using System.Text;
+using TMPro;
+using UnityEngine.UI;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -221,13 +223,39 @@ namespace LeeHyperrealMod.Modules
             customNotificationPrefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/NotificationPanel2.prefab").WaitForCompletion(), "LeeHyperrealNotification", false);
             GenericNotification genericComponent = LeeHyperrealAssets.customNotificationPrefab.GetComponent<GenericNotification>();
 
-            leeNotification.titleText = genericComponent.titleText;
-            leeNotification.titleTMP = genericComponent.titleTMP;
-            leeNotification.descriptionText = genericComponent.descriptionText;
-            leeNotification.iconImage = genericComponent.iconImage;
+
+            Transform hyperLabel = leenotificationBoxPrefab.transform.GetChild(0).GetChild(0).GetChild(3);
+            UnityEngine.Object.DestroyImmediate(hyperLabel.gameObject.GetComponent<TextMeshProUGUI>());
+            Transform descriptionLabel = leenotificationBoxPrefab.transform.GetChild(0).GetChild(0).GetChild(2);
+            UnityEngine.Object.DestroyImmediate(descriptionLabel.gameObject.GetComponent<TextMeshProUGUI>());
+            UnityEngine.Object.DestroyImmediate(leeNotification.titleText);
+            UnityEngine.Object.DestroyImmediate(leeNotification.descriptionText);
+
+            leeNotification.titleText = CreateLabel(hyperLabel, "Hyper Effect", 24f);
+            leeNotification.titleTMP = hyperLabel.GetComponent<HGTextMeshProUGUI>();
+            leeNotification.titleTMP.color = StaticValues.bodyColor;
+            leeNotification.descriptionText = CreateLabel(descriptionLabel, "Demo Text", 16f);
+            leeNotification.titleText.token = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_ITEM_EFFECT_TITLE";
+            leeNotification.descriptionText.token = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_ITEM_EFFECT_TITLE";
+            leeNotification.iconImage = leenotificationBoxPrefab.transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0).GetComponent<RawImage>();
             leeNotification.previousIconImage = genericComponent.previousIconImage;
             leeNotification.canvasGroup = genericComponent.canvasGroup;
             leeNotification.fadeOutT = genericComponent.fadeOutT;
+        }
+
+        private static LanguageTextMeshController CreateLabel(Transform parent, string text, float textScale)
+        {
+            LanguageTextMeshController controller = parent.gameObject.AddComponent<LanguageTextMeshController>();
+            HGTextMeshProUGUI hgtextMeshProUGUI = parent.gameObject.AddComponent<HGTextMeshProUGUI>();
+            hgtextMeshProUGUI.text = text;
+            hgtextMeshProUGUI.fontSize = textScale;
+            hgtextMeshProUGUI.color = Color.white;
+            hgtextMeshProUGUI.alignment = TextAlignmentOptions.Center;
+            hgtextMeshProUGUI.enableWordWrapping = true;
+            hgtextMeshProUGUI.autoSizeTextContainer = true;
+
+            controller.textMeshPro = hgtextMeshProUGUI;
+            return controller;
         }
 
         private static string HashString(string str) 
