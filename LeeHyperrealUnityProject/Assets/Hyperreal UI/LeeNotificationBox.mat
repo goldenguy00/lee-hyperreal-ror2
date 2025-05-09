@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Pattern:
-        m_Texture: {fileID: 2800000, guid: 1d227b4ae90d026498f580708d48d522, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7620f7d8cdb0c9b44a3e05cbbe0f161a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex:
@@ -116,11 +116,11 @@ Material:
     - _Color0: {r: 0, g: 0.16808224, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 1, g: 0, b: 0, a: 1}
-    - _PanSpeed: {r: -0.6, g: -2, b: 0, a: 0}
+    - _PanSpeed: {r: -0.8, g: -1.3, b: 0, a: 0}
     - _PanSpeed1: {r: -2, g: 0, b: 0, a: 0}
-    - _PanSpeedglow: {r: -2, g: -1, b: 0, a: 0}
-    - _Tiling: {r: 8, g: 8, b: 0, a: 0}
-    - _TilingGlow: {r: 4, g: 1, b: 0, a: 0}
+    - _PanSpeedglow: {r: -1.5, g: -1, b: 0, a: 0}
+    - _Tiling: {r: 3, g: 3, b: 0, a: 0}
+    - _TilingGlow: {r: 1, g: 1, b: 0, a: 0}
     - _bordercolor: {r: 0, g: 0, b: 1, a: 1}
     - _multiplycolor: {r: 0, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
