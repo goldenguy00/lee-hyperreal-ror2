@@ -232,6 +232,7 @@ namespace LeeHyperrealMod.Modules
             itemKeyValueNotificationPairs.Add(DLC1Content.Items.AttackSpeedAndMoveSpeed, new CustomItemEffect($"{prefix}ITEM_EFFECT_TITLE", $"{prefix}ITEM_EFFECT_ATTACK_SPEED_DESC"));
             itemKeyValueNotificationPairs.Add(RoR2Content.Items.EnergizedOnEquipmentUse, new CustomItemEffect($"{prefix}ITEM_EFFECT_TITLE", $"{prefix}ITEM_EFFECT_ATTACK_SPEED_DESC"));
             itemKeyValueNotificationPairs.Add(RoR2Content.Items.AttackSpeedOnCrit, new CustomItemEffect($"{prefix}ITEM_EFFECT_TITLE", $"{prefix}ITEM_EFFECT_ATTACK_SPEED_DESC"));
+            itemKeyValueNotificationPairs.Add(DLC2Content.Items.IncreasePrimaryDamage, new CustomItemEffect($"{prefix}ITEM_EFFECT_TITLE", $"{prefix}ITEM_EFFECT_LUMINOUS_SHOT_DESC"));
 
             equipmentKeyValueNotificationPairs = new Dictionary<EquipmentDef, CustomItemEffect>();
             equipmentKeyValueNotificationPairs.Add(RoR2Content.Equipment.TeamWarCry, new CustomItemEffect($"{prefix}ITEM_EFFECT_TITLE", $"{prefix}ITEM_EFFECT_ATTACK_SPEED_DESC"));

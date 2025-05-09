@@ -141,7 +141,7 @@ Shader "LeeNotificationTextBackground"
                 float2 panner15 = ( 1.0 * _Time.y * float2( -0.1,0.1 ) + texCoord14);
                 
 
-                half4 color = ( ( ( tex2D( _backgroundtexture, panner4 ) * 1.3 ) * ( tex2D( _TextureSample0, panner15 ) * _glowcolor ) ) * _FadeValue );
+                half4 color = ( ( ( tex2D( _backgroundtexture, panner4 ) * 1.3 ) * ( (float4( 0.08176088,0.08176088,0.08176088,0.08235294 ) + (tex2D( _TextureSample0, panner15 ) - float4( 0,0,0,0 )) * (float4( 1,1,1,1 ) - float4( 0.08176088,0.08176088,0.08176088,0.08235294 )) / (float4( 1,1,1,1 ) - float4( 0,0,0,0 ))) * _glowcolor ) ) * _FadeValue );
 
                 #ifdef UNITY_UI_CLIP_RECT
                 half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(IN.mask.xy)) * IN.mask.zw);
@@ -179,9 +179,10 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;19;-248.2244,43.53414;Inherit;Fals
 Node;AmplifyShaderEditor.PannerNode;4;-1100.41,-113.5944;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0.025,-0.025;False;1;FLOAT;1;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.PannerNode;15;-1073.881,-497.2894;Inherit;False;3;0;FLOAT2;0,0;False;2;FLOAT2;-0.1,0.1;False;1;FLOAT;1;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;14;-1419.88,-492.6227;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1.25,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.TFHCRemapNode;20;-190.3472,-816.29;Inherit;False;5;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;1,1,1,1;False;3;COLOR;0.08176088,0.08176088,0.08176088,0.08235294;False;4;COLOR;1,1,1,1;False;1;COLOR;0
 WireConnection;0;0;19;0
 WireConnection;7;1;15;0
-WireConnection;11;0;7;0
+WireConnection;11;0;20;0
 WireConnection;11;1;12;0
 WireConnection;13;0;16;0
 WireConnection;13;1;11;0
@@ -192,5 +193,6 @@ WireConnection;19;0;13;0
 WireConnection;19;1;18;0
 WireConnection;4;0;3;0
 WireConnection;15;0;14;0
+WireConnection;20;0;7;0
 ASEEND*/
-//CHKSM=ABD5C12D2F8EDF5E7ECABF485A1F59125D432FF4
+//CHKSM=1B6A8654997011F657F1D98650AE3E37F120449A

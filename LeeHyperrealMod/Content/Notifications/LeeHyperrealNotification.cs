@@ -41,7 +41,7 @@ namespace LeeHyperrealMod.Content.Notifications
                 animator.SetTrigger("Outro");
             }
 
-            if (t > 1.1f && triggeredHide) 
+            if (t > 1.5f && triggeredHide) 
             {
                 Destroy(this.gameObject);
             }

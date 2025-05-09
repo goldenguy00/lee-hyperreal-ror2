@@ -156,9 +156,10 @@ namespace LeeHyperrealMod.Modules
             #region Item Effects
             LanguageAPI.Add(prefix + "ITEM_EFFECT_TITLE", "Hyper effect");
             LanguageAPI.Add(prefix + "ITEM_EFFECT_BACKUPMAG_DESC", $"{Lee("Lee: Hyperreal", generatedName)} gains {UtilDesc("+1")} {Stack("(+1 per stack)")} Enhanced bullet(s) on each successful {UtilDesc("[Parry]")}");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_ALIEN_HEAD_DESC", $"{Lee("Lee: Hyperreal's", generatedName)} orbs charge {UtilDesc("25% faster")}.");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_PURITY_DESC", $"{Lee("Lee: Hyperreal's", generatedName)} orb recharge rate is reduced by {UtilDesc("2")} {Stack("(+1 per stack)")} seconds");
-            LanguageAPI.Add(prefix + "ITEM_EFFECT_ATTACK_SPEED_DESC", $"{Lee("Lee: Hyperreal", generatedName)} primary gains more {UtilDesc("hits")} instead of attack speed. E.g. 250% attack speed = 2 hits and a half damage hit.");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_ALIEN_HEAD_DESC", $"{Lee("Lee: Hyperreal", generatedName)}'s orbs charge {UtilDesc("25% faster")}.");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_PURITY_DESC", $"{Lee("Lee: Hyperreal", generatedName)}'s orb recharge rate is reduced by {UtilDesc("2")} {Stack("(+1 per stack)")} seconds");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_ATTACK_SPEED_DESC", $"{Lee("Lee: Hyperreal", generatedName)}'s primary gains more {UtilDesc("hits")} instead of attack speed. E.g. 250% attack speed = 2 hits and a half damage hit.");
+            LanguageAPI.Add(prefix + "ITEM_EFFECT_LUMINOUS_SHOT_DESC", $"{Lee("Lee: Hyperreal", generatedName)}'s Snipe Stance shots give {UtilDesc("1 Stack")} per shot instead of using Secondary");
             #endregion
 
             #region Keywords
