@@ -1113,10 +1113,10 @@ namespace LeeHyperrealMod.Modules
         public static void PopulatePrimary3Assets() 
         {
             GameObject primary3Swing1 = GetGameObjectFromBundle("fxr4liangatk03dilie1");
-            ModifyEffect(primary3Swing1, "Play_c_liRk4_atk_nml_3_dilie_1", true, 3f);
+            ModifyEffect(primary3Swing1, "Play_c_liRk4_atk_nml_3_dilie_1", false, 3f);
 
             GameObject primary3Swing2 = GetGameObjectFromBundle("fxr4liangatk03dilie2");
-            ModifyEffect(primary3Swing2, "Play_c_liRk4_atk_nml_3_dilie_2", true, 3f);
+            ModifyEffect(primary3Swing2, "Play_c_liRk4_atk_nml_3_dilie_2", false, 3f);
 
             GameObject primary3hit = GetGameObjectFromBundle("fxr4liangatk03hit01");
             ModifyEffect(primary3hit, "", false, 1.5f);
