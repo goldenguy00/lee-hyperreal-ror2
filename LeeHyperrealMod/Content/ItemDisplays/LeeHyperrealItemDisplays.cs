@@ -3351,9 +3351,9 @@ localScale = new Vector3(0.03935F, 0.03935F, 0.03935F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayRageCrystal"),
-                            childName = "GunCasePos",
-                            localPos = new Vector3(0.00338F, -0.62887F, 0.28621F),
-                            localAngles = new Vector3(40.89657F, 278.6282F, 113.0873F),
+                            childName = "WeaponCase",
+                            localPos = new Vector3(0.02013F, -0.63632F, 0.29014F),
+                            localAngles = new Vector3(40.89658F, 278.6282F, 113.0873F),
                             localScale = new Vector3(1F, 1F, 1F),
                             limbMask = LimbFlags.None
                         }
@@ -3498,9 +3498,9 @@ localScale = new Vector3(0.03935F, 0.03935F, 0.03935F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayIncreasePrimaryDamage"),
-                            childName = "GunCasePos",
-                            localPos = new Vector3(0.00173F, -0.71658F, 0.20408F),
-                            localAngles = new Vector3(67.76748F, 162.5773F, 162.8041F),
+                            childName = "WeaponCase",
+                            localPos = new Vector3(0.01412F, -0.72343F, 0.20758F),
+                            localAngles = new Vector3(68.55711F, 193.1941F, 185.2724F),
                             localScale = new Vector3(0.34243F, 0.34243F, 0.34243F),
                             limbMask = LimbFlags.None
                         }
@@ -3519,8 +3519,8 @@ localScale = new Vector3(0.03935F, 0.03935F, 0.03935F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplaySonorousEcho"),
-                            childName = "GunCasePos",
-                            localPos = new Vector3(0.10539F, 0.28657F, 0.11116F),
+                            childName = "WeaponCase",
+                            localPos = new Vector3(0.11029F, 0.29114F, 0.10921F),
                             localAngles = new Vector3(340.5397F, 102.593F, 223.1398F),
                             localScale = new Vector3(0.48973F, 0.48973F, 0.48896F),
                             limbMask = LimbFlags.None
@@ -3603,9 +3603,9 @@ localScale = new Vector3(0.03935F, 0.03935F, 0.03935F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayOnLevelUpFreeUnlockTablet"),
-                            childName = "GunCasePos",
-                            localPos = new Vector3(0.00055F, -0.66691F, 0.10036F),
-                            localAngles = new Vector3(68.42687F, 177.5417F, 104.8852F),
+                            childName = "WeaponCase",
+                            localPos = new Vector3(0.00287F, -0.67312F, 0.10329F),
+                            localAngles = new Vector3(67.93857F, 181.1802F, 114.748F),
                             localScale = new Vector3(0.45371F, 0.45371F, 0.45371F),
                             limbMask = LimbFlags.None
                         },
@@ -3613,7 +3613,7 @@ localScale = new Vector3(0.03935F, 0.03935F, 0.03935F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayOnLevelUpFreeUnlock"),
-                            childName = "GunCasePos",
+                            childName = "WeaponCase",
                             localPos = new Vector3(0.0015F, -0.77897F, 0.02587F),
                             localAngles = new Vector3(359.4572F, 277.4478F, 79.31681F),
                             localScale = new Vector3(0.57446F, 0.57446F, 0.57446F),
@@ -3707,9 +3707,9 @@ localScale = new Vector3(0.03935F, 0.03935F, 0.03935F),
                         {
                             ruleType = ItemDisplayRuleType.ParentedPrefab,
                             followerPrefab = ItemDisplays.LoadDisplay("DisplayNoxiousThorn"),
-                            childName = "GunCasePos",
-                            localPos = new Vector3(0.02732F, -0.27306F, 0.14219F),
-                            localAngles = new Vector3(359.1587F, 171.9995F, 92.6461F),
+                            childName = "WeaponCase",
+                            localPos = new Vector3(0.05247F, -0.28604F, 0.14892F),
+                            localAngles = new Vector3(359.1587F, 171.9995F, 92.64611F),
                             localScale = new Vector3(0.61534F, 0.61534F, 0.61534F),
                             limbMask = LimbFlags.None
                         }

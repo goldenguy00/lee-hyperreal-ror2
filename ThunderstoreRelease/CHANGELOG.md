@@ -12,6 +12,7 @@
     - slightly better hunkhud support
     - slightly enhanced Orb animations
     - 20% more ultimate pull-in range
+    - fixxed some item displays from not dissapearing
 - v2.0.5
     - oops (dont worry about it this never happened)
 - v2.0.4
