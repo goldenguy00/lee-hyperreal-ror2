@@ -656,7 +656,6 @@ namespace LeeHyperrealMod.Content.Controllers
                     powerMeterUIObject.transform.localPosition = new Vector3(200f, 220f, -42f);
                     powerMeterUIObjectBullet = powerMeterUIObject.transform.GetChild(1);
                     powerMeterUIObjectBullet.transform.localPosition = new Vector3(-30f, -4f, 11f);
-                    Debug.Log("isriskuiinstalled");
 
                 }
                 else if (LeeHyperrealPlugin.isBetterHudInstalled) 
@@ -665,12 +664,10 @@ namespace LeeHyperrealMod.Content.Controllers
                     powerMeterUIObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
                     powerMeterUIObject.transform.localRotation = Quaternion.identity;
                     powerMeterUIObject.transform.localPosition = new Vector3(-500f, 100.709f, - 47.7458f);
-                    Debug.Log("isbetterhudinstalled");
                 }
                 else
                 {
                     powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
-                    Debug.Log("nohudmodinstalled");
                 }
             }
 

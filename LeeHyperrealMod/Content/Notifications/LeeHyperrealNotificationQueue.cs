@@ -7,8 +7,8 @@ namespace LeeHyperrealMod.Content.Notifications
     //Shamelessly stolen from HUNK: thank you for making my job easier ROB
     internal class LeeHyperrealNotificationQueue : MonoBehaviour
     {
-        public const float firstNotificationLengthSeconds = 6f;
-        public const float repeatNotificationLengthSeconds = 6f;
+        public const float firstNotificationLengthSeconds = 8f;
+        public const float repeatNotificationLengthSeconds = 8f;
         private CharacterMasterNotificationQueue.TimedNotificationInfo notification;
 
         public event Action<LeeHyperrealNotificationQueue> onCurrentNotificationChanged; // Amazing, I gotta expose more actions next time.

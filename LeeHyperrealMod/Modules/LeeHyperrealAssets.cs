@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using System.Text;
 using TMPro;
 using UnityEngine.UI;
+using FontStyles = UnityEngine.TextCore.Text.FontStyles;
 
 namespace LeeHyperrealMod.Modules
 {
@@ -231,10 +232,10 @@ namespace LeeHyperrealMod.Modules
             UnityEngine.Object.DestroyImmediate(leeNotification.titleText);
             UnityEngine.Object.DestroyImmediate(leeNotification.descriptionText);
 
-            leeNotification.titleText = CreateLabel(hyperLabel, "Hyper Effect", 24f);
+            leeNotification.titleText = CreateLabel(hyperLabel, "Hyper Effect", 36f);
             leeNotification.titleTMP = hyperLabel.GetComponent<HGTextMeshProUGUI>();
             leeNotification.titleTMP.color = StaticValues.bodyColor;
-            leeNotification.descriptionText = CreateLabel(descriptionLabel, "Demo Text", 16f);
+            leeNotification.descriptionText = CreateLabel(descriptionLabel, "Demo Text", 20f);
             leeNotification.titleText.token = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_ITEM_EFFECT_TITLE";
             leeNotification.descriptionText.token = LeeHyperrealPlugin.DEVELOPER_PREFIX + "_LEE_HYPERREAL_BODY_ITEM_EFFECT_TITLE";
             leeNotification.iconImage = leenotificationBoxPrefab.transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0).GetComponent<RawImage>();
