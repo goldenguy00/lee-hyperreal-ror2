@@ -7,7 +7,7 @@ namespace LeeHyperrealMod.Content.Controllers
 {
     internal class DestroyPlatformOnDelay : MonoBehaviour
     {
-        public float delay = 0.75f;
+        public float delay = 2f;
         public bool startDestroy = false;
         public float timer = 0f;
 

@@ -51,7 +51,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
         private LeeHyperrealDomainController domainController;
 
-        public float defaultMovementMultiplier = 0.5f;
+        public float defaultMovementMultiplier = 0.3f;
         public float inputMovementMultiplier = 2f;
         public float movementMultiplier;
         public Transform baseTransform;
