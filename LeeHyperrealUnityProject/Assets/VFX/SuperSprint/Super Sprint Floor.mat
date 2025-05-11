@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snipe Floor
-  m_Shader: {fileID: 4800000, guid: 120411215daf8f6469d05880636cf70c, type: 3}
+  m_Name: Super Sprint Floor
+  m_Shader: {fileID: 4800000, guid: 792b5c8b8ecad4c4f90cd98f3c3ff5ae, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHABLEND_ON
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OpacityFadeTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5866e485b65be1c45b60c8191df0e3ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondTex:
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 40, y: 40}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5866e485b65be1c45b60c8191df0e3ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _VAT_Tex:
@@ -169,7 +169,7 @@ Material:
     - _MainRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _MainTexColor: {r: 1, g: 1, b: 1, a: 1}
     - _MaskRotationParams: {r: 1, g: 0, b: 0, a: 1}
-    - _Panspeed: {r: 0, g: 0, b: 0, a: 0}
+    - _Panspeed: {r: 0, g: 5, b: 0, a: 0}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _SecondColor: {r: 0.29792628, g: 0.40664405, b: 0.6132076, a: 1}
     - _SecondRotationParams: {r: 1, g: 0, b: 0, a: 1}
@@ -179,6 +179,6 @@ Material:
     - _VAT_MinBound: {r: 0, g: 0, b: 0, a: 1}
     - _offsetalpha: {r: 1, g: 1, b: 0, a: 0}
     - _offsetalpha1: {r: 1, g: 1, b: 0, a: 0}
-    - _zoom: {r: 1, g: 1, b: 0, a: 0}
-    - _zoom1: {r: 1, g: 1, b: 0, a: 0}
+    - _zoom: {r: 1, g: 4, b: 0, a: 0}
+    - _zoom1: {r: 8, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
