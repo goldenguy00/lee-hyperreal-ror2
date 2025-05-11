@@ -482,6 +482,15 @@ namespace LeeHyperrealMod.Modules
             }
         }
 
+        private static void ModifySuperSprint(Renderer rend, ParticleColorInfo newColor)
+        {
+            //Check if the material is Xeffect
+            if (rend.material.shader.name == "Super Sprint")
+            {
+                rend.material.SetColor("_MainColor", newColor.mainColor);
+            }
+        }
+
         public static void ModifyLights(Light light, ParticleColorInfo color)
         {
             if (light) 
@@ -642,6 +651,7 @@ namespace LeeHyperrealMod.Modules
                     ModifyNoBatchingRenderers(rend, color);
                     ModifySnipeFloorRenderer(rend, color);
                     ModifyCloneRenderers(rend, color);
+                    ModifySuperSprint(rend, color);
                 }
 
                 Light[] lights = clone.GetComponentsInChildren<Light>(true);
@@ -806,11 +816,16 @@ namespace LeeHyperrealMod.Modules
             ParticleVariant jetpackVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, jetpack);
             jetpackVariant.shouldVariantCloneUseModify = false;
 
+            GameObject superSprint = GetGameObjectFromBundle("SuperSprintVFX");
+            superSprint.AddComponent<DestroySprintOnDelay>();
+            ParticleVariant superSprintVariant = new ParticleVariant(DEFAULT_PARTICLE_VARIANT, superSprint);
+            superSprintVariant.shouldVariantCloneUseModify = false;
 
             customCrosshair = GetGameObjectFromBundle("Lee Crosshair");
 
             particleDictionary.Add("jumpEffect", new ParticleVariant(DEFAULT_PARTICLE_VARIANT, jumpEffect));
             particleDictionary.Add("skinJetpack", jetpackVariant);
+            particleDictionary.Add("superSprint", superSprintVariant);
         }
 
         private static void PopulateAerialDomainAssets()

@@ -32,6 +32,7 @@ namespace LeeHyperrealMod.Modules
 
         internal const float maxMoveSpeedScaling = 2.5f; // The maximum movement speed scaling allowed on moves
         internal const float inputMaxMoveSpeedOnBody = 25f; // The maximum input move speed that scales with the aforementioned value.
+        internal const float requiredMoveSpeedToSupersprint = 30f;
         #endregion
 
         #region Primary 1

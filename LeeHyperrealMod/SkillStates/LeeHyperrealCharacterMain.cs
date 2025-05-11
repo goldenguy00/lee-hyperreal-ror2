@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Networking;
 
 namespace LeeHyperrealMod.SkillStates
@@ -17,6 +18,10 @@ namespace LeeHyperrealMod.SkillStates
         int baseTransformIndex;
 
         public bool forceJump;
+
+        public GameObject superSprintVFX;
+        public Transform leftFoot;
+        public Transform rightFoot;
 
         public override void OnEnter()
         {
@@ -96,6 +101,8 @@ namespace LeeHyperrealMod.SkillStates
 
             ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
             baseTransform = childLocator.FindChild("BaseTransform");
+            leftFoot = childLocator.FindChild("FootL");
+            rightFoot = childLocator.FindChild("FootR");
             baseTransformIndex = childLocator.FindChildIndex("BaseTransform");
 
             if (bulletController.inSnipeStance) 
@@ -146,12 +153,52 @@ namespace LeeHyperrealMod.SkillStates
                 this.useRootMotion = ((base.characterBody && base.characterBody.rootMotionInMainState && base.isGrounded) || base.railMotor);
             }
 
+            this.modelAnimator.SetBool("IsSuperSprinting", this.moveSpeedStat > Modules.StaticValues.requiredMoveSpeedToSupersprint && this.characterBody.isSprinting);
+
+            //Super Sprint vfx
+            if (this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Super Sprint Intro") || this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Super Sprint Loop"))
+            {
+                if (!superSprintVFX)
+                {
+                    SetupSuperSprintVFX(true);
+                }
+            }
+            else 
+            {
+                if (superSprintVFX) 
+                {
+                    superSprintVFX.GetComponent<DestroySprintOnDelay>().StartDestroying();
+                    superSprintVFX = null;
+                }
+            }
+
             if (base.inputBank.skill2.down && Modules.Config.allowSnipeButtonHold.Value && base.isAuthority && base.skillLocator.secondary.skillNameToken == "POPCORN_LEE_HYPERREAL_BODY_ENTER_SNIPE_NAME")
             {
                 if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                 {
                     base.outer.SetNextState(new EnterSnipe());
                 }
+            }
+        }
+
+        public void SetupSuperSprintVFX(bool setActive = false) 
+        {
+            if (!superSprintVFX) 
+            {
+                superSprintVFX = GameObject.Instantiate(Modules.ParticleAssets.RetrieveParticleEffectFromSkin("superSprint", this.characterBody), baseTransform);
+                //LMAO ABSOLUTE VOMIT 
+                superSprintVFX.transform.GetChild(2).gameObject.GetComponent<ParentConstraint>().AddSource(new ConstraintSource { sourceTransform = this.leftFoot });
+                superSprintVFX.transform.GetChild(3).gameObject.GetComponent<ParentConstraint>().AddSource(new ConstraintSource { sourceTransform = this.rightFoot });
+                superSprintVFX.SetActive(setActive);
+            }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            if (superSprintVFX) 
+            {
+                superSprintVFX.GetComponent<DestroySprintOnDelay>().StartDestroying();
             }
         }
 
