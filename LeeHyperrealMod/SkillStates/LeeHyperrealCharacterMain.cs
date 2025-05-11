@@ -22,6 +22,10 @@ namespace LeeHyperrealMod.SkillStates
         public GameObject superSprintVFX;
         public Transform leftFoot;
         public Transform rightFoot;
+        public Transform leftFootReal;
+        public Transform rightFootReal;
+        public ParentConstraint leftFootConstraint;
+        public ParentConstraint rightFootConstraint;
 
         public override void OnEnter()
         {
@@ -103,6 +107,8 @@ namespace LeeHyperrealMod.SkillStates
             baseTransform = childLocator.FindChild("BaseTransform");
             leftFoot = childLocator.FindChild("FootL");
             rightFoot = childLocator.FindChild("FootR");
+            leftFootReal = childLocator.FindChild("FootLReal");
+            rightFootReal = childLocator.FindChild("FootRReal");
             baseTransformIndex = childLocator.FindChildIndex("BaseTransform");
 
             if (bulletController.inSnipeStance) 
@@ -148,6 +154,13 @@ namespace LeeHyperrealMod.SkillStates
                 //Don't use root if you're moving.
                 this.useRootMotion = !movingVal;
             }
+            else if (this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Super Sprint Outro"))
+            {
+                Vector3 moveVector = base.inputBank ? base.inputBank.moveVector : Vector3.zero;
+                bool movingVal = moveVector != Vector3.zero && base.characterBody.moveSpeed > Mathf.Epsilon;
+                //Don't use root if you're moving.
+                this.useRootMotion = !movingVal;
+            }
             else 
             {
                 this.useRootMotion = ((base.characterBody && base.characterBody.rootMotionInMainState && base.isGrounded) || base.railMotor);
@@ -187,9 +200,11 @@ namespace LeeHyperrealMod.SkillStates
             {
                 superSprintVFX = GameObject.Instantiate(Modules.ParticleAssets.RetrieveParticleEffectFromSkin("superSprint", this.characterBody), baseTransform);
                 //LMAO ABSOLUTE VOMIT 
-                superSprintVFX.transform.GetChild(2).gameObject.GetComponent<ParentConstraint>().AddSource(new ConstraintSource { sourceTransform = this.leftFoot });
-                superSprintVFX.transform.GetChild(3).gameObject.GetComponent<ParentConstraint>().AddSource(new ConstraintSource { sourceTransform = this.rightFoot });
                 superSprintVFX.SetActive(setActive);
+                rightFootConstraint = superSprintVFX.transform.GetChild(3).gameObject.GetComponent<ParentConstraint>();
+                leftFootConstraint = superSprintVFX.transform.GetChild(2).gameObject.GetComponent<ParentConstraint>();
+                rightFootConstraint.SetSource(0, new ConstraintSource { sourceTransform = rightFootReal, weight = 1 });
+                leftFootConstraint.SetSource(0, new ConstraintSource { sourceTransform = leftFootReal, weight = 1 });
             }
         }
 

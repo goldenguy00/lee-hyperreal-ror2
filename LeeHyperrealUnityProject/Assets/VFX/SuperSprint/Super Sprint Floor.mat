@@ -159,7 +159,7 @@ Material:
     - _ZTest: 8
     - _ZWrite: 0
     - __dirty: 0
-    - _emitstrength: 1
+    - _emitstrength: 3
     - _opacity: 1
     m_Colors:
     - _DissolutionColor: {r: 1, g: 1, b: 1, a: 0}
@@ -169,7 +169,7 @@ Material:
     - _MainRotationParams: {r: 1, g: 0, b: 0, a: 1}
     - _MainTexColor: {r: 1, g: 1, b: 1, a: 1}
     - _MaskRotationParams: {r: 1, g: 0, b: 0, a: 1}
-    - _Panspeed: {r: 0, g: 5, b: 0, a: 0}
+    - _Panspeed: {r: 0, g: 7, b: 0, a: 0}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
     - _SecondColor: {r: 0.29792628, g: 0.40664405, b: 0.6132076, a: 1}
     - _SecondRotationParams: {r: 1, g: 0, b: 0, a: 1}

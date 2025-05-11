@@ -2170,6 +2170,10 @@ MonoBehaviour:
     transform: {fileID: 414308322423692936}
   - name: RifleTip
     transform: {fileID: 6243513228322674573}
+  - name: FootLReal
+    transform: {fileID: 414308322724271493}
+  - name: FootRReal
+    transform: {fileID: 414308322429303914}
 --- !u!114 &414308320962201776
 MonoBehaviour:
   m_ObjectHideFlags: 0

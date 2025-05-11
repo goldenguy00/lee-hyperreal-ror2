@@ -1032,8 +1032,8 @@ namespace LeeHyperrealMod.Content.Controllers
                     orbUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.orbsUIObject, RoRHUDSpringCanvasTransform.Find("BottomCenterCluster"));
                     orbUIObjectExtraParent = orbUIObject.transform.GetChild(0);
                     OrbPositionComponent = orbUIObjectExtraParent.GetComponent<RectTransform>();
-                    OrbPositionComponent.anchoredPosition3D = new Vector3(60f, 255f, 0f);
-                    OrbPositionComponent.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+                    OrbPositionComponent.anchoredPosition3D = new Vector3(60f, 150f, 0f);
+                    OrbPositionComponent.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
                 }
                 else if (LeeHyperrealPlugin.isRiskUIInstalled)
