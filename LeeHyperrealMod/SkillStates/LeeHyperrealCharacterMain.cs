@@ -147,14 +147,8 @@ namespace LeeHyperrealMod.SkillStates
         {
             base.Update();
 
-            if (this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("StopRun"))
-            {
-                Vector3 moveVector = base.inputBank ? base.inputBank.moveVector : Vector3.zero;
-                bool movingVal = moveVector != Vector3.zero && base.characterBody.moveSpeed > Mathf.Epsilon;
-                //Don't use root if you're moving.
-                this.useRootMotion = !movingVal;
-            }
-            else if (this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Super Sprint Outro"))
+            if (this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("StopRun") ||
+                this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Super Sprint Outro"))
             {
                 Vector3 moveVector = base.inputBank ? base.inputBank.moveVector : Vector3.zero;
                 bool movingVal = moveVector != Vector3.zero && base.characterBody.moveSpeed > Mathf.Epsilon;
@@ -166,7 +160,7 @@ namespace LeeHyperrealMod.SkillStates
                 this.useRootMotion = ((base.characterBody && base.characterBody.rootMotionInMainState && base.isGrounded) || base.railMotor);
             }
 
-            this.modelAnimator.SetBool("IsSuperSprinting", this.moveSpeedStat > Modules.StaticValues.requiredMoveSpeedToSupersprint && this.characterBody.isSprinting);
+            this.modelAnimator.SetBool("IsSuperSprinting", this.characterBody.moveSpeed > Modules.StaticValues.requiredMoveSpeedToSupersprint && this.characterBody.isSprinting);
 
             //Super Sprint vfx
             if (this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Super Sprint Intro") || this.modelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Super Sprint Loop"))
