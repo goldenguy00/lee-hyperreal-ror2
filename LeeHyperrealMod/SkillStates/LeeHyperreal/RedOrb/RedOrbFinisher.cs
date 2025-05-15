@@ -55,6 +55,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
         {
             base.OnEnter();
             orbController = gameObject.GetComponent<OrbController>();
+            base.characterDirection.forward = inputBank.aimDirection;
+            base.characterDirection.moveVector = inputBank.aimDirection;
             if (orbController)
             {
                 orbController.isExecutingSkill = true;
