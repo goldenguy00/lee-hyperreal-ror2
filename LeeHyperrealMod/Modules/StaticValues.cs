@@ -86,6 +86,12 @@ namespace LeeHyperrealMod.Modules
         internal const float primaryAerialDamageCoefficient = 4f;
         internal const float primaryAerialProcCoefficient = 1f;
         internal const float primaryAerialSlamSpeed = 125f;
+        
+        internal const float primaryAerialParryLength = 0.1f; //How long the parry window is openf or
+        internal const float primaryAerialParryTiming = 0.0f; // A percentage of the duration in which the parry starts
+        internal const float primaryAerialParryPauseLength = 0.05f; // How long YOU are stuck in hit pause when a parry is triggered
+        internal const float primaryAerialProjectileTimingStart = 0.0f; // Percentage of the duration of the move where a projectile parry can be triggered
+        internal const float primaryAerialProjectileTimingEnd = 0.1f; // Percentage of the duration of the move when a projectile parry can be triggered. In this case it's ranging from duration * start to duration * end, this value should never be higher than 1f
         #endregion
 
         #region Domain Shift
