@@ -129,7 +129,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             PlayAttackAnimation();
 
             RaycastHit hit;
-            Physics.Raycast(GetAimRay(), out hit, Mathf.Infinity, (1 << LayerIndex.world.intVal) | (1 << LayerIndex.entityPrecise.intVal));
+            Physics.SphereCast(GetAimRay(), 0.2f, out hit, Mathf.Infinity, (1 << LayerIndex.world.intVal) | (1 << LayerIndex.entityPrecise.intVal));
 
             if (base.isAuthority) 
             {
@@ -355,7 +355,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
             ray.origin = cannonEndTransform.position;
 
             RaycastHit hit;
-            Physics.Raycast(ray, out hit, Mathf.Infinity, (1 << LayerIndex.world.intVal) | (1 << LayerIndex.entityPrecise.intVal));
+            Physics.SphereCast(ray, 0.2f, out hit, Mathf.Infinity, (1 << LayerIndex.world.intVal) | (1 << LayerIndex.entityPrecise.intVal));
             if (hit.collider)
             { 
                 new UltimateObjectSpawnNetworkRequest(characterBody.netId, hit.point).Send(NetworkDestination.Clients);

@@ -891,6 +891,7 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Event Name="Stop" ID="{1E547376-1DB6-4227-A0C9-CA606197C9F3}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
