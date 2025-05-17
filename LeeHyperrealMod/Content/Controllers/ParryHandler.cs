@@ -40,6 +40,7 @@ namespace LeeHyperrealMod.Content.Controllers
         public float parryProjectileTimingStart;
         public float parryPauseLength = 0.75f;
         public float parryProjectileTimingEnd;
+        public bool parryAutoTransitionWithoutInput;
         public Transform ParryTransform = null;
 
         // Hit Pause
@@ -86,6 +87,15 @@ namespace LeeHyperrealMod.Content.Controllers
             // Handle State Transition
             if (body.hasEffectiveAuthority && resetComboOnParry)
             {
+                //AutoTransition after out of hitpause.
+                if (parryAutoTransitionWithoutInput && !inHitPause) 
+                {
+                    lockIntoParryState = true;
+                    onParry();
+                    return;
+                }
+
+                //Otherwise handle this on tap.
                 if (inputBank.skill1.down && !inputBank.skill1.hasPressBeenClaimed)
                 {
                     inputBank.skill1.hasPressBeenClaimed = true;
@@ -136,6 +146,7 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 if (motor) motor.velocity = Vector3.zero;
                 if (animator) animator.SetFloat("attack.playbackRate", 0f);
+                this.hitPauseTimer -= Time.fixedDeltaTime;
             }
         }
 
