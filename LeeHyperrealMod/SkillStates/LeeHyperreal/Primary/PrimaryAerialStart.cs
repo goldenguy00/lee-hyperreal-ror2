@@ -42,7 +42,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
             ChildLocator childLocator = modelLocator.modelTransform.gameObject.GetComponent<ChildLocator>();
 
-            parryHandler.ParryTransform = childLocator.FindChild("FootL");
+            parryHandler.ParryTransform = childLocator.FindChild("WeaponCase");
 
             //Play animation for going straight down. There will be a switch to change to domain variant in this state.
             //There are no attacks on this until you hit the ground.
