@@ -152,7 +152,7 @@ Material:
     - _Metallic: 0.4
     - _MetallicMapScale: 1
     - _Mode: 0
-    - _OcclusionStrength: 1
+    - _OcclusionStrength: 0.5
     - _PBRMode: 2
     - _PBRRate: 1
     - _PBRSpecularIntensity: 0.4
