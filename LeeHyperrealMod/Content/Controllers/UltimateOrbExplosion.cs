@@ -41,7 +41,7 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 attacker = leeObject,
                 inflictor = null,
-                teamIndex = TeamIndex.Player,
+                teamIndex = leeBody.teamComponent.teamIndex,
                 position = position,
                 radius = Modules.StaticValues.ultimateBlastRadius,
                 falloffModel = BlastAttack.FalloffModel.None,

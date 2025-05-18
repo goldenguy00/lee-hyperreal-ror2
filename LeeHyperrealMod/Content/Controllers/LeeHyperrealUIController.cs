@@ -1661,6 +1661,16 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void UnsetSkillIconMat()
         {
+            if (imageList == null) 
+            {
+                return;
+            }
+
+            if (imageList.Count == 0) 
+            {
+                return;
+            }
+
             foreach (Image img in imageList)
             {
                 img.material = img.defaultMaterial;
