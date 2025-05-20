@@ -230,7 +230,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
             {
                 if (inputBank.moveVector != Vector3.zero) 
                 {
-                    base.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     return;
                 }
             }
@@ -297,7 +297,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.DomainShift
 
             if (base.age >= duration && base.isAuthority) 
             {
-                base.outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
             }
         }
 

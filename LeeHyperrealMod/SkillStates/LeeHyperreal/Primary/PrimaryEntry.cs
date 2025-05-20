@@ -24,20 +24,20 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                     {
                         if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                         {
-                            base.outer.SetNextState(new PrimaryDomainAerialStart { });
+                            base.outer.SetInterruptState(new PrimaryDomainAerialStart { }, InterruptPriority.Skill);
                             return;
                         }
                     }
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
-                        base.outer.SetNextState(new PrimaryAerialStart { });
+                        base.outer.SetInterruptState(new PrimaryAerialStart { }, InterruptPriority.Skill);
                         return;
                     }
                 }
 
                 if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                 {
-                    base.outer.SetNextState(new Primary1 { });
+                    base.outer.SetInterruptState(new Primary1 { }, InterruptPriority.Skill);
                     return;
                 }
             }

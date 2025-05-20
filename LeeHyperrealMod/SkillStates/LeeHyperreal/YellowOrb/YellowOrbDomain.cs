@@ -222,7 +222,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                 }
                 if (inputBank.moveVector != Vector3.zero && !hasCancelledWithMovement)
                 {
-                    base.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     hasCancelledWithMovement = true;
                     return;
                 }
@@ -272,7 +272,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 
             if (fixedAge >= duration && isAuthority)
             {
-                outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 return;
             }
         }

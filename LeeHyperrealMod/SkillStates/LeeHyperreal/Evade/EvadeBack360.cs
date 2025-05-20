@@ -231,7 +231,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                     //Fire Snipe
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
-                        base.outer.SetNextState(new Snipe { });
+                        base.outer.SetInterruptState(new Snipe { }, EntityStates.InterruptPriority.Skill);
                         return;
                     }
                 }
@@ -242,19 +242,19 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                     Vector3 result = Modules.StaticValues.CheckDirection(inputBank.moveVector, GetAimRay());
                     if (result == new Vector3(0, 0, 1))
                     {
-                        base.outer.SetNextState(new Evade { unsetSnipe = true });
+                        base.outer.SetInterruptState(new Evade { unsetSnipe = true }, EntityStates.InterruptPriority.Frozen);
                         return;
                     }
                     if (result == new Vector3(0, 0, 0))
                     {
-                        base.outer.SetNextState(new EvadeBack360 { });
+                        base.outer.SetInterruptState(new EvadeBack360 { }, EntityStates.InterruptPriority.Frozen);
                         return;
                     }
                     if (result == new Vector3(1, 0, 0))
                     {
                         if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                         {
-                            base.outer.SetNextState(new EvadeSide { isLeftRoll = false });
+                            base.outer.SetInterruptState(new EvadeSide { isLeftRoll = false }, EntityStates.InterruptPriority.Frozen);
                             return;
                         }
                     }
@@ -262,7 +262,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                     {
                         if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                         {
-                            base.outer.SetNextState(new EvadeSide { isLeftRoll = true });
+                            base.outer.SetInterruptState(new EvadeSide { isLeftRoll = true }, EntityStates.InterruptPriority.Frozen);
                             return;
                         }
                     }
@@ -277,7 +277,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
             {
                 if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                 {
-                    base.outer.SetNextState(new IdleSnipe { });
+                    base.outer.SetInterruptState(new IdleSnipe { }, EntityStates.InterruptPriority.Skill);
                     return;
                 }
             }

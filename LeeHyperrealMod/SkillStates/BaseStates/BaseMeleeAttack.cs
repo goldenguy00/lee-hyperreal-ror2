@@ -552,14 +552,14 @@ namespace LeeHyperrealMod.SkillStates.BaseStates
             {
                 if (base.inputBank.jump.down && characterBody.hasAuthority)
                 {
-                    base.outer.SetNextState(new LeeHyperrealCharacterMain { forceJump = true });
+                    base.outer.SetInterruptState(new LeeHyperrealCharacterMain { forceJump = true }, EntityStates.InterruptPriority.Skill);
                     return;
                 }
 
                 if (base.inputBank.moveVector != new Vector3(0, 0, 0)) 
                 {
                     if (!this.hasFired) this.FireAttack();
-                    this.outer.SetNextStateToMain();
+                    base.outer.SetInterruptState(new LeeHyperrealCharacterMain { forceJump = false }, EntityStates.InterruptPriority.Skill);
                     return;
                 }
             }

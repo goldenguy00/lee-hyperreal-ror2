@@ -275,7 +275,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
 
             if (base.age >= duration * disallowTransition && forceTransition && base.isAuthority) 
             {
-                this.outer.SetNextState(new DomainShift.DomainEnterState { shouldForceUpwards = false });
+                this.outer.SetInterruptState(new DomainShift.DomainEnterState { shouldForceUpwards = false }, InterruptPriority.Frozen);
                 return;// disallow other stuff from running lol.
             }
 
@@ -298,7 +298,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 if (inputBank.moveVector != new Vector3() && !hasCancelledWithMovement) 
                 {
                     //Cancel
-                    base.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     hasCancelledWithMovement = true;
                     return;
                 }
@@ -332,7 +332,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
 
             if (base.fixedAge >= duration)
             {
-                this.outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 return;
             }
         }

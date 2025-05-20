@@ -303,7 +303,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
 
             if (age >= duration * earlyEnd && base.isAuthority)
             {
-
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
             }
 
@@ -365,7 +364,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
 
             if (fixedAge >= duration)
             {
-                outer.SetNextStateToMain();
+                this.outer.SetNextStateToMain();
                 return;
             }
         }
@@ -378,7 +377,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            return InterruptPriority.Skill;
+            return InterruptPriority.Frozen;
         }
     }
 }

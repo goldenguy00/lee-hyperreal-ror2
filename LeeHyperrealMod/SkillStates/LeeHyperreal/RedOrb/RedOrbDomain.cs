@@ -174,7 +174,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 }
                 if (inputBank.moveVector != Vector3.zero && !hasCancelledWithMovement) 
                 {
-                    base.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     hasCancelledWithMovement = true;
                     return;
                 }

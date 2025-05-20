@@ -341,7 +341,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
 
             if (fixedAge >= duration)
             {
-                outer.SetNextStateToMain();
+                this.outer.SetNextStateToMain();
                 return;
             }
         }

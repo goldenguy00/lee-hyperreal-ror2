@@ -7,6 +7,7 @@ using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using EntityStates;
 
 namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
 {
@@ -162,7 +163,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                 }
                 if (inputBank.moveVector != Vector3.zero && !hasCancelledWithMovement) 
                 {
-                    this.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     hasCancelledWithMovement = true;
                     return;
                 }

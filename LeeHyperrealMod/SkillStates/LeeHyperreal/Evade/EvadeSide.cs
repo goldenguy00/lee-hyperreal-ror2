@@ -144,7 +144,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                 {
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
-                        base.outer.SetNextState(new EnterSnipe());
+                        base.outer.SetInterruptState(new EnterSnipe(), EntityStates.InterruptPriority.Skill);
                         return;
                     }
                 }
@@ -153,7 +153,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                 {
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
-                        base.outer.SetNextStateToMain();
+                        base.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                         return;
                     }
                 }
@@ -163,7 +163,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
             {
                 if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                 {
-                    base.outer.SetNextStateToMain();
+                    base.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 }
             }
         }

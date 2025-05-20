@@ -130,14 +130,14 @@ namespace LeeHyperrealMod.SkillStates
             {
                 if (inputBank.moveVector != Vector3.zero)
                 {
-                    outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     return;
                 }
             }
 
             if (fixedAge >= duration && base.isAuthority) 
             {
-                outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 return;
             }
         }
@@ -163,7 +163,7 @@ namespace LeeHyperrealMod.SkillStates
         }
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            return InterruptPriority.Frozen;
+            return InterruptPriority.Skill;
         }
     }
 }

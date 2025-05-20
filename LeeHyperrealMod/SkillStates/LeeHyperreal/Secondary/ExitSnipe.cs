@@ -70,25 +70,25 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary
             {
                 if (base.inputBank.jump.down)
                 {
-                    base.outer.SetNextState(new LeeHyperrealCharacterMain { forceJump = true });
+                    base.outer.SetInterruptState(new LeeHyperrealCharacterMain { forceJump = true }, InterruptPriority.Skill);
                     return;
                 }
 
                 if (base.inputBank.sprint.justPressed && characterBody.hasAuthority)
                 {
-                    base.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     return;
                 }
 
                 if (base.inputBank.moveVector != Vector3.zero) 
                 {
-                    base.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 }
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
             }
             if (age >= duration && base.isAuthority)
             {
-                base.outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 return;
             }
         }

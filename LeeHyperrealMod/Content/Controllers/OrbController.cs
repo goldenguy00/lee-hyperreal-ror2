@@ -532,16 +532,17 @@ namespace LeeHyperrealMod.Content.Controllers
 
             if (bodyMachine) 
             {
+                // Set Interrupt state to Frozen to override shit entirely
                 switch (orbType)
                 {
                     case OrbType.BLUE:
-                        bodyMachine.SetNextState(new BlueOrb { moveStrength = strength});
+                        bodyMachine.SetInterruptState(new BlueOrb { moveStrength = strength}, EntityStates.InterruptPriority.Frozen);
                         break;
                     case OrbType.YELLOW:
-                        bodyMachine.SetNextState(new YellowOrbEntry { moveStrength = strength });
+                        bodyMachine.SetInterruptState(new YellowOrbEntry { moveStrength = strength }, EntityStates.InterruptPriority.Frozen);
                         break;
                     case OrbType.RED:
-                        bodyMachine.SetNextState(new RedOrbEntry { moveStrength = strength });
+                        bodyMachine.SetInterruptState(new RedOrbEntry { moveStrength = strength }, EntityStates.InterruptPriority.Frozen);
                         break;
                     default:
                         break;

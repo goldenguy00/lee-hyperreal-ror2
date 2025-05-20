@@ -1,4 +1,5 @@
-﻿using LeeHyperrealMod.Content.Controllers;
+﻿using EntityStates;
+using LeeHyperrealMod.Content.Controllers;
 using LeeHyperrealMod.Modules.Networking;
 using LeeHyperrealMod.SkillStates.BaseStates;
 using R2API.Networking.Interfaces;
@@ -151,7 +152,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                 }
                 if (base.inputBank.moveVector != Vector3.zero && !hasCancelledWithMovement) 
                 {
-                    base.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     hasCancelledWithMovement = true;
                     return;
                 }

@@ -258,7 +258,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                 {
                     //Cancel out into Domain shift skill state
-                    base.outer.SetNextState(new DomainEnterState { shouldForceUpwards = true });
+                    base.outer.SetInterruptState(new DomainEnterState { shouldForceUpwards = true }, InterruptPriority.Frozen);
                 }
             }
 
@@ -295,14 +295,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
             {
                 if (inputBank.moveVector != new Vector3(0, 0, 0)) 
                 {
-                    this.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     return;
                 }
             }
 
             if (this.age >= this.duration && base.isAuthority)
             {
-                this.outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 return;
             }
 
@@ -360,21 +360,21 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
                 {
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
-                        base.outer.SetNextState(new PrimaryDomainAerialStart { });
+                        base.outer.SetInterruptState(new PrimaryDomainAerialStart { }, InterruptPriority.Skill);
                         return;
                     }
                 }
 
                 if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                 {
-                    base.outer.SetNextState(new PrimaryAerialStart { });
+                    base.outer.SetInterruptState(new PrimaryAerialStart { }, InterruptPriority.Skill);
                     return;
                 }
             }
 
             if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
             {
-                base.outer.SetNextState(new Primary5 { });
+                base.outer.SetInterruptState(new Primary5 { }, InterruptPriority.Skill);
             }
         }
 

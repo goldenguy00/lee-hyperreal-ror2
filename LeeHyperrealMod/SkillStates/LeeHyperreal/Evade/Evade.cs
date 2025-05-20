@@ -184,7 +184,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                         //Go to Primary 3.
                         if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                         {
-                            outer.SetNextState(new Primary.Primary3 { xzMovementMultiplier = movementMultiplierPrimary3 * Modules.StaticValues.ScaleMoveSpeed(moveSpeedStat) });
+                            outer.SetInterruptState(new Primary.Primary3 { xzMovementMultiplier = movementMultiplierPrimary3 * Modules.StaticValues.ScaleMoveSpeed(moveSpeedStat) }, InterruptPriority.PrioritySkill);
                             return;
                         }
                     }
@@ -211,14 +211,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
                         if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                         {
                             //Go to Primary 3.
-                            outer.SetNextState(new Primary.Primary3 { xzMovementMultiplier = movementMultiplierPrimary3 * Modules.StaticValues.ScaleMoveSpeed(moveSpeedStat) });
+                            outer.SetInterruptState(new Primary.Primary3 { xzMovementMultiplier = movementMultiplierPrimary3 * Modules.StaticValues.ScaleMoveSpeed(moveSpeedStat) }, InterruptPriority.PrioritySkill);
                             return;
                         }
                     }
                 }
                 if (inputBank.moveVector != Vector3.zero) 
                 {
-                    outer.SetNextStateToMain();
+                    outer.SetInterruptState(new LeeHyperrealCharacterMain { }, InterruptPriority.Skill);
                     return;
                 }
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);
@@ -226,7 +226,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
 
             if (age >= duration && isAuthority)
             {
-                outer.SetNextStateToMain();
+                outer.SetInterruptState(new LeeHyperrealCharacterMain { }, InterruptPriority.Skill);
             }
         }
 
@@ -270,7 +270,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Evade
             }
             else
             {
-                return InterruptPriority.Frozen;
+                return InterruptPriority.PrioritySkill;
             }
         }
     }

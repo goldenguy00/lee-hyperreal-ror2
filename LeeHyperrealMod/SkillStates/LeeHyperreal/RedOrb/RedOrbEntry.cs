@@ -49,7 +49,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                             domainController.GrantIntuitionStack(1);
                             domainController.AddEnergy(Modules.StaticValues.energyReturnedPer3ping);
                         }
-                        this.outer.SetNextState(new RedOrbDomain { moveStrength = moveStrength });
+                        this.outer.SetInterruptState(new RedOrbDomain { moveStrength = moveStrength }, InterruptPriority.PrioritySkill);
                         return;
                     }
                     else
@@ -67,7 +67,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                         {
                             bulletController.GrantColouredBullet(BulletController.BulletType.RED);
                         }
-                        this.outer.SetNextState(new RedOrb { moveStrength = moveStrength });
+                        this.outer.SetInterruptState(new RedOrb { moveStrength = moveStrength }, InterruptPriority.PrioritySkill);
 
  
                         return;
@@ -98,7 +98,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            return InterruptPriority.Frozen;
+            return InterruptPriority.PrioritySkill;
         }
 
         public override void OnSerialize(NetworkWriter writer)

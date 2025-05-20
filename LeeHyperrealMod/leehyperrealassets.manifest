@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2457347751
+CRC: 2294699950
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 68aa9563e28fe49175f55a3e921e8521
+    Hash: 6aa0a9c54fe15c6ef716f9026e9dcd64
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5128bc04071dd2332207e645266de6b3
@@ -1441,6 +1441,7 @@ Assets:
 - Assets/modelresource/effect/texture/mask037.png
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011mdchunse705.mat
 - Assets/LeeHyperrealAssets/Texture/Normal/leeEffectUpNormal.png
+- Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Additive Look Down Up.anim
 - Assets/LeeHyperrealAssets/mdlLeeHyperreal.prefab
 - Assets/LeeHyperrealAssets/Texture/Normal/leeTorsoNormal.png
 - Assets/modelresource/effect/texture/wenli904.png
@@ -1650,6 +1651,7 @@ Assets:
 - Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Unrenamed_Originals Left/Armature_Armature_Hit1_Base
   Layer.anim
 - Assets/modelresource/effect/material/keji00706.mat
+- Assets/LeeHyperrealAssets/Animation/BodyAnimsBlend/Additive Look Left Right.anim
 - Assets/modelresource/effect/prefab/fxr4liangprefab/material/fxr4liang010011md342-red.mat
 - Assets/modelresource/effect/prefab/fxr4liangprefab/common/fxr4liangatk41pingmu.prefab
 - Assets/modelresource/effect/texture/noise102.png

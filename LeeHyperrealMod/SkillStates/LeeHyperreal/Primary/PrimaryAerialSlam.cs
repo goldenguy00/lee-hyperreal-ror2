@@ -92,17 +92,14 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Primary
 
                 if (base.inputBank.moveVector != new Vector3(0, 0, 0))
                 {
-                    this.outer.SetNextStateToMain();
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     return;
                 }
             }
 
-
-
-
             if (fixedAge >= duration && base.isAuthority)
             {
-                base.outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 return;
             }
         }

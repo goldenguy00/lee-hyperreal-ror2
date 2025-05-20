@@ -175,7 +175,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                     if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
                         //Exit earlier to the Strong ender.
-                        this.outer.SetNextState(new RedOrbFinisher { });
+                        this.outer.SetInterruptState(new RedOrbFinisher { }, InterruptPriority.Frozen);
                         return;
                     }
                 }
@@ -227,7 +227,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
             }
             if (fixedAge >= duration)
             {
-                outer.SetNextStateToMain();
+                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                 return;
             }
         }
