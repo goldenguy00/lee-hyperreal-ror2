@@ -98,7 +98,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            return InterruptPriority.Frozen;
+            return InterruptPriority.PrioritySkill;
         }
 
         public override void OnSerialize(NetworkWriter writer)
