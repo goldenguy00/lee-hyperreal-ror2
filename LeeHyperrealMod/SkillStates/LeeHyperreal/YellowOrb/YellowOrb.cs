@@ -320,7 +320,12 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            return InterruptPriority.Skill;
+            if (fixedAge >= duration * earlyEnd)
+            {
+                return InterruptPriority.Skill;
+            }
+
+            return InterruptPriority.Frozen;
         }
     }
 }

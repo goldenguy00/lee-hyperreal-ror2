@@ -281,5 +281,15 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
             //Do something on hit.
         }
 
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            if (fixedAge >= duration * exitEarlyFrac)
+            {
+                return InterruptPriority.Skill;
+            }
+
+            return InterruptPriority.Frozen;
+        }
+
     }
 }
