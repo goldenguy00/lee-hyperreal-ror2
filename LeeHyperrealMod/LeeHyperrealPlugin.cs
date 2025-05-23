@@ -45,7 +45,7 @@ namespace LeeHyperrealMod
     {
         public const string MODUID = "com.PopcornFactory.LeeHyperrealMod";
         public const string MODNAME = "LeeHyperrealMod";
-        public const string MODVERSION = "2.0.5";
+        public const string MODVERSION = "2.1.0";
         
         public const string DEVELOPER_PREFIX = "POPCORN";
 
@@ -194,7 +194,7 @@ namespace LeeHyperrealMod
             SendMessage("RT_SprintDisableMessage", "LeeHyperrealMod.SkillStates.LeeHyperreal.Secondary.EnterSnipe");
         }
 
-        private object Row_FromSkillSlot(On.RoR2.UI.LoadoutPanelController.Row.orig_FromSkillSlot orig, RoR2.UI.LoadoutPanelController owner, BodyIndex bodyIndex, int skillSlotIndex, GenericSkill skillSlot)
+        private LoadoutPanelController.Row Row_FromSkillSlot(On.RoR2.UI.LoadoutPanelController.Row.orig_FromSkillSlot orig, LoadoutPanelController owner, BodyIndex bodyIndex, int skillSlotIndex, GenericSkill skillSlot)
         {
             LoadoutPanelController.Row row = (LoadoutPanelController.Row)orig(owner, bodyIndex, skillSlotIndex, skillSlot);
             string newToken = "";

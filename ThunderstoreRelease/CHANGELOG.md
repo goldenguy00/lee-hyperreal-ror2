@@ -1,7 +1,8 @@
 # Lee: Hyperreal - A Character Mod for Risk of Rain 2
 ## Changelog
 
-- v2.1.0
+- v2.1.0 -> Bug bashing + QoL
+    - Added new animation for Sprinting when movespeed is high enough (aka Super Sprint)
     - Added Base Shield Stat
         - Should make it easier to engage with enemies
         - 120HP to 100HP/30SHIELD 10 shield per level
@@ -10,10 +11,13 @@
     - Added option to disable the Ultimate Camera animation
     - Changed Notification Style on Hyper Effects
     - Walking doesnt stutter step you at the end anymore
-    - slightly better hunkhud support
-    - slightly enhanced Orb animations
-    - 20% more ultimate pull-in range
-    - fixxed some item displays from not dissapearing
+    - Slightly better hunkhud support
+    - Slightly enhanced Orb animations
+    - 20% more Ultimate pull-in range
+    - Fixed some item displays from not dissapearing
+    - Fixed Input priority and Move cancels preventing major issues like orbs being eaten and not performing the move
+    - Recompiled with new MMHOOK to use appropriate function calls
+    - Blue Orb can cancel faster into Primary, move cancelling this has not changed in timing.
 - v2.0.5
     - oops (dont worry about it this never happened)
 - v2.0.4

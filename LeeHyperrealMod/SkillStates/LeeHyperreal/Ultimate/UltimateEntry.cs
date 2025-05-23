@@ -22,11 +22,11 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
                 {
                     if (domainController.GetDomainState())
                     {
-                        this.outer.SetInterruptState(new UltimateDomain(), InterruptPriority.PrioritySkill);
+                        this.outer.SetInterruptState(new UltimateDomain(), InterruptPriority.Frozen);
                     }
                     else
                     {
-                        this.outer.SetInterruptState(new Ultimate(), InterruptPriority.PrioritySkill);
+                        this.outer.SetInterruptState(new Ultimate(), InterruptPriority.Frozen);
                     }
                 }
             }
@@ -44,7 +44,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.Ultimate
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            return InterruptPriority.PrioritySkill;
+            return InterruptPriority.Frozen;
         }
 
     }

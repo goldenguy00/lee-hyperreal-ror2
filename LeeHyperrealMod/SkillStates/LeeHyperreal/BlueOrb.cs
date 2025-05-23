@@ -292,6 +292,8 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                 {
                     orbController.isExecutingSkill = false;
                 }
+
+                Modules.BodyInputCheckHelper.CheckForOtherInputs(base.skillLocator, isAuthority, base.inputBank);
             }
             if (base.age >= duration * earlyEnd && base.isAuthority)
             {
@@ -302,7 +304,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
                     hasCancelledWithMovement = true;
                     return;
                 }
-                Modules.BodyInputCheckHelper.CheckForOtherInputs(base.skillLocator, isAuthority, base.inputBank);
             }
 
 
@@ -411,7 +412,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
-            if (fixedAge >= duration * earlyEnd) 
+            if (fixedAge >= duration * orbCancelFrac) 
             {
                 return InterruptPriority.Skill;
             }
