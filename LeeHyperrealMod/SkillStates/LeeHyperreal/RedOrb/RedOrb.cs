@@ -43,7 +43,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
         private bool hasResetRMA = false;
 
         float movespeedScalingCap = 25f;
-        private bool hasCancelledWithMovement = false;
 
         float disableInvincibility = 0.42f;
         public OrbController orbController;
@@ -186,10 +185,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                     orbController.isExecutingSkill = false;
                 }
 
-                if (inputBank.moveVector != Vector3.zero && !hasCancelledWithMovement) 
+                if (inputBank.moveVector != Vector3.zero)
                 {
-                    this.outer.SetNextStateToMain();
-                    hasCancelledWithMovement = true;
+                    this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
                     return;
                 }
 
@@ -227,7 +225,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
             }
             if (fixedAge >= duration)
             {
-                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
+                this.outer.SetNextStateToMain();
                 return;
             }
         }

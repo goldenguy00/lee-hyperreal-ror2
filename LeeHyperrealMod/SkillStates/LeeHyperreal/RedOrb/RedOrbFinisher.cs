@@ -49,7 +49,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
         internal float pushForce = 100f;
         private bool hasFiredOverlap;
         bool hasUnsetOrbController;
-        public bool hasCancelledWithMovement;
 
         public DamageTypeCombo GenericDamageType = new DamageTypeCombo(DamageType.Generic, DamageTypeExtended.Generic, DamageSource.NoneSpecified);
         public override void OnEnter()
@@ -161,10 +160,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.RedOrb
                     hasUnsetOrbController = true;
                     orbController.isExecutingSkill = false;
                 }
-                if (inputBank.moveVector != Vector3.zero && !hasCancelledWithMovement) 
+                if (inputBank.moveVector != Vector3.zero) 
                 {
                     this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
-                    hasCancelledWithMovement = true;
                     return;
                 }
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(base.skillLocator, isAuthority, base.inputBank);

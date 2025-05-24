@@ -44,7 +44,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
         float turnOnGravityFrac = 0.3f;
         float midmoveVFXrepeatFrac = 0.2f;
         bool midmoveVFXrepeatplayed = false;
-        private bool hasCancelledWithMovement = false;
 
         float invincibilityOnFrac = 0.05f;
         float invincibilityOffFrac = 0.25f;
@@ -220,10 +219,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
                     hasUnsetOrbController = true;
                     orbController.isExecutingSkill = false;
                 }
-                if (inputBank.moveVector != Vector3.zero && !hasCancelledWithMovement)
+                if (inputBank.moveVector != Vector3.zero)
                 {
                     this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
-                    hasCancelledWithMovement = true;
                     return;
                 }
                 Modules.BodyInputCheckHelper.CheckForOtherInputs(skillLocator, isAuthority, inputBank);

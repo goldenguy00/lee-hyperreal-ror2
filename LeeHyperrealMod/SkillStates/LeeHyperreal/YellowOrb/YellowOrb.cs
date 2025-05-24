@@ -45,7 +45,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
         CharacterGravityParameters gravParams;
         CharacterGravityParameters oldGravParams;
         private bool hasUnsetOrbController;
-        private bool hasCancelledWithMovement;
 
         public override void OnEnter()
         {
@@ -196,10 +195,9 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal.YellowOrb
 
                 if (base.inputBank.moveVector != Vector3.zero)
                 {
-                    if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death && !hasCancelledWithMovement)
+                    if (base.outer.state.GetMinimumInterruptPriority() != EntityStates.InterruptPriority.Death)
                     {
                         this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
-                        hasCancelledWithMovement = true;
                         return;
                     }
                 }

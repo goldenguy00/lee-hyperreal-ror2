@@ -28,7 +28,6 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
         public float duration = 3.83f;
         public int moveStrength; //1-3
         public bool hasFired;
-        public bool hasCancelledWithMovement;
         private bool hasResetRMA = false;
 
         internal BlastAttack blastAttack;
@@ -297,11 +296,10 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
             }
             if (base.age >= duration * earlyEnd && base.isAuthority)
             {
-                if (inputBank.moveVector != new Vector3() && !hasCancelledWithMovement) 
+                if (inputBank.moveVector != new Vector3()) 
                 {
                     //Cancel
                     this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
-                    hasCancelledWithMovement = true;
                     return;
                 }
             }
@@ -333,7 +331,7 @@ namespace LeeHyperrealMod.SkillStates.LeeHyperreal
 
             if (base.fixedAge >= duration)
             {
-                this.outer.SetInterruptState(new LeeHyperrealCharacterMain(), InterruptPriority.Skill);
+                this.outer.SetNextStateToMain();
                 return;
             }
         }
