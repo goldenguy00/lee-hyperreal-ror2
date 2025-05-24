@@ -630,6 +630,7 @@ namespace LeeHyperrealMod.Modules.Survivors
                 stockToConsume = 1,
                 keywordTokens = new string[] { }
             });
+
             Modules.Skills.AddPassiveSkills(passive.VFXColorPassiveSkillSlot.skillFamily, new SkillDef[] {
                 passive.defaultVFXPassive,
             });

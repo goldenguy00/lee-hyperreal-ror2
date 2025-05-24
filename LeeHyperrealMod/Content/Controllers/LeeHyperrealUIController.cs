@@ -32,15 +32,16 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private CharacterBody characterBody;
         private CharacterMaster characterMaster;
-        private GameObject canvasObject;
-        private GameObject RoRHUDObject;
+
+        private HUD RoRHUD;
         private Transform RoRHUDSpringCanvasTransform;
-        private GameObject LeeHyperrealNotificationObject;
+        private ChildLocator RoRHUDChildLoc;
+
         private OrbController orbController;
         private LeeHyperrealDomainController domainController;
         private LeeHyperrealPassive passiveController;
         private RectTransform OrbPositionComponent;
-        private RectTransform PowerMeterPositionComponent;
+
         public bool baseAIPresent;
         public bool enabledUI;
 
@@ -50,7 +51,6 @@ namespace LeeHyperrealMod.Content.Controllers
 
         public uint selectedSkin = 0;
         public float rgbOffset = 0f;
-        public static bool isHunkHudInstalled => Chainloader.PluginInfos.ContainsKey("com.public_ParticleSystem.HunkHud");
 
         #region Orb Variables
         private int maxShownOrbs = 8;
@@ -178,7 +178,6 @@ namespace LeeHyperrealMod.Content.Controllers
 
         #region Skill Icons
         private List<Material> skillIconMaterials;
-        List<Image> imageList;
         #endregion
 
         private bool isInitialized = false;
@@ -243,46 +242,30 @@ namespace LeeHyperrealMod.Content.Controllers
             {
                 Debug.Log($"Lee: Hyperreal - NRE on UI Initialization, trying again: {e}");
             }
-            catch (ForcedUIReInitException e) 
+            catch (ForcedUIReInitException) 
             {
                 Debug.Log("Lee: Hyperreal - UI needs to Reinit!");
             }
 
             if (Modules.Config.loreMode.Value)
             {
-                switch (characterBody.skinIndex)
+                characterBody.portraitIcon = characterBody.skinIndex switch
                 {
-                    case 0:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.prospectorSprite.texture;
-                        break;
-                    case 1:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.comradeSprite.texture;
-                        break;
-                    case 4:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.scarletSprite.texture;
-                        break;
-                    default:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.leeIconSprite.texture;
-                        break;
-                }
+                    0 => Modules.LeeHyperrealAssets.prospectorSprite.texture,
+                    1 => Modules.LeeHyperrealAssets.comradeSprite.texture,
+                    4 => Modules.LeeHyperrealAssets.scarletSprite.texture,
+                    _ => Modules.LeeHyperrealAssets.leeIconSprite.texture,
+                };
             }
             else
             {
-                switch (characterBody.skinIndex)
+                characterBody.portraitIcon = characterBody.skinIndex switch
                 {
-                    case 2:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.scarletSprite.texture;
-                        break;
-                    case 3:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.prospectorSprite.texture;
-                        break;
-                    case 4:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.comradeSprite.texture;
-                        break;
-                    default:
-                        characterBody.portraitIcon = Modules.LeeHyperrealAssets.leeIconSprite.texture;
-                        break;
-                }
+                    2 => Modules.LeeHyperrealAssets.scarletSprite.texture,
+                    3 => Modules.LeeHyperrealAssets.prospectorSprite.texture,
+                    4 => Modules.LeeHyperrealAssets.comradeSprite.texture,
+                    _ => Modules.LeeHyperrealAssets.leeIconSprite.texture,
+                };
             }
         }
 
@@ -375,30 +358,20 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void InitializeRoRHUD()
         {
-            if (RoRHUDObject)
+            if (RoRHUD)
             {
                 // Get this transform for easier reference.
-                RoRHUDSpringCanvasTransform = RoRHUDObject.transform.Find("MainContainer").Find("MainUIArea").Find("SpringCanvas");
+                RoRHUDSpringCanvasTransform = RoRHUDChildLoc.FindChild("SpringCanvas") ?? RoRHUD.mainUIPanel.transform.Find("SpringCanvas");
 
-                //Add a clone of the notification area object to use to show the Notification controller.
-                HUD rorHUD = RoRHUDObject.GetComponent<HUD>();
+                var notificationArea = RoRHUDChildLoc.FindChild("NotificationArea")?.gameObject ?? RoRHUD.mainContainer.transform.Find("NotificationArea").gameObject;
 
-                GameObject RoRNotificationArea = RoRHUDObject.transform.Find("MainContainer").Find("NotificationArea").gameObject;
-                NotificationUIController genericNotif = RoRNotificationArea.GetComponent<NotificationUIController>();
+                var leeUINotifController = notificationArea.GetComponent<LeeHyperrealUINotificationController>() 
+                                        ?? notificationArea.AddComponent<LeeHyperrealUINotificationController>();
 
-                LeeHyperrealUINotificationController leeUINotifController = genericNotif.gameObject.GetComponent<LeeHyperrealUINotificationController>();
-                if (!leeUINotifController)
-                {
-                    leeUINotifController = genericNotif.gameObject.AddComponent<LeeHyperrealUINotificationController>();
-                }
+                var queue = RoRHUD.targetMaster.GetComponent<LeeHyperrealNotificationQueue>()
+                         ?? RoRHUD.targetMaster.gameObject.AddComponent<LeeHyperrealNotificationQueue>();
 
-                LeeHyperrealNotificationQueue queue = rorHUD.targetMaster.gameObject.GetComponent<LeeHyperrealNotificationQueue>();
-                if (!queue)
-                {
-                    queue = rorHUD.targetMaster.gameObject.AddComponent<LeeHyperrealNotificationQueue>();
-                }
-
-                leeUINotifController.hud = genericNotif.hud;
+                leeUINotifController.hud = RoRHUD;
                 leeUINotifController.genericNotificationPrefab = Modules.LeeHyperrealAssets.leenotificationBoxPrefab;
                 leeUINotifController.notificationQueue = queue;
                 return;    
@@ -427,7 +400,7 @@ namespace LeeHyperrealMod.Content.Controllers
                             Debug.Log($"Lee: Hyperreal UI failed to initialize after more than {MAX_FAIL_ATTEMPTS} attempts. Stopping attempts to initialize.");
                         }
                     }
-                    catch (ForcedUIReInitException e)
+                    catch (ForcedUIReInitException)
                     {
                         Debug.Log("Lee: Hyperreal - UI needs to Reinit!");
                     }
@@ -505,7 +478,7 @@ namespace LeeHyperrealMod.Content.Controllers
             }
             else // DEFAULT UI 
             {
-                if (RoRHUDObject) 
+                if (RoRHUD) 
                 {
                     //Move Chatbox up a little bit to not collide with the energy bar.
                     RoRHUDSpringCanvasTransform.GetChild(0).GetChild(0).position = new Vector3(-11.4084f, - 4.3756f, 12.6537f);
@@ -549,7 +522,7 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Invincible Health layer
         public void InitializeHealthLayer()
         {
-            if (RoRHUDObject && !healthLayers)
+            if (RoRHUD && !healthLayers)
             {
                 if (LeeHyperrealPlugin.isHunkHudInstalled)
                 {
@@ -575,7 +548,7 @@ namespace LeeHyperrealMod.Content.Controllers
             layerInvincibilityHealthObject = healthLayers.transform.GetChild(0).gameObject;
             layerInvincibilityHazeObject = healthLayers.transform.GetChild(1).gameObject;
             invincibilityBorder = layerInvincibilityHealthObject.transform.GetChild(0).gameObject.GetComponent<Image>();
-            if (isHunkHudInstalled)
+            if (LeeHyperrealPlugin.isHunkHudInstalled)
             {
                 layerInvincibilityHealthObjectHunk = healthLayers.transform.GetChild(2).gameObject;
                 layerInvincibilityHazeObjectHunk = healthLayers.transform.GetChild(2).GetChild(1).gameObject;
@@ -594,28 +567,22 @@ namespace LeeHyperrealMod.Content.Controllers
             if (layerInvincibilityHazeObject)
             {
                 layerInvincibilityHazeObject.SetActive(state);
-                if (isHunkHudInstalled)
-                {
+                if (layerInvincibilityHazeObjectHunk)
                     layerInvincibilityHazeObjectHunk.SetActive(state);
-                }
             }
 
             if (layerInvincibilityHealthObject)
             {
                 layerInvincibilityHealthObject.SetActive(state);
-                if (isHunkHudInstalled)
-                {
+                if (layerInvincibilityHealthObjectHunk)
                     layerInvincibilityHealthObjectHunk.SetActive(state);
-                }
             }
 
             if (invincibilityBorder) 
             {
                 invincibilityBorder.color = color;
-                if (isHunkHudInstalled)
-                {
+                if (invincibilityBorderHunk)
                     invincibilityBorderHunk.color = color;
-                }
             }
         }
 
@@ -638,11 +605,12 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Power Meter Functions
         private void InitializePowerMeter()
         {
-            if (RoRHUDObject && !powerMeterUIObject) 
+            if (RoRHUD && !powerMeterUIObject) 
             {
+                var bottomLeft = RoRHUDChildLoc.FindChild("BottomLeftCluster") ?? RoRHUDSpringCanvasTransform.Find("BottomLeftCluster");
                 if (LeeHyperrealPlugin.isHunkHudInstalled)
                 {
-                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
+                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, bottomLeft);
                     powerMeterUIObjectExtraParent = powerMeterUIObject.transform.GetChild(0);
                     OrbPositionComponent = powerMeterUIObjectExtraParent.GetComponent<RectTransform>();
                     OrbPositionComponent.anchoredPosition = new Vector3(170f, 255f, 0f);
@@ -650,7 +618,7 @@ namespace LeeHyperrealMod.Content.Controllers
                 }
                 else if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
-                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
+                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, bottomLeft);
                     powerMeterUIObject.transform.localScale = new Vector3(1, 1, 1);
                     powerMeterUIObject.transform.localRotation = Quaternion.identity;
                     powerMeterUIObject.transform.localPosition = new Vector3(200f, 220f, -42f);
@@ -658,16 +626,17 @@ namespace LeeHyperrealMod.Content.Controllers
                     powerMeterUIObjectBullet.transform.localPosition = new Vector3(-30f, -4f, 11f);
 
                 }
-                else if (LeeHyperrealPlugin.isBetterHudInstalled) 
+                else if (LeeHyperrealPlugin.isBetterHudInstalled)
                 {
-                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomCenterCluster"));
+                    var bottomCenter = RoRHUDChildLoc.FindChild("BottomCenterCluster") ?? RoRHUDSpringCanvasTransform.Find("BottomCenterCluster");
+                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, bottomCenter);
                     powerMeterUIObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
                     powerMeterUIObject.transform.localRotation = Quaternion.identity;
                     powerMeterUIObject.transform.localPosition = new Vector3(-500f, 100.709f, - 47.7458f);
                 }
                 else
                 {
-                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, RoRHUDSpringCanvasTransform.Find("BottomLeftCluster"));
+                    powerMeterUIObject = UnityEngine.GameObject.Instantiate(Modules.LeeHyperrealAssets.powerMeterObject, bottomLeft);
                 }
             }
 
@@ -964,21 +933,14 @@ namespace LeeHyperrealMod.Content.Controllers
             }
 
             SetColorForBrackets();
-            switch (bracketType) 
+
+            return bracketType switch
             {
-                case BracketType.ONE:
-                    return HandleBracketOne(bracketContainerProps, position);
-                    break;
-                case BracketType.TWO:
-                    return HandleBracketTwo(bracketContainerProps, position);
-                    break;
-                case BracketType.THREE:
-                    return HandleBracketThree(bracketContainerProps, position);
-                    break;
-                default:
-                    return new Vector3();
-                    break;
-            }            
+                BracketType.ONE => HandleBracketOne(bracketContainerProps, position),
+                BracketType.TWO => HandleBracketTwo(bracketContainerProps, position),
+                BracketType.THREE => HandleBracketThree(bracketContainerProps, position),
+                _ => new Vector3(),
+            };
         }
 
         public Vector3 HandleBracketOne(BracketContainerProps bracketContainerProps, int position)
@@ -1025,7 +987,7 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void InitializeOrbAnimatorArray()
         {
-            if (RoRHUDObject && !orbUIObject) 
+            if (RoRHUD && !orbUIObject) 
             {
                 if (LeeHyperrealPlugin.isHunkHudInstalled)
                 {
@@ -1138,23 +1100,13 @@ namespace LeeHyperrealMod.Content.Controllers
             //}
         }
 
-        public Material SelectOrbMaterial(OrbController.OrbType orb)
+        public Material SelectOrbMaterial(OrbController.OrbType orb) => orb switch
         {
-            switch (orb)
-            {
-                case OrbController.OrbType.RED:
-                    return Modules.LeeHyperrealAssets.redOrbMat;
-                case OrbController.OrbType.YELLOW:
-                    return Modules.LeeHyperrealAssets.yellowOrbMat;
-                case OrbController.OrbType.BLUE:
-                    return Modules.LeeHyperrealAssets.blueOrbMat;
-                default:
-                    return null;
-            }
-
-            //Actually impossible unless we REALLY fuck up.
-            return null;
-        }
+            OrbController.OrbType.RED => Modules.LeeHyperrealAssets.redOrbMat,
+            OrbController.OrbType.YELLOW => Modules.LeeHyperrealAssets.yellowOrbMat,
+            OrbController.OrbType.BLUE => Modules.LeeHyperrealAssets.blueOrbMat,
+            _ => null,
+        };
 
         #endregion
 
@@ -1419,7 +1371,7 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Ultimate Indicator
         public void InitializeUltimateIndicator() 
         {
-            if (RoRHUDObject && !ultimateIndicatorObject)
+            if (RoRHUD && !ultimateIndicatorObject)
             {
                 if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
@@ -1506,7 +1458,7 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Hold
         public void InitializeHoldOKTag() 
         {
-            if (RoRHUDObject && !holdOKTag)
+            if (RoRHUD && !holdOKTag)
             {
                 if (LeeHyperrealPlugin.isRiskUIInstalled)
                 {
@@ -1544,23 +1496,16 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Crosshair
         public void InitializeCrosshair() 
         {
-            if (RoRHUDObject) 
+            if (!crosshairObject) 
             {
-                if (!crosshairObject) 
+                var crosshairCanvas = RoRHUDChildLoc.FindChild("CrosshairCanvas") ?? RoRHUD.mainUIPanel.transform.Find("CrosshairCanvas");
+                if (crosshairCanvas)
                 {
-                    if (LeeHyperrealPlugin.isRiskUIInstalled)
-                    {
-                        crosshairObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.customCrosshair, RoRHUDObject.transform.Find("MainContainer/MainUIArea/CrosshairCanvas"));
-                    }
-                    else
-                    {
-                        crosshairObject = UnityEngine.Object.Instantiate(Modules.ParticleAssets.customCrosshair, RoRHUDObject.transform.Find("MainContainer/MainUIArea/CrosshairCanvas"));
-                    }
+                    crosshairObject = GameObject.Instantiate(Modules.ParticleAssets.customCrosshair, crosshairCanvas);
                 }
             }
 
             crosshairObject.transform.localScale = new Vector3(Modules.Config.crosshairSize.Value, Modules.Config.crosshairSize.Value, 0f);
-
             crosshairAnimator = crosshairObject.GetComponent<Animator>();
         }
 
@@ -1608,81 +1553,45 @@ namespace LeeHyperrealMod.Content.Controllers
         #region Skill Icon Colour
         private void InitializeSkillIconMaterial()
         {
-            imageList = new List<Image>();
-            skillIconMaterials = new List<Material>();
-
-            // Grab the skillicons and slap them into a material array
-            if (RoRHUDObject)
-            {
-                if (LeeHyperrealPlugin.isRiskUIInstalled)
-                {
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill1Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill2Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill3Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/SkillIconContainer/Skill4Root/IconPanel").GetComponent<Image>());
-                }
-                else if (LeeHyperrealPlugin.isBetterHudInstalled)
-                {
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill1Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill2Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill3Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomCenterCluster/Scaler/Skill4Root/IconPanel").GetComponent<Image>());
-                }
-                else
-                {
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill1Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill2Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill3Root/IconPanel").GetComponent<Image>());
-                    imageList.Add(RoRHUDSpringCanvasTransform.Find("BottomRightCluster/Scaler/Skill4Root/IconPanel").GetComponent<Image>());
-                }
-            }
-
             //Set Material to our own custom one, steal the image and apply it to the material image.
-            foreach (Image img in imageList)
+            foreach (SkillIcon icon in RoRHUD.skillIcons)
             {
-                Sprite sprite = img.sprite;
-
+                Image iconImage = icon.iconImage;
                 // Skill icons have not been properly initialized, throw this shit at the game
-                if (sprite.name == "texBanditSkill3Icon")
+                if (iconImage.sprite.name == "texBanditSkill3Icon")
                 {
                     throw new ForcedUIReInitException();
                 }
 
-                img.material = new Material(Modules.LeeHyperrealAssets.UIFadeMat);
-                img.material.SetTexture("_IconTexture", sprite.texture);
+                iconImage.material = new Material(Modules.LeeHyperrealAssets.UIFadeMat);
+                iconImage.material.SetTexture("_IconTexture", iconImage.sprite.texture);
 
                 //Depending on the skin, set the color
 
                 //Setup red variant
-                SetCustomUIMaterial(img.material, 0f, ResolveColor());
-                skillIconMaterials.Add(img.material);
+                SetCustomUIMaterial(iconImage.material, 0f, ResolveColor());
+                skillIconMaterials.Add(iconImage.material);
             }
         }
 
         private void UnsetSkillIconMat()
         {
-            if (imageList == null) 
+            if (RoRHUD)
             {
-                return;
-            }
-
-            if (imageList.Count == 0) 
-            {
-                return;
-            }
-
-            foreach (Image img in imageList)
-            {
-                img.material = img.defaultMaterial;
+                foreach (SkillIcon icon in RoRHUD.skillIcons)
+                {
+                    if (icon?.iconImage)
+                        icon.iconImage.material = icon.iconImage.defaultMaterial;
+                }
             }
         }
         #endregion
 
         public void SetRORUIActiveState(bool state)
         {
-            if (RoRHUDObject) 
+            if (RoRHUD) 
             {
-                RoRHUDObject.SetActive(state);
+                RoRHUD.gameObject.SetActive(state);
             }
         }
 
@@ -1700,35 +1609,31 @@ namespace LeeHyperrealMod.Content.Controllers
 
         private void NotificationUIController_ShowCurrentNotification(On.RoR2.UI.NotificationUIController.orig_ShowCurrentNotification orig, NotificationUIController self, CharacterMasterNotificationQueue notificationQueue)
         {
-            if (self && notificationQueue)
+            if (notificationQueue)
             {
-                CharacterMasterNotificationQueue.NotificationInfo currentNotification = notificationQueue.GetCurrentNotification();
-                if (currentNotification != null)
-                {
-                    LeeHyperrealNotificationQueue notifQueue = notificationQueue.gameObject.GetComponent<LeeHyperrealNotificationQueue>();
-                    if (notifQueue)
-                    {
-                        ItemDef key = currentNotification.data as ItemDef;
-                        if (key != null)
-                        {
-                            if (Modules.StaticValues.itemKeyValueNotificationPairs.ContainsKey(key))
-                            {
-                                LeeHyperrealNotificationQueue.PushNotification(notificationQueue.gameObject.GetComponent<CharacterMaster>(), Modules.StaticValues.itemKeyValueNotificationPairs[key]);
-                            }
-                        }
+                var currentNotification = notificationQueue.GetCurrentNotification();
+                var notifQueue = notificationQueue.GetComponent<LeeHyperrealNotificationQueue>();
 
-                        EquipmentDef equipmentDef = currentNotification.data as EquipmentDef;
-                        if (equipmentDef != null) 
+                if (currentNotification != null && notifQueue != null)
+                {
+                    if (currentNotification.data is ItemDef key)
+                    {
+                        if (Modules.StaticValues.itemKeyValueNotificationPairs.TryGetValue(key.itemIndex, out var customEffect))
                         {
-                            if (Modules.StaticValues.equipmentKeyValueNotificationPairs.ContainsKey(equipmentDef)) 
-                            {
-                                LeeHyperrealNotificationQueue.PushNotification(notificationQueue.gameObject.GetComponent<CharacterMaster>(), Modules.StaticValues.equipmentKeyValueNotificationPairs[equipmentDef]);
-                            }
+                            LeeHyperrealNotificationQueue.PushNotification(notificationQueue.gameObject.GetComponent<CharacterMaster>(), customEffect);
+                        }
+                    }
+                    else if (currentNotification.data is EquipmentDef equipmentDef) 
+                    {
+                        if (Modules.StaticValues.equipmentKeyValueNotificationPairs.TryGetValue(equipmentDef.equipmentIndex, out var customEffect)) 
+                        {
+                            LeeHyperrealNotificationQueue.PushNotification(notificationQueue.gameObject.GetComponent<CharacterMaster>(), customEffect);
                         }
                     }
                 }
             }
-            orig.Invoke(self, notificationQueue);
+
+            orig(self, notificationQueue);
         }
 
         private void CrosshairSize_SettingChanged(object sender, EventArgs e)
@@ -1770,13 +1675,15 @@ namespace LeeHyperrealMod.Content.Controllers
         private void HUD_Update(On.RoR2.UI.HUD.orig_Update orig, HUD self)
         {
             orig(self);
-            if (!RoRHUDObject) 
+
+            if (RoRHUD != self)
             {
-                RoRHUDObject = self.gameObject;
+                RoRHUD = self;
+                RoRHUDChildLoc = self.GetComponent<ChildLocator>();
             }
         }
         #endregion
 
 
-    }   
+    }
 }

@@ -18,10 +18,13 @@ using System;
 using MonoMod.RuntimeDetour;
 using RoR2.UI;
 using System.Runtime.CompilerServices;
-using Rewired;
 
 [module: UnverifiableCode]
+#pragma warning disable CS0618 // Type or member is obsolete
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
+#pragma warning restore CS0618 // Type or member is obsolete
+[assembly: HG.Reflection.SearchableAttribute.OptIn]
+
 namespace LeeHyperrealMod
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
@@ -155,7 +158,6 @@ namespace LeeHyperrealMod
             On.RoR2.CharacterModel.UpdateOverlayStates += CharacterModel_UpdateOverlayStates;
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.OnBodyKill += BrotherSpeechDriver_OnBodyKill;
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.DoInitialSightResponse += BrotherSpeechDriver_DoInitialSightResponse;
-            On.RoR2.UI.MainMenu.BaseMainMenuScreen.Awake += BaseMainMenuScreen_Awake;
             On.RoR2.UI.LoadoutPanelController.Row.FromSkillSlot += Row_FromSkillSlot;
             On.RoR2.UI.CharacterSelectController.Awake += CharacterSelectController_Awake;
 
@@ -196,7 +198,7 @@ namespace LeeHyperrealMod
 
         private LoadoutPanelController.Row Row_FromSkillSlot(On.RoR2.UI.LoadoutPanelController.Row.orig_FromSkillSlot orig, LoadoutPanelController owner, BodyIndex bodyIndex, int skillSlotIndex, GenericSkill skillSlot)
         {
-            LoadoutPanelController.Row row = (LoadoutPanelController.Row)orig(owner, bodyIndex, skillSlotIndex, skillSlot);
+            LoadoutPanelController.Row row = orig(owner, bodyIndex, skillSlotIndex, skillSlot);
             string newToken = "";
             if ((skillSlot.skillFamily as ScriptableObject).name.Contains("Lee: Hyperreal - Orbs and Ammo")) 
             {
